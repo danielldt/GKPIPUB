@@ -1,0 +1,1728 @@
+CPP_Requestor As screen:
+    Height: =
+    OnVisible: |
+        =Set(varShowMenu,true);Set(varShowMenu,false);
+        
+        If(!'CPP-Form_1'.Valid,SubmitForm('CPP-Form_1')||Notify("Please fill in the mandatory field(s) in Copacker Production Volume Form",NotificationType.Error,1500));
+        
+        Set(varRC,true);Set(varHL,false);
+        
+        Set(varAddCopacker,false);
+        
+        Clear(colCopacker);
+        
+        Collect(
+            colCopackerUnit,
+            Filter(
+                'Copacker List',
+                BU = CPPBU_1.Text
+            )
+        );
+        
+        ClearCollect(colCopackerList,'Copacker List');
+        
+        ClearCollect(
+            colCopacker,
+            ShowColumns(
+                Table(Defaults('Copacker Form')),
+                "FormNo",
+                "BU",
+                "Month",
+                "Year",
+                "RequestorName",
+                "RequestorEmail",
+                "Status",
+                "Copacker",
+                "ItemCode",
+                "Variant",
+                "OpeningBalance",
+                "Production",
+                "DeliveredtoWarehouse",
+                "Rejected",
+                "ClosingBalance",
+                "SubTotal",
+                "Total",
+                "OpeningBalance2",
+                "Production2",
+                "DeliveredtoWarehouse0",
+                "Rejected2",
+                "ClosingBalance2",
+                "SubTotal2",
+                "Total2",
+                "ID"
+            )
+        );
+
+    HtmlText1_3 As htmlViewer:
+        Height: =673
+        HtmlText: |-
+            ="<div style='background-color: rgba(253,253,253,1); box-shadow: 1px 2px 22px 0px rgba(236,236,236,1); margin: 30px; width: 1295px; height: 548px; border-radius: 10px'></div>"
+        Width: =1366
+        Y: =95
+        ZIndex: =3
+
+    SubHeader_18 As SubHeader:
+        ZIndex: =4
+
+    Header_29 As Header:
+        HeaderText: ="Copacker Production Volume Form"
+        ZIndex: =5
+
+    "'CPP-Form_1' As form":
+        AcceptsFocus: =false
+        DataSource: ='Copacker Form'
+        Height: =520
+        Item: =Defaults('Copacker Form')
+        SnapToColumns: =false
+        Width: =1285
+        X: =35
+        Y: =144
+        ZIndex: =6
+
+        DataCard34 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =42
+            Width: =1284
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey25_14 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =10
+                Size: =16
+                Text: ="Form Details"
+                Width: =1087
+                Wrap: =false
+                X: =67
+                ZIndex: =1
+
+            Circle2_25 As circle:
+                Fill: =RGBA(0, 161, 233, 1)
+                Height: =31
+                Width: =31
+                X: =36
+                Y: =5
+                ZIndex: =2
+
+            Icon23_17 As icon.CalendarBlank:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =23
+                Icon: =Icon.DocumentWithContent
+                Width: =23
+                X: =40
+                Y: =9
+                ZIndex: =3
+
+        Month_DataCard9_1 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Month"
+            Default: =
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Copacker Form'],DataSourceInfo.DisplayName,"Month")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =129
+            Required: =true
+            Update: =
+            Width: =428
+            X: =4
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey4_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage4_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MonthCPP_1.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible4_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey4_1.Y
+                ZIndex: =4
+
+            MonthCPP_1 As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank(MonthCPP_1.Selected.Value), Color.Red,  Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Default: =""
+                Height: =45
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Items: =Calendar.MonthsLong()
+                Width: =368
+                X: =30
+                Y: =44
+                ZIndex: =5
+
+        DataCard20_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =111
+            Width: =1284
+            X: =0
+            Y: =10
+            ZIndex: =1
+
+            DataCardKey25_8 As label:
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =25
+                Size: =16
+                Text: ="Copacker"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =28
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue24_11 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =1224
+                X: =28
+                Y: =46
+                ZIndex: =2
+
+            Button8_47 As button:
+                BorderThickness: =0
+                Fill: =If(varRC,DimGrey,RGBA(0, 161, 233, 1))
+                Height: =30
+                OnSelect: =Set(varRC,true);Set(varHL,false)
+                RadiusBottomLeft: =5
+                RadiusBottomRight: =5
+                RadiusTopLeft: =5
+                RadiusTopRight: =5
+                Size: =10
+                Text: ="RC"
+                Width: =50
+                X: =1149
+                Y: =5
+                ZIndex: =3
+
+            Button8_48 As button:
+                BorderThickness: =0
+                Fill: =If(varHL,DimGrey,RGBA(0, 161, 233, 1))
+                Height: =30
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: =Set(varHL,true);Set(varRC,false)
+                RadiusBottomLeft: =5
+                RadiusBottomRight: =5
+                RadiusTopLeft: =5
+                RadiusTopRight: =5
+                Size: =10
+                Text: ="hL"
+                Width: =50
+                X: =1204
+                Y: =5
+                ZIndex: =4
+
+            "'Add-bttn-CPP-New' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                DisplayMode: |-
+                    =If(
+                    
+                    And(Value(ProdHrsLine1Can.Text)<12, Value(SKULine1Can.Text)<1), DisplayMode.Edit,
+                    
+                    DisplayMode.Disabled
+                    
+                    )
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |-
+                    =Set(popupnewcpp,true);
+                    Patch('Copacker BU List', {BU: CPPBU_1.Text, Copacker: ""})
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Text: ="Add New Copacker"
+                Width: =227
+                X: =909
+                Y: =2
+                ZIndex: =5
+
+            Icon22_23 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                Width: =28
+                X: =911
+                Y: =11
+                ZIndex: =6
+
+            Label26_17 As label:
+                Align: =Center
+                Height: =31
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Opening Balance"
+                Width: =69
+                X: =688
+                Y: =75
+                ZIndex: =7
+
+            Label26_18 As label:
+                Align: =Center
+                Height: =20
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Production"
+                Width: =85
+                X: =785
+                Y: =86
+                ZIndex: =8
+
+            Label26_19 As label:
+                Align: =Center
+                Height: =31
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Delivered to Warehouse"
+                Width: =83
+                X: =882
+                Y: =75
+                ZIndex: =9
+
+            Label26_20 As label:
+                Height: =20
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Rejected"
+                Width: =59
+                X: =994
+                Y: =86
+                ZIndex: =10
+
+            Label26_21 As label:
+                Align: =Center
+                Height: =31
+                PaddingLeft: =0
+                Size: =10
+                Text: |-
+                    ="Closing
+                    Balance"
+                Width: =70
+                X: =1094
+                Y: =75
+                ZIndex: =11
+
+            Label26_24 As label:
+                Height: =20
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Item Code"
+                Width: =76
+                X: =48
+                Y: =86
+                ZIndex: =12
+
+            Label26_25 As label:
+                Height: =20
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Variant"
+                Width: =238
+                X: =149
+                Y: =86
+                ZIndex: =13
+
+            Label26_26 As label:
+                Align: =Center
+                AutoHeight: =true
+                PaddingLeft: =0
+                Size: =10
+                Text: ="Unit Conversion Coefficient"
+                Visible: =varAddCopacker
+                Width: =182
+                X: =470
+                Y: =67
+                ZIndex: =14
+
+        FormNo_DataCard2_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.FormNo
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@Copacker],DataSourceInfo.DisplayName,"FormNo")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Copacker], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =CPPFormNo_1.Text
+            Width: =321
+            X: =1
+            Y: =0
+            ZIndex: =23
+
+            DataCardKey275_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Form No"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            CPPFormNo_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="CPP"&"-"&Right(YearCPP_1.Selected.Value, 2 )&Switch(MonthCPP_1.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey275_1.Y + DataCardKey275_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage218_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =CPPFormNo_1.Y + CPPFormNo_1.Height
+                ZIndex: =3
+
+            StarVisible231_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey275_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey275_1.Y
+                ZIndex: =4
+
+        BU_DataCard1_2 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="BU"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@Copacker],DataSourceInfo.DisplayName,"BU")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Copacker], DataSourceInfo.MaxLength, "BU")
+            Required: =false
+            Update: =CPPBU_1.Text
+            Width: =214
+            X: =2
+            Y: =0
+            ZIndex: =23
+
+            DataCardKey276_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            CPPBU_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="EBSB"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey276_1.Y + DataCardKey276_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage219_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =CPPBU_1.Y + CPPBU_1.Height
+                ZIndex: =3
+
+            StarVisible232_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey276_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey276_1.Y
+                ZIndex: =4
+
+        Year_DataCard2_1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Copacker],DataSourceInfo.DisplayName,"Year")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =140
+            Required: =true
+            Update: =Value(CPPYear_1.Text)
+            Width: =321
+            X: =3
+            Y: =0
+            ZIndex: =23
+
+            DataCardKey278_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            CPPYear_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey278_1.Y + DataCardKey278_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage221_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(YearCPP_1.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible234_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey278_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey278_1.Y
+                ZIndex: =4
+
+            YearCPP_1 As dropdown:
+                BorderColor: =If(IsBlank(YearCPP_1.Selected.Value), Color.Red,  Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Items: =["", Year(Now()),  Year(Today())-1]
+                Width: =261
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+    CPP_Submit_bttn_3 As button:
+        BorderThickness: =0
+        DisplayMode: =Disabled
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: =Set(popupusersubmit,true)
+        Size: =13
+        Text: ="Submit"
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =7
+
+    CPP_Save_bttn_3 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =8
+
+    Icon2_26 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =9
+
+    LeftNavBarForm_10 As LeftNavBarForm:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =768
+        MenuItemForm: =colMenu
+        Width: =LeftNavBarForm_10.MenuWidth
+        ZIndex: =10
+
+    Button14_3 As button:
+        Fill: =RGBA(0, 161, 233, 1)
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: |-
+            =
+            Patch('Copacker BU List', LookUp('Copacker BU List', ID = TextInput3_1.Text),
+            {Copacker: TextInput7_1.Text}
+            
+            );
+            
+            Set(popupnewcpp,false)
+        Size: =13
+        Text: ="Done"
+        Visible: =popupnewcpp
+        X: =1109
+        Y: =582
+        ZIndex: =11
+
+    Button14_2 As button:
+        Fill: =RGBA(128, 128, 128, 1)
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: |-
+            =Set(popupnewcpp,false);
+            Remove('Copacker BU List', First(Sort('Copacker BU List', ID, Descending)));
+            Refresh('Copacker BU List')
+        Size: =13
+        Text: ="Cancel"
+        Visible: =popupnewcpp
+        X: =918
+        Y: =582
+        ZIndex: =12
+
+    CPP_Submit_bttn_2 As button:
+        BorderThickness: =0
+        DisplayMode: |
+            =DisplayMode.Edit
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: |-
+            =Patch('Copacker BU List',LookUp('Copacker BU List', ID = TextInput3_1.Text), {Copacker: TextInput7_1.Text});
+            Set(popupnewcpp,false)
+        Size: =13
+        Text: ="Done"
+        Visible: =popupnewcpp
+        Width: =200
+        X: =1111
+        Y: =684
+        ZIndex: =13
+
+    CPP_Save_bttn_2 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: |-
+            =Remove( 'Copacker BU List',
+            Last( Filter( 'Copacker BU List', ID = TextInput3_1.Text ) ) );
+            
+            Set(popupnewcpp,false)
+        Size: =13
+        Text: ="Cancel"
+        Visible: =popupnewcpp
+        Width: =200
+        X: =896
+        Y: =684
+        ZIndex: =14
+
+    Gallery5 As gallery.variableTemplateHeightGallery:
+        Height: =215
+        Items: =Filter('Copacker BU List',BU = CPPBU_1.Text).Copacker
+        Layout: =Layout.Vertical
+        TemplateSize: =182
+        Visible: =varRC
+        Width: =1223
+        X: =60
+        Y: =449
+        ZIndex: =15
+
+        Button8_50 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(247, 247, 247, 1)
+            Height: =49
+            Text: =""
+            Width: =1226
+            ZIndex: =1
+
+        Circle1_9 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =29
+            Y: =9
+            ZIndex: =2
+
+        Icon22_9 As icon.Post:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =22
+            Icon: =Icon.Post
+            OnSelect: =Select(Parent)
+            Width: =22
+            X: =33
+            Y: =13
+            ZIndex: =3
+
+        Label26 As label:
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =34
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Copacker
+            Width: =910
+            X: =76
+            Y: =8
+            ZIndex: =4
+
+        Gallery6 As gallery.variableTemplateHeightGallery:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =CountRows(Gallery6.AllItems)*50+10
+            Items: =Filter(colCopackerList,Copacker = Label26.Text)
+            Layout: =Layout.Vertical
+            TemplateSize: =244
+            Width: =1222
+            Y: =Button8_50.Height
+            ZIndex: =5
+
+            CPPOB_23 As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPPOB_23.Text), Red, DimGrey)
+                Default: =LookUp(colCopacker, ID=Value('CPPID-test'.Text)).OpeningBalance
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName.Text)),{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),
+                        
+                        ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        
+                        
+                        }),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), 'Item Code': CPP_ProdItemCode.Text, Copacker: Label26.Text, Variant:CPP_ProdName.Text, ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),     ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        }))
+                Size: =10
+                Width: =70
+                X: =651
+                ZIndex: =3
+
+            CPPProd_3 As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPPProd_3.Text), Red, DimGrey)
+                Default: =LookUp(colCopacker, ID=Value('CPPID-test'.Text)).Production
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName.Text)),{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),
+                        
+                        ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        
+                        
+                        }),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), 'Item Code': CPP_ProdItemCode.Text, Copacker: Label26.Text, Variant:CPP_ProdName.Text, ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),     ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        }))
+                Size: =10
+                Width: =70
+                X: =751
+                ZIndex: =4
+
+            CPPDelivered_3 As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPPDelivered_3.Text), Red, DimGrey)
+                Default: =LookUp(colCopacker, ID=Value('CPPID-test'.Text)).DeliveredtoWarehouse
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName.Text)),{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),
+                        
+                        ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        
+                        
+                        }),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), 'Item Code': CPP_ProdItemCode.Text, Copacker: Label26.Text, Variant:CPP_ProdName.Text, ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),     ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        }))
+                Size: =10
+                Width: =70
+                X: =851
+                ZIndex: =5
+
+            CPPRejected_3 As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPPRejected_3.Text), Red, DimGrey)
+                Default: =LookUp(colCopacker, ID=Value('CPPID-test'.Text)).Rejected
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName.Text)),{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),
+                        
+                        ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        
+                        
+                        }),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_23.Text),OpeningBalance2: Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), Production: Value(CPPProd_3.Text),Production2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0), DeliveredtoWarehouse: Value(CPPDelivered_3.Text),DeliveredtoWarehouse0:  Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), Rejected: Value(CPPRejected_3.Text),Rejected2: Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0), 'Item Code': CPP_ProdItemCode.Text, Copacker: Label26.Text, Variant:CPP_ProdName.Text, ClosingBalance: Value(CPPOB_23.Text + CPPProd_3.Text - CPPDelivered_3.Text - CPPRejected_3.Text),     ClosingBalance2: Round(Value(CPPProd_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100, 0) + Round(Value(CPPOB_23.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 100,0) - Round(Value(CPPDelivered_3.Text) *  LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0) - Round(Value(CPPRejected_3.Text) * LookUp(colCopackerList, 'Product Name' = CPP_ProdName.Text).'Unit Conversion Coefficient Amt' / 10,0)
+                        }))
+                Size: =10
+                Width: =70
+                X: =951
+                ZIndex: =6
+
+            CPPClosingBalance_3 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Sum(CPPOB_23.Text + CPPProd_3.Text) - CPPDelivered_3.Text - CPPRejected_3.Text 
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =1054
+                ZIndex: =7
+
+            RemoveIcon_17 As icon.Trash:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =31
+                Icon: =Icon.Trash
+                OnSelect: |
+                    =RemoveIf(colCopacker, ID = Gallery6.Selected.ID);
+                    RemoveIf(colCopackerList, ID = Gallery6.Selected.ID);
+                Visible: =If(CountRows(Filter('Copacker List', 'Product Name' = CPP_ProdName.Text)) > 0, false, true)
+                Width: =35
+                X: =1157
+                Y: =4
+                ZIndex: =8
+
+            CPP_ProdName As text:
+                BorderColor: =If(IsBlank(CPP_ProdName.Text),Red,DimGrey)
+                Default: =ThisItem.'Product Name'
+                DisplayMode: =If(CountRows(Filter('Copacker List', 'Product Name' = CPP_ProdName.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |+
+                    =UpdateIf(colCopackerList, ID=ThisItem.ID,{'Product Name': CPP_ProdName.Text, 'Item Code': CPP_ProdItemCode.Text});
+                    
+                    Patch(colCopacker,LookUp(colCopacker,ID=Value('CPPID-test'.Text)),{Variant:CPP_ProdName.Text})
+                    
+                Size: =10
+                Width: =290
+                X: =102
+                ZIndex: =9
+
+            CPP_ProdItemCode As text:
+                BorderColor: =If(IsBlank(CPP_ProdItemCode.Text),Red,DimGrey)
+                Default: =ThisItem.'Item Code'
+                DisplayMode: =If(CountRows(Filter('Copacker List', 'Product Name' = CPP_ProdName.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |+
+                    =UpdateIf(colCopackerList, ID=ThisItem.ID,{'Product Name': CPP_ProdName.Text, 'Item Code': CPP_ProdItemCode.Text});
+                    
+                    UpdateIf(colCopacker, ID=Value('CPPID-test'.Text),{ItemCode: CPP_ProdItemCode.Text});
+                    
+                    
+                Size: =10
+                Width: =82
+                ZIndex: =10
+
+            "'CPPID-test' As text":
+                BorderColor: =If(IsBlank('CPPID-test'.Text), Red, DimGrey)
+                Default: =ThisItem.ID
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Visible: =false
+                Width: =70
+                X: =392
+                ZIndex: =11
+
+            CPP_Conversion_Unit As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPP_Conversion_Unit.Text), Red, DimGrey)
+                Default: =LookUp(colCopackerList, ID=Value('CPPID-test'.Text)).'Unit Conversion Coefficient'
+                DisplayMode: =If(CountRows(Filter('Copacker List', 'Product Name' = CPP_ProdName.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |+
+                    =UpdateIf(colCopackerList, ID=ThisItem.ID,{'Unit Conversion Coefficient': CPP_Conversion_Unit.Text})
+                    
+                Size: =10
+                Visible: =varAddCopacker
+                Width: =117
+                X: =501
+                ZIndex: =12
+
+            CPP_UnitConversion_Amt As text:
+                Align: =Center
+                BorderColor: =If(IsBlank(CPP_UnitConversion_Amt.Text), Red, DimGrey)
+                Default: =LookUp(colCopackerList, ID=Value('CPPID-test'.Text)).'Unit Conversion Coefficient Amt'
+                DisplayMode: =If(CountRows(Filter('Copacker List', 'Product Name' = CPP_ProdName.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |+
+                    =UpdateIf(colCopackerList, ID=ThisItem.ID,{'Unit Conversion Coefficient Amt': Value(CPP_UnitConversion_Amt.Text)})
+                    
+                Size: =10
+                Visible: =varAddCopacker
+                Width: =70
+                X: =421
+                ZIndex: =13
+
+        Label26_22 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Size: =11
+            Text: ="Sub Total"
+            X: =10
+            Y: =Gallery6.Height+125
+            ZIndex: =6
+
+        CPPOB_25 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26.Text),OpeningBalance)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_25.Text),OpeningBalance2: Value(CPPOB_25.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_25.Text),OpeningBalance2: Value(CPPOB_25.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =493
+            Y: =Gallery6.Height+117
+            ZIndex: =7
+
+        CPPOB_27 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26.Text),Production)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_27.Text),OpeningBalance2: Value(CPPOB_27.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_27.Text),OpeningBalance2: Value(CPPOB_27.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =633
+            Y: =Gallery6.Height+117
+            ZIndex: =8
+
+        CPPOB_28 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26.Text),DeliveredtoWarehouse)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_28.Text),OpeningBalance2: Value(CPPOB_28.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_28.Text),OpeningBalance2: Value(CPPOB_28.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =775
+            Y: =Gallery6.Height+117
+            ZIndex: =9
+
+        CPPOB_29 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26.Text),Rejected)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_29.Text),OpeningBalance2: Value(CPPOB_29.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_29.Text),OpeningBalance2: Value(CPPOB_29.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =916
+            Y: =Gallery6.Height+117
+            ZIndex: =10
+
+        CPPOB_30 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = CopackerMainTitle.Text),ClosingBalance)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_30.Text),OpeningBalance2: Value(CPPOB_30.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_30.Text),OpeningBalance2: Value(CPPOB_30.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =1057
+            Y: =Gallery6.Height+117
+            ZIndex: =11
+
+        DataCardValue24_12 As text:
+            BorderColor: =
+            BorderThickness: =0
+            Default: =
+            DelayOutput: =true
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =5
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =5
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Tooltip: =false
+            Width: =1224
+            Y: =Gallery6.Height+100
+            ZIndex: =12
+
+        DataCardValue24_13 As text:
+            BorderColor: =
+            BorderThickness: =0
+            Default: =
+            DelayOutput: =true
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =5
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PaddingLeft: =5
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Tooltip: =false
+            Width: =1224
+            Y: =Gallery6.Height+170
+            ZIndex: =13
+
+        "'Add-CPP' As group":
+            Height: =5
+            Width: =5
+            X: =60
+            Y: =60
+            ZIndex: =16
+
+            "'Add-bttn-CPP' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |+
+                    =Collect(
+                        colCopackerList, 
+                        {Copacker: Label26.Text,
+                        ID: Last(colCopackerList).ID + 1,
+                        BU: CPPBU_1.Text,
+                        'Item Code': "",
+                        'Product Name': "",
+                        'Unit Conversion Coefficient Amt': Value(""),
+                        'Unit Conversion Coefficient': ""});
+                    
+                    Collect(
+                        colCopacker, 
+                        {Variant:"", ID: Sum(Last(colCopackerList).ID + 1)-1});
+                    
+                    Set(varAddCopacker,true)
+                    
+                    
+                    
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Add"
+                Width: =80
+                X: =10
+                Y: =Gallery6.Height+58
+                ZIndex: =14
+
+            Icon22_24 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                OnSelect: |+
+                    =Collect(
+                        colCopackerList, 
+                        {Copacker: Label26.Text,
+                        ID: Last(colCopackerList).ID + 1,
+                        BU: CPPBU_1.Text,
+                        'Item Code': "",
+                        'Product Name': "",
+                        'Unit Conversion Coefficient Amt': Value(""),
+                        'Unit Conversion Coefficient': ""});
+                    
+                    Collect(
+                        colCopacker, 
+                        {Variant:"", ID: Sum(Last(colCopackerList).ID + 1)-1});
+                    
+                    Set(varAddCopacker,true)
+                    
+                    
+                    
+                Width: =28
+                X: =12
+                Y: =Gallery6.Height+68
+                ZIndex: =15
+
+    Gallery5_hl As gallery.variableTemplateHeightGallery:
+        Height: =215
+        Items: =Filter('Copacker BU List',BU = CPPBU_1.Text).Copacker
+        Layout: =Layout.Vertical
+        TemplateSize: =182
+        Visible: =varHL
+        Width: =1223
+        X: =60
+        Y: =449
+        ZIndex: =16
+
+        Button8_51 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(247, 247, 247, 1)
+            Height: =49
+            Text: =""
+            Width: =1226
+            ZIndex: =1
+
+        Circle1_10 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =29
+            Y: =9
+            ZIndex: =2
+
+        Icon22_10 As icon.Post:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =22
+            Icon: =Icon.Post
+            OnSelect: =Select(Parent)
+            Width: =22
+            X: =33
+            Y: =13
+            ZIndex: =3
+
+        Label26_1 As label:
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =34
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Copacker
+            Width: =910
+            X: =76
+            Y: =8
+            ZIndex: =4
+
+        Gallery6_1 As gallery.variableTemplateHeightGallery:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =CountRows(Gallery6_1.AllItems)*45+10
+            Items: =Filter(colCopackerList,Copacker = Label26_1.Text)
+            Layout: =Layout.Vertical
+            TemplateSize: =244
+            Width: =1222
+            Y: =Button8_51.Height
+            ZIndex: =5
+
+            CPPOB_31 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =LookUp(colCopacker,Variant=CPP_ProdName_1.Text).OpeningBalance2
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =490
+                ZIndex: =3
+
+            CPPProd_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =LookUp(colCopacker,Variant=CPP_ProdName_1.Text).Production2
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =631
+                ZIndex: =4
+
+            CPPDelivered_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =LookUp(colCopacker,Variant=CPP_ProdName_1.Text).DeliveredtoWarehouse0
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =772
+                ZIndex: =5
+
+            CPPRejected_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =LookUp(colCopacker,Variant=CPP_ProdName_1.Text).Rejected2
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =913
+                ZIndex: =6
+
+            CPPClosingBalance_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =LookUp(colCopacker,Variant=CPP_ProdName_1.Text).ClosingBalance2
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                Size: =10
+                Width: =70
+                X: =1054
+                ZIndex: =7
+
+            CPP_ProdName_1 As text:
+                BorderColor: =If(IsBlank(CPP_ProdName_1.Text),Red,DimGrey)
+                BorderThickness: =0
+                Default: =ThisItem.'Product Name'
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName_1.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName_1.Text)),{OpeningBalance:Value(CPPOB_31.Text),OpeningBalance2: Value(CPPOB_31.Text) * LookUp(colCopackerUnit, 'Product Name' = CPP_ProdName_1.Text).'Unit Conversion Coefficient Amt' / 100,ClosingBalance: Value(CPPClosingBalance_4.Text),'Item Code': CPP_ProdItemCode_1.Text, Copacker: Label26_1.Text}),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_31.Text),OpeningBalance2: Value(CPPOB_31.Text) * LookUp(colCopackerUnit, 'Product Name' = CPP_ProdName_1.Text).'Unit Conversion Coefficient Amt' / 100,Variant:CPP_ProdName_1.Text,ClosingBalance: Value(CPPClosingBalance_4.Text),'Item Code': CPP_ProdItemCode_1.Text,Copacker: Label26_1.Text}))
+                Size: =10
+                Width: =326
+                X: =102
+                ZIndex: =9
+
+            CPP_ProdItemCode_1 As text:
+                BorderColor: =If(IsBlank(CPP_ProdItemCode_1.Text),Red,DimGrey)
+                BorderThickness: =0
+                Default: =ThisItem.'Item Code'
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colCopacker,Variant=CPP_ProdName_1.Text)>0,
+                    
+                        Patch(colCopacker,First(Filter(colCopacker,Variant=CPP_ProdName_1.Text)),{OpeningBalance:Value(CPPOB_31.Text),OpeningBalance2: Value(CPPOB_31.Text) * LookUp(colCopackerUnit, 'Product Name' = CPP_ProdName_1.Text).'Unit Conversion Coefficient Amt' / 100,ClosingBalance: Value(CPPClosingBalance_4.Text),'Item Code': CPP_ProdItemCode_1.Text, Copacker: Label26_1.Text}),
+                        
+                        Collect(colCopacker,{OpeningBalance:Value(CPPOB_31.Text),OpeningBalance2: Value(CPPOB_31.Text) * LookUp(colCopackerUnit, 'Product Name' = CPP_ProdName_1.Text).'Unit Conversion Coefficient Amt' / 100,Variant:CPP_ProdName_1.Text,ClosingBalance: Value(CPPClosingBalance_4.Text),'Item Code': CPP_ProdItemCode_1.Text,Copacker: Label26_1.Text}))
+                Size: =10
+                Width: =82
+                ZIndex: =10
+
+        Label26_23 As label:
+            FontWeight: =Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Size: =11
+            Text: ="Sub Total"
+            X: =10
+            Y: =Gallery6_1.Height+87
+            ZIndex: =6
+
+        CPPOB_32 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26_1.Text),OpeningBalance)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_32.Text),OpeningBalance2: Value(CPPOB_32.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_32.Text),OpeningBalance2: Value(CPPOB_32.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =492
+            Y: =Gallery6_1.Height+75
+            ZIndex: =7
+
+        CPPOB_33 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26_1.Text),Production)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_33.Text),OpeningBalance2: Value(CPPOB_33.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_33.Text),OpeningBalance2: Value(CPPOB_33.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =633
+            Y: =Gallery6_1.Height+75
+            ZIndex: =8
+
+        CPPOB_34 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26_1.Text),DeliveredtoWarehouse)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_34.Text),OpeningBalance2: Value(CPPOB_34.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_34.Text),OpeningBalance2: Value(CPPOB_34.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =775
+            Y: =Gallery6_1.Height+75
+            ZIndex: =9
+
+        CPPOB_35 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = Label26_1.Text),Rejected)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_35.Text),OpeningBalance2: Value(CPPOB_35.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_35.Text),OpeningBalance2: Value(CPPOB_35.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =915
+            Y: =Gallery6_1.Height+75
+            ZIndex: =10
+
+        CPPOB_36 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =0
+            Default: =Sum(Filter(colCopacker, Copacker = CopackerMainTitle.Text),ClosingBalance)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =If(
+                    CountIf(colCopacker,Variant=CPPVariant_1.Text)>0,
+                
+                    Patch(colCopacker,First(Filter(colCopacker,Variant=CPPVariant_1.Text)),{OpeningBalance:Value(CPPOB_36.Text),OpeningBalance2: Value(CPPOB_36.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}),
+                    
+                    Collect(colCopacker,{OpeningBalance:Value(CPPOB_36.Text),OpeningBalance2: Value(CPPOB_36.Text) * LookUp(colCopackerUnit, ProductName = CPPVariant_1.Text).UnitConversionCoefficientAmt / 100,Variant:CPPVariant_1.Text,ClosingBalance: Value(CPPClosingBalance_1.Text),'Item Code': CPPItemCode_1.Text}))
+            Width: =70
+            X: =1056
+            Y: =Gallery6_1.Height+75
+            ZIndex: =11
+
+        DataCardValue24_14 As text:
+            BorderColor: =
+            BorderThickness: =0
+            Default: =
+            DelayOutput: =true
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =5
+            PaddingLeft: =5
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Tooltip: =false
+            Width: =1224
+            Y: =Gallery6_1.Height+60
+            ZIndex: =12
+
+        DataCardValue24_15 As text:
+            BorderColor: =
+            BorderThickness: =0
+            Default: =
+            DelayOutput: =true
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =5
+            PaddingLeft: =5
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Tooltip: =false
+            Width: =1224
+            Y: =Gallery6_1.Height+125
+            ZIndex: =13
+
+    Submit_Bttn_21 As button:
+        Align: =Center
+        BorderColor: =RGBA(0, 161, 233, 1)
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =44
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: |
+            =Patch('Copacker BU List',LookUp('Copacker BU List', ID = Gallery8_1.Selected.ID),{Copacker: TextInput7_1.Text});
+            Set(popupnewcpp,false)
+        Size: =13
+        Text: ="Done"
+        Visible: =popupnewcpp
+        Width: =209
+        X: =1133
+        Y: =703
+        ZIndex: =26
+
+    CPP_Save_bttn_4 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: |-
+            =RemoveIf('Copacker BU List', ID = Gallery8_1.Selected.ID);
+            
+            Set(popupnewcpp,false)
+        Size: =13
+        Text: ="Cancel"
+        Visible: =popupnewcpp
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =27
+
+    Button2_6 As button:
+        Color: =RGBA(153, 153, 153, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        FontWeight: =Semibold
+        HoverColor: =ColorFade(Self.Color, -10%)
+        HoverFill: =Self.Fill
+        OnSelect: =
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =12
+        Text: ="Definition"
+        Width: =115
+        X: =626
+        Y: =55
+        ZIndex: =28
+
+    BG_27 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_34 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_61 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            ZIndex: =2
+
+    PopupNewCPP_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Button8_49 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =513
+            Text: =""
+            Visible: =popupnewcpp
+            Width: =1264
+            X: =73
+            Y: =243
+            ZIndex: =17
+
+        DataCardKey25_9 As label:
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =57
+            Size: =14
+            Text: ="Please fill in the Copacker name"
+            Visible: =popupnewcpp
+            Width: =933
+            Wrap: =false
+            X: =105
+            Y: =253
+            ZIndex: =18
+
+        "Gallery8_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            Height: =297
+            Items: =First(Sort('Copacker BU List',ID,SortOrder.Descending))
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =76
+            Visible: =popupnewcpp
+            Width: =1194
+            X: =89
+            Y: =300
+            ZIndex: =19
+
+            Separator5_1 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =5
+
+            TextInput7_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.Copacker
+                Height: =41
+                OnSelect: =Select(Parent)
+                Width: =673
+                X: =18
+                Y: =16
+                ZIndex: =6
+
+            TextInput3_1 As text:
+                Default: =ThisItem.ID
+                OnSelect: =Select(Parent)
+                Visible: =false
+                Width: =117
+                X: =734
+                Y: =17
+                ZIndex: =7
+
+    Pop_Up_User_Submit_8 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =64
+
+        Rectangle5_27 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupusersubmit
+            Width: =1366
+            ZIndex: =20
+
+        Submit_Bttn_20 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |+
+                =Collect('Copacker Form',colCopacker);
+                
+                Navigate(Successful);
+                
+            Size: =13
+            Text: ="Submit"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =368
+            Y: =212
+            ZIndex: =21
+
+        Cancel_Bttn_23 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupusersubmit,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =133
+            Y: =212
+            ZIndex: =22
+
+        Circle2_22 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupusersubmit
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =23
+
+        Image6_24 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupusersubmit
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =24
+
+        Label3_39 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Are you sure you want to submit the form for approval?"
+            Visible: =popupusersubmit
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =25
+

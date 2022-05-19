@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "ef711e11-d90c-484e-a9d0-ed8b40ac9d4d",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Sendemailtouserwhenadminupdatetheirdetails",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

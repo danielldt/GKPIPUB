@@ -1,0 +1,3541 @@
+UFE_ApproverMY_Reopen As screen:
+    Height: =
+    OnVisible: =Set(popupapprovesuccessful,false);Set(popuplogout,false)
+
+    SubHeader_15 As SubHeader:
+        ZIndex: =3
+
+    Header_22 As Header:
+        HeaderText: ="Unadjusted Factory Efficiency Form"
+        ZIndex: =4
+
+    Button10_7 As button:
+        Fill: =RGBA(0, 0, 0, 0)
+        HoverColor: =Self.Color
+        HoverFill: =Transparent
+        OnSelect: =Set(popupufeform2,true)
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =12
+        Text: ="Preview Excel Attachment"
+        Underline: =true
+        Width: =230
+        X: =568
+        Y: =53
+        ZIndex: =5
+
+    TextInput5_1 As text:
+        Default: ="Attachment"&"-"&First( Split( Last( Split(DataCardValue347_1.Text, "-" ) ).Result, "-" ) ).Result
+        Visible: =false
+        X: =259
+        Y: =273
+        ZIndex: =7
+
+    "'Param-FormNo_1' As text":
+        Default: =First( Split( Last( Split(DataCardValue347_1.Text, "-" ) ).Result, "-" ) ).Result
+        Visible: =false
+        X: =255
+        Y: =208
+        ZIndex: =8
+
+    "'UFEMY-Form_2' As formViewer":
+        AcceptsFocus: =false
+        DataSource: ='UFE-Temporary-List'
+        Height: =548
+        Item: |-
+            =Switch(
+                true,
+                !IsBlank(varAttachment.FormNo),
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles"))), LookUp('UFE-Temporary-List', 'Form No'= Param("FormNo")),
+                Defaults('UFE-Temporary-List')
+            )
+        SnapToColumns: =false
+        Width: =1284
+        X: =50
+        Y: =120
+        ZIndex: =9
+
+        Year_DataCard10_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"Year")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Width: =214
+            X: =2
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey402_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue366_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey402_1.Y + DataCardKey402_1.Height + 5
+                ZIndex: =2
+
+        DataCard4_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =65
+            Width: =1284
+            X: =1
+            Y: =2
+            ZIndex: =1
+
+            Label19_2 As label:
+                Color: =Colors.Primary
+                FontWeight: =Semibold
+                Size: =16
+                Text: ="Days"
+                X: =29
+                ZIndex: =1
+
+            DataCardValue24_3 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =29
+                Y: =45
+                ZIndex: =2
+
+        DataCard5_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =65
+            Width: =1284
+            X: =6
+            Y: =2
+            ZIndex: =1
+
+            Label19_3 As label:
+                Color: =Colors.Primary
+                FontWeight: =Semibold
+                Height: =31
+                Size: =16
+                Text: ="Production Hours"
+                Width: =258
+                X: =22
+                ZIndex: =1
+
+            DataCardValue24_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =29
+                Y: =45
+                ZIndex: =2
+
+        ProductionLineNCB2SCMLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_41"
+            Default: =ThisItem.ProductionLineNCB2SCMLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_41")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =90
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =34
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey1_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="Production Line"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue1_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="SCM Line 1 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey1_1.Y + DataCardKey1_1.Height + 5
+                ZIndex: =2
+
+        ProductionHoursSCMLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_42"
+            Default: =ThisItem.ProductionHoursSCMLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_42")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =35
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey3_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="Production Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue3_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =49
+                ZIndex: =2
+
+        UFESCMLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_43"
+            Default: =ThisItem.UFESCMLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_43")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =36
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey5_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="% Unadjusted Factory Efficiency"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue5_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =49
+                ZIndex: =2
+
+        ProductionLineNCB2SCMLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_44"
+            Default: =ThisItem.ProductionLineNCB2SCMLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_44")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =14
+            ZIndex: =1
+
+            DataCardKey217_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue7_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="SCM Line 4 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursSCMLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_45"
+            Default: =ThisItem.ProductionHoursSCMLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_45")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =14
+            ZIndex: =1
+
+            DataCardKey225_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue192_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFESCMLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_46"
+            Default: =ThisItem.UFESCMLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_46")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =14
+            ZIndex: =1
+
+            DataCardKey219_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue23_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB2SCMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_47"
+            Default: =ThisItem.ProductionLineNCB2SCMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_47")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =-1
+            Y: =15
+            ZIndex: =1
+
+            DataCardKey255_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue298_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="SCM Line 5 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursSCMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_48"
+            Default: =ThisItem.ProductionHoursSCMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_48")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =15
+            ZIndex: =1
+
+            DataCardKey230_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue202_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFESCMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_49"
+            Default: =ThisItem.UFESCMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_49")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =15
+            ZIndex: =1
+
+            DataCardKey256_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue299_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB2SCMLine7_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_50"
+            Default: =ThisItem.ProductionLineNCB2SCMLine7
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_50")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =-1
+            Y: =16
+            ZIndex: =1
+
+            DataCardKey258_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue301_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="SCM Line 7 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursSCMLine7_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_51"
+            Default: =ThisItem.ProductionHoursSCMLine7
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_51")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =16
+            ZIndex: =1
+
+            DataCardKey257_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue300_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFESCMLine7_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_52"
+            Default: =ThisItem.UFESCMLine7
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_52")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =16
+            ZIndex: =1
+
+            DataCardKey259_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue302_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB2SCMLine8_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_53"
+            Default: =ThisItem.ProductionLineNCB2SCMLine8
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_53")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =17
+            ZIndex: =1
+
+            DataCardKey261_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue304_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="SCM Line 8 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursSCMLine8_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_54"
+            Default: =ThisItem.ProductionHoursSCMLine8
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_54")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =17
+            ZIndex: =1
+
+            DataCardKey260_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue303_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFESCMLine8_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_55"
+            Default: =ThisItem.UFESCMLine8
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_55")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =17
+            ZIndex: =1
+
+            DataCardKey262_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue305_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursEVAPLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_57"
+            Default: =ThisItem.ProductionHoursEVAPLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_57")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =18
+            ZIndex: =1
+
+            DataCardKey263_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue306_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="EVAP Line 3 (CAN)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineEVAPLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_56"
+            Default: =ThisItem.ProductionLineEVAPLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_56")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =18
+            ZIndex: =1
+
+            DataCardKey264_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue307_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEEVAPLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_58"
+            Default: =ThisItem.UFEEVAPLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_58")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =18
+            ZIndex: =1
+
+            DataCardKey265_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue308_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineUHTLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_59"
+            Default: =ThisItem.ProductionLineUHTLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_59")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =-1
+            Y: =19
+            ZIndex: =1
+
+            DataCardKey267_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue310_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="UHT Line 1 (TETRA)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursUHTLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_60"
+            Default: =ThisItem.ProductionHoursUHTLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_60")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =19
+            ZIndex: =1
+
+            DataCardKey266_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue309_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEUHTLine1_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_61"
+            Default: =ThisItem.UFEUHTLine1
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_61")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =19
+            ZIndex: =1
+
+            DataCardKey268_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue311_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineUHTLine2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_62"
+            Default: =ThisItem.ProductionLineUHTLine2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_62")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =-1
+            Y: =20
+            ZIndex: =1
+
+            DataCardKey364_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue314_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="UHT Line 2 (TETRA)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursUHTLine2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_63"
+            Default: =ThisItem.ProductionHoursUHTLine2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_63")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =20
+            ZIndex: =1
+
+            DataCardKey269_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue312_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEUHTLine2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_64"
+            Default: =ThisItem.UFEUHTLine2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_64")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =20
+            ZIndex: =1
+
+            DataCardKey270_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue313_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineUHTLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_65"
+            Default: =ThisItem.ProductionLineUHTLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_65")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =22
+            ZIndex: =1
+
+            DataCardKey370_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue316_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="UHT Line 3 (COMBI)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursUHTLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_66"
+            Default: =ThisItem.ProductionHoursUHTLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_66")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =22
+            ZIndex: =1
+
+            DataCardKey366_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue315_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEUHTLine3_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_67"
+            Default: =ThisItem.UFEUHTLine3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_67")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =22
+            ZIndex: =1
+
+            DataCardKey371_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue317_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineUHTLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_68"
+            Default: =ThisItem.ProductionLineUHTLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_68")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =-1
+            Y: =23
+            ZIndex: =1
+
+            DataCardKey374_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue320_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="UHT Line 4 (BIB)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursUHTLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_69"
+            Default: =ThisItem.ProductionHoursUHTLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_69")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =0
+            Y: =23
+            ZIndex: =1
+
+            DataCardKey372_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue318_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEUHTLine4_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_70"
+            Default: =ThisItem.UFEUHTLine4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_70")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =23
+            ZIndex: =1
+
+            DataCardKey373_1 As label:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =14
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue319_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLinePMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_71"
+            Default: =ThisItem.ProductionLinePMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_71")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =1
+            Y: =24
+            ZIndex: =1
+
+            DataCardKey376_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                ZIndex: =1
+
+            DataCardValue322_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: ="PM Line 5 (TETRA)"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursPMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_72"
+            Default: =ThisItem.ProductionHoursPMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_72")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =2
+            Y: =24
+            ZIndex: =1
+
+            DataCardKey375_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue321_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFEPMLine5_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_73"
+            Default: =ThisItem.UFEPMLine5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_73")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EDSB", true,false)
+            Width: =428
+            X: =3
+            Y: =24
+            ZIndex: =1
+
+            DataCardKey377_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue323_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        RequestorEmail_DataCard4 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_6"
+            Default: =ThisItem.RequestorEmail
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_6")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =false
+            Width: =428
+            X: =1
+            Y: =26
+            ZIndex: =1
+
+            DataCardKey380 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue324 As label:
+                AutoHeight: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =27
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey380.Y + DataCardKey380.Height + 5
+                ZIndex: =2
+
+        RequestorName_DataCard2 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_5"
+            Default: =ThisItem.RequestorName
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =false
+            Width: =428
+            X: =2
+            Y: =26
+            ZIndex: =1
+
+            DataCardKey381 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue325 As label:
+                AutoHeight: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =27
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey381.Y + DataCardKey381.Height + 5
+                ZIndex: =2
+
+        DataCard6 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Required: =true
+            Width: =1284
+            X: =3
+            Y: =26
+            ZIndex: =1
+
+            TextInput8 As text:
+                Default: =""
+                Height: =122
+                Width: =1219
+                X: =31
+                Y: =53
+                ZIndex: =1
+
+            Label22 As label:
+                Height: =37
+                Text: ="Please leave your comment(s) in the comment box below if you want to reopen the form."
+                Width: =804
+                X: =26
+                Y: =16
+                ZIndex: =2
+
+            StarVisible21_3 As label:
+                Align: =Align.Center
+                Height: =DataCardKey21.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =17
+                ZIndex: =3
+
+        Status_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_7"
+            Default: =ThisItem.Status
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_7")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Required: =false
+            Width: =1284
+            X: =0
+            Y: =0
+            ZIndex: =45
+
+            DataCardKey221_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue140_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =580
+                X: =30
+                Y: =DataCardKey221_1.Y + DataCardKey221_1.Height + 5
+                ZIndex: =2
+
+        "'Form No_DataCard2_1' As typedDataCard.textualViewCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.'Form No'
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"FormNo")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Required: =false
+            Width: =214
+            X: =0
+            Y: =1
+            ZIndex: =45
+
+            DataCardKey385_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue347_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey385_1.Y + DataCardKey385_1.Height + 5
+                ZIndex: =2
+
+        BU_DataCard6_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_3"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_3")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Width: =214
+            X: =1
+            Y: =1
+            ZIndex: =45
+
+            DataCardKey6_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            BUApproverUFE_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey6_1.Y + DataCardKey6_1.Height + 5
+                ZIndex: =2
+
+        Month_DataCard10_1 As typedDataCard.comboBoxViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_4"
+            Default: =ThisItem.Month
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_4")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue18_1.Selected
+            Width: =428
+            X: =3
+            Y: =1
+            ZIndex: =45
+
+            DataCardKey218_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue18_1 As combobox:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Items: =Choices([@'UFE-Temporary-List'].Month)
+                PaddingRight: =0
+                SearchFields: =["Value"]
+                SearchItems: =Choices('UFE-Temporary-List'.Month,DataCardValue18_1.SearchText)
+                SelectMultiple: =false
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey218_1.Y + DataCardKey218_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage5_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue18_1.Y + DataCardValue18_1.Height
+                ZIndex: =3
+
+            StarVisible5_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey218_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey218_1.Y
+                ZIndex: =4
+
+        RequestorEmail_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_6"
+            Default: =ThisItem.RequestorEmail
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_6")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =40
+            Required: =false
+            Visible: =false
+            Width: =278
+            X: =0
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey220_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue71_1 As label:
+                AutoHeight: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =27
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey220_1.Y + DataCardKey220_1.Height + 5
+                ZIndex: =2
+
+        TotalDays_DataCard3_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_12"
+            Default: =ThisItem.TotalDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_12")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Required: =false
+            Width: =428
+            X: =2
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey226_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Total Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue193_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey226_1.Y + DataCardKey226_1.Height + 5
+                ZIndex: =2
+
+        NonWorkingDays_DataCard3_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_13"
+            Default: =ThisItem.NonWorkingDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_13")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Width: =428
+            X: =3
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey227_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Non Working Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue194_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey227_1.Y + DataCardKey227_1.Height + 5
+                ZIndex: =2
+
+        TotalWorkingDays_DataCard3_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_14"
+            Default: =ThisItem.TotalWorkingDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_14")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Width: =428
+            X: =4
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey228_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Total Working Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue195_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey228_1.Y + DataCardKey228_1.Height + 5
+                ZIndex: =2
+
+        PaidFactoryHours_DataCard3_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_15"
+            Default: =ThisItem.PaidFactoryHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_15")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =100
+            Required: =false
+            Width: =1284
+            X: =5
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey229_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Paid Factory Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue201_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =368
+                X: =30
+                Y: =DataCardKey229_1.Y + DataCardKey229_1.Height + 5
+                ZIndex: =2
+
+        ProductionLineCSD1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_17"
+            Default: =ThisItem.ProductionLineCSD1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_17")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =90
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =7
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey231_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Production Line"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue203_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey231_1.Y + DataCardKey231_1.Height + 5
+                ZIndex: =2
+
+        ProductionHoursCSD1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_18"
+            Default: =ThisItem.ProductionHoursCSD1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_18")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =8
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey232_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Production Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue204_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey232_1.Y + DataCardKey232_1.Height + 5
+                ZIndex: =2
+
+        UFECSD1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_19"
+            Default: =ThisItem.UFECSD1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_19")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =9
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey233_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="% Unadjusted Factory Efficiency"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue205_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey233_1.Y + DataCardKey233_1.Height + 5
+                ZIndex: =2
+
+            Icon1_1 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="(Production Hours/Paid Factory Hours,0)"
+                Width: =20
+                X: =303
+                Y: =17
+                ZIndex: =3
+
+        ProductionLineCSD1500mL_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_20"
+            Default: =ThisItem.ProductionLineCSD1500mL
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_20")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =10
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey234_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue206_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursCSD1500mL_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_21"
+            Default: =ThisItem.ProductionHoursCSD1500mL
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_21")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =11
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey235_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue207_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFECSD1500mL_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_22"
+            Default: =ThisItem.UFECSD1500mL
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_22")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =12
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey236_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue208_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineCSD115L_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_23"
+            Default: =ThisItem.ProductionLineCSD115L
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_23")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =13
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey237_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue209_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursCSD115L_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_24"
+            Default: =ThisItem.ProductionHoursCSD115L
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_24")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =14
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey238_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue210_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFECSD115L_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_25"
+            Default: =ThisItem.UFECSD115L
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_25")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =15
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey239_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue211_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineCSD1BIB_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_26"
+            Default: =ThisItem.ProductionLineCSD1BIB
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_26")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =16
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey240_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue212_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursCSD1BIB_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_27"
+            Default: =ThisItem.ProductionHoursCSD1BIB
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_27")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =17
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey241_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue216_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFECSD1BIB_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_28"
+            Default: =ThisItem.UFECSD1BIB
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_28")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =18
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey242_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue221_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineCSD2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_29"
+            Default: =ThisItem.ProductionLineCSD2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_29")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =19
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey243_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue222_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursCSD2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_30"
+            Default: =ThisItem.ProductionHoursCSD2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_30")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =20
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey244_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue223_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFECSD2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_31"
+            Default: =ThisItem.UFECSD2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_31")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =21
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey245_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue224_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_32"
+            Default: =ThisItem.ProductionLineNCB1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_32")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =22
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey246_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue225_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursNCB1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_33"
+            Default: =ThisItem.ProductionHoursNCB1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_33")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =23
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey247_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue226_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFENCB1CAN_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_34"
+            Default: =ThisItem.UFENCB1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_34")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =24
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey248_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue227_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB1PET_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_35"
+            Default: =ThisItem.ProductionLineNCB1PET
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_35")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =25
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey249_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue228_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursNCB1PET_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_36"
+            Default: =ThisItem.ProductionHoursNCB1PET
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_36")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =26
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey250_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue293_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFENCB1PET_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_37"
+            Default: =ThisItem.UFENCB1PET
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_37")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =27
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey251_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue294_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionLineNCB2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_38"
+            Default: =ThisItem.ProductionLineNCB2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_38")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =28
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey252_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue295_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Parent.Default
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        ProductionHoursNCB2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_39"
+            Default: =ThisItem.ProductionHoursNCB2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_39")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =29
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey253_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue296_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        UFENCB2_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_40"
+            Default: =ThisItem.UFENCB2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_40")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =55
+            Required: =false
+            Visible: =If(BUApproverUFE_1.Text = "EBSB", true,false)
+            Width: =428
+            X: =30
+            Y: =2
+            ZIndex: =45
+
+            DataCardKey254_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue297_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =2
+
+        TotalProductionHours_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_8"
+            Default: =ThisItem.TotalProductionHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_8")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Width: =428
+            X: =0
+            Y: =25
+            ZIndex: =45
+
+            DataCardKey222_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Total Production Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue170_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey222_1.Y + DataCardKey222_1.Height + 5
+                ZIndex: =2
+
+        TotalFactoryHours_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_10"
+            Default: =ThisItem.TotalFactoryHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_10")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Width: =428
+            X: =1
+            Y: =25
+            ZIndex: =45
+
+            DataCardKey224_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Total Factory Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue190_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: |-
+                    =Text(Value(Parent.Default),"[$-en-US]###,###,###")
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey224_1.Y + DataCardKey224_1.Height + 5
+                ZIndex: =2
+
+        TotalUnadjustedFactoryEfficiency_DataCard2_1 As typedDataCard.textualViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_9"
+            Default: =ThisItem.TotalUnadjustedFactoryEfficiency
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_9")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =89
+            Required: =false
+            Width: =428
+            X: =2
+            Y: =25
+            ZIndex: =45
+
+            DataCardKey223_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =0
+                Text: ="Total % Unadjusted Factory Efficiency"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue171_1 As label:
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                PaddingRight: =0
+                Text: =Text(Parent.Default)*100&"%"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey223_1.Y + DataCardKey223_1.Height + 5
+                ZIndex: =2
+
+    UFEReopen_Submit_bttn_9 As button:
+        BorderThickness: =0
+        DisplayMode: =If(IsBlank(TextInput8),DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(Self.Fill, -4%)
+        OnSelect: =Set(popupreopen,true);
+        Size: =13
+        Text: ="Re-open"
+        Width: =200
+        X: =1136
+        Y: =703
+        ZIndex: =10
+
+    "'Close-bttn-etika_9' As icon.CancelBadge":
+        Color: =RGBA(0, 161, 233, 1)
+        Height: =24
+        Icon: =Icon.CancelBadge
+        OnSelect: =Set(popupapprovesuccessful,false)
+        Visible: =popupapprovesuccessful
+        Width: =24
+        X: =1323
+        Y: =14
+        ZIndex: =11
+
+    Button16_7 As button:
+        Color: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =27
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popuplogout,!popuplogout)
+        Text: =""
+        Width: =28
+        X: =1320
+        Y: =13
+        ZIndex: =12
+
+    "'Close-bttn-etika_10' As icon.CancelBadge":
+        Color: =RGBA(0, 161, 233, 1)
+        Height: =24
+        Icon: =Icon.CancelBadge
+        OnSelect: =Set(popupapprovesuccessful,false)
+        Visible: =popupapprovesuccessful
+        Width: =24
+        X: =1268
+        Y: =16
+        ZIndex: =28
+
+    BG_20 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_27 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_54 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    "'Back-bttn_2' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =38
+
+        Icon18_2 As icon.ArrowLeft:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ArrowLeft
+            OnSelect: =Navigate(Status_PM)
+            Width: =35
+            X: =80
+            Y: =56
+            ZIndex: =22
+
+        Button13_2 As button:
+            Align: =Left
+            Fill: =RGBA(0, 0, 0, 0)
+            HoverColor: =Self.Color
+            HoverFill: =ColorFade(Self.Fill, -20%)
+            OnSelect: =Navigate(Status_PM)
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            Text: ="Return to Status"
+            Width: =287
+            X: =128
+            Y: =53
+            ZIndex: =23
+
+    Pop_Up_Success_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =42
+
+        Rectangle5_22 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupapprovesuccessful
+            Width: =1366
+            ZIndex: =24
+
+        iconCircle2_5 As circle.Circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Visible: =popupapprovesuccessful
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =319
+            ZIndex: =25
+
+        iconCheck2_5 As icon.Check:
+            Height: =iconCircle2_5.Height
+            Icon: =Icon.Check
+            OnSelect: |
+                =
+            PaddingBottom: =Self.PaddingTop
+            PaddingLeft: =Self.PaddingTop
+            PaddingRight: =Self.PaddingTop
+            PaddingTop: =24
+            Visible: =popupapprovesuccessful
+            Width: =iconCircle2_5.Width
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =319
+            ZIndex: =26
+
+        LblSuccessMsg2_5 As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =100
+            Size: =18
+            Text: ="This was successfully completed"
+            Visible: =popupapprovesuccessful
+            Width: =Parent.Width * 0.75
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =449
+            ZIndex: =27
+
+    "'Etika-SC-Table-Approver_1' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =46
+
+        Rectangle2_5 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupufeform2
+            Width: =1366
+            ZIndex: =29
+
+        DataTable3_4 As dataTable.datatable:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(250, 250, 250, 1)
+            HeadingFill: =RGBA(0, 161, 233, 1)
+            Height: =471
+            Items: =Filter('UFE-Extract-Excel', FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text)
+            SelectedFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =1366
+            X: =0
+            Y: =51
+            ZIndex: =30
+
+            Date_Column1_3 As dataTableColumn.textualColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Date"
+                FieldName: ="Date"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =11
+                Text: =ThisItem.Date
+                Width: =135
+                X: =149
+                Y: =0
+                ZIndex: =26
+
+            Month_Column1_3 As dataTableColumn.textualColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Month"
+                FieldName: ="Month"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =12
+                Text: =ThisItem.Month
+                Width: =136
+                X: =0
+                Y: =0
+                ZIndex: =27
+
+            Year_Column1_3 As dataTableColumn.numberColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Year"
+                FieldName: ="Year"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =13
+                Text: =ThisItem.Year
+                Width: =114
+                X: =0
+                Y: =0
+                ZIndex: =28
+
+            "'Production Line_Column1_3' As dataTableColumn.textualColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Production Line"
+                FieldName: ="ProductionLine"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =14
+                Text: =ThisItem.'Production Line'
+                Width: =205
+                X: =0
+                Y: =0
+                ZIndex: =29
+
+            "'Production Hours_Column1_3' As dataTableColumn.numberColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Production Hours"
+                FieldName: ="ProductionHours"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =15
+                Text: =ThisItem.'Production Hours'
+                Width: =185
+                X: =0
+                Y: =0
+                ZIndex: =30
+
+            "'Rated Speed_Column1_3' As dataTableColumn.numberColumn":
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Rated Speed"
+                FieldName: ="RatedSpeed"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =16
+                Text: =ThisItem.'Rated Speed'
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =31
+
+            Net_Column1_4 As dataTableColumn.numberColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Net"
+                FieldName: ="Net"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =17
+                Text: =ThisItem.Net
+                Width: =123
+                X: =0
+                Y: =0
+                ZIndex: =32
+
+            "'Pure RT_Column1_3' As dataTableColumn.numberColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Pure RT"
+                FieldName: ="PureRT"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =18
+                Text: =ThisItem.'Pure RT'
+                Width: =110
+                X: =0
+                Y: =0
+                ZIndex: =33
+
+            Pack_Column1_4 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Pack"
+                FieldName: ="Pack"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =19
+                Text: =ThisItem.Pack
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =34
+
+        TotalProdLine_TextInput_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel',FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text),'Production Line'))
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =170
+            Y: =596
+            ZIndex: =31
+
+        TotalDays_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel', FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text),Date))
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =129
+            X: =15
+            Y: =596
+            ZIndex: =32
+
+        Label20_38 As label:
+            FontWeight: =Semibold
+            Height: =56
+            Text: ="Total Days"
+            Visible: =popupufeform2
+            Width: =82
+            X: =15
+            Y: =540
+            ZIndex: =33
+
+        Label20_39 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Production Line"
+            Visible: =popupufeform2
+            Width: =149
+            X: =170
+            Y: =540
+            ZIndex: =34
+
+        Label20_40 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Production Hours"
+            Visible: =popupufeform2
+            Width: =149
+            X: =395
+            Y: =540
+            ZIndex: =35
+
+        TotalProdHours_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or(FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text)
+                    ), 
+                    'Production Hours'),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =395
+            Y: =596
+            ZIndex: =36
+
+        TotalRatedSpeed_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text)
+                    ), 
+                    'Rated Speed'),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =596
+            Y: =596
+            ZIndex: =37
+
+        Label20_41 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Rated Speed"
+            Visible: =popupufeform2
+            Width: =149
+            X: =596
+            Y: =540
+            ZIndex: =38
+
+        TotalNet_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text)
+                    ), 
+                    Net),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =817
+            Y: =596
+            ZIndex: =39
+
+        Label20_42 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Net"
+            Visible: =popupufeform2
+            Width: =149
+            X: =817
+            Y: =540
+            ZIndex: =40
+
+        TotalRunTime_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text)
+                    ), 
+                    'Pure RT'),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =1016
+            Y: =596
+            ZIndex: =41
+
+        Label20_43 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Run Time (Hrs)"
+            Visible: =popupufeform2
+            Width: =127
+            X: =1016
+            Y: =540
+            ZIndex: =42
+
+        TotalPackaging_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel', FormNo = "Attachment"&"-"&'Param-FormNo_1'.Text),Pack))
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform2
+            Width: =149
+            X: =1191
+            Y: =596
+            ZIndex: =43
+
+        Label20_44 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Packaging"
+            Visible: =popupufeform2
+            Width: =132
+            X: =1191
+            Y: =540
+            ZIndex: =44
+
+        "'Close-bttn-etika_3' As icon.CancelBadge":
+            Color: =RGBA(0, 161, 233, 1)
+            Height: =24
+            Icon: =Icon.CancelBadge
+            OnSelect: =Set(popupufeform2,false)
+            Visible: =popupufeform2
+            Width: =24
+            X: =1336
+            Y: =16
+            ZIndex: =45
+
+        Label20_36 As label:
+            FontWeight: =Semibold
+            Text: |-
+                ="Upload & Verified by:"
+            Visible: =popupufeform2
+            Width: =195
+            X: =20
+            Y: =6
+            ZIndex: =46
+
+        Label20_37 As label:
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Text: =LookUp('UFE-Attachment-Excel', 'Form No' = "Attachment"&"-"&'Param-FormNo_1'.Text).'Requestor Name'
+            Visible: =popupufeform2
+            Width: =482
+            X: =205
+            Y: =6
+            ZIndex: =47
+
+    "'Logout-bttn_7' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =47
+
+        Button17_7 As button:
+            BorderThickness: =0
+            Fill: =RGBA(179, 179, 179, 1)
+            Height: =88
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: =Navigate(Loginpage)
+            PaddingTop: =15
+            Size: =12
+            Text: =varUserName
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =48
+            ZIndex: =13
+
+        Label16_7 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            OnSelect: =Navigate(Loginpage)
+            Size: =12
+            Text: ="Logout"
+            Visible: =popuplogout
+            Width: =74
+            X: =1150
+            Y: =93
+            ZIndex: =14
+
+        Rectangle4_11 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Navigate(Loginpage)
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =91
+            ZIndex: =15
+
+    Pop_Up_Reopen As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =64
+
+        Rectangle5_18 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupreopen
+            Width: =1366
+            ZIndex: =16
+
+        Submit_Bttn_14 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: |+
+                =Office365Outlook.SendEmailV2(DataCardValue71_1.Text, "Unadjusted Factory Efficiency Request Form Reopen" & " - " & DataCardValue347_1.Text,"<p> Dear" & " " & DataCardValue325.Text & ", </p>
+                <p>Your Unadjusted Factory Efficiency (UFE) Request Form" & " - " & DataCardValue347_1.Text & " " & "has been request to reopen.</p>
+                <p>Comments:" & " " & TextInput8.Text & "
+                <p>Thank you.</p>
+                
+                This is a system generated notification email. Please do not reply to this email.",{Cc: varUserEmail, Importance: "High"});
+                
+                Patch('Approver Details',
+                    {ApproverEmail:varUserEmail,
+                    ApproverName:varUserName,
+                    Roles: varUserRoles.Value,
+                    FormNo:varAttachment.FormNo,
+                    Response:"Reopen",
+                    ResponseDate: Today(),
+                    Comments: TextInput8.Text,
+                    NeedInput: "Yes"
+                    });
+                
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                    {'Edit/Reopen': "Yes",
+                    Status: "Reopen"
+                    });
+                
+                Patch('Approver Details', 
+                LookUp('Approver Details', Roles = "Regional Manager" And FormNo = varAttachment.FormNo),
+                    {NeedInput: "Yes",
+                    AlreadyRespond: "No"
+                    });
+                
+                Patch('Approver Details', 
+                LookUp('Approver Details', Roles = "Plant Manager" And FormNo = varAttachment.FormNo),
+                    {NeedInput: "Yes",
+                    AlreadyRespond: "No"
+                    });
+                
+                RemoveIf('UFE-Master-List_1', FormNo = varAttachment.FormNo);
+                
+                Set(popupreopen,false);
+                
+                Set(popupapprovesuccessful,true)
+                
+            Size: =13
+            Text: ="Yes"
+            Visible: =popupreopen
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =17
+
+        Cancel_Bttn_17 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupreopen,false)
+            Size: =13
+            Text: ="No"
+            Visible: =popupreopen
+            Width: =209
+            X: =684
+            Y: =664
+            ZIndex: =18
+
+        Circle2_15 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupreopen
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =19
+
+        Image6_15 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupreopen
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =20
+
+        Label3_32 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Do you want to continue re-opening the form?"
+            Visible: =popupreopen
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =21
+

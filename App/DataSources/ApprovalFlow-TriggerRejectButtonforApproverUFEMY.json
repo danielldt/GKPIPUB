@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "378633a5-7302-4f80-b1ea-39eee7acbf64",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "ApprovalFlow-TriggerRejectButtonforApproverUFEMY",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

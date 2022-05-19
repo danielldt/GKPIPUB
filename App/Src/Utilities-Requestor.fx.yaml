@@ -1,0 +1,2572 @@
+"'Utilities-Requestor' As screen":
+    OnVisible: |+
+        =Set(varDefault, "EBSB");
+        Clear(colWaterHLMY);
+        Clear(colElecHLMY);
+        Clear(colProdHLMY);
+        Clear(colFuelMY);
+        Clear(colUtilities);
+        Collect(colUtilities,'Utilities for G-KPI Calculation');
+        Set(varGalElec,false);
+        Set(varGalFuel,false);
+        Set(varGalProd,false);
+        Set(varGalCO2C,false);
+        Set(varGalWater,false)
+        
+
+    HtmlText1_8 As htmlViewer:
+        Height: =673
+        HtmlText: |-
+            ="<div style='background-color: rgba(253,253,253,1); box-shadow: 1px 2px 22px 0px rgba(236,236,236,1); margin: 30px; width: 1295px; height: 548px; border-radius: 10px'></div>"
+        Width: =1366
+        Y: =95
+        ZIndex: =3
+
+    SubHeader_9 As SubHeader:
+        ZIndex: =4
+
+    Header_14 As Header:
+        HeaderText: ="E-1 G-KPI (Utility Related) Form"
+        ZIndex: =5
+
+    "'Utilities-Form' As form":
+        AcceptsFocus: =false
+        DataSource: ='Utilities Form'
+        Height: =214
+        Item: =Defaults('Utilities Form')
+        SnapToColumns: =false
+        Width: =1285
+        X: =35
+        Y: =144
+        ZIndex: =6
+
+        FormNo_DataCard2 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.FormNo
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"FormNo")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Utilities Form'], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =DataCardValue4.Text
+            Width: =428
+            X: =1
+            Y: =0
+            ZIndex: =7
+
+            DataCardKey4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Form No"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: ="Utilities"&"-"&BUUtil.Text&Right(YearUtil.Selected.Value, 2 )&Switch(MonthUtil.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage15 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue4.Y + DataCardValue4.Height
+                ZIndex: =3
+
+            StarVisible15 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey4.Y
+                ZIndex: =4
+
+        BU_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="BU"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"BU")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Utilities Form'], DataSourceInfo.MaxLength, "BU")
+            Required: =false
+            Update: =BUUtil.Text
+            Width: =214
+            X: =2
+            Y: =0
+            ZIndex: =7
+
+            DataCardKey13 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            BUUtil As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =varDefault
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey13.Y + DataCardKey13.Height + 5
+                ZIndex: =2
+
+            ErrorMessage16 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =BUUtil.Y + BUUtil.Height
+                ZIndex: =3
+
+            StarVisible16 As label:
+                Align: =Align.Center
+                Height: =DataCardKey13.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey13.Y
+                ZIndex: =4
+
+        Year_DataCard2 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"Year")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =164
+            Required: =true
+            Update: =YearUtil.Selected.Value
+            Width: =214
+            X: =3
+            Y: =0
+            ZIndex: =7
+
+            DataCardKey16 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage56 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(YearUtil.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible62 As label:
+                Align: =Align.Center
+                Height: =DataCardKey16.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey16.Y
+                ZIndex: =4
+
+            YearUtil As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank(YearUtil.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =["", Year(Now()),  Year(Today())-1]
+                Width: =150
+                X: =30
+                Y: =44
+                ZIndex: =5
+
+        Month_DataCard6 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Month"
+            Default: =ThisItem.Month
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"Month")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =94
+            MaxLength: =DataSourceInfo([@'Utilities Form'], DataSourceInfo.MaxLength, "Month")
+            Required: =true
+            Update: =MonthUtil.Selected.Value
+            Width: =428
+            X: =4
+            Y: =0
+            ZIndex: =7
+
+            DataCardKey15 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage17 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MonthUtil.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible17 As label:
+                Align: =Align.Center
+                Height: =DataCardKey15.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey15.Y
+                ZIndex: =4
+
+            MonthUtil As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank(MonthUtil.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =Calendar.MonthsLong()
+                X: =30
+                Y: =44
+                ZIndex: =5
+
+        RequestorName_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="RequestorName"
+            Default: =ThisItem.RequestorName
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"RequestorName")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Utilities Form'], DataSourceInfo.MaxLength, "RequestorName")
+            Required: =false
+            Update: =DataCardValue56.Text
+            Visible: =false
+            Width: =428
+            X: =2
+            Y: =1
+            ZIndex: =7
+
+            DataCardKey17 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue56 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =varUserName
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey17.Y + DataCardKey17.Height + 5
+                ZIndex: =2
+
+            ErrorMessage57 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue56.Y + DataCardValue56.Height
+                ZIndex: =3
+
+            StarVisible63 As label:
+                Align: =Align.Center
+                Height: =DataCardKey17.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey17.Y
+                ZIndex: =4
+
+        RequestorEmail_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="RequestorEmail"
+            Default: =ThisItem.RequestorEmail
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Utilities Form'],DataSourceInfo.DisplayName,"RequestorEmail")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Utilities Form'], DataSourceInfo.MaxLength, "RequestorEmail")
+            Required: =false
+            Update: =DataCardValue57.Text
+            Visible: =false
+            Width: =428
+            X: =0
+            Y: =2
+            ZIndex: =7
+
+            DataCardKey51 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue57 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =varUserEmail
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey51.Y + DataCardKey51.Height + 5
+                ZIndex: =2
+
+            ErrorMessage61 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue57.Y + DataCardValue57.Height
+                ZIndex: =3
+
+            StarVisible66 As label:
+                Align: =Align.Center
+                Height: =DataCardKey51.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey51.Y
+                ZIndex: =4
+
+    QC_Submit_bttn_4 As button:
+        BorderThickness: =0
+        DisplayMode: |
+            =DisplayMode.Disabled
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: =Set(popupusersubmit,true)
+        Size: =13
+        Text: ="Submit"
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =7
+
+    QC_Save_bttn_4 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =8
+
+    Icon2_28 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =15
+
+    LeftNavBarForm_7 As LeftNavBarForm:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =768
+        MenuItemForm: =colMenu
+        Width: =LeftNavBarForm_7.MenuWidth
+        ZIndex: =16
+
+    Button2_10 As button:
+        Color: =RGBA(153, 153, 153, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        FontWeight: =Semibold
+        HoverColor: =ColorFade(Self.Color, -10%)
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =Launch("https://asahisea.sharepoint.com/sites/GKPISTG2/Shared%20Documents/Definition-Utilties.pdf")
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =12
+        Text: ="Definition"
+        Width: =115
+        X: =626
+        Y: =55
+        ZIndex: =17
+
+    BG_12 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =18
+
+        Image3_19 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_46 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Gallery11 As gallery.variableTemplateHeightGallery:
+        Height: =344
+        Items: =Distinct(colUtilities,Coefficient)
+        Layout: =Layout.Vertical
+        TemplateSize: =280
+        Width: =1260
+        X: =60
+        Y: =306
+        ZIndex: =19
+
+        "'Gallery-Water' As gallery.variableTemplateHeightGallery":
+            Height: |
+                =CountRows('Gallery-Water'.AllItems)*40*Value(CountRows(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient = "Water").Coefficient))+40
+            Items: |-
+                =Filter(
+                Filter(colUtilities, varDefault in BU.Value),IsBlank(FuelType) && IsBlank(FuelTest) && IsBlank(ProductType) && IsBlank('CO2-C') && IsBlank(Electricity))
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =50
+            Visible: =If(CoefficientUtil_1.Text = "Water" && varGalWater,true,false)
+            Width: =1250
+            Y: =61
+            ZIndex: =1
+
+            Water As text:
+                BorderColor: |-
+                    =If(
+                        IsBlank(Water.Text),
+                        Red,
+                        RGBA(
+                            230,
+                            230,
+                            230,
+                            1
+                        )
+                    )
+                Default: =ThisItem.Water
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Water = ThisItem.Water)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =If(Water.DisplayMode=DisplayMode.Edit,White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Visible: =If(CoefficientUtil_1.Text = "Water",true,false)
+                Width: =410
+                X: =33
+                Y: =2
+                ZIndex: =5
+
+            TextInput19_5 As text:
+                BorderColor: =If(IsBlank(TextInput19_5.Text),Red,RGBA(230,230,230,1))
+                Default: =ThisItem.DataType
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Water = ThisItem.Water)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =If(TextInput19_5.DisplayMode=DisplayMode.Edit,White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Visible: =If(CoefficientUtil_1.Text = "Water",true,false)
+                Width: =387
+                X: =459
+                Y: =2
+                ZIndex: =6
+
+            TextInput19_6 As text:
+                BorderColor: =If(IsBlank(TextInput19_6.Text),Red,RGBA(230,230,230,1))
+                Default: =ThisItem.Unit
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Water = ThisItem.Water)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =If(TextInput19_6.DisplayMode=DisplayMode.Edit,White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Visible: |
+                    =If(Water.DisplayMode=DisplayMode.View,true,false)
+                Width: =189
+                X: =859
+                Y: =2
+                ZIndex: =7
+
+            TextInput19_7 As text:
+                BorderColor: =If(IsBlank(TextInput19_7.Text),Red,RGBA(230,230,230,1))
+                Default: =""
+                DisplayMode: |
+                    =DisplayMode.Edit
+                Format: =TextFormat.Number
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(CountIf(colWaterHLMY, Utilities = CoefficientUtil_1.Text, Unit = 'Water-Conversion-Unit'.Text, UtilitiesType = Water.Text) =0,
+                    Collect(colWaterHLMY,{Amount:Value('Water-Conversion-Amt'.Text), Utilities: CoefficientUtil_1.Text, Unit: 'Water-Conversion-Unit'.Text, UtilitiesType: Water.Text}),
+                    Patch(colWaterHLMY,
+                                 First(
+                                    Filter(colWaterHLMY,
+                                       Utilities = CoefficientUtil_1.Text, Unit = 'Water-Conversion-Unit'.Text, UtilitiesType = Water.Text)),
+                                        {
+                                           Amount:Value('Water-Conversion-Amt'.Text)
+                                           }
+                              ))
+                OnSelect: =Select(Parent)
+                Visible: =If(CoefficientUtil_1.Text = "Water",true,false)
+                Width: =171
+                X: =1061
+                Y: =2
+                ZIndex: =8
+
+            "'Water-Conversion-DT' As text":
+                Default: ="Water Consumption"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =387
+                X: =459
+                Y: =TextInput19_5.Height 
+                ZIndex: =9
+
+            "'Water-Conversion-Unit' As text":
+                Default: ="hL"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =189
+                X: =859
+                Y: =TextInput19_6.Height 
+                ZIndex: =10
+
+            "'Water-Conversion-Amt' As text":
+                Default: =Value(TextInput19_7.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Unit (Conversion Unit) ' = "hL").'Unit (Conversion Coefficient) Value')
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =189
+                X: =1061
+                Y: =TextInput19_7.Height 
+                ZIndex: =11
+
+            Circle4_5 As circle:
+                Fill: |+
+                    =If(
+                    IsBlank(Water.Text) || IsBlank(TextInput19_5.Text) || IsBlank(TextInput19_7.Text) && Dropdown4.Visible=false, Orange,
+                    
+                    IsBlank(Water.Text) || IsBlank(TextInput19_5.Text) || IsBlank(Dropdown4.Selected.Result) || IsBlank(TextInput19_7.Text) && TextInput19_6.Visible=false, Orange,
+                    
+                    
+                    
+                    Green
+                    
+                    )
+                    
+                Height: =10
+                OnSelect: =Select(Parent)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =12
+
+            Label32_4 As label:
+                OnSelect: =Select(Parent)
+                Text: =If(Dropdown4.Selected.Result="" || TextInput19_5.Text="" ||  TextInput19_7.Text="" ||  Water.Text="",0,1)
+                Visible: =false
+                Width: =64
+                X: =406
+                Y: =10
+                ZIndex: =13
+
+            Dropdown4 As dropdown:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =Distinct(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient=CoefficientUtil_1.Text),Unit)
+                OnSelect: =Select(Parent)
+                Visible: |-
+                    =If(
+                         !IsBlank(LookUp('Utilities for G-KPI Calculation', ID = ThisItem.ID && Coefficient=CoefficientUtil_1.Text)),false,true
+                         
+                         )
+                Width: =189
+                X: =859
+                Y: =2
+                ZIndex: =14
+
+        Button8_57 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(247, 247, 247, 1)
+            Height: =56
+            Text: =""
+            Width: =1250
+            ZIndex: =3
+
+        CoefficientUtil_1 As label:
+            AutoHeight: =true
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Result
+            Width: =133
+            X: =50
+            Y: =12
+            ZIndex: =4
+
+        Circle1_15 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =12
+            Y: =13
+            ZIndex: =5
+
+        Icon22_26 As icon.Post:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =16
+            Icon: =Icon.Document
+            OnSelect: =Select(Parent)
+            Width: =26
+            X: =14
+            Y: =20
+            ZIndex: =6
+
+        "'Gallery-CO2-C' As gallery.variableTemplateHeightGallery":
+            Height: |
+                =CountRows('Gallery-CO2-C'.AllItems)*40*Value(CountRows(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient = "CO2-C").Coefficient))+120
+            Items: |-
+                =Filter(
+                Filter(colUtilities, varDefault in BU.Value),IsBlank(FuelType) && IsBlank(FuelTest) && IsBlank(Electricity) && IsBlank(ProductType) && IsBlank(Water))
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =50
+            Visible: =If(Value('CountRows-Dont-Delete'.Text) <> 0 && CoefficientUtil_1.Text = "CO2-C" && varGalCO2C ,true,false)
+            Width: =1250
+            Y: =61
+            ZIndex: =7
+
+            "'CO2-C-Text' As dropdown":
+                BorderColor: =If(IsBlank('CO2-C-Text'.Selected.CO2_x002d_C),Red,RGBA(230,230,230,1))
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                Items: =Filter(Filter('Utilities for G-KPI Calculation', BUUtil.Text in BU.Value),!IsBlank(CO2_x002d_C))
+                OnSelect: =Select(Parent)
+                Visible: =If(CoefficientUtil_1.Text = "CO2-C",true,false)
+                Width: =410
+                X: =32
+                Y: =2
+                ZIndex: =5
+
+            TextInput15 As text:
+                BorderColor: =If(IsBlank(TextInput15.Text),Red,RGBA(230,230,230,1))
+                Default: =ThisItem.DataType
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', 'CO2-C' = ThisItem.'CO2-C')) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =387
+                X: =459
+                Y: =1
+                ZIndex: =6
+
+            TextInput16 As text:
+                BorderColor: =If(IsBlank(TextInput16.Text),Red,RGBA(230,230,230,1))
+                Default: =ThisItem.Unit
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', 'CO2-C' = ThisItem.'CO2-C')) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =189
+                X: =859
+                Y: =1
+                ZIndex: =7
+
+            TextInput18 As text:
+                BorderColor: =If(IsBlank(TextInput18.Text),Red,RGBA(230,230,230,1))
+                Default: =
+                Format: =TextFormat.Number
+                OnSelect: =Select(Parent)
+                Width: =171
+                X: =1061
+                Y: =1
+                ZIndex: =8
+
+            "'Subtotal-CO2C-DataType' As label":
+                Height: =36
+                OnSelect: =Select(Parent)
+                Text: =Text(LookUp('Utilities for G-KPI Calculation',Coefficient=CoefficientUtil_1.Text).DataType)
+                Width: =257
+                X: =TextInput15.X+10
+                Y: =TextInput18.Height+60
+                ZIndex: =9
+
+            "'Subtotal-CO2C-Unit' As label":
+                Height: =36
+                OnSelect: =Select(Parent)
+                Text: =Text(LookUp('Utilities for G-KPI Calculation',Coefficient=CoefficientUtil_1.Text).Unit)
+                Width: =257
+                X: =TextInput16.X+10
+                Y: =TextInput18.Height+60
+                ZIndex: =10
+
+            "'Subtotal-CO2C-Amt' As label":
+                Height: =36
+                OnSelect: =Select(Parent)
+                Text: =Value(TextInput18.Text)
+                Width: =170
+                X: =1061
+                Y: =TextInput18.Height+60
+                ZIndex: =11
+
+            "'Subtotal-Text' As label":
+                OnSelect: =Select(Parent)
+                Text: ="Subtotal"
+                X: =10
+                Y: =TextInput18.Height+60
+                ZIndex: =12
+
+            Circle4_4 As circle:
+                Fill: =Orange
+                Height: =10
+                OnSelect: =Select(Parent)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =13
+
+            Label32_3 As label:
+                OnSelect: =Select(Parent)
+                Text: =If(IsBlank(TextInput18.Text),0,1)
+                Visible: =false
+                Width: =64
+                X: =386
+                Y: =10
+                ZIndex: =14
+
+        "'Gallery-Production' As gallery.variableTemplateHeightGallery":
+            Height: |
+                =CountRows('Gallery-Production'.AllItems)*40*Value(CountRows(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient = CoefficientUtil_1.Text).Coefficient))+40
+            Items: |-
+                =Filter(
+                Filter(colUtilities, varDefault in BU.Value),IsBlank(FuelType) && IsBlank(FuelTest) && IsBlank(Electricity) && IsBlank('CO2-C') && IsBlank(Water))
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =50
+            Visible: =If(CoefficientUtil_1.Text = "Production" && varGalProd,true, false)
+            Width: =1250
+            Y: =61
+            ZIndex: =8
+
+            TextInput19_12 As text:
+                BorderColor: =If(IsBlank(TextInput19_12.Text),Red,RGBA(230, 230, 230, 1))
+                Default: |-
+                    =If(
+                    ThisItem.ID = 10, Value(LookUp('UFE-Extract-Excel',ProductionLine="CSD" && Month = MonthUtil.Selected.Value && Year = YearUtil.Selected.Value).Litres),
+                    ThisItem.ID = 11, Value(LookUp('UFE-Extract-Excel',ProductionLine="NCB" && Month = MonthUtil.Selected.Value && Year = YearUtil.Selected.Value).Litres)
+                    
+                    )
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(CountIf(colProdHLMY, Utilities = CoefficientUtil_1.Text, Unit = TextInput14_1.Text, UtilitiesType = 'Production-Text'.Selected.ProductType) =0,
+                    Collect(colProdHLMY,{Amount:Value(TextInput19_12.Text), Utilities: CoefficientUtil_1.Text, Unit: TextInput14_1.Text, UtilitiesType: 'Production-Text'.Selected.ProductType, AmountConversion: Value(TextInput19_13.Text)}),
+                    Patch(colProdHLMY,
+                                 First(
+                                    Filter(colProdHLMY,
+                                       Utilities = CoefficientUtil_1.Text, Unit = TextInput14_1.Text, UtilitiesType = 'Production-Text'.Selected.ProductType)),
+                                        {
+                                           Amount:Value(TextInput19_12.Text), AmountConversion: Value(TextInput19_13.Text)
+                                           }
+                              ))
+                OnSelect: =Select(Parent)
+                Width: =171
+                X: =1061
+                Y: =2
+                ZIndex: =4
+
+            "'Production-Text' As dropdown":
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank('Production-Text'.Selected.ProductType),Red,RGBA(230, 230, 230, 1))
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                Items: =Filter(Filter('Utilities for G-KPI Calculation', BUUtil.Text in BU.Value),!IsBlank(ProductType))
+                Visible: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, false,true)
+                Width: =410
+                X: =32
+                Y: =2
+                ZIndex: =5
+
+            TextInput14 As text:
+                BorderColor: =If(IsBlank(TextInput14.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =ThisItem.DataType
+                DisplayMode: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, DisplayMode.Edit,DisplayMode.View)
+                Fill: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =500
+                X: =450
+                Y: =2
+                ZIndex: =6
+
+            TextInput14_1 As text:
+                BorderColor: =If(IsBlank(TextInput14_1.Text),Red,RGBA(230, 230, 230, 1))
+                Default: |-
+                    =If(!IsBlank('Production-Text'.Selected.ProductType),
+                    LookUp('Utilities for G-KPI Calculation', ProductType = 'Production-Text'.Selected.ProductType).Unit,
+                    "kL")
+                DisplayMode: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, DisplayMode.Edit,DisplayMode.View)
+                Fill: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Visible: =If(TextInput14.DisplayMode=DisplayMode.View,true,false)
+                Width: =90
+                X: =960
+                Y: =2
+                ZIndex: =7
+
+            TextInput19_13 As text:
+                BorderColor: =If(IsBlank(TextInput19_13.Text),Red,RGBA(230, 230, 230, 1))
+                Default: |+
+                    =If(
+                    
+                    !IsBlank('Production-Text'.Selected.ProductType) && IsMatch('Production-Text'.Selected.ProductType, "Beverages or Milk",
+                            MatchOptions.Contains & MatchOptions.IgnoreCase),
+                    
+                    Value(TextInput19_12.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Products Type' ="Beverages or Milk").'Unit Conversion Coefficient (Products) Value'),
+                    
+                    !IsBlank('Production-Text'.Selected.ProductType) && IsMatch('Production-Text'.Selected.ProductType, "Condensed Milk",
+                            MatchOptions.Contains & MatchOptions.IgnoreCase),
+                    
+                    Value(TextInput19_12.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Products Type' ="Condensed Milk").'Unit Conversion Coefficient (Products) Value'),
+                    
+                    IsBlank('Production-Text'.Selected.ProductType) && !IsBlank(Dropdown7.Selected.Result),
+                    
+                    Value(TextInput19_12.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Unit Products (Product) Unit' =Dropdown7.Selected.Result).'Unit Conversion Coefficient (Products) Value')
+                    
+                    )
+                    
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =171
+                X: =1061
+                Y: =TextInput14_1.Height + 10
+                ZIndex: =8
+
+            TextInput14_4 As text:
+                BorderColor: =If(IsBlank(TextInput14_4.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="Production Amount"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =500
+                X: =450
+                Y: =TextInput14_1.Height + 10
+                ZIndex: =9
+
+            TextInput14_5 As text:
+                BorderColor: =If(IsBlank(TextInput14_5.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="hL"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =90
+                X: =960
+                Y: =TextInput14_1.Height + 10
+                ZIndex: =10
+
+            TextInput13 As text:
+                BorderColor: =If(IsBlank(TextInput13.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =""
+                OnSelect: =Select(Parent)
+                Visible: |
+                    =If(CountRows(Filter('Utilities for G-KPI Calculation',ID=ThisItem.ID)) = 0, true, false)
+                Width: =405
+                X: =33
+                Y: =2
+                ZIndex: =11
+
+            TextInput14_6 As text:
+                BorderColor: =If(IsBlank(TextInput14_6.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =""
+                DisplayMode: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, DisplayMode.Edit,DisplayMode.View)
+                Fill: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ProductType = ThisItem.ProductType)) = 0, White,Transparent)
+                Format: =TextFormat.Number
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Visible: |-
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation',ID=ThisItem.ID)) > 0, true, false)
+                Width: =90
+                X: =860
+                Y: =TextInput14_1.Height + 10
+                ZIndex: =12
+
+            Circle4_2 As circle:
+                Fill: |+
+                    =If(
+                    IsBlank('Production-Text'.Selected.ProductType) || IsBlank(TextInput14.Text) || IsBlank(TextInput19_12.Text)&& Dropdown7.Visible=false && TextInput13.Visible=false, Orange,
+                    
+                    Green
+                    
+                    )
+                    
+                Height: =10
+                OnSelect: =Select(Parent)
+                Visible: =If('Production-Text'.Visible,true,false)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =13
+
+            Label32_2 As label:
+                OnSelect: =Select(Parent)
+                Text: |-
+                    =If(
+                        !IsBlank('Production-Text'.Selected.ProductType), 1,
+                        IsBlank('Production-Text'.Selected.ProductType) && 'Production-Text'.Visible=false && !IsBlank(TextInput13.Text) && !IsBlank(TextInput14.Text) && !IsBlank(Dropdown7.Selected.Result) && !IsBlank(TextInput19_12.Text),1,
+                    
+                    0)
+                Visible: =false
+                Width: =64
+                X: =386
+                Y: =10
+                ZIndex: =14
+
+            Dropdown7 As dropdown:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =Distinct(Filter('Coefficients for G-KPI Calculation', Coefficient="Product"),'Unit Products (Product) Unit')
+                OnSelect: =Select(Parent)
+                Visible: |-
+                    =If(
+                         !IsBlank(LookUp('Utilities for G-KPI Calculation', ID = ThisItem.ID)),false,true
+                         
+                         )
+                Width: =90
+                X: =960
+                Y: =2
+                ZIndex: =15
+
+            Circle4_6 As circle:
+                Fill: |+
+                    =If(
+                    IsBlank(TextInput13.Text) || IsBlank(Dropdown7.Selected.Result) || IsBlank(TextInput19_12.Text) || IsBlank(TextInput14.Text), Orange,
+                    
+                    Green
+                    
+                    )
+                    
+                Height: =10
+                OnSelect: =Select(Parent)
+                Visible: =If(Dropdown7.Visible,true,false)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =16
+
+        "'Subtotal-Water-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Text(LookUp('Utilities for G-KPI Calculation',Coefficient=CoefficientUtil_1.Text).DataType)
+            Visible: =If(CoefficientUtil_1.Text = "Water" && varGalWater,true,false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Water'.Height + 80
+            ZIndex: =9
+
+        "'Subtotal-Water-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="hL"
+            Visible: =If(CoefficientUtil_1.Text = "Water" && varGalWater,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Water'.Height + 80
+            ZIndex: =10
+
+        "'Subtotal-Water-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colWaterHLMY,Amount)
+            Visible: =If(CoefficientUtil_1.Text = "Water" && varGalWater,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Water'.Height + 80
+            ZIndex: =11
+
+        "'Subtotal-Water-Text' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Subtotal"
+            Visible: =If(CoefficientUtil_1.Text = "Water" && varGalWater,true,false)
+            X: =10
+            Y: ='Gallery-Water'.Height + 80
+            ZIndex: =12
+
+        "'Subtotal-Elec-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Purchased Electricity Amount"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Electricity'.Height+120
+            ZIndex: =13
+
+        "'Subtotal-Elec-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="kWh"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height+120
+            ZIndex: =14
+
+        "'Subtotal-Elec-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =LookUp(colElecHLMY,DataType="Purchased Electricity Amount").Amount
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height+120
+            ZIndex: =15
+
+        "'Subtotal-Elec-Text' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Subtotal"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            X: =10
+            Y: ='Gallery-Electricity'.Height+120
+            ZIndex: =16
+
+        "'Subtotal-Ener-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Purchased Energy Amount"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Electricity'.Height + 160
+            ZIndex: =17
+
+        "'Subtotal-Ener-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="MJ"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height + 160
+            ZIndex: =18
+
+        "'Subtotal-Ener-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =LookUp(colElecHLMY,DataType="Purchased Electricity Amount").AmountEnergy
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height + 160
+            ZIndex: =19
+
+        "'Subtotal-Overall-Elec-DT' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Ref. Overall Elc. Consumption"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Electricity'.Height+200
+            ZIndex: =20
+
+        "'Subtotal-Overall-Elec-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="kWh"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height+200
+            ZIndex: =21
+
+        "'Subtotal-Overall-Elec-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colElecHLMY,Amount)
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height+200
+            ZIndex: =22
+
+        "'Subtotal-Overall-Ener-DT' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Ref. Overall Ene. Consumption"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =270
+            X: =459
+            Y: ='Gallery-Electricity'.Height + 240
+            ZIndex: =23
+
+        "'Subtotal-Overall-Ener-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="MJ"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height + 240
+            ZIndex: =24
+
+        "'Subtotal-Overall-Ener-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colElecHLMY,AmountEnergy)
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height + 240
+            ZIndex: =25
+
+        "'Subtotal-Overall-Ener-Ratio-DT' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Ref. Renewable Energy Ratio"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =270
+            X: =459
+            Y: ='Gallery-Electricity'.Height + 280
+            ZIndex: =26
+
+        "'Subtotal-Overall-Ener-Ratio-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="%"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height + 280
+            ZIndex: =27
+
+        "'Subtotal-Overall-Ener-Ratio-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =LookUp(colElecHLMY,UtilitiesType="Renewable (e.g. Solar)").Amount/Sum(colElecHLMY,Amount)*100
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height + 280
+            ZIndex: =28
+
+        "'Subtotal-CO2-DT' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="CO2 Emissions"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =270
+            X: =459
+            Y: ='Gallery-Electricity'.Height + 320
+            ZIndex: =29
+
+        "'Subtotal-CO2-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="kg-CO2e"
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =257
+            X: =859
+            Y: ='Gallery-Electricity'.Height + 320
+            ZIndex: =30
+
+        "'Subtotal-CO2-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Value(LookUp(colElecHLMY,UtilitiesType <> "Renewable (e.g. Solar)" && UtilitiesType <> "In-House excl. Renewable (e.g. CoGen)").AmountCO2)
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Electricity'.Height + 320
+            ZIndex: =31
+
+        "'Subtotal-Prod-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Production Amount"
+            Visible: =If(CoefficientUtil_1.Text = "Production" && varGalProd,true, false)
+            Width: =257
+            X: =450
+            Y: ='Gallery-Production'.Height + 80
+            ZIndex: =32
+
+        "'Subtotal-Prod-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="hL"
+            Visible: =If(CoefficientUtil_1.Text = "Production" && varGalProd,true, false)
+            Width: =257
+            X: =960
+            Y: ='Gallery-Production'.Height + 80
+            ZIndex: =33
+
+        "'Subtotal-Prod-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colProdHLMY,AmountConversion)
+            Visible: =If(CoefficientUtil_1.Text = "Production" && varGalProd,true, false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Production'.Height + 80
+            ZIndex: =34
+
+        "'Subtotal-Prod-Text' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: ="Subtotal"
+            Visible: =If(CoefficientUtil_1.Text = "Production" && varGalProd,true, false)
+            X: =10
+            Y: ='Gallery-Production'.Height + 80
+            ZIndex: =35
+
+        "'Gallery-Fuel' As gallery.variableTemplateHeightGallery":
+            Height: |
+                =CountRows('Gallery-Fuel'.AllItems)*40*Value(CountRows(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient = CoefficientUtil_1.Text).Coefficient))+80
+            Items: |-
+                =Filter(
+                Filter(colUtilities, varDefault in BU.Value),IsBlank(Electricity) && IsBlank(ProductType) && IsBlank('CO2-C') && IsBlank(Water))
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplateSize: =206
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =1250
+            Y: =58
+            ZIndex: =36
+
+            Dropdown10 As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank(Dropdown10.Selected.Value),Red,RGBA(230, 230, 230, 1))
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', FuelTest = ThisItem.FuelTest && !IsBlank(Dropdown10.Selected.Value))) = 0, DisplayMode.Edit, DisplayMode.View)
+                Items: =Filter(Choices('Utilities for G-KPI Calculation'.FuelTest),!IsBlank(Value) && Value <> "Electricity Malaysia" && Value <> "Electricity Indonesia")
+                OnSelect: =Select(Parent)
+                Visible: =If(!IsBlank(TextInput19.Text),true,false)
+                Width: =410
+                X: =32
+                Y: =2
+                ZIndex: =1
+
+            TextInput15_1 As text:
+                BorderColor: =If(IsBlank(TextInput15_1.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="Purchased Fuel Amount"
+                DisplayMode: |
+                    =If(!IsBlank(TextInput19.Text),
+                    DisplayMode.View,DisplayMode.Edit)
+                Fill: =If(TextInput15_1.DisplayMode=DisplayMode.Edit,White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =387
+                X: =459
+                Y: =1
+                ZIndex: =2
+
+            TextInput16_1 As text:
+                BorderColor: =If(IsBlank(TextInput16_1.Text),Red,RGBA(230, 230, 230, 1))
+                Default: |-
+                    =If(IsBlank(Dropdown10.Selected.Value),"mmBtu",
+                    
+                    LookUp('Coefficients for G-KPI Calculation',Title=Dropdown10.Selected.Value).Unit
+                    
+                    )
+                DisplayMode: |
+                    =If(!IsBlank(TextInput19.Text),
+                    DisplayMode.View,DisplayMode.Edit)
+                Fill: =If(TextInput16_1.DisplayMode=DisplayMode.Edit,White,Transparent)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Visible: |-
+                    =If(
+                         IsBlank(LookUp('Utilities for G-KPI Calculation', ID = ThisItem.ID && Coefficient=CoefficientUtil_1.Text)),false,true
+                         
+                         )
+                Width: =90
+                X: =900
+                Y: =1
+                ZIndex: =3
+
+            TextInput18_1 As text:
+                BorderColor: =If(IsBlank(TextInput18_1.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', FuelTest = ThisItem.FuelTest && !IsBlank(Dropdown10.Selected.Value))) = 0, DisplayMode.Edit, DisplayMode.View)
+                Format: =TextFormat.Number
+                OnChange: |-
+                    =If(CountIf(colFuelMY, Utilities = CoefficientUtil_1.Text, Unit = TextInput16_1.Text, UtilitiesType = Dropdown10.Selected.Value) =0,
+                    Collect(colFuelMY,{Amount:Value(TextInput18_1.Text), Utilities: CoefficientUtil_1.Text, Unit: TextInput16_1.Text, UtilitiesType:Dropdown10.Selected.Value, AmountConversion: Value('Conversion-Fuel-MJ'.Text), AmountCO2: Value('Conversion-Fuel-CO2'.Text)}),
+                    Patch(colFuelMY,
+                                 First(
+                                    Filter(colFuelMY,
+                                      Utilities = CoefficientUtil_1.Text, Unit = TextInput16_1.Text, UtilitiesType = Dropdown10.Selected.Value)),
+                                        {
+                                           Amount:Value(TextInput18_1.Text), Utilities: CoefficientUtil_1.Text, Unit: TextInput16_1.Text, UtilitiesType:Dropdown10.Selected.Value, AmountConversion: Value('Conversion-Fuel-MJ'.Text), AmountCO2: Value('Conversion-Fuel-CO2'.Text)
+                                           }
+                              ))
+                OnSelect: =Select(Parent)
+                Width: =171
+                X: =1057
+                ZIndex: =4
+
+            TextInput19 As text:
+                Default: =ThisItem.FuelType
+                OnSelect: =Select(Parent)
+                Visible: =false
+                X: =60
+                Y: =2
+                ZIndex: =11
+
+            TextInput20 As text:
+                BorderColor: =If(IsBlank(TextInput20.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =""
+                OnSelect: =Select(Parent)
+                Visible: =If(!IsBlank(TextInput19.Text),false,true)
+                Width: =405
+                X: =33
+                Y: =2
+                ZIndex: =12
+
+            TextInput11 As text:
+                BorderColor: =If(IsBlank(TextInput11.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="Purchased Fuel Amount"
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =387
+                X: =459
+                Y: =50
+                ZIndex: =13
+
+            TextInput11_2 As text:
+                BorderColor: =If(IsBlank(TextInput11_2.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="MJ"
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_2.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =90
+                X: =900
+                Y: =50
+                ZIndex: =15
+
+            TextInput11_3 As text:
+                BorderColor: =If(IsBlank(TextInput11_3.Text),Red,RGBA(230, 230, 230, 1))
+                Default: |-
+                    =If(
+                        
+                    !IsBlank(Dropdown10.Selected.Value) && Dropdown10.Selected.Value <> "Natural Gas or Liquefied Gas (NG/LNG)",
+                    
+                    Value(TextInput18_1.Text)*Value(LookUp('Coefficients for G-KPI Calculation',Title =Dropdown10.Selected.Value).'Unit Calorific (Fuel) Value'),
+                    
+                    IsBlank(Dropdown10.Selected.Value) && Dropdown6.Selected.Result = "mmBtu", 
+                    
+                    Value(TextInput18_1.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Unit Conversion Form (Conversion Unit)' = "mmBtu").'Unit (Conversion Coefficient) Value'),
+                    
+                    IsBlank(Dropdown10.Selected.Value) && Dropdown6.Selected.Result <> "mmBtu", Value(TextInput18_1.Text)*1,
+                    
+                    Value(TextInput18_1.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Unit Conversion Form (Conversion Unit)' = "mmBtu").'Unit (Conversion Coefficient) Value')
+                    
+                    )
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_3.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =171
+                X: =1057
+                Y: =50
+                ZIndex: =16
+
+            TextInput11_4 As text:
+                BorderColor: =If(IsBlank(TextInput11_4.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="CO2 Emissions"
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_4.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =387
+                X: =459
+                Y: =95
+                ZIndex: =17
+
+            TextInput11_5 As text:
+                BorderColor: =If(IsBlank(TextInput11_5.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =""
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_5.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Visible: =false
+                Width: =90
+                X: =860
+                Y: =95
+                ZIndex: =18
+
+            TextInput11_8 As text:
+                BorderColor: =If(IsBlank(TextInput11_8.Text),Red,RGBA(230, 230, 230, 1))
+                Default: ="kg-CO2e"
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_8.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =90
+                X: =900
+                Y: =95
+                ZIndex: =19
+
+            TextInput11_9 As text:
+                BorderColor: =If(IsBlank(TextInput11_9.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =Value(TextInput18_1.Text)*Value(LookUp('Coefficients for G-KPI Calculation',Title =Dropdown10.Selected.Value).'Unit CO2 Emmission (Fuel) Value')
+                DisplayMode: =DisplayMode.View
+                Fill: =If(TextInput11_9.DisplayMode=DisplayMode.Edit,White,Transparent)
+                Height: =38
+                OnSelect: =Select(Parent)
+                PaddingLeft: =5
+                Width: =171
+                X: =1057
+                Y: =95
+                ZIndex: =20
+
+            Circle4_1 As circle:
+                Fill: |-
+                    =If(
+                    
+                    IsBlank(Dropdown10.Selected.Value) || IsBlank(TextInput18_1.Text), Orange, 
+                    
+                    
+                    Green)
+                Height: =10
+                OnSelect: =Select(Parent)
+                Visible: =If(Dropdown6.Visible=false,true,false)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =21
+
+            Label32_1 As label:
+                Height: =64
+                OnSelect: =Select(Parent)
+                Text: |-
+                    =If(
+                        !IsBlank(Dropdown10.Selected.Value) && !IsBlank(TextInput18_1.Text), 1,
+                        IsBlank(Dropdown10.Selected.Value) &&!IsBlank(TextInput16_1.Text) &&!IsBlank(TextInput18_1.Text) &&!IsBlank(TextInput20.Text) &&!IsBlank(TextInput15_1.Text) && Dropdown10.Visible=false,1,
+                    
+                    0)
+                Visible: =false
+                Width: =70
+                X: =10
+                Y: =16
+                ZIndex: =22
+
+            Dropdown6 As dropdown:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =Distinct(Filter('Coefficients for G-KPI Calculation', Coefficient=CoefficientUtil_1.Text),Unit)
+                OnSelect: =Select(Parent)
+                Visible: |-
+                    =If(
+                         !IsBlank(LookUp('Utilities for G-KPI Calculation', ID = ThisItem.ID && Coefficient=CoefficientUtil_1.Text)),false,true
+                         
+                         )
+                Width: =114
+                X: =900
+                Y: =2
+                ZIndex: =23
+
+            Circle4_7 As circle:
+                Fill: |-
+                    =If(
+                    
+                    IsBlank(TextInput15_1.Text) || IsBlank(TextInput18_1.Text) || IsBlank(Dropdown6.Selected.Result) ||  IsBlank(TextInput20.Text), Orange, 
+                    
+                    
+                    Green)
+                Height: =10
+                OnSelect: =Select(Parent)
+                Visible: =If(Dropdown6.Visible,true,false)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =24
+
+        "'Subtotal-FuelAmt-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Text: ="Purchased Fuel Amount"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Fuel'.Height + 80
+            ZIndex: =37
+
+        "'Subtotal-FuelAmt-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            Text: =TextInput16_1.Text
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =900
+            Y: ='Gallery-Fuel'.Height + 80
+            ZIndex: =38
+
+        "'Subtotal-FuelAmt-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colFuelMY,Amount)
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =170
+            X: =1062
+            Y: ='Gallery-Fuel'.Height + 80
+            ZIndex: =39
+
+        "'Subtotal-FuelAmt-Text' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            Text: ="Subtotal"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            X: =19
+            Y: ='Gallery-Fuel'.Height + 80
+            ZIndex: =40
+
+        "'Subtotal-FuelEner-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Text: ="Purchased Energy Amount"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =459
+            Y: ='Gallery-Fuel'.Height + 120
+            ZIndex: =41
+
+        "'Subtotal-FuelEner-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            Text: ="MJ"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =900
+            Y: ='Gallery-Fuel'.Height + 120
+            ZIndex: =42
+
+        "'Subtotal-FuelEner-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colFuelMY,AmountConversion)
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Fuel'.Height + 120
+            ZIndex: =43
+
+        "'Subtotal-RefFuelEner-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Text: ="Ref. Energy excl. Elc. Generation"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =300
+            X: =459
+            Y: ='Gallery-Fuel'.Height + 160
+            ZIndex: =44
+
+        "'Subtotal-RefFuelEner-Unit' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            Text: ="MJ"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =900
+            Y: ='Gallery-Fuel'.Height + 160
+            ZIndex: =45
+
+        "'Subtotal-RefFuelEner-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colFuelMY,AmountConversion)
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Fuel'.Height + 160
+            ZIndex: =46
+
+        "'Subtotal-FuelCO2-DataType' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Text: ="CO2 Emissions"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =300
+            X: =459
+            Y: ='Gallery-Fuel'.Height + 200
+            ZIndex: =47
+
+        "'Subtotal-FuelCO2-Unit' As label":
+            Align: =Left
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            Text: ="kg-CO2e"
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =257
+            X: =900
+            Y: ='Gallery-Fuel'.Height + 200
+            ZIndex: =48
+
+        "'Subtotal-FuelCO2-Amt' As label":
+            Height: |
+                =If(ThisItem.Result =  Gallery11.Selected.Result,40,0)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =12
+            Text: =Sum(colFuelMY,AmountCO2)
+            Visible: =If(CoefficientUtil_1.Text = "Fuel" && varGalFuel,true, false)
+            Width: =170
+            X: =1061
+            Y: ='Gallery-Fuel'.Height + 200
+            ZIndex: =49
+
+        "'Gallery-Electricity' As gallery.variableTemplateHeightGallery":
+            Height: |
+                =CountRows('Gallery-Electricity'.AllItems)*40*Value(CountRows(Filter('Utilities for G-KPI Calculation',varDefault in BU.Value && Coefficient = CoefficientUtil_1.Text).Coefficient))+20
+            Items: |-
+                =Filter(
+                Filter(colUtilities, varDefault in BU.Value),IsBlank(FuelType) && IsBlank(FuelTest) && IsBlank(ProductType) && IsBlank('CO2-C') && IsBlank(Water))
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplateSize: =280
+            Visible: =If(CoefficientUtil_1.Text = "Electricity" && varGalElec,true,false)
+            Width: =1250
+            Y: =56
+            ZIndex: =52
+
+            Electricity As text:
+                BorderColor: =If(IsBlank(Electricity.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =ThisItem.Electricity
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Electricity = ThisItem.Electricity)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =Transparent
+                OnSelect: =Select(Parent)
+                Width: =413
+                X: =26
+                ZIndex: =1
+
+            TextInput19_4 As text:
+                BorderColor: =If(IsBlank(TextInput19_4.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =ThisItem.DataType
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Electricity = ThisItem.Electricity)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =308
+                X: =459
+                ZIndex: =2
+
+            TextInput19_8 As text:
+                BorderColor: =If(IsBlank(TextInput19_8.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =ThisItem.Unit
+                DisplayMode: |
+                    =If(
+                    
+                    CountRows(Filter('Utilities for G-KPI Calculation', Electricity = ThisItem.Electricity)) = 0, DisplayMode.Edit, DisplayMode.View)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =189
+                X: =859
+                ZIndex: =3
+
+            TextInput19_9 As text:
+                BorderColor: =If(IsBlank(TextInput19_9.Text),Red,RGBA(230, 230, 230, 1))
+                Default: =""
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(CountIf(colElecHLMY, Utilities = CoefficientUtil_1.Text, Unit = TextInput19_8.Text, UtilitiesType = Electricity.Text) =0,
+                    Collect(colElecHLMY,{Amount:Value(TextInput19_9.Text), Utilities: CoefficientUtil_1.Text, Unit: TextInput19_8.Text, UtilitiesType: Electricity.Text, DataType: TextInput19_4.Text, DataTypeEnergyAmt: 'Elec-PurchasedEnergy-DT_1'.Text, AmountEnergy:Value('Elec-Amt-Energy_1'.Text), DataTypeCO2Emissions: 'Elec-CO2-DT_1'.Text, AmountCO2:Value('Elec-Amt-CO2_1'.Text)}),
+                    Patch(colElecHLMY,
+                                 First(
+                                    Filter(colElecHLMY,
+                                       Utilities = CoefficientUtil_1.Text, Unit = TextInput19_8.Text, UtilitiesType = Electricity.Text)),
+                                        {
+                                           Amount:Value(TextInput19_9.Text), AmountEnergy:Value('Elec-Amt-Energy_1'.Text), 
+                                           AmountCO2:Value('Elec-Amt-CO2_1'.Text)
+                                           }
+                              ))
+                OnSelect: =Select(Parent)
+                Width: =171
+                X: =1057
+                ZIndex: =4
+
+            "'Elec-PurchasedEnergy-DT_1' As text":
+                Default: =If(Electricity.Text = "Renewable (e.g. Solar)" || Electricity.Text = "In-House excl. Renewable (e.g. CoGen)","Generated Energy Amount","Purchased Energy Amount")
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =387
+                X: =459
+                Y: =TextInput19_4.Height
+                ZIndex: =5
+
+            "'Elec-CO2-DT_1' As text":
+                Default: ="CO2 Emissions"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =387
+                X: =459
+                Y: ='Elec-PurchasedEnergy-DT_1'.Height+40
+                ZIndex: =6
+
+            "'Elec-Unit-Energy_1' As text":
+                Default: ="MJ"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =167
+                X: =859
+                Y: =TextInput19_4.Height
+                ZIndex: =7
+
+            "'Elec-Amt-Energy_1' As text":
+                Default: =Value(TextInput19_9.Text)*Value(LookUp('Coefficients for G-KPI Calculation','Unit Conversion Form (Conversion Unit)' ="kWh").'Unit (Conversion Coefficient) Value')
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =167
+                X: =1061
+                Y: =TextInput19_4.Height
+                ZIndex: =8
+
+            "'Elec-Unit-CO2_1' As text":
+                Default: ="kg-CO2e"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =387
+                X: =859
+                Y: ='Elec-PurchasedEnergy-DT_1'.Height+40
+                ZIndex: =9
+
+            "'Elec-Amt-CO2_1' As text":
+                Default: =Value(TextInput19_9.Text)*Value(LookUp('Coefficients for G-KPI Calculation',Unit ="kWh").'Unit CO2 Emmission (Fuel) Value')
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Select(Parent)
+                Width: =167
+                X: =1061
+                Y: ='Elec-PurchasedEnergy-DT_1'.Height+40
+                ZIndex: =10
+
+            Circle4 As circle:
+                Fill: =If(IsBlank(Electricity.Text) || IsBlank(TextInput19_4.Text) || IsBlank(TextInput19_8.Text) || IsBlank(TextInput19_9.Text), Orange, Green)
+                Height: =10
+                OnSelect: =Select(Parent)
+                Width: =10
+                X: =16
+                Y: =16
+                ZIndex: =11
+
+            Label32 As label:
+                OnSelect: =Select(Parent)
+                Text: =If(TextInput19_9.Text="",0,1)
+                Visible: =false
+                Width: =64
+                X: =362
+                ZIndex: =12
+
+        "'Add-CPP_1' As group":
+            Height: =5
+            Width: =5
+            X: =30
+            Y: =40
+            ZIndex: =52
+
+            "'Add-bttn-CPP_1' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Water",Collect(colUtilities,{Water:"", BU:Table({Value: varDefault}), DataType:"Water Consumption", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).Water)+1, Coefficient: CoefficientUtil_1.Text}),
+                    
+                    CoefficientUtil_1.Text = "Fuel",Collect(colUtilities,{BU:Table({Value: varDefault}), DataType:"Purchased Fuel Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text}),
+                    
+                    CoefficientUtil_1.Text = "Production",Collect(colUtilities,{ProductType:"", BU:Table({Value: varDefault}), DataType:"Production Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text})
+                    
+                    )
+                    
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Add"
+                Visible: =false
+                Width: =80
+                X: =15
+                Y: |-
+                    =If(
+                    CoefficientUtil_1.Text = "Electricity",'Gallery-Electricity'.Height + 80,
+                    CoefficientUtil_1.Text = "Water",'Gallery-Water'.Height + 40,
+                    CoefficientUtil_1.Text = "Fuel",'Gallery-Fuel'.Height + 40,
+                    CoefficientUtil_1.Text = "CO2-C",'Gallery-CO2-C'.Height,
+                    CoefficientUtil_1.Text = "Production",'Gallery-Production'.Height + 40
+                    )
+                ZIndex: =50
+
+            Icon22_25 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Water",Collect(colUtilities,{Water:"", BU:Table({Value: varDefault}), DataType:"Water Consumption", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).Water)+1, Coefficient: CoefficientUtil_1.Text}),
+                    
+                    CoefficientUtil_1.Text = "Fuel",Collect(colUtilities,{BU:Table({Value: varDefault}), DataType:"Purchased Fuel Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text}),
+                    
+                    CoefficientUtil_1.Text = "Production",Collect(colUtilities,{ProductType:"", BU:Table({Value: varDefault}), DataType:"Production Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text})
+                    
+                    )
+                    
+                Visible: =false
+                Width: =28
+                X: =10
+                Y: |
+                    =If(
+                    CoefficientUtil_1.Text = "Electricity",'Gallery-Electricity'.Height + 90,
+                    CoefficientUtil_1.Text = "Water",'Gallery-Water'.Height + 50,
+                    CoefficientUtil_1.Text = "Fuel",'Gallery-Fuel'.Height + 50,
+                    CoefficientUtil_1.Text = "CO2-C",'Gallery-CO2-C'.Height + 10,
+                    CoefficientUtil_1.Text = "Production",'Gallery-Production'.Height + 50
+                    )
+                ZIndex: =51
+
+        "'MinMaxBttn-Elec' As icon.ChevronDown":
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =25
+            Icon: |-
+                =If(varGalElec, Icon.ChevronUp,
+                Icon.ChevronDown)
+            OnSelect: =Set(varGalElec,!varGalElec)
+            Visible: =If(CoefficientUtil_1.Text="Electricity",true,false)
+            Width: =25
+            X: =1193
+            Y: =16
+            ZIndex: =53
+
+        "'Status-Progress-Elec' As label":
+            Align: =Center
+            AutoHeight: =true
+            Color: |-
+                =If(
+                
+                CountRows ('Gallery-Electricity'.AllItems)= Sum('Gallery-Electricity'.AllItems, Value(Label32.Text) && CoefficientUtil_1.Text = "Electricity"),Green,
+                
+                Orange)
+            FontWeight: =Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Table Progress:" &" " & 
+                If(
+                
+                CountRows ('Gallery-Electricity'.AllItems)= Sum('Gallery-Electricity'.AllItems, Value(Label32.Text) && CoefficientUtil_1.Text = "Electricity"),"Completed",
+                
+                "Pending")
+            Visible: =If(CoefficientUtil_1.Text="Electricity",true,false)
+            Width: =298
+            X: =476
+            Y: =12
+            ZIndex: =55
+
+        "'Status-Progress-Fuel' As label":
+            Align: =Center
+            AutoHeight: =true
+            Color: |-
+                =If(
+                
+                CountRows ('Gallery-Fuel'.AllItems)= Sum('Gallery-Fuel'.AllItems, Value(Label32_1.Text) && CoefficientUtil_1.Text = "Fuel"),Green,
+                
+                Orange)
+            FontWeight: =Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Table Progress:" &" " & 
+                If(
+                
+                CountRows ('Gallery-Fuel'.AllItems)= Sum('Gallery-Fuel'.AllItems, Value(Label32_1.Text) && CoefficientUtil_1.Text = "Fuel"),"Completed",
+                
+                "Pending")
+            Visible: =If(CoefficientUtil_1.Text="Fuel",true,false)
+            Width: =298
+            X: =476
+            Y: =12
+            ZIndex: =56
+
+        "'Status-Progress-CO2C' As label":
+            Align: =Center
+            AutoHeight: =true
+            Color: |-
+                =If(
+                
+                CountRows ('Gallery-CO2-C'.AllItems)= Sum('Gallery-CO2-C'.AllItems, Value(Label32_3.Text) && CoefficientUtil_1.Text = "CO2-C"),Green,
+                
+                Orange)
+            FontWeight: =Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Table Progress:" &" " & 
+                If(
+                
+                CountRows ('Gallery-CO2-C'.AllItems)= Sum('Gallery-CO2-C'.AllItems, Value(Label32_3.Text) && CoefficientUtil_1.Text = "CO2-C"),"Completed",
+                
+                "Pending")
+            Visible: =If(CoefficientUtil_1.Text="CO2-C",true,false)
+            Width: =298
+            X: =476
+            Y: =12
+            ZIndex: =57
+
+        "'Status-Progress-Water' As label":
+            Align: =Center
+            AutoHeight: =true
+            Color: |-
+                =If(
+                
+                CountRows ('Gallery-Water'.AllItems)= Sum('Gallery-Water'.AllItems, Value(Label32_4.Text) && CoefficientUtil_1.Text = "Water"),Green,
+                
+                Orange)
+            FontWeight: =Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Table Progress:" &" " & 
+                If(
+                
+                CountRows ('Gallery-Water'.AllItems)= Sum('Gallery-Water'.AllItems, Value(Label32_4.Text) && CoefficientUtil_1.Text = "Water"),"Completed",
+                
+                "Pending")
+            Visible: =If(CoefficientUtil_1.Text="Water",true,false)
+            Width: =298
+            X: =476
+            Y: =12
+            ZIndex: =58
+
+        "'Status-Progress-Prod' As label":
+            Align: =Center
+            AutoHeight: =true
+            Color: |-
+                =If(
+                
+                CountRows ('Gallery-Production'.AllItems)= Sum('Gallery-Production'.AllItems, Value(Label32_2.Text) && CoefficientUtil_1.Text = "Production"),Green,
+                
+                Orange)
+            FontWeight: =Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Table Progress:" &" " & 
+                If(
+                
+                CountRows ('Gallery-Production'.AllItems)= Sum('Gallery-Production'.AllItems, Value(Label32_2.Text) && CoefficientUtil_1.Text = "Production"),"Completed",
+                
+                "Pending")
+            Visible: =If(CoefficientUtil_1.Text="Production",true,false)
+            Width: =298
+            X: =476
+            Y: =12
+            ZIndex: =59
+
+        "'MinMaxBttn-Fuel' As icon.ChevronDown":
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =25
+            Icon: |-
+                =If(varGalFuel, Icon.ChevronUp,
+                Icon.ChevronDown)
+            OnSelect: =Set(varGalFuel,!varGalFuel)
+            Visible: =If(CoefficientUtil_1.Text="Fuel",true,false)
+            Width: =25
+            X: =1193
+            Y: =16
+            ZIndex: =60
+
+        "'MinMaxBttn-Prod' As icon.ChevronDown":
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =25
+            Icon: |-
+                =If(varGalFuel, Icon.ChevronUp,
+                Icon.ChevronDown)
+            OnSelect: =Set(varGalProd,!varGalProd)
+            Visible: =If(CoefficientUtil_1.Text="Production",true,false)
+            Width: =25
+            X: =1193
+            Y: =16
+            ZIndex: =61
+
+        "'MinMaxBttn-CO2C' As icon.ChevronDown":
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =25
+            Icon: |-
+                =If(varGalFuel, Icon.ChevronUp,
+                Icon.ChevronDown)
+            OnSelect: =Set(varGalCO2C,!varGalCO2C)
+            Visible: =If(CoefficientUtil_1.Text="CO2-C",true,false)
+            Width: =25
+            X: =1193
+            Y: =16
+            ZIndex: =62
+
+        "'MinMaxBttn-Water' As icon.ChevronDown":
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =25
+            Icon: |-
+                =If(varGalFuel, Icon.ChevronUp,
+                Icon.ChevronDown)
+            OnSelect: =Set(varGalWater,!varGalWater)
+            Visible: =If(CoefficientUtil_1.Text="Water",true,false)
+            Width: =25
+            X: =1193
+            Y: =16
+            ZIndex: =63
+
+        "'Add-Water' As group":
+            Height: =5
+            Width: =5
+            X: =30
+            Y: =40
+            ZIndex: =66
+
+            "'Add-bttn-CPP_2' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Water",Collect(colUtilities,{Water:"", BU:Table({Value: varDefault}), DataType:"Water Consumption", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).Water)+1, Coefficient: "Water"})
+                    
+                    )
+                    
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Add"
+                Visible: =If(CoefficientUtil_1.Text="Water" && varGalWater,true,false)
+                Width: =80
+                X: =45
+                Y: ='Gallery-Water'.Height+40
+                ZIndex: =64
+
+            Icon22_27 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Water",Collect(colUtilities,{Water:"", BU:Table({Value: varDefault}), DataType:"Water Consumption", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).Water)+1, Coefficient: "Water"})
+                    
+                    )
+                    
+                Visible: =If(CoefficientUtil_1.Text="Water" && varGalWater,true,false)
+                Width: =28
+                X: =40
+                Y: ='Gallery-Water'.Height+50
+                ZIndex: =65
+
+        "'Add-Production' As group":
+            Height: =5
+            Width: =5
+            X: =20
+            Y: =60
+            ZIndex: =68
+
+            "'Add-bttn-CPP_3' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Production",Collect(colUtilities,{ProductType:"", BU:Table({Value: varDefault}), DataType:"Production Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: "Production"})
+                    
+                    )
+                    
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Add"
+                Visible: =If(CoefficientUtil_1.Text="Production" && varGalProd,true,false)
+                Width: =80
+                X: =45
+                Y: ='Gallery-Production'.Height+40
+                ZIndex: =66
+
+            Icon22_28 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Production",Collect(colUtilities,{ProductType:"", BU:Table({Value: varDefault}), DataType:"Production Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: "Production"})
+                    
+                    )
+                    
+                Visible: =If(CoefficientUtil_1.Text="Production" && varGalProd,true,false)
+                Width: =28
+                X: =40
+                Y: ='Gallery-Production'.Height+50
+                ZIndex: =67
+
+        "'Add-Fuel' As group":
+            Height: =5
+            Width: =5
+            X: =70
+            Y: =80
+            ZIndex: =70
+
+            "'Add-bttn-CPP_4' As button":
+                Align: =Left
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =37
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Fuel",Collect(colUtilities,{BU:Table({Value: varDefault}), DataType:"Purchased Fuel Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text})
+                    
+                    )
+                    
+                PaddingLeft: =30
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Add"
+                Visible: =If(CoefficientUtil_1.Text="Fuel" && varGalFuel,true,false)
+                Width: =80
+                X: =45
+                Y: ='Gallery-Fuel'.Height+40
+                ZIndex: =68
+
+            Icon22_29 As icon.Add:
+                Color: =RGBA(0, 161, 233, 1)
+                Height: =15
+                Icon: =Icon.Add
+                OnSelect: |+
+                    =If(
+                    
+                    
+                    CoefficientUtil_1.Text = "Fuel",Collect(colUtilities,{BU:Table({Value: varDefault}), DataType:"Purchased Fuel Amount", Unit:"", ID: CountRows(Filter(colUtilities,varDefault in BU.Value).FuelTest)+1, Coefficient: CoefficientUtil_1.Text})
+                    
+                    )
+                    
+                Visible: =If(CoefficientUtil_1.Text="Fuel" && varGalFuel,true,false)
+                Width: =28
+                X: =40
+                Y: ='Gallery-Fuel'.Height+50
+                ZIndex: =69
+
+    Pop_Up_User_Submit_6 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =19
+
+        Rectangle5_29 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupusersubmit
+            Width: =1366
+            ZIndex: =9
+
+        Submit_Bttn_25 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |+
+                =SubmitForm('Utilities-Form');
+                Navigate(Successful);
+                
+            Size: =13
+            Text: ="Submit"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =687
+            Y: =664
+            ZIndex: =10
+
+        Cancel_Bttn_25 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupusersubmit,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =11
+
+        Circle2_40 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupusersubmit
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =12
+
+        Image6_10 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupusersubmit
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =13
+
+        Label3_41 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Are you sure you want to submit the form for approval?"
+            Visible: =popupusersubmit
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =14
+
+    "'CountRows-Dont-Delete' As text":
+        Default: =CountRows(Filter(Filter('Utilities for G-KPI Calculation', BUUtil.Text in BU.Value),!IsBlank(CO2_x002d_C)))
+        Visible: =false
+        X: =85
+        Y: =224
+        ZIndex: =20
+

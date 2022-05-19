@@ -1,0 +1,3733 @@
+UFE_ApproverID_test As screen:
+    Height: =
+    OnVisible: |-
+        =Refresh('ID Prod Line & SKU');
+        
+        Set(varShowMenu, true );
+        Set(varShowMenu, false );
+        UpdateContext({cdt:Today()});
+        Set(PopUpDetailsBreakdownTest, false );
+        Set(PopUpDetailsBreakdownSachetTest, false );
+        Set(PopUpDetailsBreakdownPillowTest, false );
+        
+        
+        Collect(DetailsBreakdown,Filter('ID Prod Line & SKU',ProdLine="PTEDI Line 1 (CAN)"));
+        
+        Collect(DetailsBreakdownSachet,Filter('ID Prod Line & SKU',ProdLine="PTEDI Line Line 1 (SACHET)"));
+        
+        Collect(DetailsBreakdownPillow,Filter('ID Prod Line & SKU',ProdLine="PTEDI Line 1 (PILLOW)"));
+        
+        UpdateContext({ResetYearUFEID: false });
+        UpdateContext({ResetMonthUFEID: false });
+        UpdateContext({ResetNonWorkingDaysUFEID: false });
+        UpdateContext({varResetProdHrs: false });
+        
+        
+        If(!UFEIDForm_4.Valid,SubmitForm(UFEIDForm_4)||Notify("Please fill in the mandatory field(s) in UFE Form",NotificationType.Error,1500));
+
+    SubHeader_20 As SubHeader:
+        ZIndex: =3
+
+    Header_31 As Header:
+        HeaderText: ="Unadjusted Factory Efficiency Form"
+        ZIndex: =4
+
+    UFEIDForm_4 As form:
+        AcceptsFocus: =false
+        DataSource: ='UFE-Temporary-List'
+        Height: =548
+        Item: |-
+            =Switch(
+                true,
+                !IsBlank(varAttachment.FormNo),
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles")),  !IsBlank(Param("ApproverName")), !IsBlank(Param("ApproverEmail"))), LookUp('UFE-Temporary-List', 'Form No'= Param("FormNo")),
+                Defaults('UFE-Temporary-List')
+            )
+        SnapToColumns: =false
+        Width: =1284
+        X: =50
+        Y: =120
+        ZIndex: =7
+
+        Status_DataCard3 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_7"
+            Default: =ThisItem.Status
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'UFE-Temporary-List'],DataSourceInfo.DisplayName,"field_7")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Temporary-List'], DataSourceInfo.MaxLength, "field_7")
+            Required: =false
+            Update: =DataCardValue179.Text
+            Width: =1284
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey24 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue179 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =580
+                X: =30
+                Y: =DataCardKey24.Y + DataCardKey24.Height + 5
+                ZIndex: =2
+
+            ErrorMessage10 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue179.Y + DataCardValue179.Height
+                ZIndex: =3
+
+            StarVisible10 As label:
+                Align: =Align.Center
+                Height: =DataCardKey24.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey24.Y
+                ZIndex: =4
+
+        Year_DataCard6_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Year"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =145
+            Required: =true
+            Update: =
+            Width: =214
+            X: =3
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey365_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage374_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(184, 0, 0, 1)
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(!IsBlank(Parent.Error) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible377_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey365_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey365_4.Y
+                ZIndex: =4
+
+            YearUFEID_4 As text:
+                BorderThickness: =0
+                Default: =Parent.Default
+                Fill: =RGBA(230, 230, 230, 1)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =150
+                X: =30
+                Y: =49
+                ZIndex: =6
+
+        DataCard1_4 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Width: =427
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            Label12_4 As label:
+                FontWeight: =Semibold
+                Height: =38
+                Text: ="Production Line"
+                Width: =348
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+        DataCard2_4 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Width: =428
+            X: =1
+            Y: =5
+            ZIndex: =1
+
+            Label13_4 As label:
+                FontWeight: =Semibold
+                Height: =37
+                Text: ="Production Hours"
+                Width: =240
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+        DataCard3_4 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Width: =428
+            X: =2
+            Y: =5
+            ZIndex: =1
+
+            Label14_14 As label:
+                FontWeight: =Semibold
+                Height: =31
+                Text: ="% Unadjusted Factory Efficiency"
+                Width: =336
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            Icon2_16 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="(Production Hours/Paid Factory Hours,0)"
+                Width: =20
+                X: =311
+                Y: =18
+                ZIndex: =2
+
+        CAMIA_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Visible: =false
+            Width: =1284
+            X: =0
+            Y: =6
+            ZIndex: =1
+
+            CAMILineA_1 As group:
+                Height: =5
+                Width: =5
+                X: =10
+                Y: =-7
+                ZIndex: =8
+
+                Rectangle5_48 As rectangle:
+                    DisplayMode: =DisplayMode.View
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =406
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =1227
+                    X: =27
+                    Y: =7
+                    ZIndex: =1
+
+                Label24_17 As label:
+                    Color: =RGBA(0, 161, 233, 1)
+                    DisplayMode: =DisplayMode.View
+                    FontWeight: =Semibold
+                    Height: =21
+                    Size: =16
+                    Text: ="Detail breakdown for each SKU"
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =601
+                    X: =43
+                    Y: =23
+                    ZIndex: =2
+
+                "Gallery6_17 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+                    DisplayMode: =DisplayMode.View
+                    Height: =262
+                    Items: =DetailsBreakdownPTEMIA
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =78
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =1211
+                    X: =43
+                    Y: =102
+                    ZIndex: =3
+
+                    Image6_38 As image:
+                        Height: =75
+                        OnSelect: =Select(Parent)
+                        Visible: =false
+                        Width: =128
+                        X: =16
+                        ZIndex: =1
+
+                    Separator2_17 As rectangle:
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =5
+
+                    ProdHrs_14 As text:
+                        BorderColor: =If(IsBlank(ProdHrs_14.Text), Red, DimGrey)
+                        BorderThickness: =0
+                        Default: =""
+                        Fill: =RGBA(230, 230, 230, 1)
+                        Height: =41
+                        HintText: =""
+                        OnSelect: =If(IsBlank(ProdHrs_14.Text) ,Red,DimGrey)
+                        Reset: =varResetProdHrs
+                        Size: =12
+                        Width: =139
+                        X: =972
+                        Y: =17
+                        ZIndex: =6
+
+                    NewSKULine1Can_14 As text:
+                        BorderColor: =If(IsBlank(NewSKULine1Can_14.Text), Red, DimGrey)
+                        Default: =ThisItem.SKU
+                        DisplayMode: =If(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_14.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                        Height: =41
+                        OnChange: |
+                            =Clear(DetailsBreakdownCAMIAFinaltest);
+                            ForAll(
+                                Gallery6_17.AllItems,
+                                Collect(
+                                    DetailsBreakdownCAMIAFinaltest,
+                                    {
+                                        BU: BUUFEID_4.Text,
+                                        FormNo: DataCardValue329_4.Text,
+                                        Month: MonthUFEID_4.Selected.Value,
+                                        Year: Value(YearUFEID_4.Selected.Value),
+                                        SKU: NewSKULine1Can_12.Text,
+                                        ProdHrs: Value(ProdHrs_12.Text),
+                                        ProdLine: "CAMI A"
+                                    }
+                                );
+                            );
+                        Width: =790
+                        X: =51
+                        Y: =16
+                        ZIndex: =10
+
+                    RemoveIcon_14 As icon.Trash:
+                        Color: =RGBA(128, 128, 128, 1)
+                        Height: =38
+                        Icon: =Icon.Trash
+                        OnSelect: |-
+                            =RemoveIf(DetailsBreakdownPTEMIA, ID = Gallery6_17.Selected.ID);
+                            
+                            Clear(DetailsBreakdownCAMIAFinaltest);
+                            ForAll(Gallery6_17.AllItems, Collect(DetailsBreakdownCAMIAFinaltest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_12.Text, ProdHrs: Value(ProdHrs_12.Text), ProdLine: "CAMI A"}));
+                        Visible: =If(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_14.Text)) > 0, false,true)
+                        Width: =38
+                        X: =1147
+                        Y: =20
+                        ZIndex: =12
+
+                    Label24_1 As label:
+                        OnSelect: =Select(Parent)
+                        Text: =ThisItem.Index
+                        Y: =17
+                        ZIndex: =13
+
+                Label26_44 As label:
+                    DisplayMode: =DisplayMode.View
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="SKU"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =329
+                    X: =43
+                    Y: =59
+                    ZIndex: =5
+
+                Label26_45 As label:
+                    Align: =Center
+                    DisplayMode: =DisplayMode.View
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="Production Hours"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =200
+                    X: =979
+                    Y: =59
+                    ZIndex: =6
+
+                Icon22_16 As icon.Add:
+                    Color: =RGBA(0, 161, 233, 1)
+                    DisplayMode: =DisplayMode.View
+                    Height: =15
+                    Icon: =Icon.Add
+                    Visible: =PopUpDetailsBreakdownCamiATest
+                    Width: =28
+                    X: =37
+                    Y: =417
+                    ZIndex: =7
+
+            ProdHrsCAMIA_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownFinaltest,IsBlank(ProdHrs)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =853
+                Y: =379
+                ZIndex: =9
+
+            SKUCAMIA_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownFinaltest,IsBlank(SKU)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =1025
+                Y: =379
+                ZIndex: =10
+
+        DataCard19_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Visible: =false
+            Width: =1281
+            X: =0
+            Y: =7
+            ZIndex: =1
+
+            CAMILineB_1 As group:
+                Height: =5
+                Width: =5
+                X: =13
+                Y: =-7
+                ZIndex: =8
+
+                Rectangle5_49 As rectangle:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =406
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =1227
+                    X: =29
+                    ZIndex: =1
+
+                Label24_18 As label:
+                    Color: =RGBA(0, 161, 233, 1)
+                    FontWeight: =Semibold
+                    Height: =21
+                    Size: =16
+                    Text: ="Detail breakdown for each SKU"
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =601
+                    X: =45
+                    Y: =9
+                    ZIndex: =2
+
+                "Gallery6_18 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+                    Height: =262
+                    Items: =DetailsBreakdownPTEMIB
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =78
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =1211
+                    X: =45
+                    Y: =88
+                    ZIndex: =3
+
+                    Image6_39 As image:
+                        Height: =75
+                        OnSelect: =Select(Parent)
+                        Visible: =false
+                        Width: =128
+                        X: =16
+                        ZIndex: =1
+
+                    Separator2_18 As rectangle:
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =5
+
+                    ProdHrs_15 As text:
+                        BorderColor: =If(IsBlank(ProdHrs_15.Text), Red, DimGrey)
+                        Default: =""
+                        Height: =41
+                        HintText: =""
+                        OnSelect: =If(IsBlank(ProdHrs_15.Text) ,Red,DimGrey)
+                        Reset: =varResetProdHrs
+                        Size: =12
+                        Width: =139
+                        X: =972
+                        Y: =17
+                        ZIndex: =6
+
+                    NewSKULine1Can_15 As text:
+                        BorderColor: =If(IsBlank(NewSKULine1Can_15.Text), Red, DimGrey)
+                        Default: =ThisItem.SKU
+                        DisplayMode: =If(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_15.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                        Height: =41
+                        OnChange: |-
+                            =Clear(DetailsBreakdownCAMIBFinaltest);
+                            ForAll(Gallery6_18.AllItems, Collect(DetailsBreakdownCAMIBFinaltest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_13.Text, ProdHrs: Value(ProdHrs_13.Text), ProdLine: "CAMI B"}));
+                        Width: =790
+                        X: =51
+                        Y: =17
+                        ZIndex: =10
+
+                    RemoveIcon_15 As icon.Trash:
+                        Color: =RGBA(128, 128, 128, 1)
+                        Height: =38
+                        Icon: =Icon.Trash
+                        OnSelect: |-
+                            =RemoveIf(DetailsBreakdownPTEMIB, ID = Gallery6_18.Selected.ID);
+                            
+                            Clear(DetailsBreakdownCAMIBFinaltest);
+                            ForAll(Gallery6_18.AllItems, Collect(DetailsBreakdownCAMIBFinaltest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_13.Text, ProdHrs: Value(ProdHrs_13.Text), ProdLine: "CAMI B"}));
+                        Visible: =If(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_15.Text)) > 0, false,true)
+                        Width: =38
+                        X: =1147
+                        Y: =20
+                        ZIndex: =12
+
+                    Label27_1 As label:
+                        OnSelect: =Select(Parent)
+                        Text: =ThisItem.Index
+                        Y: =18
+                        ZIndex: =13
+
+                Label26_46 As label:
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="SKU"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =329
+                    X: =45
+                    Y: =45
+                    ZIndex: =5
+
+                Label26_47 As label:
+                    Align: =Center
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="Production Hours"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =200
+                    X: =981
+                    Y: =45
+                    ZIndex: =6
+
+                Icon22_17 As icon.Add:
+                    Color: =RGBA(0, 161, 233, 1)
+                    Height: =15
+                    Icon: =Icon.Add
+                    Visible: =PopUpDetailsBreakdownCamiBTest
+                    Width: =28
+                    X: =39
+                    Y: =403
+                    ZIndex: =7
+
+            ProdHrsCAMIB_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownCAMIBFinaltest,IsBlank(ProdHrs)))
+                Format: =TextFormat.Number
+                Height: =89
+                Visible: =false
+                Width: =113
+                X: =553
+                Y: =303
+                ZIndex: =9
+
+            SKUCAMIB_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownCAMIBFinaltest,IsBlank(SKU)))
+                Format: =TextFormat.Number
+                Height: =103
+                Visible: =false
+                Width: =138
+                X: =693
+                Y: =289
+                ZIndex: =10
+
+        Line1cantest_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Visible: =PopUpDetailsBreakdownTest
+            Width: =1284
+            X: =0
+            Y: =8
+            ZIndex: =1
+
+            Line1Can_4 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =-95
+                ZIndex: =19
+
+                Rectangle5_50 As rectangle:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =406
+                    Visible: =PopUpDetailsBreakdownTest
+                    Width: =1227
+                    X: =30
+                    Y: =7
+                    ZIndex: =3
+
+                Label24_19 As label:
+                    Color: =RGBA(0, 161, 233, 1)
+                    FontWeight: =Semibold
+                    Height: =21
+                    Size: =16
+                    Text: ="Detail breakdown for each SKU"
+                    Visible: =PopUpDetailsBreakdownTest
+                    Width: =601
+                    X: =46
+                    Y: =30
+                    ZIndex: =4
+
+                "Gallery6_19 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+                    Height: =262
+                    Items: =DetailsBreakdown
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =78
+                    Visible: =PopUpDetailsBreakdownTest
+                    Width: =1211
+                    X: =46
+                    Y: =109
+                    ZIndex: =5
+
+                    Image6_40 As image:
+                        Height: =75
+                        OnSelect: =Select(Parent)
+                        Visible: =false
+                        Width: =128
+                        X: =16
+                        ZIndex: =1
+
+                    Separator2_19 As rectangle:
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =5
+
+                    ProdHrs_16 As text:
+                        BorderColor: =RGBA(230, 230, 230, 1)
+                        BorderThickness: =0
+                        Default: =LookUp('UFE ID SKU Prod Hrs', SKU = NewSKULine1Can_16.Text && Month = MonthUFEID_4.Selected.Value).ProdHrs
+                        Fill: =RGBA(230, 230, 230, 1)
+                        Height: =41
+                        HintText: =""
+                        OnSelect: =If(IsBlank(ProdHrs_16.Text) ,Red,DimGrey)
+                        Reset: =varResetProdHrs
+                        Size: =12
+                        Width: =139
+                        X: =972
+                        Y: =17
+                        ZIndex: =6
+
+                    NewSKULine1Can_16 As text:
+                        BorderColor: =If(IsBlank(NewSKULine1Can_16.Text), Red, DimGrey)
+                        Default: =ThisItem.SKU
+                        DisplayMode: =If(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_16.Text)) = 0, DisplayMode.Edit, DisplayMode.View)
+                        Height: =41
+                        OnChange: |-
+                            =Clear(DetailsBreakdownFinaltest);
+                            ForAll(Gallery6_19.AllItems, Collect(DetailsBreakdownFinaltest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_9.Text, ProdHrs: Value(ProdHrs_9.Text), ProdLine: "Line 1 (CAN)"}));
+                        Width: =790
+                        X: =51
+                        Y: =17
+                        ZIndex: =10
+
+                Label26_48 As label:
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="SKU"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownTest
+                    Width: =329
+                    X: =46
+                    Y: =66
+                    ZIndex: =7
+
+                Label26_49 As label:
+                    Align: =Center
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="Production Hours"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownTest
+                    Width: =200
+                    X: =982
+                    Y: =66
+                    ZIndex: =8
+
+            ProdHrsLine1Can_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownFinaltest,IsBlank(ProdHrs)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =856
+                Y: =386
+                ZIndex: =21
+
+            SKULine1Can_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownFinaltest,IsBlank(SKU)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =1028
+                Y: =386
+                ZIndex: =22
+
+        Line1sachettest_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Visible: =PopUpDetailsBreakdownSachetTest
+            Width: =1284
+            X: =0
+            Y: =9
+            ZIndex: =1
+
+            ProdHrsSachet_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownSachetFinalTest,IsBlank(ProdHrs)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =733
+                Y: =386
+                ZIndex: =19
+
+            Line1Sachet_4 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =-95
+                ZIndex: =19
+
+                Rectangle5_51 As rectangle:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =406
+                    Visible: =PopUpDetailsBreakdownSachetTest
+                    Width: =1225
+                    X: =28
+                    ZIndex: =3
+
+                Label24_20 As label:
+                    Color: =RGBA(0, 161, 233, 1)
+                    FontWeight: =Semibold
+                    Height: =21
+                    Size: =16
+                    Text: ="Detail breakdown for each SKU"
+                    Visible: =PopUpDetailsBreakdownSachetTest
+                    Width: =601
+                    X: =46
+                    Y: =20
+                    ZIndex: =4
+
+                "Gallery6_20 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+                    Height: =262
+                    Items: =DetailsBreakdownSachet
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =78
+                    Visible: =PopUpDetailsBreakdownSachetTest
+                    Width: =1218
+                    X: =33
+                    Y: =109
+                    ZIndex: =5
+
+                    Image6_41 As image:
+                        Height: =75
+                        OnSelect: =Select(Parent)
+                        Visible: =false
+                        Width: =128
+                        X: =16
+                        ZIndex: =1
+
+                    Separator2_20 As rectangle:
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =5
+
+                    ProdHrs_17 As text:
+                        BorderColor: =If(IsBlank(ProdHrs_17.Text), Red, DimGrey)
+                        BorderThickness: =0
+                        Default: =LookUp('UFE ID SKU Prod Hrs', SKU = NewSKULine1Can_17.Text && Month = MonthUFEID_4.Selected.Value).ProdHrs
+                        Fill: =RGBA(230, 230, 230, 1)
+                        Height: =41
+                        HintText: =""
+                        OnSelect: =If(IsBlank(ProdHrs_17.Text) ,Red,DimGrey)
+                        Reset: =varResetProdHrs
+                        Size: =12
+                        Width: =139
+                        X: =982
+                        Y: =17
+                        ZIndex: =6
+
+                    NewSKULine1Can_17 As text:
+                        BorderColor: =If(IsBlank(NewSKULine1Can_17.Text), Red, DimGrey)
+                        Default: =ThisItem.SKU
+                        DisplayMode: =If(And(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_17.Text)) = 0, varNewSku), DisplayMode.Edit, DisplayMode.View)
+                        Height: =41
+                        OnChange: |-
+                            =Clear(DetailsBreakdownSachetFinalTest);
+                            ForAll(Gallery6_20.AllItems, Collect(DetailsBreakdownSachetFinalTest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_10.Text, ProdLine: "Line 1 (SACHET)", ProdHrs: Value(ProdHrs_10.Text)}));
+                        Width: =790
+                        X: =51
+                        Y: =17
+                        ZIndex: =10
+
+                    Label29_2 As label:
+                        OnSelect: =Select(Parent)
+                        Text: =IsBlank(NewSKULine1Can_17.Text)
+                        Visible: =false
+                        X: =477
+                        Y: =19
+                        ZIndex: =13
+
+                    Label29_3 As label:
+                        OnSelect: =Select(Parent)
+                        Text: =IsBlank(ProdHrs_17.Text)
+                        Visible: =false
+                        X: =570
+                        Y: =19
+                        ZIndex: =14
+
+                Label26_50 As label:
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="SKU"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownSachetTest
+                    Width: =329
+                    X: =46
+                    Y: =66
+                    ZIndex: =7
+
+                Label26_51 As label:
+                    Align: =Center
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="Production Hours"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownSachetTest
+                    Width: =200
+                    X: =982
+                    Y: =66
+                    ZIndex: =8
+
+            SKUSachet_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownSachetFinalTest,IsBlank(SKU)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =547
+                Y: =386
+                ZIndex: =20
+
+        Line1pillowtest_1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =200
+            Visible: =PopUpDetailsBreakdownPillowTest
+            Width: =1284
+            X: =-1
+            Y: =10
+            ZIndex: =1
+
+            ProdHrsPillow_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownPillowFinalTest,IsBlank(ProdHrs)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =594
+                Y: =307
+                ZIndex: =19
+
+            Line1Pillow_4 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =-95
+                ZIndex: =19
+
+                Rectangle5_52 As rectangle:
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =406
+                    Visible: =PopUpDetailsBreakdownPillowTest
+                    Width: =1229
+                    X: =24
+                    ZIndex: =3
+
+                Label24_21 As label:
+                    Color: =RGBA(0, 161, 233, 1)
+                    FontWeight: =Semibold
+                    Height: =21
+                    Size: =16
+                    Text: ="Detail breakdown for each SKU"
+                    Visible: =PopUpDetailsBreakdownPillowTest
+                    Width: =601
+                    X: =30
+                    Y: =30
+                    ZIndex: =4
+
+                "Gallery6_21 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+                    Height: =262
+                    Items: =DetailsBreakdownPillow
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =78
+                    Visible: =PopUpDetailsBreakdownPillowTest
+                    Width: =1224
+                    X: =29
+                    Y: =109
+                    ZIndex: =5
+
+                    Image6_42 As image:
+                        Height: =75
+                        OnSelect: =Select(Parent)
+                        Visible: =false
+                        Width: =128
+                        X: =16
+                        ZIndex: =1
+
+                    Separator2_21 As rectangle:
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =5
+
+                    ProdHrs_18 As text:
+                        BorderColor: =If(IsBlank(ProdHrs_18.Text), Red, DimGrey)
+                        BorderThickness: =0
+                        Default: =LookUp('UFE ID SKU Prod Hrs', SKU = NewSKULine1Can_18.Text && Month = MonthUFEID_4.Selected.Value).ProdHrs
+                        Fill: =RGBA(230, 230, 230, 1)
+                        Height: =41
+                        HintText: =""
+                        OnSelect: =If(IsBlank(ProdHrs_18.Text) ,Red,DimGrey)
+                        Reset: =varResetProdHrs
+                        Size: =12
+                        Width: =139
+                        X: =982
+                        Y: =17
+                        ZIndex: =6
+
+                    NewSKULine1Can_18 As text:
+                        BorderColor: =If(IsBlank(NewSKULine1Can_18.Text), Red, DimGrey)
+                        Default: =ThisItem.SKU
+                        DisplayMode: =If(And(CountRows(Filter('ID Prod Line & SKU', SKU = NewSKULine1Can_18.Text)) = 0, varNewSku), DisplayMode.Edit, DisplayMode.View)
+                        Height: =41
+                        OnChange: |-
+                            =Clear(DetailsBreakdownPillowFinalTest);
+                            ForAll(Gallery6_21.AllItems, Collect(DetailsBreakdownPillowFinalTest, 
+                            {BU: BUUFEID_4.Text, FormNo: DataCardValue329_4.Text, Month: MonthUFEID_4.Selected.Value, 
+                            Year: Value(YearUFEID_4.Selected.Value), SKU: NewSKULine1Can_11.Text, ProdLine: "Line 1 (PILLOW)", ProdHrs: Value(ProdHrs_11.Text)}));
+                        Width: =790
+                        X: =51
+                        Y: =17
+                        ZIndex: =10
+
+                    Label30_2 As label:
+                        Text: =IsBlank(NewSKULine1Can_18.Text)
+                        Visible: =false
+                        X: =506
+                        Y: =17
+                        ZIndex: =13
+
+                    Label30_3 As label:
+                        Text: =IsBlank(ProdHrs_18.Text)
+                        Visible: =false
+                        X: =634
+                        Y: =17
+                        ZIndex: =14
+
+                Label26_52 As label:
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="SKU"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownPillowTest
+                    Width: =329
+                    X: =46
+                    Y: =66
+                    ZIndex: =7
+
+                Label26_53 As label:
+                    Align: =Center
+                    FontWeight: =Semibold
+                    Height: =23
+                    Text: ="Production Hours"
+                    Underline: =true
+                    Visible: =PopUpDetailsBreakdownPillowTest
+                    Width: =190
+                    X: =982
+                    Y: =66
+                    ZIndex: =8
+
+            SKUPillow_1 As text:
+                Default: = CountRows(Filter(DetailsBreakdownPillowFinalTest,IsBlank(SKU)))
+                Format: =TextFormat.Number
+                Height: =64
+                Visible: =false
+                Width: =138
+                X: =766
+                Y: =307
+                ZIndex: =20
+
+        TotalProductionHours_DataCard3_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_8"
+            Default: =ThisItem.TotalProductionHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="TotalProductionHours"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(TotalProductionHoursUFEID_4.Text)
+            Visible: =true
+            Width: =428
+            X: =0
+            Y: =10
+            ZIndex: =1
+
+            DataCardKey367_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="Total Production Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            TotalProductionHoursUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: |-
+                    =Text(Parent.Default, "[$-en-US]###,###,###")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =49
+                ZIndex: =2
+
+            ErrorMessage376_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =TotalProductionHoursUFEID_4.Y + TotalProductionHoursUFEID_4.Height
+                ZIndex: =3
+
+            StarVisible379_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey367_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey367_4.Y
+                ZIndex: =4
+
+        TotalFactoryHours_DataCard3_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_10"
+            Default: =ThisItem.TotalFactoryHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="TotalFactoryHours"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue349_4.Text)
+            Visible: =true
+            Width: =428
+            X: =1
+            Y: =10
+            ZIndex: =1
+
+            DataCardKey368_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="Total Factory Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue349_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: |-
+                    =Text(Parent.Default, "[$-en-US]###,###,###")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey368_4.Y + DataCardKey368_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage377_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue349_4.Y + DataCardValue349_4.Height
+                ZIndex: =3
+
+            StarVisible380_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey368_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey368_4.Y
+                ZIndex: =4
+
+        TotalUnadjustedFactoryEfficiency_DataCard3_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_9"
+            Default: =ThisItem.TotalUnadjustedFactoryEfficiency
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="TotalUnadjustedFactoryEfficiency"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue350_4.Text)
+            Visible: =true
+            Width: =428
+            X: =2
+            Y: =10
+            ZIndex: =1
+
+            DataCardKey369_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Text: ="Total Unadjusted Factory Efficiency"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue350_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Text(Parent.Default, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey369_4.Y + DataCardKey369_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage378_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue350_4.Y + DataCardValue350_4.Height
+                ZIndex: =3
+
+            StarVisible381_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey369_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey369_4.Y
+                ZIndex: =4
+
+        "'Form No_DataCard1_4' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.'Form No'
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Form No"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =DataCardValue329_4.Text
+            Width: =428
+            X: =1
+            Y: =0
+            ZIndex: =34
+
+            DataCardKey271_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue329_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey271_4.Y + DataCardKey271_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage279_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue329_4.Y + DataCardValue329_4.Height
+                ZIndex: =3
+
+            StarVisible282_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey271_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey271_4.Y
+                ZIndex: =4
+
+        BU_DataCard3_5 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_3"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="BU"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "field_3")
+            Required: =false
+            Update: =BUUFEID_4.Text
+            Width: =214
+            X: =2
+            Y: =0
+            ZIndex: =34
+
+            DataCardKey65_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            BUUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: ="PTEDI"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey65_4.Y + DataCardKey65_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage73_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =BUUFEID_4.Y + BUUFEID_4.Height
+                ZIndex: =3
+
+            StarVisible73_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey65_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey65_4.Y
+                ZIndex: =4
+
+        Month_DataCard6_4 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_4"
+            Default: =ThisItem.Month
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Month"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =true
+            Update: =MonthUFEID_4.Selected
+            Width: =428
+            X: =4
+            Y: =0
+            ZIndex: =34
+
+            DataCardKey179_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            MonthUFEID_4 As combobox:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Default: =ThisItem.Month
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                InputTextPlaceholder: =""
+                Items: =Choices([@'UFE-Master-List_1'].field_4)
+                PaddingLeft: =10
+                Reset: =ResetMonthUFEID
+                SearchFields: =["Value"]
+                SearchItems: =Choices('UFE-Master-List_1'.field_4,MonthUFEID_4.SearchText)
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey179_4.Y + DataCardKey179_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage186_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(!IsBlank(Parent.Error) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible189_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey179_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey179_4.Y
+                ZIndex: =4
+
+        RequestorName_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_5"
+            Default: =ThisItem.RequestorName
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="RequestorName"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "field_5")
+            Required: =false
+            Update: =DataCardValue179_4.Text
+            Visible: =false
+            Width: =428
+            X: =1
+            Y: =1
+            ZIndex: =34
+
+            DataCardKey181_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue179_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =varUserName
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey181_4.Y + DataCardKey181_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage188_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue179_4.Y + DataCardValue179_4.Height
+                ZIndex: =3
+
+            StarVisible191_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey181_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey181_4.Y
+                ZIndex: =4
+
+        RequestorEmail_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_6"
+            Default: =ThisItem.RequestorEmail
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="RequestorEmail"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "field_6")
+            Required: =false
+            Update: =DataCardValue182_4.Text
+            Visible: =false
+            Width: =428
+            X: =2
+            Y: =1
+            ZIndex: =34
+
+            DataCardKey183_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue182_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =varUserEmail
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey183_4.Y + DataCardKey183_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage190_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue182_4.Y + DataCardValue182_4.Height
+                ZIndex: =3
+
+            StarVisible193_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey183_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey183_4.Y
+                ZIndex: =4
+
+        Status_DataCard3_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_7"
+            Default: =ThisItem.Status
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Status"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "field_7")
+            Required: =false
+            Update: =DataCardValue184_4.Text
+            Visible: =false
+            Width: =339
+            X: =0
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey185_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue184_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =If(popupusersaveufeid, "Saved","Pending approval")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey185_4.Y + DataCardKey185_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage192_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue184_4.Y + DataCardValue184_4.Height
+                ZIndex: =3
+
+            StarVisible195_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey185_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey185_4.Y
+                ZIndex: =4
+
+        DaysPlaceHolder_DataCard3_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_11"
+            Default: =ThisItem.DaysPlaceHolder
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="DaysPlaceHolder"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue191_10.Text)
+            Width: =1284
+            X: =1
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey208_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue191_10 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey208_4.Y + DataCardKey208_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage216_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue191_10.Y + DataCardValue191_10.Height
+                ZIndex: =3
+
+            StarVisible219_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey208_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey208_4.Y
+                ZIndex: =4
+
+        TotalDays_DataCard2_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_12"
+            Default: =ThisItem.TotalDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="TotalDays"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(TotalDaysUFEID_4.Text)
+            Width: =428
+            X: =2
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey209_22 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Total Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            TotalDaysUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey209_22.Y + DataCardKey209_22.Height + 5
+                ZIndex: =2
+
+            ErrorMessage217_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =TotalDaysUFEID_4.Y + TotalDaysUFEID_4.Height
+                ZIndex: =3
+
+            StarVisible220_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey209_22.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey209_22.Y
+                ZIndex: =4
+
+        NonWorkingDays_DataCard2_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_13"
+            Default: =ThisItem.NonWorkingDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="NonWorkingDays"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =120
+            Required: =true
+            Update: =Value(NonWorkingDaysUFEID_4.Text)
+            Width: =428
+            X: =3
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey210_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Non Working Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            NonWorkingDaysUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetNonWorkingDaysUFEID
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey210_4.Y + DataCardKey210_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage218_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(!IsBlank(Parent.Error) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =97
+                ZIndex: =3
+
+            StarVisible221_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey210_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey210_4.Y
+                ZIndex: =4
+
+        TotalWorkingDays_DataCard2_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_14"
+            Default: =ThisItem.TotalWorkingDays
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="TotalWorkingDays"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(TotalWorkingDaysUFEID_4.Text)
+            Width: =428
+            X: =4
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey211_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Total Working Days"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            TotalWorkingDaysUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey211_4.Y + DataCardKey211_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage219_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =TotalWorkingDaysUFEID_4.Y + TotalWorkingDaysUFEID_4.Height
+                ZIndex: =3
+
+            StarVisible222_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey211_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey211_4.Y
+                ZIndex: =4
+
+        PaidFactoryHours_DataCard2_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_15"
+            Default: =ThisItem.PaidFactoryHours
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="PaidFactoryHours"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(PaidFactoryHoursUFEID_4.Text)
+            Width: =428
+            X: =5
+            Y: =2
+            ZIndex: =34
+
+            DataCardKey212_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Paid Factory Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            PaidFactoryHoursUFEID_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey212_4.Y + DataCardKey212_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage220_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =PaidFactoryHoursUFEID_4.Y + PaidFactoryHoursUFEID_4.Height
+                ZIndex: =3
+
+            StarVisible223_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey212_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey212_4.Y
+                ZIndex: =4
+
+        ProductionHoursPlaceholder_DataCard2_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_16"
+            Default: =ThisItem.ProductionHoursPlaceholder
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="ProductionHoursPlaceholder"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue196_4.Text)
+            Width: =1284
+            X: =-1
+            Y: =3
+            ZIndex: =34
+
+            DataCardKey213_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="Production Hours"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue196_4 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                Height: =5
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey213_4.Y + DataCardKey213_4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage221_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue196_4.Y + DataCardValue196_4.Height
+                ZIndex: =3
+
+            StarVisible224_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey213_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey213_4.Y
+                ZIndex: =4
+
+        ProductionLineCAMILineA_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionLineCAMILineA"
+            Default: =ThisItem.ProductionLineCAMILineA
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="ProductionLineCAMILineA"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "ProductionLineCAMILineA")
+            Required: =false
+            Update: =DataCardValue330_4.Text
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =3
+            Y: =5
+            ZIndex: =34
+
+            DataCardKey272_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue330_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="CAMI Line A"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                HoverBorderColor: =Self.Fill
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage280_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue330_4.Y + DataCardValue330_4.Height
+                ZIndex: =3
+
+            StarVisible283_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey272_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey272_4.Y
+                ZIndex: =4
+
+            Icon23_10 As icon.ChevronDown:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =If(PopUpDetailsBreakdownCamiATest,Icon.ChevronUp,Icon.ChevronDown)
+                OnSelect: |+
+                    =Set(PopUpDetailsBreakdownCamiATest, !PopUpDetailsBreakdownCamiATest);
+                    
+                    
+                    
+                Width: =20
+                X: =361
+                Y: =21
+                ZIndex: =5
+
+        ProductionHoursCAMILineA_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionHoursCAMILineA"
+            Default: =ThisItem.ProductionHoursCAMILineA
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="ProductionHoursCAMILineA"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue331_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =4
+            Y: =5
+            ZIndex: =34
+
+            DataCardKey273_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue331_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage281_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue331_4.Y + DataCardValue331_4.Height
+                ZIndex: =3
+
+            StarVisible284_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey273_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey273_4.Y
+                ZIndex: =4
+
+        UFECAMILineA_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="UFECAMILineA"
+            Default: =ThisItem.UFECAMILineA
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="UFECAMILineA"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue332_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =5
+            Y: =5
+            ZIndex: =34
+
+            DataCardKey274_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue332_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |
+                    =Text(DataCardValue331_4.Text/PaidFactoryHoursUFEID_4.Text*100,"0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage282_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue332_4.Y + DataCardValue332_4.Height
+                ZIndex: =3
+
+            StarVisible285_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey274_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey274_4.Y
+                ZIndex: =4
+
+        ProductionLineCAMILineB_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionLineCAMILineB"
+            Default: =ThisItem.ProductionLineCAMILineB
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="ProductionLineCAMILineB"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "ProductionLineCAMILineB")
+            Required: =false
+            Update: =DataCardValue333_4.Text
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =1
+            Y: =6
+            ZIndex: =34
+
+            DataCardKey275_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue333_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="CAMI Line B"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                HoverBorderColor: =Self.Fill
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage283_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue333_4.Y + DataCardValue333_4.Height
+                ZIndex: =3
+
+            StarVisible286_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey275_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey275_4.Y
+                ZIndex: =4
+
+            Icon23_4 As icon.ChevronDown:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =If(PopUpDetailsBreakdownCamiBTest,Icon.ChevronUp,Icon.ChevronDown)
+                OnSelect: |+
+                    =Set(PopUpDetailsBreakdownCamiBTest, !PopUpDetailsBreakdownCamiBTest);
+                    
+                    
+                    
+                Width: =20
+                X: =361
+                Y: =21
+                ZIndex: =5
+
+        ProductionHoursCAMILineB_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionHoursCAMILineB"
+            Default: =ThisItem.ProductionHoursCAMILineB
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="ProductionHoursCAMILineB"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue334_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =2
+            Y: =6
+            ZIndex: =34
+
+            DataCardKey276_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue334_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage284_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue334_4.Y + DataCardValue334_4.Height
+                ZIndex: =3
+
+            StarVisible287_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey276_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey276_4.Y
+                ZIndex: =4
+
+        UFECAMILineB_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="UFECAMILineB"
+            Default: =ThisItem.UFECAMILineB
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="UFECAMILineB"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue335_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEMI", true,false)
+            Width: =428
+            X: =3
+            Y: =6
+            ZIndex: =34
+
+            DataCardKey277_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue335_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue334_4.Text/PaidFactoryHoursUFEID_4.Text*100,"0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage285_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue335_4.Y + DataCardValue335_4.Height
+                ZIndex: =3
+
+            StarVisible288_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey277_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey277_4.Y
+                ZIndex: =4
+
+        ProductionLineLine1CAN_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionLineLine1CAN"
+            Default: =ThisItem.ProductionLineLine1CAN
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="ProductionLineLine1CAN"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "ProductionLineLine1CAN")
+            Required: =false
+            Update: =DataCardValue336_4.Text
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =1
+            Y: =7
+            ZIndex: =34
+
+            DataCardKey278_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue336_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="Line 1 (CAN)"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                HoverBorderColor: =
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage286_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue336_4.Y + DataCardValue336_4.Height
+                ZIndex: =3
+
+            StarVisible289_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey278_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey278_4.Y
+                ZIndex: =4
+
+            Icon23_11 As icon.ChevronDown:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =If(PopUpDetailsBreakdownTest,Icon.ChevronUp,Icon.ChevronDown)
+                OnSelect: |+
+                    =Set(PopUpDetailsBreakdownTest, !PopUpDetailsBreakdownTest);
+                    
+                    
+                    
+                Width: =20
+                X: =361
+                Y: =21
+                ZIndex: =5
+
+        ProductionHoursLine1CAN_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionHoursLine1CAN"
+            Default: =ThisItem.ProductionHoursLine1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="ProductionHoursLine1CAN"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue337_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =2
+            Y: =7
+            ZIndex: =34
+
+            DataCardKey279_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue337_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |-
+                    =Text(Parent.Default, "[$-en-US]###,###,###")
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage287_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue337_4.Y + DataCardValue337_4.Height
+                ZIndex: =3
+
+            StarVisible290_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey279_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey279_4.Y
+                ZIndex: =4
+
+        UFELine1CAN_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="UFELine1CAN"
+            Default: =ThisItem.UFELine1CAN
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="UFELine1CAN"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue338_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =3
+            Y: =7
+            ZIndex: =34
+
+            DataCardKey280_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue338_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(Parent.Default, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage288_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue338_4.Y + DataCardValue338_4.Height
+                ZIndex: =3
+
+            StarVisible291_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey280_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey280_4.Y
+                ZIndex: =4
+
+        ProductionLineLine1SACHET_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionLineLine1SACHET"
+            Default: =ThisItem.ProductionLineLine1SACHET
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="ProductionLineLine1SACHET"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "ProductionLineLine1SACHET")
+            Required: =false
+            Update: =DataCardValue339_4.Text
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =1
+            Y: =8
+            ZIndex: =34
+
+            DataCardKey281_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue339_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="Line 1 (SACHET)"
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage289_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue339_4.Y + DataCardValue339_4.Height
+                ZIndex: =3
+
+            StarVisible292_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey281_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey281_4.Y
+                ZIndex: =4
+
+            Icon23_12 As icon.ChevronDown:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =If(PopUpDetailsBreakdownSachetTest,Icon.ChevronUp,Icon.ChevronDown)
+                OnSelect: |+
+                    =Set(PopUpDetailsBreakdownSachetTest,!PopUpDetailsBreakdownSachetTest);
+                    
+                Width: =20
+                X: =361
+                Y: =21
+                ZIndex: =5
+
+        ProductionHoursLine1SACHET_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionHoursLine1SACHET"
+            Default: =ThisItem.ProductionHoursLine1SACHET
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="ProductionHoursLine1SACHET"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue340_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =2
+            Y: =8
+            ZIndex: =34
+
+            DataCardKey282_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue340_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |-
+                    =Text(Parent.Default, "[$-en-US]###,###,###")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage290_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue340_4.Y + DataCardValue340_4.Height
+                ZIndex: =3
+
+            StarVisible293_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey282_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey282_4.Y
+                ZIndex: =4
+
+        UFELine1SACHET_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="UFELine1SACHET"
+            Default: =ThisItem.UFELine1SACHET
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="UFELine1SACHET"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue341_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =3
+            Y: =8
+            ZIndex: =34
+
+            DataCardKey286_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue341_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(Parent.Default, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage294_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue341_4.Y + DataCardValue341_4.Height
+                ZIndex: =3
+
+            StarVisible297_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey286_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey286_4.Y
+                ZIndex: =4
+
+        ProductionLineLine1PILLOW_DataCard1_4 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionLineLine1PILLOW"
+            Default: =ThisItem.ProductionLineLine1PILLOW
+            DisplayMode: =DisplayMode.Edit
+            DisplayName: ="ProductionLineLine1PILLOW"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Master-List_1'], DataSourceInfo.MaxLength, "ProductionLineLine1PILLOW")
+            Required: =false
+            Update: =DataCardValue342_4.Text
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =1
+            Y: =9
+            ZIndex: =34
+
+            DataCardKey291_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue342_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="Line 1 (PILLOW)"
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage299_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue342_4.Y + DataCardValue342_4.Height
+                ZIndex: =3
+
+            StarVisible302_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey291_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey291_4.Y
+                ZIndex: =4
+
+            Icon23_13 As icon.ChevronDown:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =If(PopUpDetailsBreakdownPillowTest,Icon.ChevronUp,Icon.ChevronDown)
+                OnSelect: =Set(PopUpDetailsBreakdownPillowTest,!PopUpDetailsBreakdownPillowTest);
+                Width: =20
+                X: =361
+                Y: =21
+                ZIndex: =5
+
+        ProductionHoursLine1PILLOW_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ProductionHoursLine1PILLOW"
+            Default: =ThisItem.ProductionHoursLine1PILLOW
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="ProductionHoursLine1PILLOW"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue343_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =2
+            Y: =9
+            ZIndex: =34
+
+            DataCardKey362_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue343_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |-
+                    =Text(Parent.Default, "[$-en-US]###,###,###")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage371_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue343_4.Y + DataCardValue343_4.Height
+                ZIndex: =3
+
+            StarVisible374_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey362_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey362_4.Y
+                ZIndex: =4
+
+        UFELine1PILLOW_DataCard1_4 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="UFELine1PILLOW"
+            Default: =ThisItem.UFELine1PILLOW
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="UFELine1PILLOW"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue344_4.Text)
+            Visible: =If(BUUFEID_4.Text = "PTEDI", true,false)
+            Width: =428
+            X: =3
+            Y: =9
+            ZIndex: =34
+
+            DataCardKey363_4 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue344_4 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(Parent.Default, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =9
+                ZIndex: =2
+
+            ErrorMessage372_4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue344_4.Y + DataCardValue344_4.Height
+                ZIndex: =3
+
+            StarVisible375_4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey363_4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey363_4.Y
+                ZIndex: =4
+
+    BG_29 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_36 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_63 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Popupalreadysubmit_4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =81
+
+        Rectangle5_42 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupalreadysubmit
+            Width: =1366
+            ZIndex: =74
+
+        Circle2_32 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupalreadysubmit
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =75
+
+        Label3_131 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: |-
+                ="Form already in system for selected month.
+                Please click                   to update your form."
+            Visible: =popupalreadysubmit
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =76
+
+        Icon11_4 As icon.Warning:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =42
+            Icon: =Icon.Warning
+            Visible: =popupalreadysubmit
+            Width: =42
+            X: =663
+            Y: =273
+            ZIndex: =77
+
+        "'Close-bttn-etika_16' As icon.CancelBadge":
+            Color: =RGBA(0, 161, 233, 1)
+            Height: =24
+            Icon: =Icon.CancelBadge
+            OnSelect: =Set(popupalreadysubmit,false)
+            Visible: =popupalreadysubmit
+            Width: =24
+            X: =1336
+            Y: =16
+            ZIndex: =78
+
+        Button15_6 As button:
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            HoverBorderColor: =Transparent
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =Set(varAttachment,
+                First(Filter('UFE-Temporary-List', 'Form No' = DataCardValue329_4.Text)));
+                Set(popupalreadysubmit,false)
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            Size: =18
+            Text: ="edit form"
+            Underline: =true
+            Visible: =popupalreadysubmit
+            Width: =155
+            X: =552
+            Y: =399
+            ZIndex: =80
+
+    Approve_bttn_4 As button:
+        BorderThickness: =0
+        Fill: =Colors.Approve
+        Height: =42
+        HoverFill: =ColorFade(Self.Fill, -4%)
+        OnSelect: =Set(popupapprove,true);Set(mandatorycommentbox,false)
+        Size: =13
+        Text: ="Approve"
+        Visible: |-
+            =If(
+            
+            And(DataCardValue140.Text = "Pending approval from Regional Manager",Param("Roles") = "PM",CountRows(Filter('Approver Details', FormNo = DataCardValue347.Text, Roles = "Plant Manager", AlreadyRespond = "Yes")) > 0), false,
+            
+            And(DataCardValue140.Text = "Closed", Param("Roles") = "RM",CountRows(Filter('Approver Details', FormNo = DataCardValue347.Text, Roles = "Regional Manager", AlreadyRespond = "Yes")) > 0), false,
+            
+            true)
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =82
+
+    Reject_bttn_4 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =Colors.Decline
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(Self.Fill, -4%)
+        OnSelect: |-
+            =If(IsBlank('Commment-box-approver'.Text),Set(mandatorycommentbox,true),Set(popupusersave,true));
+            
+            If(And(mandatorycommentbox, IsBlank('Commment-box-approver'.Text)), Notify("Please leave your comment(s) in the comment box below if you reject the form.",NotificationType.Error,1500));
+        Size: =13
+        Text: ="Reject"
+        Visible: |-
+            =If(
+            
+            And(DataCardValue140.Text = "Pending approval from Regional Manager",Param("Roles") = "PM",CountRows(Filter('Approver Details', FormNo = DataCardValue347.Text, Roles = "Plant Manager", AlreadyRespond = "Yes")) > 0), false,
+            
+            And(DataCardValue140.Text = "Closed", Param("Roles") = "RM",CountRows(Filter('Approver Details', FormNo = DataCardValue347.Text, Roles = "Regional Manager", AlreadyRespond = "Yes")) > 0), false,
+            
+            true)
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =83
+
+    Pop_Up_Reject_2 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =95
+
+        Rectangle5_26 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupusersave
+            Width: =1366
+            ZIndex: =90
+
+        Submit_Bttn_19 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =Colors.Decline
+            Height: =44
+            HoverColor: =ColorFade(Self.Color, -4%)
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: |
+                ='ApprovalFlow-TriggerRejectButtonforApproverUFEMY'.Run(DataCardValue347.Text, Param("Roles"), Param("ApproverName"), Param("ApproverEmail"), 'Commment-box-approver'.Text, BUApproverUFE.Text);
+                
+                If(
+                
+                !IsBlank(Param("FormNo")),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = Param("FormNo")),
+                    {Status: "Rejected"
+                    }),
+                !IsBlank(varAttachment.FormNo),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                    {Status: "Rejected"
+                    }));
+                
+                If(
+                
+                And(CountRows(Filter('Approver Details', FormNo = varAttachment.FormNo, Roles = varUserRoles.Value)) > 0, !IsBlank(varAttachment.FormNo)),
+                Patch('Approver Details', 
+                LookUp('Approver Details', FormNo = varAttachment.FormNo),
+                    {ApproverEmail:varUserEmail,
+                    ApproverName:varUserName,
+                    Roles: varUserRoles.Value,
+                    FormNo:varAttachment.FormNo,
+                    Response:"Reject",
+                    ResponseDate: Today(),
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }),
+                
+                And(CountRows(Filter('Approver Details', FormNo = Param("FormNo"), Roles = (Param("Roles")))) > 0, !IsBlank(Param("FormNo"))),
+                Patch('Approver Details', 
+                LookUp('Approver Details', FormNo = Param("FormNo")),
+                    {ApproverEmail: Param("ApproverEmail"),
+                    ApproverName: Substitute(Substitute(Param("ApproverName"),"+"," "),"%20"," "),
+                    Roles: If(Param("Roles") = "PM", "Plant Manager", Param("Roles") = "RM", "Regional Manager"),
+                    FormNo:Param("FormNo"),
+                    Response:"Reject",
+                    ResponseDate: Today(),
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }));
+                
+                If(
+                
+                And(CountRows(Filter('Approver Details', FormNo = varAttachment.FormNo, Roles = varUserRoles.Value)) = 0, !IsBlank(varAttachment.FormNo)),
+                Patch('Approver Details', 
+                    {ApproverEmail:varUserEmail,
+                    ApproverName:varUserName,
+                    Roles: varUserRoles.Value,
+                    FormNo:varAttachment.FormNo,
+                    Response:"Reject",
+                    ResponseDate: Today(),
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }),
+                
+                And(CountRows(Filter('Approver Details', FormNo = Param("FormNo"), Roles = (Param("Roles")))) = 0, !IsBlank(Param("FormNo"))),
+                Patch('Approver Details', 
+                    {ApproverEmail: Param("ApproverEmail"),
+                    ApproverName: Substitute(Substitute(Param("ApproverName"),"+"," "),"%20"," "),
+                    Roles: If(Param("Roles") = "PM", "Plant Manager", Param("Roles") = "RM", "Regional Manager"),
+                    FormNo:Param("FormNo"),
+                    Response:"Reject",
+                    ResponseDate: Today(),
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }));
+                
+                Set(popupapprovesuccessful,true);
+            PressedColor: =ColorFade(Self.Color, -4%)
+            PressedFill: =ColorFade(Self.Fill, -4%)
+            Size: =13
+            Text: ="Yes"
+            Visible: =popupusersave
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =91
+
+        Cancel_Bttn_22 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupusersave,false)
+            Size: =13
+            Text: ="No"
+            Visible: =popupusersave
+            Width: =209
+            X: =684
+            Y: =664
+            ZIndex: =92
+
+        Circle2_21 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupusersave
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =93
+
+        Image6_20 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupusersave
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =94
+
+        Label3_38 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Do you want to continue rejecting the form?"
+            Visible: =popupusersave
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =96
+
+    Pop_Up_Approve_2 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =97
+
+        Rectangle5_25 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupapprove
+            Width: =1366
+            ZIndex: =84
+
+        Submit_Bttn_18 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =Colors.Approve
+            Height: =44
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: |-
+                ='ApprovalFlow-TriggerApproveButtonforApproverUFEMY'.Run(DataCardValue347.Text, Param("Roles"), Param("ApproverName"), Param("ApproverEmail"), 'Commment-box-approver'.Text, BUApproverUFE.Text);
+                
+                
+                If(
+                
+                And(!IsBlank(Param("FormNo")), Param("Roles") = "PM"),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = Param("FormNo")),
+                    {Status: "Pending approval from Regional Manager"
+                    }),
+                
+                And(!IsBlank(varAttachment.FormNo), Param("Roles") = "PM"),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                    {Status: "Pending approval from Regional Manager"
+                    }),
+                    
+                And(!IsBlank(Param("FormNo")), Param("Roles") = "RM"),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = Param("FormNo")),
+                    {Status: "Approved"
+                    }),
+                
+                And(!IsBlank(varAttachment.FormNo), Param("Roles") = "RM"),
+                Patch('UFE-Temporary-List', 
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                    {Status:  "Approved"
+                    }));
+                
+                
+                If(
+                
+                And(CountRows(Filter('Approver Details', FormNo = varAttachment.FormNo, Roles = varUserRoles.Value)) > 0, !IsBlank(varAttachment.FormNo)),
+                Patch('Approver Details', 
+                LookUp('Approver Details', FormNo = varAttachment.FormNo),
+                    {ApproverEmail:varUserEmail,
+                    ApproverName:varUserName,
+                    Roles: varUserRoles.Value,
+                    FormNo:varAttachment.FormNo,
+                    Response:"Approve",
+                    ResponseDate: Today(),
+                    Comments: 'Commment-box-approver'.Text,
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }),
+                
+                And(CountRows(Filter('Approver Details', FormNo = Param("FormNo"), Roles = (Param("Roles")))) > 0, !IsBlank(Param("FormNo"))),
+                Patch('Approver Details', 
+                LookUp('Approver Details', FormNo = Param("FormNo")),
+                    {ApproverEmail: Param("ApproverEmail"),
+                    ApproverName: Substitute(Substitute(Param("ApproverName"),"+"," "),"%20"," "),
+                    Roles: If(Param("Roles") = "PM", "Plant Manager", Param("Roles") = "RM", "Regional Manager"),
+                    FormNo:Param("FormNo"),
+                    Response:"Approve",
+                    ResponseDate: Today(),
+                    Comments:  'Commment-box-approver'.Text,
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }),
+                    
+                And(CountRows(Filter('Approver Details', FormNo = varAttachment.FormNo, Roles = varUserRoles.Value)) = 0, !IsBlank(varAttachment.FormNo)),
+                Patch('Approver Details', 
+                    {ApproverEmail:varUserEmail,
+                    ApproverName:varUserName,
+                    Roles: varUserRoles.Value,
+                    FormNo:varAttachment.FormNo,
+                    Response:"Approve",
+                    ResponseDate: Today(),
+                    Comments:  'Commment-box-approver'.Text,
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }),
+                
+                And(CountRows(Filter('Approver Details', FormNo = Param("FormNo"), Roles = (Param("Roles")))) = 0, !IsBlank(Param("FormNo"))),
+                Patch('Approver Details', 
+                    {ApproverEmail: Param("ApproverEmail"),
+                    ApproverName: Substitute(Substitute(Param("ApproverName"),"+"," "),"%20"," "),
+                    Roles: If(Param("Roles") = "PM", "Plant Manager", Param("Roles") = "RM", "Regional Manager"),
+                    FormNo:Param("FormNo"),
+                    Response:"Approve",
+                    ResponseDate: Today(),
+                    Comments:  'Commment-box-approver'.Text,
+                    NeedInput: "No",
+                    EditForm: "No",
+                    AlreadyRespond: "Yes"
+                    }));
+                
+                Set(popupapprovesuccessful,true)
+            Size: =13
+            Text: ="Yes"
+            Visible: =popupapprove
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =85
+
+        Cancel_Bttn_21 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupapprove,false)
+            Size: =13
+            Text: ="No"
+            Visible: =popupapprove
+            Width: =209
+            X: =684
+            Y: =664
+            ZIndex: =86
+
+        Circle2_20 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupapprove
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =87
+
+        Image6_19 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupapprove
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =88
+
+        Label3_37 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Do you want to continue approving the form?"
+            Visible: =popupapprove
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =89
+

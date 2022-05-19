@@ -1,0 +1,126 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =Set(varUser, User());
+        Set(varUserEmail, Email_Input.Text);
+        
+        Set(varUserName, LookUp('User List', Email = varUserEmail).Name);
+        
+        Set(varUserMoreThanOneBU, LookUp('User List', Email = varUserEmail).'More Than One BU?');
+        
+        Set(varUserForm, LookUp('User List', Email = varUserEmail).Form);
+        
+        Set(varUserRoles, LookUp('User List', Email = varUserEmail).Roles);
+        
+        Set(varUserBU, LookUp('User List', Email = varUserEmail).BU);
+        
+        Switch(
+            true,
+            And(!IsBlank(Param("UserName")), !IsBlank(Param("Email")),Param("Page") = "PasswordPage"),Navigate(Password_Page),
+            And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles")),Param("Roles") = "PM", 
+            !IsBlank(Param("ApproverName")), !IsBlank(Param("ApproverEmail")), !IsBlank(Param("BU"))), 
+            Navigate(UFE_ApproverID_test),
+            And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles")),Param("Roles") = "PM", 
+            !IsBlank(Param("ApproverName")), !IsBlank(Param("ApproverEmail"))), Navigate(UFE_ApproverMY),
+            And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles")),Param("Roles") = "RM", 
+            !IsBlank(Param("ApproverName")), !IsBlank(Param("ApproverEmail")), !IsBlank(Param("BU"))), 
+            Navigate(UFE_ApproverID_test),
+            And(!IsBlank(Param("FormNo")), !IsBlank(Param("Roles")),Param("Roles") = "RM",
+            !IsBlank(Param("ApproverName")), !IsBlank(Param("ApproverEmail"))),Navigate(UFE_ApproverMY));
+        
+        Set(Colors,{Primary:RGBA(0,161,233,1), Secondary:RGBA(230,230,230,1), Accept:RGBA(54,176,75,100), Decline:RGBA(168,0,0,100),
+        Approve:RGBA(54,176,75,100), RequireAdditional:RGBA(245,184,0,100)});
+        
+        ClearCollect(colMenu,
+        Table(
+            {
+                MenuLabel: "Forms",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 1,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Total",
+                MenuIcon: Icon.Calculator,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 2,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Status",
+                MenuIcon: Icon.ThumbsUp,
+                MenuScreenNavigate: Status,
+                MenuID: 3,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Attachment",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate: Attachment,
+                MenuID: 4,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Definition & Manual",
+                MenuIcon: Icon.ListWatchlistRemind,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 5,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "AHSEA Report",
+                MenuIcon: Icon.Bookmark,
+                MenuScreenNavigate: 'AHSEA Report',
+                MenuID: 6,
+                SubMenu: Table()
+            }
+        ));
+        
+        ClearCollect(colMenuApprover,
+        Table(
+            {
+                MenuLabel: "Forms",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 1,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Total",
+                MenuIcon: Icon.Calculator,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 2,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Status",
+                MenuIcon: Icon.ThumbsUp,
+                MenuScreenNavigate: Status_PM,
+                MenuID: 3,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Attachment",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate: Attachment,
+                MenuID: 4,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Definition & Manual",
+                MenuIcon: Icon.ListWatchlistRemind,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 5,
+                SubMenu: Table()
+            },
+             {
+                MenuLabel: "AHSEA Report",
+                MenuIcon: Icon.Bookmark,
+                MenuScreenNavigate: 'AHSEA Report',
+                MenuID: 6,
+                SubMenu: Table()
+            }
+        ))
+    StartScreen: =
+

@@ -1,0 +1,50 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://asia-001.azure-apim.net/apim/logicflows" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="ApprovalFlow-TriggerApproveButtonforApproverUFEID" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Approval Flow - Trigger Approve Button for Approver UFE ID" />
+  <grammars>
+    <jsonTypes targetNamespace="https://asia-001.azure-apim.net/apim/logicflows" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="ManualTriggerInput_VarFormNoValue_Value_def" />
+      <string name="ManualTriggerInput_VarApproverRolesValue_Value_def" />
+      <string name="ManualTriggerInput_VarApproverNameValue_Value_def" />
+      <string name="ManualTriggerInput_VarApproverEmailValue_Value_def" />
+      <string name="ManualTriggerInput_VarCommentsValue_Value_def" />
+      <string name="ManualTriggerInput_VarApproverBUValue_Value_def" />
+      <object name="ManualTriggerInput">
+        <property name="VarFormNoValue_Value" type="string" />
+        <property name="VarApproverRolesValue_Value" type="string" />
+        <property name="VarApproverNameValue_Value" type="string" />
+        <property name="VarApproverEmailValue_Value" type="string" />
+        <property name="VarCommentsValue_Value" type="string" />
+        <property name="VarApproverBUValue_Value" type="string" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://asia-001.azure-apim.net/apim/logicflows">
+    <resource path="/{connectionId}/triggers/manual/run">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="Run">
+        <doc title="Runs a logic flow trigger." />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" fixed="2015-02-01-preview">
+            <doc title="The api version" />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="VarFormNoValue_Value" path="/VarFormNoValue_Value" type="xs:string" required="true" />
+            <param style="plain" name="VarApproverRolesValue_Value" path="/VarApproverRolesValue_Value" type="xs:string" required="true" />
+            <param style="plain" name="VarApproverNameValue_Value" path="/VarApproverNameValue_Value" type="xs:string" required="true" />
+            <param style="plain" name="VarApproverEmailValue_Value" path="/VarApproverEmailValue_Value" type="xs:string" required="true" />
+            <param style="plain" name="VarCommentsValue_Value" path="/VarCommentsValue_Value" type="xs:string" required="true" />
+            <param style="plain" name="VarApproverBUValue_Value" path="/VarApproverBUValue_Value" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="logicflows" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

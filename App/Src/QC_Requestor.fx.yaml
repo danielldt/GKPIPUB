@@ -1,0 +1,4395 @@
+QC_Requestor As screen:
+    Height: =
+    OnVisible: |-
+        =Set(varShowMenu,true);Set(varShowMenu,false);
+        If(!'QC-Form'.Valid,SubmitForm('QC-Form')||Notify("Please fill in the mandatory field(s) in QC Form",NotificationType.Error,1500));
+
+    HtmlText1 As htmlViewer:
+        Height: =673
+        HtmlText: |-
+            ="<div style='background-color: rgba(253,253,253,1); box-shadow: 1px 2px 22px 0px rgba(236,236,236,1); margin: 30px; width: 1295px; height: 548px; border-radius: 10px'></div>"
+        Width: =1366
+        Y: =95
+        ZIndex: =3
+
+    SubHeader_3 As SubHeader:
+        ZIndex: =4
+
+    Header_11 As Header:
+        HeaderText: ="Q-1 | Quality Control Form"
+        ZIndex: =5
+
+    "'QC-Form' As form":
+        AcceptsFocus: =false
+        DataSource: ='QC Form'
+        Height: =520
+        Item: =Defaults('QC Form')
+        NumberOfColumns: =2
+        SnapToColumns: =false
+        Width: =1285
+        X: =35
+        Y: =144
+        ZIndex: =6
+
+        DataCard29 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =31
+            Width: =1284
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey25_13 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =10
+                Size: =16
+                Text: ="Form Details"
+                Width: =1087
+                Wrap: =false
+                X: =69
+                Y: =8
+                ZIndex: =1
+
+            Circle2_23 As circle:
+                Fill: =RGBA(0, 161, 233, 1)
+                Height: =31
+                Width: =31
+                X: =38
+                Y: =13
+                ZIndex: =2
+
+            Icon23_15 As icon.CalendarBlank:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =23
+                Icon: =Icon.DocumentWithContent
+                Width: =23
+                X: =42
+                Y: =17
+                ZIndex: =3
+
+        BU_DataCard7 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="BU"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="BU"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'QC Form'], DataSourceInfo.MaxLength, "BU")
+            Required: =false
+            Update: =DataCardValue172.Text
+            Width: =321
+            X: =2
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey190 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue172 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: ="EBSB"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey190.Y + DataCardKey190.Height + 5
+                ZIndex: =2
+
+            ErrorMessage198 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue172.Y + DataCardValue172.Height
+                ZIndex: =3
+
+            StarVisible201 As label:
+                Align: =Align.Center
+                Height: =DataCardKey190.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey190.Y
+                ZIndex: =4
+
+        Year_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_6"
+            Default: =ThisItem.Year
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Year"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            Required: =true
+            Update: =Value(YearQC.Selected.Value)
+            Width: =321
+            X: =3
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey192 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage200 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(YearQC.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible203 As label:
+                Align: =Align.Center
+                Height: =DataCardKey192.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey192.Y
+                ZIndex: =4
+
+            YearQC As dropdown:
+                BorderColor: =If(IsBlank(YearQC.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Default: =""
+                Items: =["", Year(Now()),  Year(Today())-1]
+                Width: =261
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        Month_DataCard2 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Month"
+            Default: =ThisItem.Month
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Month"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =true
+            Update: =MonthQC.Selected
+            Width: =321
+            X: =4
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey191 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            MonthQC As combobox:
+                BorderColor: =If(IsBlank(MonthQC.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                Items: =Choices([@'QC Form'].Month)
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =Choices('QC Form'.Month,MonthQC.SearchText)
+                SelectionFill: =RGBA(255, 255, 255, 1)
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =285
+                X: =30
+                Y: =DataCardKey191.Y + DataCardKey191.Height + 5
+                ZIndex: =2
+
+            ErrorMessage199 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MonthQC.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible202 As label:
+                Align: =Align.Center
+                Height: =DataCardKey191.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey191.Y
+                ZIndex: =4
+
+        DataCard31 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =14
+            Width: =1284
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardValue24_18 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =1224
+                X: =30
+                ZIndex: =1
+
+        Complaint As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="KGIRecall"
+            Default: =ThisItem.'KGI Recall Placeholder'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="KGI Recall Placeholder"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =49
+            MaxLength: =DataSourceInfo([@'QC Form'], DataSourceInfo.MaxLength,"field_8")
+            Required: =false
+            Update: =
+            Width: =1284
+            X: =1
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey8 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="Complaint"
+                Width: =1185
+                Wrap: =false
+                X: =30
+                Y: =5
+                ZIndex: =1
+
+            ErrorMessage8 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =
+                ZIndex: =3
+
+            StarVisible8 As label:
+                Align: =Align.Center
+                Height: =DataCardKey8.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey8.Y
+                ZIndex: =4
+
+        "'KGI Recall' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="KGIRecall"
+            Default: =ThisItem.'KGI Recall Placeholder'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="KGI Recall Placeholder"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'QC Form'], DataSourceInfo.MaxLength, "field_8")
+            Required: =false
+            Update: =
+            Width: =1284
+            X: =2
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="KGI Recall"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =31
+                Y: =5
+                ZIndex: =1
+
+            ErrorMessage11 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =
+                ZIndex: =3
+
+            StarVisible11 As label:
+                Align: =Align.Center
+                Height: =DataCardKey11.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey11.Y
+                ZIndex: =4
+
+        "'Open Recall_DataCard2' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_9"
+            Default: =ThisItem.'Open Recall'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_9")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =210
+            Required: =false
+            Update: =Value(DataCardValue12.Text)
+            Width: =642.5
+            X: =3
+            Y: =1
+            ZIndex: =1
+
+            Rectangle17_4 As rectangle:
+                Fill: =RGBA(247, 247, 247, 1)
+                Height: =185
+                Width: =596
+                X: =30
+                ZIndex: =1
+
+            Circle2_35 As circle:
+                Fill: =RGBA(0, 161, 233, 1)
+                Height: =70
+                Width: =70
+                X: =58
+                Y: =58
+                ZIndex: =4
+
+            Icon23_23 As icon.CalendarBlank:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =46
+                Icon: =Icon.Information
+                Width: =46
+                X: =72
+                Y: =71
+                ZIndex: =5
+
+            StarVisible36_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey35.Height
+                PaddingLeft: =0
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =134
+                Y: =19
+                ZIndex: =8
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue12.Y + DataCardValue12.Height
+                ZIndex: =11
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =
+                ZIndex: =12
+
+            Group5 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =13
+
+                Label14_19 As label:
+                    Align: =Left
+                    AutoHeight: =true
+                    FontWeight: =Semibold
+                    Height: =42
+                    PaddingLeft: =0
+                    Text: ="Open Recall"
+                    Width: =262
+                    X: =178
+                    Y: =34
+                    ZIndex: =2
+
+                ErrorMessage36_2 As label:
+                    Height: =32
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: ="This field is mandatory."
+                    Visible: =If(IsBlank(DataCardValue12.Text),true,false)
+                    Width: =220
+                    X: =178
+                    Y: =120
+                    ZIndex: =7
+
+                DataCardValue12 As text:
+                    BorderColor: =If(IsBlank(DataCardValue12.Text), Color.Red, Parent.BorderColor)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Format: =TextFormat.Number
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =166
+                    X: =178
+                    Y: =74
+                    ZIndex: =10
+
+        "'Silent Recall (Withdrawals)_DataCard2' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_10"
+            Default: =ThisItem.'Silent Recall (Withdrawals)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_10")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue15.Text)
+            Width: =642
+            X: =4
+            Y: =1
+            ZIndex: =1
+
+            Rectangle17_5 As rectangle:
+                Fill: =RGBA(247, 247, 247, 1)
+                Height: =185
+                Width: =596
+                ZIndex: =1
+
+            Circle2_36 As circle:
+                Fill: =RGBA(0, 161, 233, 1)
+                Height: =70
+                Width: =70
+                X: =28
+                Y: =58
+                ZIndex: =3
+
+            Icon23_24 As icon.CalendarBlank:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =46
+                Icon: =Icon.Information
+                Width: =46
+                X: =42
+                Y: =71
+                ZIndex: =4
+
+            DataCardValue15 As text:
+                BorderColor: =If(IsBlank(DataCardValue15.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =166
+                X: =148
+                Y: =74
+                ZIndex: =8
+
+            ErrorMessage4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue15.Y + DataCardValue15.Height
+                ZIndex: =9
+
+            StarVisible4 As label:
+                Align: =Align.Center
+                Height: =
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =
+                ZIndex: =10
+
+            Group5_1 As group:
+                Height: =5
+                Width: =5
+                X: =10
+                Y: =25
+                ZIndex: =11
+
+                Label14_20 As label:
+                    Align: =Left
+                    AutoHeight: =true
+                    FontWeight: =Semibold
+                    Height: =42
+                    PaddingLeft: =0
+                    Text: ="Silent Recall (Withdrawals)"
+                    Width: =262
+                    X: =148
+                    Y: =34
+                    ZIndex: =2
+
+                ErrorMessage36_3 As label:
+                    Height: =32
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: ="This field is mandatory."
+                    Visible: =If(IsBlank(DataCardValue15.Text),true,false)
+                    Width: =220
+                    X: =148
+                    Y: =120
+                    ZIndex: =5
+
+        DataCard11 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =93
+            Width: =1284
+            X: =5
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey35_3 As label:
+                Align: =Center
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =56
+                Text: |-
+                    ="Q-Ref-1-1-1
+                    (Design/NPDComplaints) "
+                Width: =317
+                X: =233
+                Y: =11
+                ZIndex: =2
+
+            DataCardKey35_4 As label:
+                Align: =Center
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =56
+                Text: |-
+                    ="Q-1-1
+                    (SC controllable Complaints)"
+                Width: =300
+                X: =550
+                Y: =11
+                ZIndex: =3
+
+            DataCardKey35_5 As label:
+                Align: =Center
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =56
+                Text: |-
+                    ="Q-Ref-2
+                    (SC Uncontrollable Complaints)"
+                Width: =342
+                X: =850
+                Y: =11
+                ZIndex: =4
+
+        DataCard10 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =78
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =277
+            X: =6
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="NCB"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =21
+                ZIndex: =1
+
+        NCB_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="NCB"
+            Default: =ThisItem.'NCB Q-Ref-1-1-1 (Design/NPD Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="NCB"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =103
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue41.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =7
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey36 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =30
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =70
+                Wrap: =false
+                Y: =30
+                ZIndex: =1
+
+            DataCardValue41 As text:
+                BorderColor: =If(IsBlank(DataCardValue41.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =40
+                Y: =4
+                ZIndex: =2
+
+            StarVisible50 As label:
+                Align: =Align.Center
+                Height: =DataCardKey36.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =8
+                ZIndex: =4
+
+            ErrorMessage12_1 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue41.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        "'NCB Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="NCBSCcontrollableComplaints"
+            Default: =ThisItem.'NCB Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="NCB Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue75.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =8
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey69 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="NCB"
+                Visible: =false
+                Width: =337
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue75 As text:
+                BorderColor: =If(IsBlank(DataCardValue75.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =40
+                Y: =4
+                ZIndex: =2
+
+            StarVisible78 As label:
+                Align: =Align.Center
+                Height: =DataCardKey69.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =8
+                ZIndex: =4
+
+            ErrorMessage12_7 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue75.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        "'NCB Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="NCBSCUncontrollableComplaints"
+            Default: =ThisItem.'NCB Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="NCB Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue141.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =365
+            X: =9
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey101 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="NCB "
+                Visible: =false
+                Width: =362
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue141 As text:
+                BorderColor: =If(IsBlank(DataCardValue141.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =39
+                Y: =4
+                ZIndex: =2
+
+            StarVisible141 As label:
+                Align: =Align.Center
+                Height: =DataCardKey101.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =8
+                ZIndex: =4
+
+            ErrorMessage12_10 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue141.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        DataCard15 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =285
+            X: =10
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_2 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="CSD"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =21
+                ZIndex: =1
+
+        CSD_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CSD"
+            Default: =ThisItem.'CSD Q-Ref-1-1-1 (Design/NPD Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CSD"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =103
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue48.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =11
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey42 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =60
+                Wrap: =false
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue48 As text:
+                BorderColor: =If(IsBlank(DataCardValue48.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible53 As label:
+                Align: =Align.Center
+                Height: =DataCardKey42.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+            ErrorMessage12_2 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue48.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        "'CSD Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CSDSCControllableComplaints"
+            Default: =ThisItem.'CSD Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CSD Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue76.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =12
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey70 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CSD"
+                Visible: =false
+                Width: =220
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue76 As text:
+                BorderColor: =If(IsBlank(DataCardValue76.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible79 As label:
+                Align: =Align.Center
+                Height: =DataCardKey70.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+            ErrorMessage12_8 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue76.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        "'CSD Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CSDSCUncontrollableComplaints"
+            Default: =ThisItem.'CSD Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CSD Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue142.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =357
+            X: =13
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey107 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Text: ="CSD"
+                Visible: =false
+                Width: =385
+                Wrap: =false
+                X: =565
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue142 As text:
+                BorderColor: =If(IsBlank(DataCardValue142.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible142 As label:
+                Align: =Align.Center
+                Height: =DataCardKey107.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+            ErrorMessage12_11 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue142.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =60
+                ZIndex: =5
+
+        DataCard16 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =285
+            X: =14
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_3 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="CPP"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =21
+                ZIndex: =1
+
+        CPP_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CPP"
+            Default: =ThisItem.'CPP Q-Ref-1-1-1 (Design/NPD Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CPP"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue54.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =15
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey43 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =238
+                Wrap: =false
+                X: =565
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue54 As text:
+                BorderColor: =If(IsBlank(DataCardValue54.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible54 As label:
+                Align: =Align.Center
+                Height: =DataCardKey43.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+            ErrorMessage12_3 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue54.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =61
+                ZIndex: =5
+
+        "'CPP Q-1-1 (SC controllable Complaints) _DataCard2' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CPPSCControllableComplaints"
+            Default: =ThisItem.'CPP Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CPP Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue101.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =321
+            X: =16
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey76 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CPP"
+                Visible: =false
+                Width: =403
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue101 As text:
+                BorderColor: =If(IsBlank(DataCardValue101.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible85 As label:
+                Align: =Align.Center
+                Height: =DataCardKey76.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =3
+                ZIndex: =4
+
+            ErrorMessage12_9 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue101.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =61
+                ZIndex: =5
+
+        "'CPP Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CPPSCUncontrollableComplaints"
+            Default: =ThisItem.'CPP Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CPP Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Required: =If(DataCardValue172.Text = "EBSB",true,false)
+            Update: =Value(DataCardValue143.Text)
+            Visible: =If(DataCardValue172.Text = "EBSB",true,false)
+            Width: =357
+            X: =17
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey108 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CPP "
+                Visible: =false
+                Width: =469
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue143 As text:
+                BorderColor: =If(IsBlank(DataCardValue143.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "EBSB",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            StarVisible143 As label:
+                Align: =Align.Center
+                Height: =DataCardKey108.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =3
+                ZIndex: =4
+
+            ErrorMessage12_12 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue143.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =266
+                X: =30
+                Y: =61
+                ZIndex: =5
+
+        DataCard17 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =88
+            Visible: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Width: =285
+            X: =18
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_4 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="SCC"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =27
+                ZIndex: =1
+
+        "'SCC Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SCC"
+            Default: =ThisItem.'SCC Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SCC Q-Ref-1-1-1 (Design/NPD Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =104
+            Required: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Update: =Value(DataCardValue100.Text)
+            Visible: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Width: =321
+            X: =19
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey75 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="SCC"
+                Visible: =false
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue100 As text:
+                BorderColor: =If(IsBlank(DataCardValue100.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEDI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage84 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue100.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible84 As label:
+                Align: =Align.Center
+                Height: =DataCardKey75.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+        "'SCC Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SCCSCControllableComplaints"
+            Default: =ThisItem.'SCC Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SCC Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Update: =Value(DataCardValue139.Text)
+            Visible: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Width: =321
+            X: =20
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey90 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="SCC"
+                Visible: =false
+                Width: =359
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue139 As text:
+                BorderColor: =If(IsBlank(DataCardValue139.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEDI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage139 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue139.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible139 As label:
+                Align: =Align.Center
+                Height: =DataCardKey90.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+        "'SCC Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SCCSCUncontrollableComplaints"
+            Default: =ThisItem.'SCC Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SCC Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Update: =Value(DataCardValue154.Text)
+            Visible: =If(DataCardValue172.Text = "PTEDI",true,false)
+            Width: =357
+            X: =21
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey146 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="SCC"
+                Visible: =false
+                Width: =217
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue154 As text:
+                BorderColor: =If(IsBlank(DataCardValue154.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEDI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage154 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue154.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible154 As label:
+                Align: =Align.Center
+                Height: =DataCardKey146.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                ZIndex: =4
+
+        DataCard14 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =104
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =285
+            X: =22
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_5 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="CAMI"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =30
+                ZIndex: =1
+
+        "'CAMI Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CAMI"
+            Default: =ThisItem.'CAMI Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CAMI Q-Ref-1-1-1 (Design/NPD Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =104
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue79.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =321
+            X: =23
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey73 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CAMI "
+                Visible: =false
+                Width: =351
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue79 As text:
+                BorderColor: =If(IsBlank(DataCardValue79.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage82 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue79.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible82 As label:
+                Align: =Align.Center
+                Height: =DataCardKey73.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey73.Y
+                ZIndex: =4
+
+        "'CAMI Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CAMISCControllableComplaints"
+            Default: =ThisItem.'CAMI Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CAMI Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =104
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue137.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =321
+            X: =24
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey87 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Text: ="CAMI"
+                Visible: =false
+                Width: =245
+                Wrap: =false
+                X: =565
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue137 As text:
+                BorderColor: =If(IsBlank(DataCardValue137.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage137 As label:
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue137.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =269
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible137 As label:
+                Align: =Align.Center
+                Height: =DataCardKey87.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey87.Y
+                ZIndex: =4
+
+        "'CAMI Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CAMISCUncontrollableComplaints"
+            Default: =ThisItem.'CAMI Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CAMI Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue152.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =357
+            X: =25
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey144 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CAMI "
+                Visible: =false
+                Width: =402
+                Wrap: =false
+                X: =565
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue152 As text:
+                BorderColor: =If(IsBlank(DataCardValue152.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage152 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue152.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible152 As label:
+                Align: =Align.Center
+                Height: =DataCardKey144.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey144.Y
+                ZIndex: =4
+
+        DataCard18 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =104
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =285
+            X: =26
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey11_6 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="CMYD"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =30
+                ZIndex: =1
+
+        "'CMYD Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CMYD"
+            Default: =ThisItem.'CMYD Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CMYD Q-Ref-1-1-1 (Design/NPD Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =105
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue94.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =321
+            X: =27
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey74 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CMYD"
+                Visible: =false
+                Width: =433
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue94 As text:
+                BorderColor: =If(IsBlank(DataCardValue94.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =5
+                ZIndex: =2
+
+            ErrorMessage83 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue94.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible83 As label:
+                Align: =Align.Center
+                Height: =DataCardKey74.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey74.Y
+                ZIndex: =4
+
+        "'CMYD Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CMYDSCControllableComplaints"
+            Default: =ThisItem.'CMYD Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CMYD Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue138.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =321
+            X: =28
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey89 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CMYD"
+                Visible: =false
+                Width: =371
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue138 As text:
+                BorderColor: =If(IsBlank(DataCardValue138.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =5
+                ZIndex: =2
+
+            ErrorMessage138 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue138.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible138 As label:
+                Align: =Align.Center
+                Height: =DataCardKey89.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey89.Y
+                ZIndex: =4
+
+        "'CMYD Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CMYDSCUncontrollableComplaints"
+            Default: =ThisItem.'CMYD Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="CMYD Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Update: =Value(DataCardValue153.Text)
+            Visible: =If(DataCardValue172.Text = "PTEMI",true,false)
+            Width: =357
+            X: =29
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey145 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="CMYD"
+                Visible: =false
+                Width: =266
+                Wrap: =false
+                X: =565
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue153 As text:
+                BorderColor: =If(IsBlank(DataCardValue153.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HoverBorderColor: =Self.BorderColor
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =If(DataCardValue172.Text = "PTEMI",false,true)
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =30
+                Y: =4
+                ZIndex: =2
+
+            ErrorMessage153 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue153.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =60
+                ZIndex: =3
+
+            StarVisible153 As label:
+                Align: =Align.Center
+                Height: =DataCardKey145.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey145.Y
+                ZIndex: =4
+
+        "'SCM Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_14"
+            Default: =ThisItem.'SCM Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_14")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue65.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =30
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey57 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="SCM"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =21
+                ZIndex: =1
+
+            DataCardValue65 As text:
+                BorderColor: =If(IsBlank(DataCardValue65.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =315
+                Y: =7
+                ZIndex: =2
+
+            ErrorMessage14 As label:
+                Height: =26
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue65.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =218
+                X: =315
+                Y: =60
+                ZIndex: =3
+
+            StarVisible14 As label:
+                Align: =Align.Center
+                Height: =DataCardKey57.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey57.Y
+                ZIndex: =4
+
+        "'SCM Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_29"
+            Default: =ThisItem.'SCM Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_29")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue66.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =31
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey60 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue66 As text:
+                BorderColor: =If(IsBlank(DataCardValue66.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage67 As label:
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue66.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =221
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible67 As label:
+                Align: =Align.Center
+                Height: =DataCardKey60.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey60.Y
+                ZIndex: =4
+
+        "'SCM Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_44"
+            Default: =ThisItem.'SCM Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_44")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue67.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =32
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey61 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue67 As text:
+                BorderColor: =If(IsBlank(DataCardValue67.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage68 As label:
+                Height: =27
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue67.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =301
+                X: =97
+                Y: =60
+                ZIndex: =3
+
+            StarVisible68 As label:
+                Align: =Align.Center
+                Height: =DataCardKey61.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey61.Y
+                ZIndex: =4
+
+        "'EVAP Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_15"
+            Default: =ThisItem.'EVAP Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_15")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue68.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =33
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey62 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="EVAP"
+                Width: =246
+                Wrap: =false
+                X: =30
+                Y: =21
+                ZIndex: =1
+
+            DataCardValue68 As text:
+                BorderColor: =If(IsBlank(DataCardValue68.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage69 As label:
+                Height: =22
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue68.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =222
+                X: =313
+                Y: =60
+                ZIndex: =3
+
+            StarVisible69 As label:
+                Align: =Align.Center
+                Height: =DataCardKey62.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey62.Y
+                ZIndex: =4
+
+        "'EVAP Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_30"
+            Default: =ThisItem.'EVAP Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_30")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue69.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =34
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey63 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue69 As text:
+                BorderColor: =If(IsBlank(DataCardValue69.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage70 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue69.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =221
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible70 As label:
+                Align: =Align.Center
+                Height: =DataCardKey63.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey63.Y
+                ZIndex: =4
+
+        "'EVAP Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_45"
+            Default: =ThisItem.'EVAP Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_45")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue70.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =35
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey64 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue70 As text:
+                BorderColor: =If(IsBlank(DataCardValue70.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage71 As label:
+                AutoHeight: =true
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue70.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =297
+                X: =101
+                Y: =60
+                ZIndex: =3
+
+            StarVisible71 As label:
+                Align: =Align.Center
+                Height: =DataCardKey64.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey64.Y
+                ZIndex: =4
+
+        "'UHT All Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_16"
+            Default: =ThisItem.'UHT All Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_16")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue72.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =36
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey65 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="UHT ALL"
+                Width: =200
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue72 As text:
+                BorderColor: =If(IsBlank(DataCardValue72.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage72 As label:
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue72.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =226
+                X: =309
+                Y: =60
+                ZIndex: =3
+
+            StarVisible72 As label:
+                Align: =Align.Center
+                Height: =DataCardKey65.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey65.Y
+                ZIndex: =4
+
+        "'UHT All Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_31"
+            Default: =ThisItem.'UHT All Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_31")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue78.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =37
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey66 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue78 As text:
+                BorderColor: =If(IsBlank(DataCardValue78.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage73 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue78.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible73 As label:
+                Align: =Align.Center
+                Height: =DataCardKey66.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey66.Y
+                ZIndex: =4
+
+        "'UHT All Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_46"
+            Default: =ThisItem.'UHT All Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_46")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue103.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =38
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey68 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue103 As text:
+                BorderColor: =If(IsBlank(DataCardValue103.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage74 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue103.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible74 As label:
+                Align: =Align.Center
+                Height: =DataCardKey68.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey68.Y
+                ZIndex: =4
+
+        "'UHT Milk Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_17"
+            Default: =ThisItem.'UHT Milk Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_17")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue130.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =39
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey72 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="UHT MLIK"
+                Width: =226
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue130 As text:
+                BorderColor: =If(IsBlank(DataCardValue130.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage76 As label:
+                Height: =24
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue130.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =222
+                X: =313
+                Y: =60
+                ZIndex: =3
+
+            StarVisible76 As label:
+                Align: =Align.Center
+                Height: =DataCardKey72.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey72.Y
+                ZIndex: =4
+
+        "'UHT Milk Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_32"
+            Default: =ThisItem.'UHT Milk Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_32")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue131.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =40
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey78 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue131 As text:
+                BorderColor: =If(IsBlank(DataCardValue131.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage78 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue131.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =216
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible81 As label:
+                Align: =Align.Center
+                Height: =DataCardKey78.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey78.Y
+                ZIndex: =4
+
+        "'UHT Milk Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_47"
+            Default: =ThisItem.'UHT Milk Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_47")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue132.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =41
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey79 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue132 As text:
+                BorderColor: =If(IsBlank(DataCardValue132.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =7
+                ZIndex: =2
+
+            ErrorMessage79 As label:
+                Height: =22
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue132.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =297
+                X: =101
+                Y: =60
+                ZIndex: =3
+
+            StarVisible87 As label:
+                Align: =Align.Center
+                Height: =DataCardKey79.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey79.Y
+                ZIndex: =4
+
+        "'UHT Juice Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_18"
+            Default: =ThisItem.'UHT Juice Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_18")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue133.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =42
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey80 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="UHT JUICE"
+                Width: =194
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue133 As text:
+                BorderColor: =If(IsBlank(DataCardValue133.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage81 As label:
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue133.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =222
+                X: =313
+                Y: =60
+                ZIndex: =3
+
+            StarVisible89 As label:
+                Align: =Align.Center
+                Height: =DataCardKey80.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey80.Y
+                ZIndex: =4
+
+        "'UHT Juice Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_33"
+            Default: =ThisItem.'UHT Juice Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_33")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue134.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =43
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey81 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue134 As text:
+                BorderColor: =If(IsBlank(DataCardValue134.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =11
+                ZIndex: =2
+
+            ErrorMessage85 As label:
+                Height: =30
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue134.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =221
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible90 As label:
+                Align: =Align.Center
+                Height: =DataCardKey81.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey81.Y
+                ZIndex: =4
+
+        "'UHT Juice Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_48"
+            Default: =ThisItem.'UHT Juice Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_48")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue135.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =44
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey82 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue135 As text:
+                BorderColor: =If(IsBlank(DataCardValue135.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage87 As label:
+                Height: =30
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue135.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =327
+                X: =101
+                Y: =60
+                ZIndex: =3
+
+            StarVisible91 As label:
+                Align: =Align.Center
+                Height: =DataCardKey82.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey82.Y
+                ZIndex: =4
+
+        "'UHT Coffee Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_19"
+            Default: =ThisItem.'UHT Coffee Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_19")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue136.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =45
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey83 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="UHT Coffee"
+                Width: =175
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue136 As text:
+                BorderColor: =If(IsBlank(DataCardValue136.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage89 As label:
+                Height: =28
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue136.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =220
+                X: =313
+                Y: =60
+                ZIndex: =3
+
+            StarVisible101 As label:
+                Align: =Align.Center
+                Height: =DataCardKey83.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey83.Y
+                ZIndex: =4
+
+        "'UHT Coffee Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_34"
+            Default: =ThisItem.'UHT Coffee Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_34")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue144.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =46
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey84 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue144 As text:
+                BorderColor: =If(IsBlank(DataCardValue144.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage90 As label:
+                AutoHeight: =true
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue144.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =221
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible107 As label:
+                Align: =Align.Center
+                Height: =DataCardKey84.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey84.Y
+                ZIndex: =4
+
+        "'UHT Coffee Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_49"
+            Default: =ThisItem.'UHT Coffee Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_49")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue145.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =47
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey85 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue145 As text:
+                BorderColor: =If(IsBlank(DataCardValue145.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =100
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage91 As label:
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue145.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =298
+                X: =100
+                Y: =60
+                ZIndex: =3
+
+            StarVisible108 As label:
+                Align: =Align.Center
+                Height: =DataCardKey85.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey85.Y
+                ZIndex: =4
+
+        "'HTST Milk Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_20"
+            Default: =ThisItem.'HTST Milk Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_20")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue146.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =48
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey91 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="HTST MILK"
+                Width: =275
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue146 As text:
+                BorderColor: =If(IsBlank(DataCardValue146.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage101 As label:
+                Height: =31
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue146.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =230
+                X: =313
+                Y: =60
+                ZIndex: =3
+
+            StarVisible110 As label:
+                Align: =Align.Center
+                Height: =DataCardKey91.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey91.Y
+                ZIndex: =4
+
+        "'HTST Milk Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_35"
+            Default: =ThisItem.'HTST Milk Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_35")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue147.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =49
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey110 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue147 As text:
+                BorderColor: =If(IsBlank(DataCardValue147.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage107 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue147.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =220
+                X: =101
+                Y: =60
+                ZIndex: =3
+
+            StarVisible140 As label:
+                Align: =Align.Center
+                Height: =DataCardKey110.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey110.Y
+                ZIndex: =4
+
+        "'HTST Milk Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_50"
+            Default: =ThisItem.'HTST Milk Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_50")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue148.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =50
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey137 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue148 As text:
+                BorderColor: =If(IsBlank(DataCardValue148.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage108 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue148.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =297
+                X: =101
+                Y: =60
+                ZIndex: =3
+
+            StarVisible144 As label:
+                Align: =Align.Center
+                Height: =DataCardKey137.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey137.Y
+                ZIndex: =4
+
+        "'CPP EDSB Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_21"
+            Default: =ThisItem.'CPP EDSB Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_21")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =112
+            Required: =false
+            Update: =Value(DataCardValue149.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =535
+            X: =51
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey138 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Height: =34
+                Size: =16
+                Text: ="CPP"
+                Width: =125
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue149 As text:
+                BorderColor: =If(IsBlank(DataCardValue149.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =313
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage110 As label:
+                Height: =21
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue149.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =214
+                X: =313
+                Y: =61
+                ZIndex: =3
+
+            StarVisible145 As label:
+                Align: =Align.Center
+                Height: =DataCardKey138.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey138.Y
+                ZIndex: =4
+
+        "'CPP EDSB Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_36"
+            Default: =ThisItem.'CPP EDSB Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_36")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue150.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =321
+            X: =52
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey139 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue150 As text:
+                BorderColor: =If(IsBlank(DataCardValue150.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =155
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage140 As label:
+                AutoHeight: =true
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue150.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =220
+                X: =101
+                Y: =61
+                ZIndex: =3
+
+            StarVisible146 As label:
+                Align: =Align.Center
+                Height: =DataCardKey139.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey139.Y
+                ZIndex: =4
+
+        "'CPP EDSB Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_51"
+            Default: =ThisItem.'CPP EDSB Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'QC Form'],DataSourceInfo.DisplayName,"field_51")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue151.Text)
+            Visible: =If(DataCardValue172.Text = "EDSB",true,false)
+            Width: =428
+            X: =53
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey140 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue151 As text:
+                BorderColor: =If(IsBlank(DataCardValue151.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage141 As label:
+                AutoHeight: =true
+                Height: =23
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue151.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =297
+                X: =101
+                Y: =61
+                ZIndex: =3
+
+            StarVisible147 As label:
+                Align: =Align.Center
+                Height: =DataCardKey140.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey140.Y
+                ZIndex: =4
+
+        DataCard32 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =16
+            Width: =1284
+            X: =54
+            Y: =1
+            ZIndex: =1
+
+            DataCardValue24_19 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =1224
+                X: =28
+                ZIndex: =1
+
+        "'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SubTotalDesign_x002f_NPDComplain"
+            Default: =ThisItem.'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =82
+            Required: =false
+            Update: =Value(DataCardValue8.Text)
+            Width: =535
+            X: =55
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey14 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Text: ="Sub Total"
+                Width: =283
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue8 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: |-
+                    =If(DataCardValue172.Text = "EBSB", DataCardValue41.Text + DataCardValue48.Text + DataCardValue54.Text,DataCardValue172.Text = "EDSB", DataCardValue65.Text + DataCardValue66.Text + DataCardValue67.Text + DataCardValue68.Text + DataCardValue69.Text + DataCardValue70.Text + DataCardValue72.Text + DataCardValue78.Text,
+                    DataCardValue172.Text = "PTEDI", DataCardValue100.Text, DataCardValue172.Text = "PTEMI", DataCardValue79.Text + DataCardValue94.Text)
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =317
+                Y: =15
+                ZIndex: =2
+
+            ErrorMessage34 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue8.Y + DataCardValue8.Height
+                ZIndex: =3
+
+            StarVisible34 As label:
+                Align: =Align.Center
+                Height: =DataCardKey14.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey14.Y
+                ZIndex: =4
+
+        "'SubTotal Q-1-1 (SC controllable Complaints) _DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SubTotalSCControllableComplaints"
+            Default: =ThisItem.'SubTotal Q-1-1 (SC controllable Complaints) '
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SubTotal Q-1-1 (SC controllable Complaints) "
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue9.Text)
+            Width: =321
+            X: =56
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey34 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sub Total"
+                Visible: =false
+                Width: =415
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue9 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: |-
+                    =If(DataCardValue172.Text = "EBSB", DataCardValue75.Text + DataCardValue76.Text + DataCardValue101.Text,DataCardValue172.Text = "EDSB", DataCardValue103.Text + DataCardValue130.Text + DataCardValue131.Text + DataCardValue132.Text + DataCardValue133.Text + DataCardValue134.Text + DataCardValue135.Text + DataCardValue136.Text,
+                    DataCardValue172.Text = "PTEDI", DataCardValue139.Text, DataCardValue172.Text = "PTEMI", DataCardValue137.Text + DataCardValue138.Text)
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =15
+                ZIndex: =2
+
+            ErrorMessage50 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue9.Y + DataCardValue9.Height
+                ZIndex: =3
+
+            StarVisible55 As label:
+                Align: =Align.Center
+                Height: =DataCardKey34.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey34.Y
+                ZIndex: =4
+
+        "'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SubTotalSCUncontrollableComplain"
+            Default: =ThisItem.'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="SubTotal Q-Ref-2 (SC Uncontrollable Complaints)"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue10.Text)
+            Width: =428
+            X: =57
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey44 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="SubTotal"
+                Visible: =false
+                Width: =273
+                Wrap: =false
+                X: =565
+                Y: =13
+                ZIndex: =1
+
+            DataCardValue10 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: |-
+                    =If(DataCardValue172.Text = "EBSB", DataCardValue141.Text + DataCardValue142.Text + DataCardValue143.Text,DataCardValue172.Text = "EDSB", DataCardValue144.Text + DataCardValue145.Text + DataCardValue146.Text + DataCardValue147.Text + DataCardValue148.Text + DataCardValue149.Text + DataCardValue150.Text + DataCardValue151.Text,
+                    DataCardValue172.Text = "PTEDI", DataCardValue154.Text, DataCardValue172.Text = "PTEMI", DataCardValue152.Text + DataCardValue153.Text)
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =150
+                X: =101
+                Y: =15
+                ZIndex: =2
+
+            ErrorMessage53 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue10.Y + DataCardValue10.Height
+                ZIndex: =3
+
+            StarVisible56 As label:
+                Align: =Align.Center
+                Height: =DataCardKey44.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey44.Y
+                ZIndex: =4
+
+        DataCard33 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =10
+            Width: =1284
+            X: =-1
+            Y: =2
+            ZIndex: =1
+
+            DataCardValue24_20 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =1224
+                X: =28
+                Y: =1
+                ZIndex: =1
+
+        "'Total Complaint_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="TotalOverallComplaint"
+            Default: =ThisItem.'Total Complaint'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Total Complaint"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue11.Text)
+            Width: =1284
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey49 As label:
+                Color: =RGBA(0, 0, 0, 1)
+                FontWeight: =Semibold
+                Text: =Parent.DisplayName
+                Width: =176
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue11 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: =DataCardValue8.Text + DataCardValue9.Text + DataCardValue10.Text
+                DelayOutput: =true
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                HoverFill: =Self.Fill
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =791
+                X: =315
+                Y: =10
+                ZIndex: =2
+
+            ErrorMessage54 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue11.Y + DataCardValue11.Height
+                ZIndex: =3
+
+            StarVisible57 As label:
+                Align: =Align.Center
+                Height: =DataCardKey49.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey49.Y
+                ZIndex: =4
+
+        FormNo_DataCard3_2 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.Title
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="FormNo"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Temporary-List'], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =DataCardValue102_2.Text
+            Width: =285
+            X: =1
+            Y: =0
+            ZIndex: =28
+
+            DataCardKey109_2 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Form No"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue102_2 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="QC"&"-"&DataCardValue172.Text&Right(YearQC.Selected.Value, 2 )&Switch(MonthQC.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =RGBA(230, 230, 230, 1)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey109_2.Y + DataCardKey109_2.Height + 5
+                ZIndex: =2
+
+            ErrorMessage109_2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue102_2.Y + DataCardValue102_2.Height
+                ZIndex: =3
+
+            StarVisible109_2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey109_2.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey109_2.Y
+                ZIndex: =4
+
+    QC_Submit_bttn As button:
+        BorderThickness: =0
+        DisplayMode: |
+            =If(DataCardValue172.Text = "EBSB" And
+            IsBlank(YearQC.Selected.Value) ||
+            IsBlank(MonthQC.Selected.Value) ||
+            IsBlank(DataCardValue12.Text) ||
+            IsBlank(DataCardValue15.Text) ||
+            IsBlank(DataCardValue41.Text) ||
+            IsBlank(DataCardValue48.Text) ||
+            IsBlank(DataCardValue54.Text) ||
+            IsBlank(DataCardValue75.Text) ||
+            IsBlank(DataCardValue76.Text) ||
+            IsBlank(DataCardValue101.Text) ||
+            IsBlank(DataCardValue141.Text) ||
+            IsBlank(DataCardValue142.Text) ||
+            IsBlank(DataCardValue143.Text),Disabled,Edit)
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: =Set(popupusersubmit,true)
+        Size: =13
+        Text: ="Submit"
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =7
+
+    QC_Save_bttn As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =8
+
+    Icon2_15 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =15
+
+    LeftNavBarForm_5 As LeftNavBarForm:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =768
+        MenuItemForm: =colMenu
+        Width: =LeftNavBarForm_5.MenuWidth
+        ZIndex: =16
+
+    Button2_5 As button:
+        Color: =RGBA(153, 153, 153, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        FontWeight: =Semibold
+        HoverColor: =ColorFade(Self.Color, -10%)
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =Launch("https://asahisea.sharepoint.com/sites/GKPISTG2/Shared%20Documents/Definition-QC.pdf")
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =12
+        Text: ="Definition"
+        Width: =115
+        X: =626
+        Y: =55
+        ZIndex: =17
+
+    BG_10 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_17 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_38 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Pop_Up_User_Submit_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =64
+
+        Rectangle5_8 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupusersubmit
+            Width: =1366
+            ZIndex: =9
+
+        Submit_Bttn_5 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |-
+                =Patch( 'QC Form', { 
+                    Title:  DataCardValue102_2.Text,
+                    BU: DataCardValue172.Text,
+                    Status: "Pending approval",
+                    'Requestor Name': varUserName,
+                    'Requestor Email': varUserEmail,
+                    'Open Recall': Value(DataCardValue12.Text),
+                    'Silent Recall (Withdrawals)': Value(DataCardValue15.Text),
+                    'NCB Q-Ref-1-1-1 (Design/NPD Complaints)': Value(DataCardValue41.Text),
+                    'NCB Q-1-1 (SC controllable Complaints) ': Value(DataCardValue75.Text),
+                    'NCB Q-Ref-2 (SC Uncontrollable Complaints)': Value(DataCardValue141.Text),
+                    'CSD Q-Ref-1-1-1 (Design/NPD Complaints)': Value(DataCardValue48.Text),
+                    'CSD Q-1-1 (SC controllable Complaints) ': Value(DataCardValue76.Text),
+                    'CSD Q-Ref-2 (SC Uncontrollable Complaints)': Value(DataCardValue142.Text),
+                    'CPP EDSB Q-Ref-1-1-1 (Design/NPD Complaints) ':Value(DataCardValue54.Text),
+                    'CPP EDSB Q-1-1 (SC controllable Complaints) ': Value(DataCardValue101.Text),
+                    'CPP EDSB Q-Ref-2 (SC Uncontrollable Complaints)': Value(DataCardValue143.Text),
+                    'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ': Value(DataCardValue8.Text),
+                    'SubTotal Q-1-1 (SC controllable Complaints) ': Value(DataCardValue9.Text),
+                    'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)': Value(DataCardValue10.Text),
+                    'Total Complaint':  Value(DataCardValue11.Text)    
+                    } );
+                
+                Navigate(Successful);
+                NewForm('QC-Form')
+            Size: =13
+            Text: ="Submit"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =687
+            Y: =664
+            ZIndex: =10
+
+        Cancel_Bttn_6 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupusersubmit,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =11
+
+        Circle2_5 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupusersubmit
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =12
+
+        Image6_3 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupusersubmit
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =13
+
+        Label3_22 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Are you sure you want to submit the form for approval?"
+            Visible: =popupusersubmit
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =14
+

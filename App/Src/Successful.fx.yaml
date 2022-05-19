@@ -1,0 +1,81 @@
+"Successful As screen.'tabletLayout_Success_ver3.0'":
+
+    Header_10 As Header:
+        HeaderText: =
+        ZIndex: =4
+
+    LeftNavBar_9 As LeftNavBar:
+        Width: =LeftNavBar_9.MenuWidth
+        ZIndex: =5
+
+    BG_9 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =7
+
+        Image3_1 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_43 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.95)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Timer1 As timer:
+        AutoPause: =false
+        AutoStart: =true
+        Duration: =2000
+        OnTimerEnd: =Navigate(Homepage)
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =9
+
+    Group9 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =10
+
+        iconCircle2 As circle.Circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =299
+            ZIndex: =6
+
+        iconCheck2 As icon.Check:
+            Height: =iconCircle2.Height
+            Icon: =Icon.Check
+            OnSelect: |
+                =
+            PaddingBottom: =Self.PaddingTop
+            PaddingLeft: =Self.PaddingTop
+            PaddingRight: =Self.PaddingTop
+            PaddingTop: =24
+            Width: =iconCircle2.Width
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =299
+            ZIndex: =7
+
+        LblSuccessMsg2 As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =100
+            Size: =18
+            Text: ="This has successfully completed."
+            Width: =Parent.Width * 0.75
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =429
+            ZIndex: =8
+

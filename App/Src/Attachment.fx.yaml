@@ -1,0 +1,2011 @@
+Attachment As screen:
+    Fill: =RGBA(255, 255, 255, 1)
+    OnVisible: |-
+        =Set(varShowMenu,true);Set(varShowMenu,false); Set (TimerGo,false); Set(ShowRefreshBttn,false);Set(popupnewattachment,true);Set(popupupdateattacment,false);NewForm(Add_Attachment_Form);Set(popupattachmentlistleft,false);Set(popupufeform, false);
+        
+        If(popupattachmentlistleftback,Set(popupattachmentlistleft,true));
+        
+        UpdateContext({ShowImage: false});
+        
+        Set(popuplogout,false)
+
+    Add_Repeat As text:
+        Default: ="Text input"
+        Visible: =false
+        X: =20
+        Y: =117
+        ZIndex: =1
+
+    BG_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+        Image3_8 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =2
+
+        Rectangle1_35 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =3
+
+    TimerUpdateExcel As timer:
+        Color: =RGBA(0, 0, 0, 0)
+        Duration: =120000
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =44
+        HoverColor: =Transparent
+        HoverFill: =Transparent
+        OnSelect: |
+            =UpdateContext({ShowImage: true});
+            
+            RemoveIf('UFE-Extract-Excel', FormNo = varAttachment.FormNo);
+            
+            Patch('UFE-Attachment-Excel', 
+            LookUp('UFE-Attachment-Excel', 'Form No' = varAttachment.FormNo),
+                Update_Attachment_Form.Updates
+            );
+            
+            Set(popupsuccessful,true); 
+        OnTimerEnd: |-
+            =UpdateContext({ShowImage: false})
+        PressedColor: =Transparent
+        PressedFill: =Transparent
+        Visible: =popupupdateattacment
+        Width: =454
+        X: =456
+        Y: =680
+        ZIndex: =6
+
+    Cancel_Bttn_5 As button:
+        Align: =Center
+        BorderColor: =RGBA(128, 128, 128, 1)
+        Color: =RGBA(128, 128, 128, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =44
+        HoverColor: =RGBA(128, 128, 128, 1)
+        HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+        OnSelect: =Set(popupsuccessful,false); Set(popupdeclareupdate,false)
+        Size: =13
+        Text: ="Cancel"
+        Visible: =popupsuccessful
+        Width: =209
+        X: =579
+        Y: =519
+        ZIndex: =9
+
+    SubHeader_1 As SubHeader:
+        ZIndex: =10
+
+    Header_2 As Header:
+        HeaderText: ="Upload Excel Attachment"
+        ZIndex: =11
+
+    Update_EtikaSC_Bttn As button:
+        BorderThickness: =0
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =26
+        HoverColor: =ColorFade(RGBA(0, 161, 233, 1), -10%)
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popupattachmentlistleft,true)
+        PressedFill: =Self.Fill
+        Size: =13
+        Text: ="Attachment List"
+        Width: =152
+        X: =679
+        Y: =62
+        ZIndex: =12
+
+    New_EtikaSC_Bttn As button:
+        BorderThickness: =0
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =26
+        HoverColor: =ColorFade(RGBA(0, 161, 233, 1), -10%)
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popupnewattachment,true);Set(popupupdateattacment,false);NewForm(Add_Attachment_Form)
+        PressedFill: =Self.Fill
+        Size: =13
+        Text: |-
+            ="New Excel
+            "
+        Width: =121
+        X: =536
+        Y: =63
+        ZIndex: =13
+
+    Icon2_3 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =15
+
+    LeftNavBar_5 As LeftNavBar:
+        LeftNavBarItem: =colMenu
+        Width: =LeftNavBar_5.MenuWidth
+        ZIndex: =16
+
+    Button16_1 As button:
+        Color: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =27
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popuplogout,!popuplogout)
+        Text: =""
+        Width: =28
+        X: =1320
+        Y: =13
+        ZIndex: =17
+
+    Update_Attachment As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =42
+
+        "'Upload-Bttn-Update' As button":
+            Align: =Center
+            BorderThickness: =0
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |-
+                =RemoveIf('UFE-Extract-Excel', FormNo = varAttachment.FormNo);
+                
+                Patch('UFE-Attachment-Excel', 
+                LookUp('UFE-Attachment-Excel', 'Form No' = varAttachment.FormNo),
+                    Update_Attachment_Form.Updates
+                );
+                
+                Set(popupsuccessful,true); 
+            Size: =13
+            Text: ="Upload Attachment"
+            Visible: =popupupdateattacment
+            Width: =454
+            X: =456
+            Y: =680
+            ZIndex: =4
+
+        Update_Attachment_Form As form:
+            AcceptsFocus: =false
+            DataSource: ='UFE-Attachment-Excel'
+            Height: =545
+            Item: =If(!IsBlank(varAttachment.FormNo), LookUp('UFE-Attachment-Excel', 'Form No' = varAttachment.FormNo))
+            NumberOfColumns: =2
+            Visible: =popupupdateattacment
+            Width: =868
+            X: =249
+            Y: =142
+            ZIndex: =5
+
+            Year_DataCard8 As typedDataCard.numberEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Year"
+                Default: =ThisItem.Year
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"Year")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                Required: =false
+                Update: =Value(YEARUFEUPDATEMY.Text)
+                Width: =434
+                X: =0
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey215 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                YEARUFEUPDATEMY As text:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    Format: =TextFormat.Number
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey215.Y + DataCardKey215.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage223 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =YEARUFEUPDATEMY.Y + YEARUFEUPDATEMY.Height
+                    ZIndex: =3
+
+                StarVisible226 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey215.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey215.Y
+                    ZIndex: =4
+
+            Month_DataCard8 As typedDataCard.comboBoxEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Month"
+                Default: =ThisItem.Month
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"Month")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                Required: =false
+                Update: =MONTHUFEUPDATEMY.Selected
+                Width: =434
+                X: =1
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey216 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                MONTHUFEUPDATEMY As combobox:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    ChevronBackground: =RGBA(0, 161, 233, 1)
+                    DefaultSelectedItems: =Parent.Default
+                    DisplayFields: =["Value"]
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    InputTextPlaceholder: =""
+                    Items: =Choices([@'UFE-Attachment-Excel'].Month)
+                    SearchFields: =["Value"]
+                    SearchItems: =Choices('UFE-Attachment-Excel'.Month,MONTHUFEUPDATEMY.SearchText)
+                    SelectMultiple: =false
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey216.Y + DataCardKey216.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage224 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =MONTHUFEUPDATEMY.Y + MONTHUFEUPDATEMY.Height
+                    ZIndex: =3
+
+                StarVisible227 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey216.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey216.Y
+                    ZIndex: =4
+
+            FormNo_DataCard1_3 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="FormNo"
+                Default: =ThisItem.'Form No'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="FormNo"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "FormNo")
+                Required: =false
+                Update: =DataCardValue17_3.Text
+                Width: =434
+                X: =0
+                Y: =0
+                ZIndex: =15
+
+                DataCardKey17_3 As label:
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: ="Form No"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue17_3 As text:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    HoverBorderColor: =RGBA(230, 230, 230, 1)
+                    HoverFill: =RGBA(230, 230, 230, 1)
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey17_3.Y + DataCardKey17_3.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage17_3 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue17_3.Y + DataCardValue17_3.Height
+                    ZIndex: =3
+
+                StarVisible17_3 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey17_3.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey17_3.Y
+                    ZIndex: =4
+
+            BU_DataCard3_3 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="BU"
+                Default: =ThisItem.BU
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="BU"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "BU")
+                Required: =false
+                Update: =BUUFEUPDATEMY.Text
+                Visible: =true
+                Width: =434
+                X: =1
+                Y: =0
+                ZIndex: =15
+
+                DataCardKey18_3 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =27
+                    Y: =13
+                    ZIndex: =1
+
+                BUUFEUPDATEMY As text:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    Default: ="EBSB"
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    HoverBorderColor: =RGBA(230, 230, 230, 1)
+                    HoverFill: =RGBA(230, 230, 230, 1)
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =49
+                    ZIndex: =2
+
+                ErrorMessage18_3 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =BUUFEUPDATEMY.Y + BUUFEUPDATEMY.Height
+                    ZIndex: =3
+
+                StarVisible18_3 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey18_3.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey18_3.Y
+                    ZIndex: =4
+
+            Attachments_DataCard1_3 As typedDataCard.attachmentsEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="{Attachments}"
+                Default: =ThisItem.Attachments
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="Attachments"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =316
+                Required: =false
+                Update: =DataCardValue22_3.Attachments
+                Width: =434
+                X: =0
+                Y: =2
+                ZIndex: =15
+
+                DataCardKey22_3 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: ="Attachment"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue22_3 As attachments:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =242
+                    HoverFill: =RGBA(230, 230, 230, 1)
+                    IsInDataCard: =true
+                    Items: =Parent.Default
+                    PaddingBottom: =5
+                    PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey22_3.Y + DataCardKey22_3.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage22_3 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue22_3.Y + DataCardValue22_3.Height
+                    ZIndex: =3
+
+                StarVisible22_3 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey22_3.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey22_3.Y
+                    ZIndex: =4
+
+    "'Etika-SC-table' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =56
+
+        Rectangle2_1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupufeform
+            Width: =1366
+            ZIndex: =26
+
+        DataTable3 As dataTable.datatable:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(250, 250, 250, 1)
+            HeadingFill: =RGBA(0, 161, 233, 1)
+            Height: =471
+            Items: =Filter('UFE-Extract-Excel', FormNo = varAttachment.FormNo)
+            SelectedFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =1366
+            X: =0
+            Y: =51
+            ZIndex: =27
+
+            Month_Column1 As dataTableColumn.textualColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Month"
+                FieldName: ="Month"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =12
+                Text: =ThisItem.Month
+                Width: =136
+                X: =0
+                Y: =0
+                ZIndex: =27
+
+            Year_Column1 As dataTableColumn.numberColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Year"
+                FieldName: ="Year"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =13
+                Text: =ThisItem.Year
+                Width: =114
+                X: =0
+                Y: =0
+                ZIndex: =28
+
+            "'Production Line_Column1' As dataTableColumn.textualColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Production Line"
+                FieldName: ="ProductionLine"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =14
+                Text: =ThisItem.ProductionLine
+                Width: =263
+                X: =0
+                Y: =0
+                ZIndex: =29
+
+            "'Production Hours_Column1' As dataTableColumn.numberColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Production Hours"
+                FieldName: ="ProductionHours"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =15
+                Text: =ThisItem.ProductionHours
+                Width: =185
+                X: =0
+                Y: =0
+                ZIndex: =30
+
+            "'Rated Speed_Column1' As dataTableColumn.numberColumn":
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Rated Speed"
+                FieldName: ="RatedSpeed"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =16
+                Text: =ThisItem.RatedSpeed
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =31
+
+            Net_Column1 As dataTableColumn.numberColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Net"
+                FieldName: ="Net"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =17
+                Text: =ThisItem.Net
+                Width: =123
+                X: =0
+                Y: =0
+                ZIndex: =32
+
+            "'Pure RT_Column1' As dataTableColumn.numberColumn":
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Pure RT"
+                FieldName: ="PureRT"
+                FieldVariantName: ="numberColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =18
+                Text: =ThisItem.PureRT
+                Width: =110
+                X: =0
+                Y: =0
+                ZIndex: =33
+
+            Pack_Column1 As dataTableColumn.textualColumn:
+                AutoWidth: =false
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Pack"
+                FieldName: ="Pack"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =19
+                Text: =ThisItem.Pack
+                Width: =224
+                X: =0
+                Y: =0
+                ZIndex: =34
+
+            Date_Column1 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Date"
+                FieldName: ="Date"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =20
+                Text: =ThisItem.Date
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =35
+
+        TotalProdLine_TextInput As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel', FormNo = varAttachment.FormNo),ProductionLine))
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =170
+            Y: =596
+            ZIndex: =28
+
+        Decline_Bttn As button:
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =RGBA(168, 0, 0, 1)
+            Height: =44
+            HoverColor: =Self.Color
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: =Set(popupufeform, false);Set(popupattachmentlistleft,true)
+            Text: ="Decline"
+            Visible: |
+                =If(And(CountRows(Filter('UFE-Temporary-List','Form No' = Label7_5.Text)) = 0,popupufeform), true, false)
+            Width: =209
+            X: =687
+            Y: =680
+            ZIndex: =29
+
+        TotalDays As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel', FormNo = varAttachment.FormNo),Date))
+            Fill: =RGBA(230, 230, 230, 1)
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =129
+            X: =15
+            Y: =596
+            ZIndex: =30
+
+        Label20 As label:
+            FontWeight: =Semibold
+            Height: =56
+            Text: ="Total Days"
+            Visible: =popupufeform
+            Width: =82
+            X: =15
+            Y: =540
+            ZIndex: =31
+
+        Label20_3 As label:
+            FontWeight: =Semibold
+            Text: |-
+                ="Upload & Verified by:"
+            Visible: =popupufeform
+            Width: =195
+            X: =20
+            Y: =6
+            ZIndex: =32
+
+        Label20_4 As label:
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Text: =Username.Text
+            Visible: =popupufeform
+            Width: =501
+            X: =205
+            Y: =6
+            ZIndex: =33
+
+        Label20_1 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Production Line"
+            Visible: =popupufeform
+            Width: =149
+            X: =170
+            Y: =540
+            ZIndex: =34
+
+        Label20_2 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Production Hours"
+            Visible: =popupufeform
+            Width: =149
+            X: =395
+            Y: =540
+            ZIndex: =35
+
+        TotalProdHours As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or(FormNo = varAttachment.FormNo)
+                    ), 
+                    ProductionHours),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =395
+            Y: =596
+            ZIndex: =36
+
+        TotalRatedSpeed As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = varAttachment.FormNo)
+                    ), 
+                    RatedSpeed),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =596
+            Y: =596
+            ZIndex: =37
+
+        Label20_5 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Rated Speed"
+            Visible: =popupufeform
+            Width: =149
+            X: =596
+            Y: =540
+            ZIndex: =38
+
+        TotalNet As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = varAttachment.FormNo)
+                    ), 
+                    Net),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =817
+            Y: =596
+            ZIndex: =39
+
+        Label20_6 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Net"
+            Visible: =popupufeform
+            Width: =149
+            X: =817
+            Y: =540
+            ZIndex: =40
+
+        TotalRunTime As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: |-
+                =Text(
+                Sum(
+                    Filter('UFE-Extract-Excel', 
+                    Or( FormNo = varAttachment.FormNo)
+                    ), 
+                    PureRT),"[$-en-US]###,###,###")
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =1016
+            Y: =596
+            ZIndex: =41
+
+        Label20_7 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Run Time (Hrs)"
+            Visible: =popupufeform
+            Width: =127
+            X: =1016
+            Y: =540
+            ZIndex: =42
+
+        TotalPackaging As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =CountRows(Distinct(Filter('UFE-Extract-Excel', FormNo = varAttachment.FormNo),Pack))
+            Fill: =RGBA(230, 230, 230, 1)
+            Format: =TextFormat.Number
+            HoverBorderColor: =RGBA(230, 230, 230, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Visible: =popupufeform
+            Width: =149
+            X: =1191
+            Y: =596
+            ZIndex: =43
+
+        Label20_8 As label:
+            FontWeight: =Semibold
+            Height: =50
+            Text: ="Total Packaging"
+            Visible: =popupufeform
+            Width: =132
+            X: =1191
+            Y: =540
+            ZIndex: =44
+
+        Accept_Bttn_2 As button:
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =RGBA(54, 176, 75, 1)
+            Height: =44
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: |-
+                =If(
+                    
+                And(CountRows(Filter('UFE-Temporary-List','Form No' = varAttachment.FormNo))=0, varAttachment.BU ="EBSB"),
+                Patch('UFE-Temporary-List',
+                {
+                'Form No':varAttachment.FormNo,
+                BU:varAttachment.BU,
+                Month:varAttachment.Month,
+                Year:varAttachment.Year,
+                RequestorName:varAttachment.RequestorName,
+                RequestorEmail:varAttachment.RequestorEmail,
+                Status:"Upload from Excel",
+                ProductionLineCSD1CAN:"CSD 1 - CAN",
+                ProductionHoursCSD1CAN:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - CAN"),ProductionHours),
+                ProductionLineCSD1500mL:"CSD 1 - 500ml",
+                ProductionHoursCSD1500mL:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - 500ml"),ProductionHours),
+                ProductionLineCSD115L:"CSD 1 - 1.5L",
+                ProductionHoursCSD115L:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - 1.5L"),ProductionHours),
+                ProductionLineCSD1BIB:"CSD 1 - BIB",
+                ProductionHoursCSD1BIB:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - BIB"),ProductionHours),
+                ProductionLineCSD2:"CSD 2",
+                ProductionHoursCSD2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 2"),ProductionHours),
+                ProductionLineNCB1CAN:"NCB1 - CAN",
+                ProductionHoursNCB1CAN:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB1 - CAN"),ProductionHours),
+                ProductionLineNCB1PET:"NCB1 - PET",
+                ProductionHoursNCB1PET:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB1 - PET"),ProductionHours),
+                ProductionLineNCB2:"NCB2",
+                ProductionHoursNCB2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB2"),ProductionHours)}),
+                
+                And(CountRows(Filter('UFE-Temporary-List','Form No' = varAttachment.FormNo))>0, varAttachment.BU ="EBSB"),
+                Patch('UFE-Temporary-List',
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                {
+                'Form No':varAttachment.FormNo,
+                BU:varAttachment.BU,
+                Month:varAttachment.Month,
+                Year:varAttachment.Year,
+                RequestorName:varAttachment.RequestorName,
+                RequestorEmail:varAttachment.RequestorEmail,
+                Status:"Upload from Excel",
+                ProductionLineCSD1CAN:"CSD 1 - CAN",
+                ProductionHoursCSD1CAN:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - CAN"),ProductionHours),
+                ProductionLineCSD1500mL:"CSD 1 - 500ml",
+                ProductionHoursCSD1500mL:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - 500ml"),ProductionHours),
+                ProductionLineCSD115L:"CSD 1 - 1.5L",
+                ProductionHoursCSD115L:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - 1.5L"),ProductionHours),
+                ProductionLineCSD1BIB:"CSD 1 - BIB",
+                ProductionHoursCSD1BIB:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 1 - BIB"),ProductionHours),
+                ProductionLineCSD2:"CSD 2",
+                ProductionHoursCSD2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="CSD 2"),ProductionHours),
+                ProductionLineNCB1CAN:"NCB1 - CAN",
+                ProductionHoursNCB1CAN:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB1 - CAN"),ProductionHours),
+                ProductionLineNCB1PET:"NCB1 - PET",
+                ProductionHoursNCB1PET:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB1 - PET"),ProductionHours),
+                ProductionLineNCB2:"NCB2",
+                ProductionHoursNCB2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="NCB2"),ProductionHours)}),
+                
+                And(CountRows(Filter('UFE-Temporary-List','Form No' = varAttachment.FormNo))=0, varAttachment.BU ="EDSB"),
+                Patch('UFE-Temporary-List',
+                {
+                'Form No':varAttachment.FormNo,
+                BU:varAttachment.BU,
+                Month:varAttachment.Month,
+                Year:varAttachment.Year,
+                RequestorName:varAttachment.RequestorName,
+                RequestorEmail:varAttachment.RequestorEmail,
+                Status:"Upload from Excel",
+                ProductionLineNCB2SCMLine1:"SCM Line 1 (CAN)",
+                ProductionHoursSCMLine1:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 1 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine4:"SCM Line 4 (CAN)",
+                ProductionHoursSCMLine4:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 4 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine5:"SCM Line 5 (CAN)",
+                ProductionHoursSCMLine5:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 5 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine7:"SCM Line 7 (CAN)",
+                ProductionHoursSCMLine7:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 7 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine8:"SCM Line 8 (CAN)",
+                ProductionHoursSCMLine8:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 8 (CAN)"),ProductionHours),
+                ProductionLineEVAPLine3:"EVAP Line 3 (CAN)",
+                ProductionHoursEVAPLine3:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="EVAP Line 3 (CAN)"),ProductionHours),
+                ProductionLineUHTLine1:"UHT Line 1 (TETRA)",
+                ProductionHoursUHTLine1:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 1 (TETRA)"),ProductionHours),
+                ProductionLineUHTLine2:"UHT Line 2 (TETRA)",
+                ProductionHoursUHTLine2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 2 (TETRA)"),ProductionHours),
+                ProductionLineUHTLine3:"UHT Line 3 (COMBI)",
+                ProductionHoursUHTLine3:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 3 (COMBI)"),ProductionHours),
+                ProductionLineUHTLine4:"UHT Line 4 (BIB)",
+                ProductionHoursUHTLine4:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 4 (BIB)"),ProductionHours),
+                ProductionLinePMLine5:"PM Line 5 (TETRA)",
+                ProductionHoursPMLine5:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="PM Line 5 (TETRA)"),ProductionHours)}),
+                
+                And(CountRows(Filter('UFE-Temporary-List','Form No' = varAttachment.FormNo))>0, varAttachment.BU ="EDSB"),
+                Patch('UFE-Temporary-List',
+                LookUp('UFE-Temporary-List', 'Form No' = varAttachment.FormNo),
+                {
+                'Form No':varAttachment.FormNo,
+                BU:varAttachment.BU,
+                Month:varAttachment.Month,
+                Year:varAttachment.Year,
+                RequestorName:varAttachment.RequestorName,
+                RequestorEmail:varAttachment.RequestorEmail,
+                Status:"Upload from Excel",
+                ProductionLineNCB2SCMLine1:"SCM Line 1 (CAN)",
+                ProductionHoursSCMLine1:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 1 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine4:"SCM Line 4 (CAN)",
+                ProductionHoursSCMLine4:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 4 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine5:"SCM Line 5 (CAN)",
+                ProductionHoursSCMLine5:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 5 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine7:"SCM Line 7 (CAN)",
+                ProductionHoursSCMLine7:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 7 (CAN)"),ProductionHours),
+                ProductionLineNCB2SCMLine8:"SCM Line 8 (CAN)",
+                ProductionHoursSCMLine8:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="SCM Line 8 (CAN)"),ProductionHours),
+                ProductionLineEVAPLine3:"EVAP Line 3 (CAN)",
+                ProductionHoursEVAPLine3:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="EVAP Line 3 (CAN)"),ProductionHours),
+                ProductionLineUHTLine1:"UHT Line 1 (TETRA)",
+                ProductionHoursUHTLine1:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 1 (TETRA)"),ProductionHours),
+                ProductionLineUHTLine2:"UHT Line 2 (TETRA)",
+                ProductionHoursUHTLine2:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 2 (TETRA)"),ProductionHours),
+                ProductionLineUHTLine3:"UHT Line 3 (COMBI)",
+                ProductionHoursUHTLine3:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 3 (COMBI)"),ProductionHours),
+                ProductionLineUHTLine4:"UHT Line 4 (BIB)",
+                ProductionHoursUHTLine4:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="UHT Line 4 (BIB)"),ProductionHours),
+                ProductionLinePMLine5:"PM Line 5 (TETRA)",
+                ProductionHoursPMLine5:Sum(Filter('UFE-Extract-Excel',Month=MONTHUFEMY.Selected.Value,Year=YEARUFEMY.Selected.Value,ProductionLine="PM Line 5 (TETRA)"),ProductionHours)}));
+                
+                Set(popupsuccessful,true); 
+                Set(popupufeform,false)
+            Text: ="Accept"
+            Visible: |
+                =If(And(CountRows(Filter('UFE-Temporary-List','Form No' = Label7_5.Text)) = 0,popupufeform), true, false)
+            Width: =209
+            X: =452
+            Y: =680
+            ZIndex: =45
+
+        "'Close-bttn-etika' As icon.CancelBadge":
+            Color: =RGBA(0, 161, 233, 1)
+            Height: =24
+            Icon: =Icon.CancelBadge
+            OnSelect: =Set(popupufeform,false);Set(popupattachmentlistleft,true)
+            Visible: =popupufeform
+            Width: =24
+            X: =1336
+            Y: =16
+            ZIndex: =46
+
+    "'Logout-bttn_1' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =62
+
+        Button17_1 As button:
+            BorderThickness: =0
+            Fill: =RGBA(179, 179, 179, 1)
+            Height: =88
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: =Navigate(Loginpage)
+            PaddingTop: =15
+            Size: =12
+            Text: =varUserName
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =48
+            ZIndex: =18
+
+        Label16_1 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            OnSelect: =Navigate(Loginpage)
+            Size: =12
+            Text: ="Logout"
+            Visible: =popuplogout
+            Width: =74
+            X: =1150
+            Y: =93
+            ZIndex: =19
+
+        Rectangle4_1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Navigate(Loginpage)
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =91
+            ZIndex: =20
+
+    Successful_Update As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =66
+
+        Rectangle5_5 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupsuccessful
+            Width: =1366
+            ZIndex: =47
+
+        iconCircle2_1 As circle.Circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Visible: =popupsuccessful
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =319
+            ZIndex: =48
+
+        iconCheck2_1 As icon.Check:
+            Height: =iconCircle2_1.Height
+            Icon: =Icon.Check
+            OnSelect: |
+                =
+            PaddingBottom: =Self.PaddingTop
+            PaddingLeft: =Self.PaddingTop
+            PaddingRight: =Self.PaddingTop
+            PaddingTop: =24
+            Visible: =popupsuccessful
+            Width: =iconCircle2_1.Width
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =319
+            ZIndex: =49
+
+        LblSuccessMsg2_1 As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =100
+            Size: =18
+            Text: ="This has successfully completed."
+            Visible: =popupsuccessful
+            Width: =Parent.Width * 0.75
+            X: =Parent.Width/2 - Self.Width/2
+            Y: =449
+            ZIndex: =50
+
+        Icon7 As icon.CancelBadge:
+            Color: =RGBA(0, 161, 233, 1)
+            Height: =24
+            Icon: =Icon.CancelBadge
+            OnSelect: =Set(popupsuccessful,false)
+            Visible: =popupsuccessful
+            Width: =24
+            X: =1316
+            Y: =16
+            ZIndex: =51
+
+    "'Attachment-List-Left' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =70
+
+        Rectangle18 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =717
+            Visible: =popupattachmentlistleft
+            Width: =1366
+            Y: =51
+            ZIndex: =21
+
+        "Attachment_List As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            Height: =454
+            Items: ='UFE-Attachment-Excel'
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =63
+            Visible: =popupattachmentlistleft
+            Width: =1267
+            X: =56
+            Y: =243
+            ZIndex: =22
+
+            Button8_16 As button:
+                Color: =RGBA(0, 0, 0, 0)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(247, 247, 247, 1)
+                Height: =54
+                Text: =""
+                Width: =1254
+                Y: =5
+                ZIndex: =2
+
+            Icon3_9 As icon.Trash:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =20
+                Icon: =Icon.Trash
+                OnSelect: =Set(popupattachmentdelete,true);Set(varAttachment,ThisItem)
+                Width: =20
+                X: =1194
+                Y: =22
+                ZIndex: =4
+
+            Label7_5 As label:
+                FontWeight: =Semibold
+                Height: =46
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: =ThisItem.'Form No'
+                Width: =229
+                X: =68
+                Y: =9
+                ZIndex: =5
+
+            Image4 As image:
+                Height: =30
+                Image: =excel
+                OnSelect: =Select(Parent)
+                Width: =30
+                X: =22
+                Y: =17
+                ZIndex: =6
+
+            Label7_6 As label:
+                Align: =Center
+                FontWeight: =Semibold
+                Height: =46
+                OnSelect: =Select(Parent)
+                Size: =12
+                Text: =Text(ThisItem.Created,"[$-en-US]dd|mm|yyyy","en-GB")
+                Width: =121
+                X: =322
+                Y: =9
+                ZIndex: =7
+
+            Button10 As button:
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Transparent
+                OnSelect: =Set(varAttachment,ThisItem);Set(popupufeform,true);Set(popupattachmentlistleft,false)
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Excel Attachment"
+                Underline: =true
+                Width: =152
+                X: =651
+                Y: =12
+                ZIndex: =8
+
+            Button10_1 As button:
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Transparent
+                OnSelect: =Set(varAttachment,ThisItem);Set(popupufeform,false);Set(popupattachmentlistleft,false);Set(popupupdateattacment,true);Set(popupnewattachment,false)
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =12
+                Text: ="Update Excel"
+                Underline: =true
+                Width: =114
+                X: =509
+                Y: =12
+                ZIndex: =9
+
+            Username As text:
+                Default: =ThisItem.'Requestor Name'
+                OnSelect: =Select(Parent)
+                Visible: =false
+                X: =789
+                Y: =15
+                ZIndex: =10
+
+        Label9 As label:
+            FontWeight: =Semibold
+            Height: =25
+            Text: ="Attachment List"
+            Visible: =popupattachmentlistleft
+            Width: =164
+            X: =89
+            Y: =210
+            ZIndex: =23
+
+        Rectangle17_1 As rectangle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =25
+            Visible: =popupattachmentlistleft
+            Width: =8
+            X: =78
+            Y: =210
+            ZIndex: =24
+
+        Cancel_Bttn_12 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupattachmentlistleft,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupattachmentlistleft
+            Width: =454
+            X: =456
+            Y: =680
+            ZIndex: =25
+
+    Popup_loading As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =74
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =ShowImage
+            Width: =1366
+            ZIndex: =52
+
+        Image3 As image:
+            Height: =299
+            Image: ='loading-icon-animated-gif-19'
+            ImagePosition: =ImagePosition.Fill
+            Visible: =ShowImage
+            Width: =583
+            X: =392
+            Y: =192
+            ZIndex: =53
+
+        Label15 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =88
+            Size: =20
+            Text: ="Please wait a moment"
+            Visible: =ShowImage
+            Width: =367
+            X: =500
+            Y: =447
+            ZIndex: =54
+
+        Label15_1 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =69
+            Size: =18
+            Text: ="Your data is being captured"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =ShowImage
+            Width: =346
+            X: =510
+            Y: =507
+            ZIndex: =55
+
+    Add_New_Attachment As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =75
+
+        Add_Attachment_Form As form:
+            AcceptsFocus: =false
+            DataSource: ='UFE-Attachment-Excel'
+            Height: =545
+            Item: =Defaults('UFE-Attachment-Excel')
+            NumberOfColumns: =2
+            SnapToColumns: =false
+            Visible: =popupnewattachment
+            Width: =868
+            X: =249
+            Y: =142
+            ZIndex: =7
+
+            BU_DataCard4 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="BU"
+                Default: =ThisItem.BU
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"BU")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "BU")
+                Required: =false
+                Update: =BUUFENEWMY.Text
+                Visible: =true
+                Width: =436
+                X: =1
+                Y: =0
+                ZIndex: =1
+
+                DataCardKey206 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =27
+                    Y: =13
+                    ZIndex: =1
+
+                BUUFENEWMY As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    BorderThickness: =0
+                    Default: ="EBSB"
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =49
+                    ZIndex: =2
+
+                ErrorMessage214 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =BUUFENEWMY.Y + BUUFENEWMY.Height
+                    ZIndex: =3
+
+                StarVisible217 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey206.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey206.Y
+                    ZIndex: =4
+
+            Year_DataCard7 As typedDataCard.numberEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Year"
+                Default: =ThisItem.Year
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"Year")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Required: =false
+                Update: =Value(YEARUFENEWMY.Selected.Value)
+                Width: =432
+                X: =1
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey7 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                ErrorMessage7 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =YEARUFENEWMY.Y + YEARUFENEWMY.Height
+                    ZIndex: =3
+
+                StarVisible7 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey7.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey7.Y
+                    ZIndex: =4
+
+                YEARUFENEWMY As dropdown:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    ChevronBackground: =RGBA(0, 161, 233, 1)
+                    Default: =
+                    Items: =["", Year(Now()),  Year(Today())-1]
+                    Width: =374
+                    X: =30
+                    Y: =49
+                    ZIndex: =5
+
+            Month_DataCard7 As typedDataCard.comboBoxEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Month"
+                Default: =ThisItem.Month
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"Month")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                Required: =false
+                Update: =MONTHUFENEWMY.Selected
+                Width: =432
+                X: =2
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey189 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                MONTHUFENEWMY As combobox:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    ChevronBackground: =RGBA(0, 161, 233, 1)
+                    DefaultSelectedItems: =Parent.Default
+                    DisplayFields: =["Value"]
+                    DisplayMode: =Parent.DisplayMode
+                    InputTextPlaceholder: =""
+                    Items: =Choices([@'UFE-Attachment-Excel'].Month)
+                    PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                    SearchFields: =["Value"]
+                    SearchItems: =Choices('UFE-Attachment-Excel'.Month,MONTHUFENEWMY.SearchText)
+                    SelectMultiple: =false
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey189.Y + DataCardKey189.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage197 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =MONTHUFENEWMY.Y + MONTHUFENEWMY.Height
+                    ZIndex: =3
+
+                StarVisible200 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey189.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey189.Y
+                    ZIndex: =4
+
+            "'Requestor Email_DataCard1' As typedDataCard.textualEditCard":
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="RequestorEmail"
+                Default: =ThisItem.'Requestor Email'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"RequestorEmail")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "RequestorEmail")
+                Required: =false
+                Update: =DataCardValue186.Text
+                Visible: =false
+                Width: =434
+                X: =0
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey207 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue186 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =varUserEmail
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey207.Y + DataCardKey207.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage215 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue186.Y + DataCardValue186.Height
+                    ZIndex: =3
+
+                StarVisible218 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey207.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey207.Y
+                    ZIndex: =4
+
+            "'Requestor Name_DataCard1' As typedDataCard.textualEditCard":
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="RequestorName"
+                Default: =ThisItem.'Requestor Name'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@'UFE-Attachment-Excel'],DataSourceInfo.DisplayName,"RequestorName")
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "RequestorName")
+                Required: =false
+                Update: =DataCardValue188.Text
+                Visible: =false
+                Width: =434
+                X: =1
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey214 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue188 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =varUserName
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey214.Y + DataCardKey214.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage222 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue188.Y + DataCardValue188.Height
+                    ZIndex: =3
+
+                StarVisible225 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey214.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey214.Y
+                    ZIndex: =4
+
+            FormNo_DataCard1_1 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="FormNo"
+                Default: =ThisItem.'Form No'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="FormNo"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =98
+                MaxLength: =DataSourceInfo([@'UFE-Attachment-Excel'], DataSourceInfo.MaxLength, "FormNo")
+                Required: =false
+                Update: =DataCardValue17_1.Text
+                Width: =432
+                X: =0
+                Y: =0
+                ZIndex: =15
+
+                DataCardKey17_1 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: ="Form No"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue17_1 As text:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    Default: ="Attachment" & "-" & BUUFENEWMY.Text & Right(YEARUFENEWMY.Selected.Value, 2 )&Switch(MONTHUFENEWMY.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =RGBA(230, 230, 230, 1)
+                    HoverBorderColor: =RGBA(230, 230, 230, 1)
+                    HoverFill: =RGBA(230, 230, 230, 1)
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey17_1.Y + DataCardKey17_1.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage17_1 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue17_1.Y + DataCardValue17_1.Height
+                    ZIndex: =3
+
+                StarVisible17_1 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey17_1.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey17_1.Y
+                    ZIndex: =4
+
+            Attachments_DataCard1_1 As typedDataCard.attachmentsEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="{Attachments}"
+                Default: =ThisItem.Attachments
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="Attachments"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =316
+                Required: =false
+                Update: =DataCardValue22_1.Attachments
+                Width: =434
+                X: =1
+                Y: =2
+                ZIndex: =15
+
+                DataCardKey22_1 As label:
+                    AutoHeight: =true
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =34
+                    Text: ="Attachment"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue22_1 As attachments:
+                    BorderColor: =RGBA(230, 230, 230, 1)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =242
+                    HoverFill: =RGBA(230, 230, 230, 1)
+                    IsInDataCard: =true
+                    Items: =Parent.Default
+                    PaddingBottom: =5
+                    PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    Tooltip: =Parent.DisplayName
+                    Width: =374
+                    X: =30
+                    Y: =48
+                    ZIndex: =2
+
+                ErrorMessage22_1 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardValue22_1.Y + DataCardValue22_1.Height
+                    ZIndex: =3
+
+                StarVisible22_1 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey22_1.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey22_1.Y
+                    ZIndex: =4
+
+        Upload_Bttn As button:
+            Align: =Center
+            BorderThickness: =0
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |-
+                =SubmitForm(Add_Attachment_Form);
+                Set(popupsuccessful,true); 
+            Size: =13
+            Text: ="Upload"
+            Visible: =popupnewattachment
+            Width: =454
+            X: =456
+            Y: =680
+            ZIndex: =8
+
+        TimerNewExcel As timer:
+            Color: =RGBA(0, 0, 0, 0)
+            Duration: =120000
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =44
+            HoverColor: =Transparent
+            HoverFill: =Transparent
+            OnSelect: |-
+                =SubmitForm(Add_Attachment_Form);
+                UpdateContext({ShowImage: true});
+                Set(popupattachmentlistleft,true);
+                Set(popupsuccessful,true); 
+            OnTimerEnd: |-
+                =UpdateContext({ShowImage: false})
+            PressedColor: =Transparent
+            PressedFill: =Transparent
+            Visible: =popupnewattachment
+            Width: =454
+            X: =456
+            Y: =680
+            ZIndex: =14
+
+    Pop_Up_Attachment_Delete As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =82
+
+        Rectangle5_15 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupattachmentdelete
+            Width: =1366
+            ZIndex: =56
+
+        Delete_Bttn_12 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =RGBA(128, 128, 128, 1)
+            Height: =44
+            HoverColor: =ColorFade(Self.Color, -4%)
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: |-
+                =RemoveIf('UFE-Extract-Excel', FormNo = varAttachment.FormNo);
+                RemoveIf('UFE-Attachment-Excel', 'Form No' = varAttachment.FormNo);
+                Set(popupsuccessful,true); 
+                Set(popupattachmentdelete,false)
+            PressedColor: =ColorFade(Self.Color, -4%)
+            PressedFill: =ColorFade(Self.Fill, -4%)
+            Size: =13
+            Text: ="Delete"
+            Visible: =popupattachmentdelete
+            Width: =209
+            X: =687
+            Y: =664
+            ZIndex: =57
+
+        Cancel_Bttn_14 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupattachmentdelete,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupattachmentdelete
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =58
+
+        Circle2_12 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupattachmentdelete
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =59
+
+        Image6_12 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupattachmentdelete
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =60
+
+        Label3_29 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Do you want to continue deleting the attachment?"
+            Visible: =popupattachmentdelete
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =61
+

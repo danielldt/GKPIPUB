@@ -1,0 +1,177 @@
+LeftNavBarForm As CanvasComponent:
+    ExpandMenu: =false
+    Fill: =RGBA(255, 255, 255, 1)
+    Height: =640
+    MenuItemForm: |-
+        =Table(
+            {
+                MenuLabel: "Forms",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 1,
+                SubMenu: Table(
+                    {
+                        MenuLabel: "Add Attachment",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Unadjusted Factory Efficiency",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Machine Efficiency",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Quality Control",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Loss Time Injury",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "VDOT",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Demand Forecast",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Utilities",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    },
+                    {
+                        MenuLabel: "Coefficients for G-KPI Calculation",
+                        MenuIcon: Icon.Document,
+                        MenuScreenNavigate: App.ActiveScreen,
+                        MenuID: 1
+                    }
+                )
+            },
+            {
+                MenuLabel: "Total",
+                MenuIcon: Icon.Calculator,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 2,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Status",
+                MenuIcon: Icon.ThumbsUp,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 3,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Attachment",
+                MenuIcon: Icon.Document,
+                MenuScreenNavigate:App.ActiveScreen,
+                MenuID: 4,
+                SubMenu: Table()
+            },
+            {
+                MenuLabel: "Definition & Manual",
+                MenuIcon: Icon.ListWatchlistRemind,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 5,
+                SubMenu: Table()
+            }, 
+            {
+                MenuLabel: "AHSEA Report",
+                MenuIcon: Icon.Bookmark,
+                MenuScreenNavigate: App.ActiveScreen,
+                MenuID: 6,
+                SubMenu: Table()
+            }
+        )
+    MenuWidth: =If(showMenu,640,Icon14.Width)
+    OnReset: =Set(showMenu, LeftNavBarForm.ExpandMenu)
+    Width: =LeftNavBarForm.MenuWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Icon14 As icon.Hamburger:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =27
+        Icon: =Icon.Hamburger
+        OnSelect: =Set(showMenu,!showMenu)
+        Width: =50
+        Y: =10
+        ZIndex: =1
+
+    Gallery3 As gallery.variableTemplateHeightGallery:
+        Fill: =RGBA(253, 253, 253, 0.96)
+        Height: =583
+        Items: =LeftNavBarForm.MenuItemForm
+        Layout: =Layout.Vertical
+        TemplateSize: =280
+        Visible: =showMenu
+        Width: =Parent.Width
+        Y: =51
+        ZIndex: =2
+
+        Rectangle8 As rectangle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =33
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.MenuScreenNavigate = App.ActiveScreen
+            Width: =4
+            X: =6
+            Y: =1
+            ZIndex: =1
+
+        Icon15 As icon.Add:
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =34
+            Icon: =ThisItem.MenuIcon
+            OnSelect: =Select(Parent)
+            PaddingTop: =5
+            Width: =29
+            X: =18
+            ZIndex: =2
+
+        Label23 As label:
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =27
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.MenuLabel
+            Width: =318
+            X: =58
+            ZIndex: =3
+
+        Button18 As button:
+            Color: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =37
+            HoverColor: =Transparent
+            HoverFill: =Transparent
+            OnSelect: =Navigate(ThisItem.MenuScreenNavigate,ScreenTransition.Fade)
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            Text: ="Button"
+            Width: =Parent.TemplateWidth
+            X: =58
+            ZIndex: =4
+

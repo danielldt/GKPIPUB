@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "9c29cc12-8489-4cef-99fa-80b7150fb6ae",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Sendemailandpwordlinktonewuser",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

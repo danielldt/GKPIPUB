@@ -1,0 +1,2213 @@
+LTI_TotalPage As screen:
+    Fill: =
+    OnVisible: =Set(varShowMenu,true);Set(varShowMenu,false);
+
+    Header_24 As Header:
+        HeaderText: ="Total LTI"
+        ZIndex: =3
+
+    Button5_10 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(255, 255, 255, 0.89)
+        Height: =702
+        Text: =""
+        Width: =1303
+        X: =38
+        Y: =66
+        ZIndex: =4
+
+    Label1_30 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Size: =7.5
+        Text: =Email_Input.Text
+        Width: =256
+        X: =1105
+        Y: =6
+        ZIndex: =6
+
+    YearLTITotal As dropdown:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        Items: =["", Year(Now()),  Year(Today())-1, Year(Today())-2, Year(Today())-3, Year(Today())-4]
+        Size: =12
+        Width: =142
+        X: =170
+        Y: =40
+        ZIndex: =7
+
+    Label2_2 As label:
+        FontWeight: =Semibold
+        Text: ="Year"
+        Width: =142
+        X: =170
+        ZIndex: =8
+
+    Label2_5 As label:
+        FontWeight: =Semibold
+        Text: ="BU"
+        Width: =142
+        ZIndex: =10
+
+    BG_22 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =60
+
+        Image3_29 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_56 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    ComboBox1_1 As combobox:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        DisplayFields: =["Value"]
+        InputTextPlaceholder: =""
+        Items: =["","EBSB","EDSB","PTEMI","PTEDI"]
+        SearchFields: =["Value"]
+        SearchItems: =Search(["","EBSB","EDSB","PTEMI","PTEDI"],ComboBox1_1.SearchText,"Value")
+        Width: =142
+        Y: =40
+        ZIndex: =99
+
+    Button5_21 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(230, 230, 230, 1)
+        Height: =257
+        Text: =""
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =1244
+        X: =63
+        Y: =134
+        ZIndex: =103
+
+    Label3_348 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="January"
+        Width: =70
+        X: =322
+        Y: =88
+        ZIndex: =105
+
+    Label3_347 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="February"
+        Width: =98
+        X: =393
+        Y: =88
+        ZIndex: =106
+
+    Label3_346 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="March"
+        Width: =70
+        X: =492
+        Y: =88
+        ZIndex: =107
+
+    Label3_345 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="April"
+        Width: =70
+        X: =563
+        Y: =88
+        ZIndex: =108
+
+    Label3_344 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="May"
+        Width: =70
+        X: =634
+        Y: =88
+        ZIndex: =109
+
+    Label3_343 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="June"
+        Width: =70
+        X: =705
+        Y: =88
+        ZIndex: =110
+
+    Label3_342 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="July"
+        Width: =70
+        X: =776
+        Y: =88
+        ZIndex: =111
+
+    Label3_341 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="August"
+        Width: =70
+        X: =847
+        Y: =88
+        ZIndex: =112
+
+    Label3_160 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="September"
+        Width: =100
+        X: =918
+        Y: =88
+        ZIndex: =113
+
+    Label3_159 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="October"
+        Width: =85
+        X: =1019
+        Y: =88
+        ZIndex: =114
+
+    Label3_158 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="November"
+        Width: =105
+        X: =1105
+        Y: =88
+        ZIndex: =115
+
+    Label3_157 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="December"
+        Width: =98
+        X: =1212
+        Y: =88
+        ZIndex: =116
+
+    Label3_365 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =24
+        Size: =12
+        Text: ="Loss time Injury (LTI) Cases"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =233
+        X: =82
+        Y: =156
+        ZIndex: =117
+
+    Label3_366 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =25
+        Size: =12
+        Text: |
+            =If(LTITotalNext, Last(FirstN(ComboBox1_1.SelectedItems,3)).Value,
+            Last(FirstN(ComboBox1_1.SelectedItems,1)).Value)
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =85
+        X: =81
+        Y: =98
+        ZIndex: =173
+
+    Label3_367 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =20
+        Size: =12
+        Text: ="FAI/MTI Cases"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =148
+        X: =82
+        Y: =193
+        ZIndex: =174
+
+    Label3_368 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =25
+        Size: =12
+        Text: ="Total Plant hours worked"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =198
+        X: =82
+        Y: =226
+        ZIndex: =175
+
+    Label3_369 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =45
+        Size: =12
+        Text: ="Lost Time injury frequenct rate (LTIFR)"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =179
+        X: =82
+        Y: =264
+        ZIndex: =176
+
+    Label3_370 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =48
+        Size: =12
+        Text: ="Total recorded injury frequenct rate (TRIFR)"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =181
+        X: =82
+        Y: =325
+        ZIndex: =177
+
+    Icon13_8 As icon.NextArrow:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =37
+        Icon: =Icon.NextArrow
+        OnSelect: |
+            =UpdateContext({LTITotalNext:true})
+        Width: =37
+        X: =1263
+        Y: =721
+        ZIndex: =178
+
+    Icon13_9 As icon.NextArrow:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =37
+        Icon: =Icon.NextArrow
+        OnSelect: |
+            =UpdateContext({LTITotalNext:false})
+        Rotation: =180
+        Width: =37
+        X: =1214
+        Y: =721
+        ZIndex: =179
+
+    Button5_23 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(230, 230, 230, 1)
+        Height: =257
+        Text: =""
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =1244
+        X: =63
+        Y: =446
+        ZIndex: =180
+
+    Label3_373 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =24
+        Size: =12
+        Text: ="Loss time Injury (LTI) Cases"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =233
+        X: =82
+        Y: =468
+        ZIndex: =181
+
+    Label3_374 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =25
+        OnSelect: |
+            =
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Last(FirstN(ComboBox1_1.SelectedItems,4)).Value,
+            Last(FirstN(ComboBox1_1.SelectedItems,2)).Value)
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =85
+        X: =81
+        Y: =410
+        ZIndex: =182
+
+    Label3_375 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =20
+        Size: =12
+        Text: ="FAI/MTI Cases"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =148
+        X: =82
+        Y: =505
+        ZIndex: =183
+
+    Label3_376 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =25
+        Size: =12
+        Text: ="Total Plant hours worked"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =198
+        X: =82
+        Y: =538
+        ZIndex: =184
+
+    Label3_377 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =45
+        Size: =12
+        Text: ="Lost Time injury frequenct rate (LTIFR)"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =179
+        X: =82
+        Y: =576
+        ZIndex: =185
+
+    Label3_378 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =48
+        Size: =12
+        Text: ="Total recorded injury frequenct rate (TRIFR)"
+        Visible: =If(CountRows(ComboBox1_1.SelectedItems)> 0,true,false)
+        Width: =181
+        X: =82
+        Y: =637
+        ZIndex: =186
+
+    Label23_910 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =321
+        Y: =156
+        ZIndex: =187
+
+    Label23_911 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =407
+        Y: =155
+        ZIndex: =188
+
+    Label23_912 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =491
+        Y: =155
+        ZIndex: =189
+
+    Label23_913 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =564
+        Y: =155
+        ZIndex: =190
+
+    Label23_914 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =634
+        Y: =155
+        ZIndex: =191
+
+    Label23_915 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =706
+        Y: =155
+        ZIndex: =192
+
+    Label23_916 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =776
+        Y: =155
+        ZIndex: =193
+
+    Label23_917 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =848
+        Y: =155
+        ZIndex: =194
+
+    Label23_918 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =933
+        Y: =155
+        ZIndex: =195
+
+    Label23_919 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1026
+        Y: =155
+        ZIndex: =196
+
+    Label23_920 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1121
+        Y: =155
+        ZIndex: =197
+
+    Label23_921 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1226
+        Y: =155
+        ZIndex: =198
+
+    Label23_922 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =321
+        Y: =190
+        ZIndex: =199
+
+    Label23_923 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =407
+        Y: =189
+        ZIndex: =200
+
+    Label23_924 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =491
+        Y: =189
+        ZIndex: =201
+
+    Label23_925 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =564
+        Y: =189
+        ZIndex: =202
+
+    Label23_926 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =634
+        Y: =189
+        ZIndex: =203
+
+    Label23_927 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =706
+        Y: =189
+        ZIndex: =204
+
+    Label23_928 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =776
+        Y: =189
+        ZIndex: =205
+
+    Label23_929 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =848
+        Y: =189
+        ZIndex: =206
+
+    Label23_930 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =933
+        Y: =189
+        ZIndex: =207
+
+    Label23_931 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1026
+        Y: =189
+        ZIndex: =208
+
+    Label23_932 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1121
+        Y: =189
+        ZIndex: =209
+
+    Label23_933 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1226
+        Y: =189
+        ZIndex: =210
+
+    Label23_934 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =321
+        Y: =226
+        ZIndex: =211
+
+    Label23_935 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =407
+        Y: =225
+        ZIndex: =212
+
+    Label23_936 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =491
+        Y: =225
+        ZIndex: =213
+
+    Label23_937 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =564
+        Y: =225
+        ZIndex: =214
+
+    Label23_938 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =634
+        Y: =225
+        ZIndex: =215
+
+    Label23_939 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =706
+        Y: =225
+        ZIndex: =216
+
+    Label23_940 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =776
+        Y: =225
+        ZIndex: =217
+
+    Label23_941 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =848
+        Y: =225
+        ZIndex: =218
+
+    Label23_942 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =933
+        Y: =225
+        ZIndex: =219
+
+    Label23_943 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1026
+        Y: =225
+        ZIndex: =220
+
+    Label23_944 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1121
+        Y: =225
+        ZIndex: =221
+
+    Label23_945 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1226
+        Y: =225
+        ZIndex: =222
+
+    Label23_946 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =321
+        Y: =272
+        ZIndex: =223
+
+    Label23_947 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =407
+        Y: =271
+        ZIndex: =224
+
+    Label23_948 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =491
+        Y: =271
+        ZIndex: =225
+
+    Label23_949 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =564
+        Y: =271
+        ZIndex: =226
+
+    Label23_950 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =634
+        Y: =271
+        ZIndex: =227
+
+    Label23_951 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =706
+        Y: =271
+        ZIndex: =228
+
+    Label23_952 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =776
+        Y: =271
+        ZIndex: =229
+
+    Label23_953 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =848
+        Y: =271
+        ZIndex: =230
+
+    Label23_954 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =933
+        Y: =271
+        ZIndex: =231
+
+    Label23_955 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1026
+        Y: =271
+        ZIndex: =232
+
+    Label23_956 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1121
+        Y: =271
+        ZIndex: =233
+
+    Label23_957 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1226
+        Y: =271
+        ZIndex: =234
+
+    Label23_958 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =321
+        Y: =337
+        ZIndex: =235
+
+    Label23_959 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =407
+        Y: =336
+        ZIndex: =236
+
+    Label23_960 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =491
+        Y: =336
+        ZIndex: =237
+
+    Label23_961 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =564
+        Y: =336
+        ZIndex: =238
+
+    Label23_962 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =634
+        Y: =336
+        ZIndex: =239
+
+    Label23_963 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =706
+        Y: =336
+        ZIndex: =240
+
+    Label23_964 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =776
+        Y: =336
+        ZIndex: =241
+
+    Label23_965 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =848
+        Y: =336
+        ZIndex: =242
+
+    Label23_966 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =933
+        Y: =336
+        ZIndex: =243
+
+    Label23_967 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1026
+        Y: =336
+        ZIndex: =244
+
+    Label23_968 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1121
+        Y: =336
+        ZIndex: =245
+
+    Label23_969 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1226
+        Y: =336
+        ZIndex: =246
+
+    Label23_970 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =325
+        Y: =471
+        ZIndex: =248
+
+    Label23_971 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =411
+        Y: =470
+        ZIndex: =249
+
+    Label23_972 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =495
+        Y: =470
+        ZIndex: =250
+
+    Label23_973 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =568
+        Y: =470
+        ZIndex: =251
+
+    Label23_974 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =638
+        Y: =470
+        ZIndex: =252
+
+    Label23_975 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =710
+        Y: =470
+        ZIndex: =253
+
+    Label23_976 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =780
+        Y: =470
+        ZIndex: =254
+
+    Label23_977 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =852
+        Y: =470
+        ZIndex: =255
+
+    Label23_978 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =937
+        Y: =470
+        ZIndex: =256
+
+    Label23_979 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1030
+        Y: =470
+        ZIndex: =257
+
+    Label23_980 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1125
+        Y: =470
+        ZIndex: =258
+
+    Label23_981 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Loss time Injury (LTI) Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Loss time Injury (LTI) Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1230
+        Y: =470
+        ZIndex: =259
+
+    Label23_982 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =325
+        Y: =505
+        ZIndex: =260
+
+    Label23_983 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =411
+        Y: =504
+        ZIndex: =261
+
+    Label23_984 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =495
+        Y: =504
+        ZIndex: =262
+
+    Label23_985 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =568
+        Y: =504
+        ZIndex: =263
+
+    Label23_986 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =638
+        Y: =504
+        ZIndex: =264
+
+    Label23_987 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =710
+        Y: =504
+        ZIndex: =265
+
+    Label23_988 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =780
+        Y: =504
+        ZIndex: =266
+
+    Label23_989 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =852
+        Y: =504
+        ZIndex: =267
+
+    Label23_990 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =937
+        Y: =504
+        ZIndex: =268
+
+    Label23_991 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1030
+        Y: =504
+        ZIndex: =269
+
+    Label23_992 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1125
+        Y: =504
+        ZIndex: =270
+
+    Label23_993 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'FAI/MTI Cases'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'FAI/MTI Cases'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1230
+        Y: =504
+        ZIndex: =271
+
+    Label23_994 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,3)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,1)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =325
+        Y: =541
+        ZIndex: =272
+
+    Label23_995 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =411
+        Y: =540
+        ZIndex: =273
+
+    Label23_996 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =495
+        Y: =540
+        ZIndex: =274
+
+    Label23_997 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =568
+        Y: =540
+        ZIndex: =275
+
+    Label23_998 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =638
+        Y: =540
+        ZIndex: =276
+
+    Label23_999 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =710
+        Y: =540
+        ZIndex: =277
+
+    Label23_1000 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =780
+        Y: =540
+        ZIndex: =278
+
+    Label23_1001 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =852
+        Y: =540
+        ZIndex: =279
+
+    Label23_1002 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =937
+        Y: =540
+        ZIndex: =280
+
+    Label23_1003 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1030
+        Y: =540
+        ZIndex: =281
+
+    Label23_1004 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1125
+        Y: =540
+        ZIndex: =282
+
+    Label23_1005 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total Plant hours worked'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total Plant hours worked'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1230
+        Y: =540
+        ZIndex: =283
+
+    Label23_1006 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =325
+        Y: =587
+        ZIndex: =284
+
+    Label23_1007 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =411
+        Y: =586
+        ZIndex: =285
+
+    Label23_1008 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =495
+        Y: =586
+        ZIndex: =286
+
+    Label23_1009 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =568
+        Y: =586
+        ZIndex: =287
+
+    Label23_1010 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =638
+        Y: =586
+        ZIndex: =288
+
+    Label23_1011 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =710
+        Y: =586
+        ZIndex: =289
+
+    Label23_1012 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =780
+        Y: =586
+        ZIndex: =290
+
+    Label23_1013 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =852
+        Y: =586
+        ZIndex: =291
+
+    Label23_1014 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =937
+        Y: =586
+        ZIndex: =292
+
+    Label23_1015 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1030
+        Y: =586
+        ZIndex: =293
+
+    Label23_1016 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1125
+        Y: =586
+        ZIndex: =294
+
+    Label23_1017 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Lost Time injury frequenct rate (LTIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Lost Time injury frequenct rate (LTIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1230
+        Y: =586
+        ZIndex: =295
+
+    Label23_1018 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =325
+        Y: =652
+        ZIndex: =296
+
+    Label23_1019 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =411
+        Y: =651
+        ZIndex: =297
+
+    Label23_1020 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =495
+        Y: =651
+        ZIndex: =298
+
+    Label23_1021 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =568
+        Y: =651
+        ZIndex: =299
+
+    Label23_1022 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =638
+        Y: =651
+        ZIndex: =300
+
+    Label23_1023 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =710
+        Y: =651
+        ZIndex: =301
+
+    Label23_1024 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =780
+        Y: =651
+        ZIndex: =302
+
+    Label23_1025 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =852
+        Y: =651
+        ZIndex: =303
+
+    Label23_1026 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =937
+        Y: =651
+        ZIndex: =304
+
+    Label23_1027 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1030
+        Y: =651
+        ZIndex: =305
+
+    Label23_1028 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1125
+        Y: =651
+        ZIndex: =306
+
+    Label23_1029 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(LTITotalNext, Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,4)).Value),'Total recorded injury frequenct rate (TRIFR)'),
+            
+            
+            Sum( Filter('LTI Form', Year = YearLTITotal.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_1.SelectedItems,2)).Value),'Total recorded injury frequenct rate (TRIFR)'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1230
+        Y: =651
+        ZIndex: =307
+

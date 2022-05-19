@@ -1,0 +1,1710 @@
+Homepage As screen:
+    OnVisible: |+
+        =Set(popuplogout,false);
+        Set(varUserEmail, Email_Input.Text);
+        Set(varUserForm, LookUp('User List', Email = varUserEmail).Form);
+        
+
+    Rectangle20 As rectangle:
+        Fill: =RGBA(249, 249, 249, 1)
+        Height: =768
+        Width: =1366
+        ZIndex: =1
+
+    Header_12 As Header:
+        HeaderText: ="Homepage"
+        ZIndex: =2
+
+    UFE As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =21
+
+        Image7 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =180
+            Y: =120
+            ZIndex: =39
+
+        Timer2_1 As timer:
+            Duration: =50
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer2
+            Visible: =false
+            X: =56
+            Y: =72
+            ZIndex: =40
+
+        UFE_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Unadjusted Factory Efficiency" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Unadjusted Factory Efficiency" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer2:false});UpdateContext({ShowSubMenu:!ShowSubMenu,StartMyTimer2:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Unadjusted
+                Factory Efficiency"
+            Width: =191
+            X: =180
+            Y: =120
+            ZIndex: =41
+
+        UFE_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =215
+            Y: =369
+            ZIndex: =42
+
+        UFE_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(UFE_TotalPage_AHSEA)
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Unadjusted Factory Efficiency" in varUserForm.Value, true, false)
+            Width: =120
+            X: =215
+            Y: =339
+            ZIndex: =43
+
+        UFE_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =If(CountRows(Filter('UFE-Temporary-List', RequestorEmail = varUserEmail)) > 0, Set(popupsavedform,true),Navigate(UFE_RequestorMY))
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Unadjusted Factory Efficiency" in varUserForm.Value, true, false)
+            Width: =120
+            X: =215
+            Y: =309
+            ZIndex: =44
+
+        Timer2_2 As timer:
+            Duration: =100
+            HoverFill: =Transparent
+            Start: =StartMyTimer2
+            Visible: =false
+            X: =76
+            Y: =92
+            ZIndex: =45
+
+        Timer2_3 As timer:
+            Duration: =150
+            Start: =StartMyTimer2
+            Visible: =false
+            X: =96
+            Y: =112
+            ZIndex: =46
+
+        Icon17 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Icon.ThumbsUp
+            Width: =39
+            X: =256
+            Y: =196
+            ZIndex: =47
+
+    ME As group:
+        Height: =5
+        Width: =5
+        X: =30
+        Y: =60
+        ZIndex: =21
+
+        Image7_1 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =381
+            Y: =120
+            ZIndex: =30
+
+        Timer2_5 As timer:
+            Duration: =100
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer3
+            Visible: =false
+            X: =257
+            Y: =72
+            ZIndex: =31
+
+        ME_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Machine Efficiency" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Machine Efficiency" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer3:false});UpdateContext({ShowSubMenuME:!ShowSubMenuME,StartMyTimer3:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Machine
+                Efficiency"
+            Width: =191
+            X: =381
+            Y: =120
+            ZIndex: =32
+
+        ME_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =416
+            Y: =369
+            ZIndex: =33
+
+        ME_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Machine Efficiency" in varUserForm.Value, true,false)
+            Width: =120
+            X: =416
+            Y: =339
+            ZIndex: =34
+
+        ME_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Machine Efficiency" in varUserForm.Value, true,false)
+            Width: =120
+            X: =416
+            Y: =309
+            ZIndex: =35
+
+        Timer2_4 As timer:
+            Duration: =150
+            HoverFill: =Transparent
+            Start: =StartMyTimer3
+            Visible: =false
+            X: =277
+            Y: =92
+            ZIndex: =36
+
+        Timer2_6 As timer:
+            Duration: =200
+            Start: =StartMyTimer3
+            Visible: =false
+            X: =297
+            Y: =112
+            ZIndex: =37
+
+        Icon17_1 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Clock
+            Width: =39
+            X: =457
+            Y: =196
+            ZIndex: =38
+
+    QC As group:
+        Height: =5
+        Width: =5
+        X: =-291
+        Y: =60
+        ZIndex: =30
+
+        Image7_2 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =584
+            Y: =120
+            ZIndex: =21
+
+        Timer2_8 As timer:
+            Duration: =300
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer4
+            Visible: =false
+            X: =520
+            Y: =72
+            ZIndex: =22
+
+        QC_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Quality Control" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Quality Control" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer4:false});UpdateContext({ShowSubMenuQC:!ShowSubMenuQC,StartMyTimer4:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Quality
+                Control"
+            Width: =191
+            X: =584
+            Y: =120
+            ZIndex: =23
+
+        QC_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =620
+            Y: =369
+            ZIndex: =24
+
+        QC_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Quality Control" in varUserForm.Value, true,false)
+            Width: =120
+            X: =620
+            Y: =339
+            ZIndex: =25
+
+        QC_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Quality Control" in varUserForm.Value, true,false)
+            Width: =120
+            X: =620
+            Y: =309
+            ZIndex: =26
+
+        Timer2_7 As timer:
+            Duration: =350
+            HoverFill: =Transparent
+            Start: =StartMyTimer4
+            Visible: =false
+            X: =520
+            Y: =92
+            ZIndex: =27
+
+        Timer2_9 As timer:
+            Duration: =400
+            Start: =StartMyTimer4
+            Visible: =false
+            X: =520
+            Y: =112
+            ZIndex: =28
+
+        Icon17_2 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =EmojiSmile
+            Width: =39
+            X: =660
+            Y: =196
+            ZIndex: =29
+
+    LTI As group:
+        Height: =5
+        Width: =5
+        X: =-554
+        Y: =60
+        ZIndex: =39
+
+        Image7_3 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =786
+            Y: =120
+            ZIndex: =12
+
+        Timer2_11 As timer:
+            Duration: =350
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer5
+            Visible: =false
+            X: =782
+            Y: =72
+            ZIndex: =13
+
+        LTI_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Loss Time Injury" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Loss Time Injury" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer5:false});UpdateContext({ShowSubMenuLTI:!ShowSubMenuLTI,StartMyTimer5:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Loss
+                Time Injury"
+            Width: =191
+            X: =786
+            Y: =120
+            ZIndex: =14
+
+        LTI_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =821
+            Y: =369
+            ZIndex: =15
+
+        LTI_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Loss Time Injury" in varUserForm.Value, true,false)
+            Width: =120
+            X: =821
+            Y: =339
+            ZIndex: =16
+
+        LTI_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Loss Time Injury" in varUserForm.Value, true,false)
+            Width: =120
+            X: =821
+            Y: =309
+            ZIndex: =17
+
+        Timer2_10 As timer:
+            Duration: =400
+            HoverFill: =Transparent
+            Start: =StartMyTimer5
+            Visible: =false
+            X: =782
+            Y: =92
+            ZIndex: =18
+
+        Timer2_12 As timer:
+            Duration: =450
+            Start: =StartMyTimer5
+            Visible: =false
+            X: =782
+            Y: =112
+            ZIndex: =19
+
+        Icon17_3 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Post
+            Width: =39
+            X: =862
+            Y: =196
+            ZIndex: =20
+
+    VDOT As group:
+        Height: =5
+        Width: =5
+        X: =-696
+        Y: =60
+        ZIndex: =48
+
+        Image7_4 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =989
+            Y: =120
+            ZIndex: =3
+
+        Timer2_14 As timer:
+            Duration: =500
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer6
+            Visible: =false
+            X: =985
+            Y: =72
+            ZIndex: =4
+
+        VDOT_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("VDOT" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("VDOT" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer6:false});UpdateContext({ShowSubMenuVDOT:!ShowSubMenuVDOT,StartMyTimer6:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: ="VDOT"
+            Width: =191
+            X: =989
+            Y: =120
+            ZIndex: =5
+
+        VDOT_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =1025
+            Y: =369
+            ZIndex: =6
+
+        VDOT_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("VDOT" in varUserForm.Value, true,false)
+            Width: =120
+            X: =1025
+            Y: =339
+            ZIndex: =7
+
+        VDOT_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("VDOT" in varUserForm.Value, true,false)
+            Width: =120
+            X: =1025
+            Y: =309
+            ZIndex: =8
+
+        Timer2_13 As timer:
+            Duration: =550
+            HoverFill: =Transparent
+            Start: =StartMyTimer6
+            Visible: =false
+            X: =985
+            Y: =92
+            ZIndex: =9
+
+        Timer2_15 As timer:
+            Duration: =600
+            Start: =StartMyTimer6
+            Visible: =false
+            X: =985
+            Y: =112
+            ZIndex: =10
+
+        Icon17_4 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =CheckBadge
+            Width: =39
+            X: =1065
+            Y: =196
+            ZIndex: =11
+
+    DF As group:
+        Height: =5
+        Width: =5
+        X: =-116
+        Y: =60
+        ZIndex: =48
+
+        Image7_5 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =184
+            Y: =417
+            ZIndex: =66
+
+        Timer2_17 As timer:
+            Duration: =50
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer7
+            Visible: =false
+            X: =120
+            Y: =413
+            ZIndex: =67
+
+        DF_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Demand Forecast" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Demand Forecast" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer7:false});UpdateContext({ShowSubMenuDF:!ShowSubMenuDF,StartMyTimer7:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Demand
+                Forecast"
+            Width: =191
+            X: =184
+            Y: =417
+            ZIndex: =68
+
+        DF_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =215
+            Y: =666
+            ZIndex: =69
+
+        DF_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Demand Forecast" in varUserForm.Value, true,false)
+            Width: =120
+            X: =215
+            Y: =636
+            ZIndex: =70
+
+        DF_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Demand Forecast" in varUserForm.Value, true,false)
+            Width: =120
+            X: =215
+            Y: =606
+            ZIndex: =71
+
+        Timer2_16 As timer:
+            Duration: =100
+            HoverFill: =Transparent
+            Start: =StartMyTimer7
+            Visible: =false
+            X: =120
+            Y: =433
+            ZIndex: =72
+
+        Timer2_18 As timer:
+            Duration: =150
+            Start: =StartMyTimer7
+            Visible: =false
+            X: =120
+            Y: =453
+            ZIndex: =73
+
+        Icon17_5 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Trending
+            Width: =39
+            X: =260
+            Y: =493
+            ZIndex: =74
+
+    Util As group:
+        Height: =5
+        Width: =5
+        X: =-317
+        Y: =60
+        ZIndex: =58
+
+        Image7_6 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =384
+            Y: =417
+            ZIndex: =57
+
+        Timer2_20 As timer:
+            Duration: =100
+            HoverFill: =ColorFade(RGBA(230, 230, 230, 1), -20%)
+            Start: =StartMyTimer8
+            Visible: =false
+            X: =320
+            Y: =369
+            ZIndex: =58
+
+        Util_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Utilities" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Utilities" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({StartMyTimer8:false});UpdateContext({ShowSubMenuUtil:!ShowSubMenuUtil,StartMyTimer8:true})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: ="Utilties"
+            Width: =191
+            X: =384
+            Y: =417
+            ZIndex: =59
+
+        Util_Status As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =Navigate(Status)
+            Size: =12
+            Text: ="Status"
+            Visible: =false
+            Width: =120
+            X: =416
+            Y: =666
+            ZIndex: =60
+
+        Util_Total As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Total"
+            Visible: =If("Utilities" in varUserForm.Value, true,false)
+            Width: =120
+            X: =416
+            Y: =636
+            ZIndex: =61
+
+        Util_Form As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =23
+            HoverColor: =RGBA(255,255,255,100)
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: =
+            Size: =12
+            Text: ="Form"
+            Visible: =If("Utilities" in varUserForm.Value, true,false)
+            Width: =120
+            X: =416
+            Y: =606
+            ZIndex: =62
+
+        Timer2_19 As timer:
+            Duration: =150
+            HoverFill: =Transparent
+            Start: =StartMyTimer8
+            Visible: =false
+            X: =320
+            Y: =389
+            ZIndex: =63
+
+        Timer2_21 As timer:
+            Duration: =200
+            Start: =StartMyTimer8
+            Visible: =false
+            X: =320
+            Y: =409
+            ZIndex: =64
+
+        Icon17_6 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Settings
+            Width: =39
+            X: =460
+            Y: =493
+            ZIndex: =65
+
+    GKPI As group:
+        Height: =5
+        Width: =5
+        X: =-460
+        Y: =60
+        ZIndex: =74
+
+        Image7_7 As image:
+            DisplayMode: =If("GKPI Utilities" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =585
+            Y: =417
+            ZIndex: =54
+
+        GKPI_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("GKPI Utilities" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("GKPI Utilities" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({ShowSubMenuGKPI:!ShowSubMenuGKPI})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: ="G-KPI Util"
+            Width: =191
+            X: =585
+            Y: =417
+            ZIndex: =55
+
+        Icon17_7 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =If("GKPI Utilities" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Height: =39
+            Icon: =Items
+            Width: =39
+            X: =661
+            Y: =493
+            ZIndex: =56
+
+    Rectangle19 As rectangle:
+        Fill: =RGBA(249, 249, 249, 1)
+        Height: =676
+        Width: =162
+        Y: =92
+        ZIndex: =81
+
+    Coefficients As group:
+        Height: =5
+        Width: =5
+        X: =-722
+        Y: =60
+        ZIndex: =83
+
+        Image7_8 As image:
+            DisplayMode: =If("Coefficients for G-KPI Calculation" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =786
+            Y: =417
+            ZIndex: =51
+
+        Coefficients_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Coefficients for G-KPI Calculation" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Coefficients for G-KPI Calculation" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({ShowSubMenuCoefficients:!ShowSubMenuCoefficients})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: ="Coefficients"
+            Width: =191
+            X: =786
+            Y: =417
+            ZIndex: =52
+
+        Icon17_8 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =If("Coefficients for G-KPI Calculation" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Height: =39
+            Icon: =Note
+            Width: =39
+            X: =862
+            Y: =493
+            ZIndex: =53
+
+    Notification_Bell_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =85
+
+        Icon4_1 As icon.Bell:
+            Color: =RGBA(179, 179, 179, 1)
+            Height: =25
+            Icon: =Icon.Bell
+            Width: =32
+            X: =1274
+            Y: =13
+            ZIndex: =76
+
+        Circle4_3 As circle:
+            Fill: =RGBA(255, 0, 0, 1)
+            Height: =5
+            Width: =5
+            X: =1293
+            Y: =17
+            ZIndex: =77
+
+    Pending_Notification_Approver As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =86
+
+        Button8_18 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =70
+            Text: =""
+            Visible: =false
+            Width: =246
+            X: =1054
+            Y: =59
+            ZIndex: =75
+
+        Button8_17 As button:
+            Align: =Left
+            Color: =RGBA(255, 191, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =27
+            PaddingLeft: =0
+            Size: =10
+            Text: ="Pending"
+            Visible: =false
+            Width: =98
+            X: =1065
+            Y: =68
+            ZIndex: =78
+
+        Label14_1 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =0
+            Size: =10
+            Text: ="requests need your approval"
+            Visible: =false
+            Width: =197
+            X: =1078
+            Y: =89
+            ZIndex: =79
+
+        Icon5_3 As icon.NextArrow:
+            Color: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =14
+            Icon: =Icon.NextArrow
+            OnSelect: =Navigate(Status)
+            Visible: =false
+            Width: =14
+            X: =1275
+            Y: =102
+            ZIndex: =80
+
+        Label14_3 As label:
+            Align: =Left
+            FontWeight: =Bold
+            PaddingLeft: =0
+            Size: =10
+            Text: =CountRows(Distinct(Filter('UFE-Temporary-List', Status = "Pending from 2nd Approver"),'Form No'))
+            Visible: =false
+            Width: =24
+            X: =1065
+            Y: =89
+            ZIndex: =83
+
+        Triangle1_1 As triangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =14
+            Visible: =false
+            Width: =14
+            X: =1279
+            Y: =46
+            ZIndex: =84
+
+        Rectangle21 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            Visible: =false
+            Width: =60
+            X: =1065
+            Y: =95
+            ZIndex: =85
+
+    Manual As group:
+        Height: =5
+        Width: =5
+        X: =-925
+        Y: =60
+        ZIndex: =92
+
+        Image7_9 As image:
+            Height: =289
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =191
+            X: =989
+            Y: =417
+            ZIndex: =48
+
+        Manual_Bttn As button:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderThickness: =1
+            DisplayMode: =If("Definition and Manual" in varUserForm.Value, DisplayMode.Edit, DisplayMode.View)
+            Fill: =If("Definition" in varUserForm.Value, RGBA(0, 161, 233, 0.86), RGBA(128, 128, 128, 0.9))
+            Height: =289
+            HoverColor: =WhiteSmoke
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =UpdateContext({ShowSubMenuManual:!ShowSubMenuManual})
+            PressedBorderColor: =Transparent
+            PressedFill: =Self.Fill
+            Size: =13
+            Text: |-
+                ="Definition
+                & Manual"
+            Width: =191
+            X: =989
+            Y: =417
+            ZIndex: =49
+
+        Icon17_9 As icon.ThumbsUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =39
+            Icon: =Notebook
+            Width: =39
+            X: =1065
+            Y: =493
+            ZIndex: =50
+
+    Approved1_Notification_Requestor As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =93
+
+        Button8_20 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =70
+            Text: =""
+            Visible: =false
+            Width: =246
+            X: =792
+            Y: =59
+            ZIndex: =86
+
+        Button8_19 As button:
+            Align: =Left
+            Color: =RGBA(54, 176, 75, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =27
+            PaddingLeft: =0
+            Size: =10
+            Text: ="Approved from Plant Manager"
+            Visible: =false
+            Width: =210
+            X: =803
+            Y: =68
+            ZIndex: =87
+
+        Label14_5 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =0
+            Size: =10
+            Text: ="request(s) approved"
+            Visible: =false
+            Width: =197
+            X: =816
+            Y: =89
+            ZIndex: =88
+
+        Label14_4 As label:
+            Align: =Left
+            FontWeight: =Bold
+            PaddingLeft: =0
+            Size: =10
+            Text: =CountRows(Distinct(Filter('UFE-Temporary-List', Status = "Pending from 2nd Approver", RequestorEmail = Email_Input.Text),'Form No'))
+            Visible: =false
+            Width: =24
+            X: =803
+            Y: =89
+            ZIndex: =90
+
+        Triangle1_2 As triangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =14
+            Visible: =false
+            Width: =14
+            X: =1017
+            Y: =46
+            ZIndex: =91
+
+        Rectangle21_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            Visible: =false
+            Width: =200
+            X: =803
+            Y: =95
+            ZIndex: =92
+
+    Rejected1_Notification_Requestor As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =100
+
+        Button8_22 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =70
+            Text: =""
+            Visible: =false
+            Width: =246
+            X: =792
+            Y: =136
+            ZIndex: =93
+
+        Button8_21 As button:
+            Align: =Left
+            Color: =RGBA(184, 0, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =27
+            PaddingLeft: =0
+            Size: =10
+            Text: ="Rejected from Plant Manager"
+            Visible: =false
+            Width: =210
+            X: =803
+            Y: =145
+            ZIndex: =94
+
+        Label14_7 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =0
+            Size: =10
+            Text: ="request(s) rejected"
+            Visible: =false
+            Width: =197
+            X: =816
+            Y: =166
+            ZIndex: =95
+
+        Label14_6 As label:
+            Align: =Left
+            FontWeight: =Bold
+            PaddingLeft: =0
+            Size: =10
+            Text: =CountRows(Distinct(Filter('UFE-Temporary-List', Status = "Rejected", RequestorEmail = Email_Input.Text),'Form No'))
+            Visible: =false
+            Width: =24
+            X: =803
+            Y: =166
+            ZIndex: =97
+
+        Rectangle21_2 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            Visible: =false
+            Width: =200
+            X: =803
+            Y: =172
+            ZIndex: =99
+
+    Approved2_Notification_Requestor As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =105
+
+        Button8_24 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =70
+            Text: =""
+            Visible: =false
+            Width: =246
+            X: =792
+            Y: =214
+            ZIndex: =100
+
+        Button8_23 As button:
+            Align: =Left
+            Color: =RGBA(54, 176, 75, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =27
+            PaddingLeft: =0
+            Size: =10
+            Text: ="Approved from Regional Manager"
+            Visible: =false
+            Width: =228
+            X: =803
+            Y: =223
+            ZIndex: =101
+
+        Label14_9 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =0
+            Size: =10
+            Text: ="request(s) approved"
+            Visible: =false
+            Width: =197
+            X: =816
+            Y: =244
+            ZIndex: =102
+
+        Label14_8 As label:
+            Align: =Left
+            FontWeight: =Bold
+            PaddingLeft: =0
+            Size: =10
+            Text: =CountRows(Distinct(Filter('UFE-Master-List', Status.Value = "Approved from 2nd Approver", RequestorEmail = Email_Input.Text),FormNo))
+            Visible: =false
+            Width: =24
+            X: =803
+            Y: =244
+            ZIndex: =103
+
+        Rectangle21_3 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            Visible: =false
+            Width: =200
+            X: =803
+            Y: =250
+            ZIndex: =104
+
+    LeftNavBar_Requestor As LeftNavBar:
+        LeftNavBarItem: =colMenu
+        Visible: =If(LookUp('User List', Email = varUserEmail).Roles.Value = "Data Entry", true, false)
+        Width: =LeftNavBar_Requestor.MenuWidth
+        ZIndex: =110
+
+    Rejected2_Notification_Requestor As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =110
+
+        Button8_26 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =70
+            Text: =""
+            Visible: =false
+            Width: =246
+            X: =792
+            Y: =295
+            ZIndex: =105
+
+        Button8_25 As button:
+            Align: =Left
+            Color: =RGBA(184, 0, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =27
+            PaddingLeft: =0
+            Size: =10
+            Text: ="Rejected from Regional Manager"
+            Visible: =false
+            Width: =228
+            X: =803
+            Y: =304
+            ZIndex: =106
+
+        Label14_11 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =0
+            Size: =10
+            Text: ="request(s) rejected"
+            Visible: =false
+            Width: =197
+            X: =816
+            Y: =325
+            ZIndex: =107
+
+        Label14_10 As label:
+            Align: =Left
+            FontWeight: =Bold
+            PaddingLeft: =0
+            Size: =10
+            Text: =CountRows(Distinct(Filter('UFE-Master-List', Status.Value = "Rejected from 2nd Approver", RequestorEmail = Email_Input.Text),FormNo))
+            Visible: =false
+            Width: =24
+            X: =803
+            Y: =325
+            ZIndex: =108
+
+        Rectangle21_4 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            Visible: =false
+            Width: =200
+            X: =803
+            Y: =331
+            ZIndex: =109
+
+    LeftNavBar_Approver As LeftNavBar:
+        LeftNavBarItem: =colMenuApprover
+        Visible: =If(varUserEmail = "powerbi1dev@asahisea.com", true, false)
+        Width: =LeftNavBar_Approver.MenuWidth
+        ZIndex: =111
+
+    Button16 As button:
+        Color: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =27
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popuplogout,!popuplogout)
+        Text: =""
+        Width: =28
+        X: =1320
+        Y: =13
+        ZIndex: =112
+
+    "'Logout-bttn' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =116
+
+        Button17 As button:
+            BorderThickness: =0
+            Fill: =RGBA(179, 179, 179, 1)
+            Height: =88
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =Navigate(Loginpage);
+                Set(resetEmail, true);
+                Set(resetPassword, true);
+            PaddingTop: =15
+            Size: =12
+            Text: =varUserName
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =false
+            Width: =290
+            X: =1042
+            Y: =48
+            ZIndex: =113
+
+        Label16 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            OnSelect: =Navigate(Loginpage)
+            Size: =12
+            Text: ="Logout"
+            Visible: =false
+            Width: =74
+            X: =1150
+            Y: =93
+            ZIndex: =114
+
+        Rectangle4 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Navigate(Loginpage)
+            Visible: =false
+            Width: =290
+            X: =1042
+            Y: =91
+            ZIndex: =115
+
+    "'Close-bttn-etika_11' As icon.CancelBadge":
+        Color: =RGBA(0, 161, 233, 1)
+        Height: =24
+        Icon: =Icon.CancelBadge
+        OnSelect: =Set(popupsavedform,false)
+        Visible: =popupsavedform
+        Width: =24
+        X: =1336
+        Y: =16
+        ZIndex: =122
+
+    Pop_Up_User_Save_2 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =122
+
+        Rectangle5_23 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupsavedform
+            Width: =1366
+            ZIndex: =116
+
+        Submit_Bttn_15 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            BorderThickness: =0
+            Fill: =RGBA(128, 128, 128, 1)
+            Height: =44
+            HoverColor: =ColorFade(Self.Color, -4%)
+            HoverFill: =ColorFade(Self.Fill, -4%)
+            OnSelect: =Navigate(Status);Set(popupsavedform,false)
+            PressedColor: =ColorFade(Self.Color, -4%)
+            PressedFill: =ColorFade(Self.Fill, -4%)
+            Size: =13
+            Text: ="Yes"
+            Visible: =popupsavedform
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =117
+
+        Cancel_Bttn_18 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Navigate(UFE_RequestorMY);Set(popupsavedform,false)
+            Size: =13
+            Text: ="New Form"
+            Visible: =popupsavedform
+            Width: =209
+            X: =687
+            Y: =664
+            ZIndex: =118
+
+        Circle2_16 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupsavedform
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =119
+
+        Image6_16 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupsavedform
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =120
+
+        Label3_33 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Do you want to continue filling out saved form?"
+            Visible: =popupsavedform
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =121
+
+    Button5 As button:
+        Fill: =RGBA(204, 204, 204, 1)
+        Height: =59
+        HoverFill: =ColorFade(Self.Fill, -20%)
+        OnSelect: |-
+            =Navigate(Loginpage);
+            Set(resetEmail, true);
+            Set(resetPassword, true);
+        Text: ="Logout"
+        Visible: =popuplogout
+        Width: =392
+        X: =928
+        Y: =310
+        ZIndex: =132
+
+    Group6 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =132
+
+        "'User-Profile' As button":
+            Align: =Center
+            BorderThickness: =0
+            Fill: =RGBA(179, 179, 179, 0.99)
+            Height: =323
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: |-
+                =Navigate(Loginpage);
+                Set(resetEmail, true);
+                Set(resetPassword, true);
+            PaddingTop: =15
+            Size: =12
+            Text: =""
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =popuplogout
+            Width: =392
+            X: =928
+            Y: =46
+            ZIndex: =123
+
+        Label5 As label:
+            Align: =Left
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            Height: =44
+            Text: |-
+                ="Display Name:" &" " &varUserName
+            Visible: =popuplogout
+            Width: =335
+            X: =946
+            Y: =62
+            ZIndex: =124
+
+        Label5_2 As label:
+            Align: =Left
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =46
+            Text: |-
+                ="Roles:" &" " &varUserRoles.Value
+            Visible: =popuplogout
+            Width: =325
+            X: =946
+            Y: =110
+            ZIndex: =125
+
+        Rectangle4_12 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Navigate(Loginpage)
+            Visible: =popuplogout
+            Width: =100
+            X: =947
+            Y: =97
+            ZIndex: =126
+
+        Label5_4 As label:
+            Align: =Left
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =46
+            Text: |-
+                ="Entity:" &" " &LookUp('User List', Email = varUserEmail).Country
+            Visible: =popuplogout
+            Width: =325
+            X: =946
+            Y: =147
+            ZIndex: =127
+
+        ComboBox2 As combobox:
+            Color: =RGBA(255, 255, 255, 1)
+            DefaultSelectedItems: =LookUp('User List', Email = varUserEmail).BU
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =32
+            Items: =ComboBoxSample
+            SearchItems: =Search(ComboBoxSample,ComboBox2.SearchText,"Value1")
+            Visible: =popuplogout
+            Width: =211
+            X: =986
+            Y: =186
+            ZIndex: =128
+
+        Label5_5 As label:
+            Align: =Left
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =38
+            Text: |-
+                ="BU:"
+            Visible: =popuplogout
+            Width: =43
+            X: =946
+            Y: =187
+            ZIndex: =129
+
+        ComboBox2_1 As combobox:
+            Color: =RGBA(255, 255, 255, 1)
+            DefaultSelectedItems: =LookUp('User List', Email = varUserEmail).Form
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =81
+            Items: =ComboBoxSample
+            SearchItems: =Search(ComboBoxSample,ComboBox2_1.SearchText,"Value1")
+            Visible: =popuplogout
+            Width: =273
+            X: =1047
+            Y: =221
+            ZIndex: =130
+
+        Label5_6 As label:
+            Align: =Left
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =38
+            Text: |-
+                ="GKPI Form:"
+            Visible: =popuplogout
+            Width: =101
+            X: =946
+            Y: =218
+            ZIndex: =131
+

@@ -1,0 +1,1943 @@
+DF_TotalPage As screen:
+    Fill: =
+    OnVisible: =Set(varShowMenu,true);Set(varShowMenu,false);
+
+    Header_25 As Header:
+        HeaderText: ="Total DF"
+        ZIndex: =3
+
+    Button5_11 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(255, 255, 255, 0.89)
+        Height: =660
+        Text: =""
+        Width: =1303
+        X: =38
+        Y: =96
+        ZIndex: =4
+
+    Label1_31 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Size: =7.5
+        Text: =Email_Input.Text
+        Width: =256
+        X: =1105
+        Y: =6
+        ZIndex: =6
+
+    YearVDOTSearch_2 As dropdown:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        Items: =["", Year(Now()),  Year(Today())-1, Year(Today())-2, Year(Today())-3, Year(Today())-4]
+        Size: =12
+        Width: =142
+        X: =233
+        Y: =162
+        ZIndex: =7
+
+    Label2_13 As label:
+        FontWeight: =Semibold
+        Text: ="Year"
+        Width: =142
+        X: =233
+        Y: =122
+        ZIndex: =8
+
+    Label2_12 As label:
+        FontWeight: =Semibold
+        Text: ="BU"
+        Width: =142
+        X: =63
+        Y: =122
+        ZIndex: =10
+
+    Group7_6 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =28
+
+        Image7_16 As image:
+            Height: =79
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =256
+            X: =782
+            Y: =122
+            ZIndex: =23
+
+        Button5_19 As button:
+            BorderColor: =RGBA(45, 45, 45, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 161, 233, 0.91)
+            Height: =79
+            Text: =""
+            Width: =256
+            X: =782
+            Y: =122
+            ZIndex: =24
+
+        Label2_14 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Normal
+            Height: =36
+            Text: ="High Actual Sales Month"
+            Width: =212
+            X: =821
+            Y: =134
+            ZIndex: =25
+
+        Icon13_5 As icon.ArrowDown:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =31
+            Icon: =Icon.ArrowUp
+            Width: =27
+            X: =790
+            Y: =148
+            ZIndex: =26
+
+        Label2_16 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            Height: =31
+            Text: ="January" & " | " & First(Sort('VDOT Form',Amount,Descending)).Amount
+            Width: =198
+            X: =821
+            Y: =157
+            ZIndex: =27
+
+    BG_23 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =60
+
+        Image3_30 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_57 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    ComboBox1_2 As combobox:
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        DisplayFields: =["Value"]
+        InputTextPlaceholder: =""
+        Items: =["","EBSB","EDSB","PTEMI","PTEDI"]
+        SearchFields: =["Value"]
+        SearchItems: =Search(["","EBSB","EDSB","PTEMI","PTEDI"],ComboBox1_2.SearchText,"Value")
+        Width: =142
+        X: =63
+        Y: =162
+        ZIndex: =99
+
+    Button5_22 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(230, 230, 230, 1)
+        Height: =193
+        Text: =""
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =1244
+        X: =63
+        Y: =254
+        ZIndex: =103
+
+    Label3_349 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="January"
+        Width: =70
+        X: =212
+        Y: =218
+        ZIndex: =105
+
+    Label3_350 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="February"
+        Width: =98
+        X: =292
+        Y: =218
+        ZIndex: =106
+
+    Label3_351 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="March"
+        Width: =70
+        X: =400
+        Y: =218
+        ZIndex: =107
+
+    Label3_352 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="April"
+        Width: =70
+        X: =480
+        Y: =218
+        ZIndex: =108
+
+    Label3_353 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="May"
+        Width: =70
+        X: =560
+        Y: =218
+        ZIndex: =109
+
+    Label3_354 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="June"
+        Width: =70
+        X: =640
+        Y: =218
+        ZIndex: =110
+
+    Label3_355 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="July"
+        Width: =70
+        X: =720
+        Y: =218
+        ZIndex: =111
+
+    Label3_356 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="August"
+        Width: =70
+        X: =800
+        Y: =218
+        ZIndex: =112
+
+    Label3_357 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="September"
+        Width: =100
+        X: =880
+        Y: =218
+        ZIndex: =113
+
+    Label3_358 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="October"
+        Width: =85
+        X: =990
+        Y: =218
+        ZIndex: =114
+
+    Label3_363 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="November"
+        Width: =105
+        X: =1085
+        Y: =218
+        ZIndex: =115
+
+    Label3_364 As label:
+        Align: =Center
+        FontWeight: =Semibold
+        Height: =25
+        Size: =12
+        Text: ="December"
+        Width: =98
+        X: =1202
+        Y: =218
+        ZIndex: =116
+
+    Label3_371 As label:
+        Align: =Left
+        FontWeight: =Normal
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext, Last(FirstN(ComboBox1_2.SelectedItems,3)).Value,
+            
+            Last(FirstN(ComboBox1_2.SelectedItems,1)).Value)
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =85
+        X: =76
+        Y: =218
+        ZIndex: =117
+
+    Label23_832 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext, Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =208
+        Y: =276
+        ZIndex: =118
+
+    Label23_833 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =306
+        Y: =276
+        ZIndex: =119
+
+    Label23_834 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =400
+        Y: =276
+        ZIndex: =120
+
+    Label23_837 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =640
+        Y: =276
+        ZIndex: =121
+
+    Label23_839 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =797
+        Y: =276
+        ZIndex: =122
+
+    Label23_840 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =894
+        Y: =276
+        ZIndex: =123
+
+    Label23_835 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =482
+        Y: =276
+        ZIndex: =124
+
+    Label23_836 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =560
+        Y: =276
+        ZIndex: =125
+
+    Label23_838 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =720
+        Y: =276
+        ZIndex: =126
+
+    Label23_841 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =995
+        Y: =276
+        ZIndex: =127
+
+    Label23_842 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1102
+        Y: =276
+        ZIndex: =128
+
+    Label23_843 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1216
+        Y: =276
+        ZIndex: =129
+
+    Label23_844 As label:
+        Align: =Left
+        Height: =32
+        Size: =12
+        Text: ="Actual Sales"
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =100
+        X: =76
+        Y: =272
+        ZIndex: =173
+
+    Label23_845 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =208
+        Y: =318
+        ZIndex: =174
+
+    Label23_846 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =306
+        Y: =318
+        ZIndex: =175
+
+    Label23_847 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =400
+        Y: =318
+        ZIndex: =176
+
+    Label23_848 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =640
+        Y: =318
+        ZIndex: =177
+
+    Label23_849 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =797
+        Y: =318
+        ZIndex: =178
+
+    Label23_850 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =894
+        Y: =318
+        ZIndex: =179
+
+    Label23_851 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =482
+        Y: =318
+        ZIndex: =180
+
+    Label23_852 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =560
+        Y: =318
+        ZIndex: =181
+
+    Label23_853 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =720
+        Y: =318
+        ZIndex: =182
+
+    Label23_854 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =995
+        Y: =318
+        ZIndex: =183
+
+    Label23_855 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1102
+        Y: =318
+        ZIndex: =184
+
+    Label23_856 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1216
+        Y: =318
+        ZIndex: =185
+
+    Label23_857 As label:
+        Align: =Left
+        Height: =29
+        Size: =12
+        Text: ="Variance"
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =100
+        X: =76
+        Y: =316
+        ZIndex: =186
+
+    Label23_858 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =208
+        Y: =368
+        ZIndex: =187
+
+    Label23_859 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =306
+        Y: =368
+        ZIndex: =188
+
+    Label23_860 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =400
+        Y: =368
+        ZIndex: =189
+
+    Label23_861 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =640
+        Y: =368
+        ZIndex: =190
+
+    Label23_862 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =797
+        Y: =368
+        ZIndex: =191
+
+    Label23_863 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =894
+        Y: =368
+        ZIndex: =192
+
+    Label23_864 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =482
+        Y: =368
+        ZIndex: =193
+
+    Label23_865 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =560
+        Y: =368
+        ZIndex: =194
+
+    Label23_866 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =720
+        Y: =368
+        ZIndex: =195
+
+    Label23_867 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =995
+        Y: =368
+        ZIndex: =196
+
+    Label23_868 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1102
+        Y: =368
+        ZIndex: =197
+
+    Label23_869 As label:
+        Align: =Center
+        Height: =25
+        Size: =12
+        Text: |-
+            =If(DFTotalNext,
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,3)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+            
+            Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,1)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =70
+        X: =1216
+        Y: =368
+        ZIndex: =198
+
+    Label23_870 As label:
+        Align: =Left
+        Height: =54
+        Size: =12
+        Text: ="Demand Forecast Error %"
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 0,true,false)
+        Width: =100
+        X: =76
+        Y: =356
+        ZIndex: =199
+
+    Icon13 As icon.NextArrow:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =37
+        Icon: =Icon.NextArrow
+        OnSelect: |-
+            =UpdateContext({DFTotalNext:true})
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 2,true,false)
+        Width: =37
+        X: =1263
+        Y: =710
+        ZIndex: =246
+
+    Group7_7 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =246
+
+        Image7_17 As image:
+            Height: =79
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =256
+            X: =1051
+            Y: =120
+            ZIndex: =241
+
+        Button5_20 As button:
+            BorderColor: =RGBA(45, 45, 45, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 161, 233, 0.91)
+            Height: =79
+            Text: =""
+            Width: =256
+            X: =1051
+            Y: =120
+            ZIndex: =242
+
+        Label2_15 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Normal
+            Height: =36
+            Text: ="Low Actual Sales Month"
+            Width: =212
+            X: =1090
+            Y: =132
+            ZIndex: =243
+
+        Icon13_6 As icon.ArrowDown:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =31
+            Width: =27
+            X: =1059
+            Y: =146
+            ZIndex: =244
+
+        Label2_17 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            Height: =31
+            Text: ="January" & " | " & First(Sort('VDOT Form',Amount,Ascending)).Amount
+            Width: =198
+            X: =1090
+            Y: =155
+            ZIndex: =245
+
+    Icon13_7 As icon.NextArrow:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =37
+        Icon: =Icon.NextArrow
+        OnSelect: |-
+            =UpdateContext({DFTotalNext:false})
+        Rotation: =180
+        Visible: =If(CountRows(ComboBox1_2.SelectedItems)> 2,true,false)
+        Width: =37
+        X: =1214
+        Y: =710
+        ZIndex: =247
+
+    Group7 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =248
+
+        Button5_24 As button:
+            BorderColor: =RGBA(45, 45, 45, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =193
+            Text: =""
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =1244
+            X: =67
+            Y: =505
+            ZIndex: =200
+
+        Label3_372 As label:
+            Align: =Left
+            FontWeight: =Normal
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Last(FirstN(ComboBox1_2.SelectedItems,4)).Value,
+                
+                Last(FirstN(ComboBox1_2.SelectedItems,2)).Value)
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =85
+            X: =80
+            Y: =469
+            ZIndex: =201
+
+        Label23_871 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =212
+            Y: =527
+            ZIndex: =202
+
+        Label23_872 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =310
+            Y: =527
+            ZIndex: =203
+
+        Label23_873 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =404
+            Y: =527
+            ZIndex: =204
+
+        Label23_874 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =644
+            Y: =527
+            ZIndex: =205
+
+        Label23_875 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =801
+            Y: =527
+            ZIndex: =206
+
+        Label23_876 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =898
+            Y: =527
+            ZIndex: =207
+
+        Label23_877 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =486
+            Y: =527
+            ZIndex: =208
+
+        Label23_878 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =564
+            Y: =527
+            ZIndex: =209
+
+        Label23_879 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =724
+            Y: =527
+            ZIndex: =210
+
+        Label23_880 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =999
+            Y: =527
+            ZIndex: =211
+
+        Label23_881 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1106
+            Y: =527
+            ZIndex: =212
+
+        Label23_882 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Actual Sales' + 'Sum of Actual Sales Week 2' + 'Sum of Actual Sales Week 3' + 'Sum of Actual Sales Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1220
+            Y: =527
+            ZIndex: =213
+
+        Label23_883 As label:
+            Align: =Left
+            Height: =32
+            Size: =12
+            Text: ="Actual Sales"
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =100
+            X: =80
+            Y: =523
+            ZIndex: =214
+
+        Label23_884 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =212
+            Y: =569
+            ZIndex: =215
+
+        Label23_885 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =310
+            Y: =569
+            ZIndex: =216
+
+        Label23_886 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =404
+            Y: =569
+            ZIndex: =217
+
+        Label23_887 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =644
+            Y: =569
+            ZIndex: =218
+
+        Label23_888 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =801
+            Y: =569
+            ZIndex: =219
+
+        Label23_889 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =898
+            Y: =569
+            ZIndex: =220
+
+        Label23_890 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =486
+            Y: =569
+            ZIndex: =221
+
+        Label23_891 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =564
+            Y: =569
+            ZIndex: =222
+
+        Label23_892 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =724
+            Y: =569
+            ZIndex: =223
+
+        Label23_893 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =999
+            Y: =569
+            ZIndex: =224
+
+        Label23_894 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1106
+            Y: =569
+            ZIndex: =225
+
+        Label23_895 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'),
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Sum of Absolute Variance' + 'Sum of Absolute Variance Week 2' + 'Sum of Absolute Variance Week 3' + 'Sum of Absolute Variance Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1220
+            Y: =569
+            ZIndex: =226
+
+        Label23_896 As label:
+            Align: =Left
+            Height: =29
+            Size: =12
+            Text: ="Variance"
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =100
+            X: =80
+            Y: =577
+            ZIndex: =227
+
+        Label23_897 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "January", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =212
+            Y: =629
+            ZIndex: =228
+
+        Label23_898 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "February", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =310
+            Y: =629
+            ZIndex: =229
+
+        Label23_899 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "March", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =404
+            Y: =629
+            ZIndex: =230
+
+        Label23_900 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "June", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =644
+            Y: =629
+            ZIndex: =231
+
+        Label23_901 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "August", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =801
+            Y: =629
+            ZIndex: =232
+
+        Label23_902 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "September", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =898
+            Y: =629
+            ZIndex: =233
+
+        Label23_903 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "April", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =486
+            Y: =629
+            ZIndex: =234
+
+        Label23_904 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "May", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =564
+            Y: =629
+            ZIndex: =235
+
+        Label23_905 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "July", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =724
+            Y: =629
+            ZIndex: =236
+
+        Label23_906 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "October", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =999
+            Y: =629
+            ZIndex: =237
+
+        Label23_907 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "November", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1106
+            Y: =629
+            ZIndex: =238
+
+        Label23_908 As label:
+            Align: =Center
+            Height: =25
+            Size: =12
+            Text: |-
+                =If(DFTotalNext,
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,4)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'),
+                
+                
+                Sum( Filter('DF Form', Year = YearVDOTSearch_2.Selected.Value,Month.Value = "December", BU = Last(FirstN(ComboBox1_2.SelectedItems,2)).Value),'Weekly Forecast Error' + 'Weekly Forecast Error Week 2' + 'Weekly Forecast Error Week 3' + 'Weekly Forecast Error Week 4'))
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =70
+            X: =1220
+            Y: =629
+            ZIndex: =239
+
+        Label23_909 As label:
+            Align: =Left
+            Height: =54
+            Size: =12
+            Text: ="Demand Forecast Error %"
+            Visible: |-
+                =If(
+                
+                DFTotalNext = false && CountRows(ComboBox1_2.SelectedItems)>1,true,
+                
+                DFTotalNext = true && CountRows(ComboBox1_2.SelectedItems)=4,true,
+                
+                false)
+            Width: =100
+            X: =80
+            Y: =617
+            ZIndex: =240
+

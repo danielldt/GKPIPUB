@@ -1,0 +1,320 @@
+PDF As screen:
+    OnVisible: =Set(varShowMenu,true);Set(varShowMenu,false);
+
+    Background_1 As Background:
+
+    Rectangle24 As rectangle:
+        Fill: =RGBA(255, 255, 255, 0.63)
+        Height: =702
+        Width: =1315
+        X: =26
+        Y: =64
+        ZIndex: =2
+
+    PdfViewer2 As pdfViewer:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Document: |-
+            ="appres://datasources/Documents/table/9a90a11e-3ada-41ea-a139-f8a534261405/rows/186/reference/https:%2F%2Fasia-001.azure-apim.net%2Fapim%2Fsharepointonline%2F1989d62f0daa4a33a96acb1af8c746e7%2Fdatasets%2Fhttps%25253a%25252f%25252fasahisea.sharepoint.com%25252fsites%25252fGKPISTG2%2FGetFileContentByPath%3Fpath=%252fShared%252520Documents%252f" & EncodeUrl(Gallery4.Selected.'File name with extension')
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =657
+        ShowControls: =true
+        Width: =757
+        X: =563
+        Y: =93
+        ZIndex: =3
+
+    Header_8 As Header:
+        HeaderText: ="Definition & Manual"
+        ZIndex: =4
+
+    "Gallery4 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =531
+        Items: |-
+            =Filter(
+               Documents,
+               Dropdown1.Selected.'File name with extension' = Blank() Or
+                'File name with extension' = Dropdown1.Selected.'File name with extension',
+                Dropdown1_1.Selected.Result = Blank() Or
+                'Created By'.DisplayName = Dropdown1_1.Selected.Result,
+                Right('File name with extension',3) = "pdf"
+            )
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =107
+        Width: =505
+        X: =40
+        Y: =216
+        ZIndex: =5
+
+        Button8_4 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(230, 230, 230, 0.26)
+            Height: =98
+            Text: =""
+            Width: =473
+            ZIndex: =1
+
+        Button8_1 As button:
+            BorderColor: =RGBA(204, 204, 204, 1)
+            BorderThickness: =1
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =94
+            Text: =""
+            Width: =473
+            ZIndex: =2
+
+        Image2 As image:
+            Height: =67
+            Image: =ThisItem.Thumbnail.Large
+            OnSelect: =Select(Parent)
+            Width: =67
+            X: =17
+            Y: =14
+            ZIndex: =3
+
+        Title4 As label:
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =53
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.'File name with extension'
+            Width: =269
+            X: =128
+            Y: =37
+            ZIndex: =4
+
+        Icon6 As icon.NextArrow:
+            Color: =RGBA(204, 204, 204, 1)
+            Height: =24
+            Icon: =Icon.NextArrow
+            OnSelect: =Select(Parent)
+            Width: =24
+            X: =394
+            Y: =35
+            ZIndex: =5
+
+        Button8_2 As button:
+            Color: =RGBA(0, 0, 0, 0)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(204, 204, 204, 1)
+            Height: =50
+            Text: =""
+            Width: =3
+            X: =107
+            Y: =22
+            ZIndex: =6
+
+        Title4_1 As label:
+            AutoHeight: =true
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Normal
+            Height: =46
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =Text(ThisItem.Created, "dd.mm.yyyy") & "|" & ThisItem.'Created By'.DisplayName
+            Visible: =false
+            Width: =223
+            X: =159
+            Y: =78
+            ZIndex: =7
+
+    DataCardKey25_12 As label:
+        AutoHeight: =true
+        Color: =RGBA(0, 161, 233, 1)
+        FontWeight: =Semibold
+        Height: =34
+        PaddingLeft: =10
+        Size: =16
+        Text: ="Definition List"
+        Width: =1087
+        Wrap: =false
+        X: =71
+        Y: =84
+        ZIndex: =6
+
+    Circle2_4 As circle:
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =31
+        Width: =31
+        X: =40
+        Y: =89
+        ZIndex: =7
+
+    Icon23_14 As icon.CalendarBlank:
+        Color: =RGBA(255, 255, 255, 1)
+        DisplayMode: =DisplayMode.View
+        Height: =23
+        Icon: =Icon.Copy
+        Width: =23
+        X: =44
+        Y: =93
+        ZIndex: =8
+
+    Dropdown1 As dropdown:
+        AllowEmptySelection: =true
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        Items: =Filter(Documents,  EndsWith('File name with extension', "pdf"))
+        Size: =11
+        Width: =291
+        X: =40
+        Y: =166
+        ZIndex: =9
+
+    Dropdown1_1 As dropdown:
+        AllowEmptySelection: =true
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        Items: =Distinct(Documents,'Created By'.DisplayName)
+        Size: =11
+        Visible: =false
+        Width: =174
+        X: =352
+        Y: =166
+        ZIndex: =10
+
+    Label43_22 As label:
+        AutoHeight: =true
+        FontWeight: =Semibold
+        Size: =12
+        Text: ="File Name"
+        Width: =223
+        X: =44
+        Y: =133
+        ZIndex: =11
+
+    Label43_23 As label:
+        AutoHeight: =true
+        FontWeight: =Semibold
+        Size: =12
+        Text: ="Uploaded By"
+        Visible: =false
+        Width: =223
+        X: =352
+        Y: =133
+        ZIndex: =12
+
+    Icon2_22 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =13
+
+    LeftNavBarForm_6 As LeftNavBarForm:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =768
+        MenuItemForm: =colMenu
+        Width: =LeftNavBarForm_6.MenuWidth
+        ZIndex: =14
+
+    FormViewer1 As formViewer:
+        AcceptsFocus: =false
+        DataSource: ='Definition & Manual'
+        Height: =121
+        Item: =LookUp('Definition & Manual',Name=TextInput3.Text)
+        Width: =145
+        X: =1046
+        Y: =50
+        ZIndex: =15
+
+        Attachments_DataCard1 As typedDataCard.attachmentsViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="{Attachments}"
+            Default: =ThisItem.Attachments
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'Definition & Manual'],DataSourceInfo.DisplayName,"{Attachments}")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =71
+            Required: =false
+            Update: =DataCardValue13.Attachments
+            Width: =144
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey12 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue13 As attachments:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =60
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                IsInDataCard: =true
+                Items: =Parent.Default
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Width: =48
+                X: =65
+                Y: =48
+                ZIndex: =2
+
+            ErrorMessage12 As label:
+                AutoHeight: =true
+                Height: =10
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue13.Y + DataCardValue13.Height
+                ZIndex: =3
+
+            StarVisible12 As label:
+                Align: =Align.Center
+                Height: =DataCardKey12.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey12.Y
+                ZIndex: =4
+
+    TextInput3 As text:
+        Default: =Gallery4.Selected.Name
+        Visible: =false
+        X: =225
+        Y: =114
+        ZIndex: =16
+
+    Icon22_1 As icon.Download:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =27
+        Icon: =Icon.OpenInNewWindow
+        OnSelect: =Launch(Gallery4.Selected.'Link to item')
+        Width: =27
+        X: =1171
+        Y: =110
+        ZIndex: =17
+

@@ -1,0 +1,7 @@
+UFE_Consol As screen:
+
+    PowerBI1 As powerbi:
+        X: =40
+        Y: =40
+        ZIndex: =1
+

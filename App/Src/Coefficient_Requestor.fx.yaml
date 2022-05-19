@@ -1,0 +1,945 @@
+Coefficient_Requestor As screen:
+    Height: =
+    OnVisible: |-
+        =ClearCollect(colCoefficient,'Coefficients for G-KPI Calculation');
+        ClearCollect(colCoefficientCopacker,'Copacker List');
+        
+        ClearCollect(colCoefficientChangeLog, Defaults('Coefficients for G-KPI Calculation Change Log'))
+
+    SubHeader_24 As SubHeader:
+        Height: =95
+        ZIndex: =3
+
+    Header_35 As Header:
+        HeaderText: ="Coefficients for G-KPI Calculation (Utility Related)"
+        ZIndex: =4
+
+    QC_Save_bttn_5 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =583
+        Y: =703
+        ZIndex: =5
+
+    Gallery7 As gallery.variableTemplateHeightGallery:
+        Height: =566
+        Items: =Distinct(colCoefficient, Coefficient)
+        Layout: =Layout.Vertical
+        TemplateSize: =280
+        Width: =1282
+        X: =50
+        Y: =120
+        ZIndex: =6
+
+        Rectangle23 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =139
+            OnSelect: =Select(Parent)
+            Visible: =If(ThisItem.Result =  Gallery7.Selected.Result,true,false)
+            Width: =1272
+            Y: =27
+            ZIndex: =1
+
+        Rectangle11 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,85,0)
+            OnSelect: =Select(Parent)
+            Width: =1272
+            Y: =13
+            ZIndex: =2
+
+        Gallery9 As gallery.variableTemplateHeightGallery:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: |-
+                =If(ThisItem.Result =  Gallery7.Selected.Result,
+                
+                CountRows(Filter(colCoefficient,Coefficient =  Gallery7.Selected.Result))*80,0)
+            Items: =Filter(colCoefficient,Coefficient = Label28.Text)
+            Layout: =Layout.Vertical
+            TemplateSize: =204
+            Visible: =If(ThisItem.Result <> "Copacker Products",true,false)
+            Width: =1283
+            Y: =80
+            ZIndex: =3
+
+            TextInput6 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |
+                    =If(
+                        Label28.Text = "Fuel",ThisItem.Title,
+                        Label28.Text = "Conversion Unit",ThisItem.'Unit Conversion Form (Conversion Unit)',
+                        Label28.Text = "Product",ThisItem.'Products Type'
+                    
+                    )
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    
+                     DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {Title: TextInput6.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Form (Conversion Unit)': TextInput6.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Products Type': TextInput6.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =245
+                X: =20
+                Y: =3
+                ZIndex: =1
+
+            TextInput6_1 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |
+                    =If(
+                        Label28.Text = "Fuel",ThisItem.Unit,
+                        Label28.Text = "Conversion Unit",ThisItem.'Unit (Conversion Unit) ',
+                        Label28.Text = "Product",ThisItem.'Unit Products (Product) Unit'
+                    )
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    
+                     DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {Unit: TextInput6_1.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit (Conversion Unit) ': TextInput6_1.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Products (Product) Unit': TextInput6_1.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =61
+                X: =272
+                Y: =3
+                ZIndex: =2
+
+            TextInput6_2 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |
+                    =If(
+                        Label28.Text = "Fuel",ThisItem.'Unit Calorific (Fuel) Value',
+                        Label28.Text = "Conversion Unit",ThisItem.'Unit (Conversion Coefficient) Value'
+                    
+                    )
+                DisplayMode: |-
+                    =If(
+                    
+                    varCoefficientEdit && Label28.Text = "Fuel", DisplayMode.Edit,
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    varCoefficientEdit && TextInput6.Text = "Condensed Milk", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    
+                    DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {field_2: Value(TextInput6_2.Text)}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {field_11: Value(TextInput6_2.Text)})
+                    
+                    );
+                    
+                    If(CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))=0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_2 <> Value(TextInput6_2.Text), 
+                    Collect(colCoefficientChangeLog,{'Unit Calorific (Fuel) Value': Value(TextInput6_2.Text), ID: Value(TextInput9.Text), PreviousUnitCalorificFuelValue: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_2, Title: TextInput6.Text}), 
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_2 = Value(TextInput6_2.Text), 
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit Calorific (Fuel) Value': Blank(), PreviousUnitCalorificFuelValue: Blank(), Title: Blank()}),
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_2 <> Value(TextInput6_2.Text),
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit Calorific (Fuel) Value': Value(TextInput6_2.Text)})
+                    
+                    );
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =98
+                X: =340
+                Y: =3
+                ZIndex: =3
+
+            TextInput6_3 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: |
+                    =If(
+                        Label28.Text = "Fuel", ThisItem.'Unit Calorific Value (Fuel) Unit',
+                        Label28.Text = "Conversion Unit",ThisItem.'Unit Conversion Coefficient (Conversion Unit) Unit',
+                        Label28.Text = "Product",ThisItem.'Unit Conversion Coefficient (Products) Unit'
+                    
+                    )
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    
+                     DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Calorific Value (Fuel) Unit':TextInput6_3.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Coefficient (Conversion Unit) Unit': TextInput6_3.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Coefficient (Products) Unit': TextInput6_3.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =117
+                X: =445
+                Y: =3
+                ZIndex: =4
+
+            TextInput6_4 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Unit CO2 Emmission (Fuel) Value'
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    varCoefficientEdit, DisplayMode.Edit,
+                    DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |
+                    =Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                    {field_5: Value(TextInput6_4.Text)});
+                    
+                    If(CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))=0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_5 <> Value(TextInput6_4.Text), 
+                    Collect(colCoefficientChangeLog,{'Unit CO2 Emmission (Fuel) Value': Value(TextInput6_4.Text), ID: Value(TextInput9.Text), PreviousUnitCO2EmmissionFuelValue: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_5, Title: TextInput6.Text}), 
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_5 = Value(TextInput6_4.Text), 
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit CO2 Emmission (Fuel) Value': Blank(), PreviousUnitCO2EmmissionFuelValue: Blank(), Title: Blank()}),
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_5 <> Value(TextInput6_4.Text),
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit CO2 Emmission (Fuel) Value': Value(TextInput6_4.Text), PreviousUnitCO2EmmissionFuelValue: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_5}))
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =If(Label28.Text = "Fuel", true, false)
+                Width: =71
+                X: =569
+                Y: =3
+                ZIndex: =5
+
+            TextInput6_5 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Unit CO2 Emmission (Fuel) Unit'
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                    {'Unit CO2 Emmission (Fuel) Unit':TextInput6_5.Text})
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =If(Label28.Text = "Fuel", true, false)
+                Width: =108
+                X: =650
+                Y: =3
+                ZIndex: =6
+
+            TextInput6_6 As text:
+                Align: =Left
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.DataSource
+                DisplayMode: |-
+                    =If(
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,  
+                    varCoefficientEdit, DisplayMode.Edit,
+                    DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                Mode: =TextMode.MultiLine
+                OnChange: |-
+                    =Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                    {field_7:TextInput6_6.Text});
+                    
+                    If(CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))=0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_7 <> TextInput6_6.Text, 
+                    Collect(colCoefficientChangeLog,{DataSource: TextInput6_6.Text, ID: Value(TextInput9.Text), PreviousDataSource: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_7, Title: TextInput6.Text}), 
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_7 = TextInput6_6.Text, 
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {DataSource: Blank(), PreviousDataSource: Blank(), Title: Blank()}),
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_7 <> TextInput6_6.Text,
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {DataSource:TextInput6_6.Text, PreviousDataSource: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_7}))
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =If(Label28.Text = "Fuel", true, false)
+                Width: =407
+                X: =768
+                Y: =3
+                ZIndex: =7
+
+            TextInput9 As text:
+                Default: =ThisItem.ID
+                Height: =49
+                OnSelect: =Select(Parent)
+                Visible: =false
+                Width: =59
+                X: =179
+                Y: =3
+                ZIndex: =9
+
+            TextInput6_12 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =LookUp('Coefficients for G-KPI Calculation', Title=TextInput6.Text, true)
+                DisplayMode: =If(CountRows(Filter('Coefficients for G-KPI Calculation', Coefficient = TextInput6_12.Text)) = 0, varCoefficientEdit, DisplayMode.Edit, DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {Title: TextInput6_12.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Form (Conversion Unit)': TextInput6_12.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Products Type': TextInput6_12.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =false
+                Width: =66
+                X: =131
+                ZIndex: =10
+
+            TextInput6_13 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =LookUp('Coefficients for G-KPI Calculation', 'Unit Conversion Form (Conversion Unit)'=TextInput6.Text, true)
+                DisplayMode: =If(CountRows(Filter('Coefficients for G-KPI Calculation', Coefficient = TextInput6_13.Text)) = 0, varCoefficientEdit, DisplayMode.Edit, DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {Title: TextInput6_13.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Form (Conversion Unit)': TextInput6_13.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Products Type': TextInput6_13.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =false
+                Width: =66
+                X: =201
+                ZIndex: =11
+
+            TextInput6_14 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =LookUp('Coefficients for G-KPI Calculation', 'Products Type'=TextInput6.Text, true)
+                DisplayMode: =If(CountRows(Filter('Coefficients for G-KPI Calculation', Coefficient = TextInput6_14.Text)) = 0, varCoefficientEdit, DisplayMode.Edit, DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        Label28.Text = "Fuel", 
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {Title: TextInput6_14.Text}),
+                        Label28.Text = "Conversion Unit",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Unit Conversion Form (Conversion Unit)': TextInput6_14.Text}),
+                        Label28.Text = "Product",
+                        Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                        {'Products Type': TextInput6_14.Text})
+                    
+                    )
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =false
+                Width: =66
+                X: =265
+                ZIndex: =12
+
+            TextInput6_15 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Unit Conversion Coefficient (Products) Value'
+                DisplayMode: |-
+                    =If(
+                    
+                    varCoefficientEdit && Label28.Text = "Fuel", DisplayMode.Edit,
+                    Label28.Text = "Fuel" && TextInput6_12.Text = "false", DisplayMode.Edit,
+                    varCoefficientEdit && TextInput6.Text = "Condensed Milk", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Conversion Unit" && TextInput6_13.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false", DisplayMode.Edit,
+                    Label28.Text = "Product" && TextInput6_14.Text = "false" && varCoefficientEdit, DisplayMode.Edit,
+                    
+                    DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficient, LookUp(colCoefficient, ID = Value(TextInput9.Text)),
+                    {field_16: Value(TextInput6_2.Text)});
+                    
+                    
+                    If(CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))=0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_16 <> Value(TextInput6_15.Text), 
+                    Collect(colCoefficientChangeLog,{'Unit Conversion Coefficient (Products) Value': Value(TextInput6_15.Text), ID: Value(TextInput9.Text), PreviousUnitConversionCoefficientProductsValue: LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_16, 'Products Type': TextInput6.Text}), 
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_16 = Value(TextInput6_15.Text), 
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit Conversion Coefficient (Products) Value': Blank(), PreviousUnitConversionCoefficientProductsValue: Blank(), 'Products Type': Blank()}),
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput9.Text)))>0 && LookUp('Coefficients for G-KPI Calculation', ID = Value(TextInput9.Text)).field_16 <> Value(TextInput6_15.Text),
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput9.Text), {'Unit Conversion Coefficient (Products) Value': Value(TextInput6_15.Text)})
+                    
+                    );
+                OnSelect: =Select(Parent)
+                Size: =11
+                Visible: =If(Label28.Text = "Product",true,false)
+                Width: =98
+                X: =340
+                Y: =3
+                ZIndex: =13
+
+        Gallery9_1 As gallery.variableTemplateHeightGallery:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =CountRows(Filter(colCoefficientCopacker,ThisItem.Result =  Gallery7.Selected.Result))*50
+            Items: |-
+                =Filter (
+                    colCoefficientCopacker,
+                    DropdownProductName.Selected.Result = Blank() Or
+                    'Product Name' = DropdownProductName.Selected.Result,
+                    DropdownItem.Selected.Result = Blank() Or
+                    'Item Code' = DropdownItem.Selected.Result
+                
+                )
+            Layout: =Layout.Vertical
+            ShowNavigation: =true
+            ShowScrollbar: =false
+            TemplateSize: =204
+            Visible: =If(ThisItem.Result = "Copacker Products",true,false)
+            Width: =1255
+            Y: =150
+            ZIndex: =4
+
+            TextInput6_7 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Product Name'
+                DisplayMode: =DisplayMode.View
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficientCopacker, LookUp(colCoefficientCopacker, ID = Value(TextInput10.Text)),
+                    {'Product Name': TextInput6_7.Text})
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =426
+                X: =16
+                Y: =3
+                ZIndex: =1
+
+            TextInput6_8 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Item Code'
+                DisplayMode: =DisplayMode.View
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficientCopacker, LookUp(colCoefficientCopacker, ID = Value(TextInput10.Text)),
+                    {'Item Code': Value(TextInput6_8.Text)})
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =108
+                X: =449
+                Y: =3
+                ZIndex: =2
+
+            TextInput6_9 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.Copacker
+                DisplayMode: =DisplayMode.View
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficientCopacker, LookUp(colCoefficientCopacker, ID = Value(TextInput10.Text)),
+                    {Copacker:TextInput6_9.Text})
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =286
+                X: =564
+                Y: =3
+                ZIndex: =3
+
+            TextInput6_10 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Unit Conversion Coefficient Amt'
+                DisplayMode: =If(varCoefficientEdit, DisplayMode.Edit,DisplayMode.View)
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficientCopacker, LookUp(colCoefficientCopacker, ID = Value(TextInput10.Text)),
+                    {'Unit Conversion Coefficient Amt': Value(TextInput6_10.Text)});
+                    
+                    If(CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput10.Text)))=0 && LookUp('Copacker List', ID = Value(TextInput10.Text)).'Unit Conversion Coefficient Amt' <> Value(TextInput6_10.Text), 
+                    Collect(colCoefficientChangeLog,{CopackerAmtValue: Value(TextInput6_10.Text), ID: Value(TextInput10.Text), PreviousCopackerAmtValue: LookUp('Copacker List', ID = Value(TextInput10.Text)).'Unit Conversion Coefficient Amt', CopackerProductName: TextInput6_7.Text, CopackerItemCode: TextInput6_8.Text}), 
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput10.Text)))>0 && LookUp('Copacker List', ID = Value(TextInput10.Text)).'Unit Conversion Coefficient Amt' = Value(TextInput6_10.Text), 
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput10.Text), {CopackerAmtValue: Blank(), PreviousCopackerAmtValue: Blank()}),
+                    
+                    CountRows(Filter(colCoefficientChangeLog, ID = Value(TextInput10.Text)))>0 && LookUp('Copacker List', ID = Value(TextInput10.Text)).'Unit Conversion Coefficient Amt' <> Value(TextInput6_10.Text),
+                    UpdateIf(colCoefficientChangeLog, ID = Value(TextInput10.Text), {CopackerAmtValue: Value(TextInput6_10.Text)})
+                    
+                    );
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =119
+                X: =857
+                Y: =3
+                ZIndex: =4
+
+            TextInput6_11 As text:
+                Align: =Center
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =ThisItem.'Unit Conversion Coefficient'
+                DisplayMode: =DisplayMode.View
+                Height: =68
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =Patch(colCoefficientCopacker, LookUp(colCoefficientCopacker, ID = Value(TextInput10.Text)),
+                    {'Unit Conversion Coefficient': TextInput6_11.Text})
+                OnSelect: =Select(Parent)
+                Size: =11
+                Width: =192
+                X: =983
+                Y: =3
+                ZIndex: =5
+
+            TextInput10 As text:
+                Default: =ThisItem.ID
+                Height: =49
+                OnSelect: =Select(Parent)
+                Visible: =false
+                Width: =367
+                X: =40
+                Y: =3
+                ZIndex: =7
+
+        Button8_52 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(247, 247, 247, 1)
+            Height: =39
+            Text: =""
+            Width: =1272
+            ZIndex: =5
+
+        Circle1_11 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =25
+            Y: =4
+            ZIndex: =6
+
+        Icon22_18 As icon.Post:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =16
+            Icon: |-
+                =If(
+                    
+                    Label28.Text = "Fuel", Icon.ToolsWrench,
+                    Label28.Text = "Conversion Unit", Icon.Sync,
+                    Label28.Text = "Product", Icon.ListWatchlistRemind,
+                    Label28.Text = "Copacker Products", Icon.Post
+                
+                )
+            OnSelect: =Select(Parent)
+            Width: =26
+            X: =27
+            Y: =11
+            ZIndex: =7
+
+        Label28 As label:
+            AutoHeight: =true
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =44
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Result 
+            Width: =928
+            X: =61
+            Y: =4
+            ZIndex: =8
+
+        Label31 As label:
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,33,0)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(
+                    Label28.Text = "Fuel","Fuel Type",
+                    Label28.Text = "Conversion Unit","Unit Conversion From",
+                    Label28.Text = "Product","Products Type",
+                    Label28.Text = "Copacker Products","Products Name"
+                
+                )
+            Width: =208
+            X: =25
+            Y: =47
+            ZIndex: =9
+
+        Label31_1 As label:
+            Align: =Center
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,33,0)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(
+                    Label28.Text <> "Copacker Products","Unit",
+                    Label28.Text = "Copacker Products","Item Code"
+                
+                )
+            Width: =116
+            X: |
+                =If(
+                    Label28.Text <> "Copacker Products",250,
+                    Label28.Text = "Copacker Products", 449
+                
+                )
+            Y: =47
+            ZIndex: =10
+
+        Label31_2 As label:
+            Align: =Center
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,33,0)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(
+                    Label28.Text = "Fuel","Unit Calorific Value",
+                    Label28.Text = "Conversion Unit","Unit Calorific Value",
+                    Label28.Text = "Product","Unit Conversion Coefficient",
+                    Label28.Text = "Copacker Products","Copacker/BU"
+                
+                )
+            Width: =200
+            X: |
+                =If(
+                    Label28.Text <> "Copacker Products",352,
+                    Label28.Text = "Copacker Products", 610
+                
+                )
+            Y: =47
+            ZIndex: =11
+
+        Label31_3 As label:
+            Align: =Center
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,33,0)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(
+                    Label28.Text = "Fuel","Unit CO2 Emmission",
+                    Label28.Text = "Copacker Products","Unit Conversion Coefficient"
+                
+                )
+            Width: =200
+            X: |
+                =If(
+                    Label28.Text <> "Copacker Products",560,
+                    Label28.Text = "Copacker Products", 870
+                
+                )
+            Y: =47
+            ZIndex: =12
+
+        Label31_4 As label:
+            Align: =Left
+            Height: =If(ThisItem.Result =  Gallery7.Selected.Result,33,0)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(
+                    Label28.Text = "Fuel","Data Source"
+                
+                )
+            Width: =200
+            X: =779
+            Y: =47
+            ZIndex: =13
+
+        DropdownProductName As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Items: |-
+                =Distinct(
+                Filter(colCoefficientCopacker, Coefficient = Label28.Text).'Product Name','Product Name')
+            OnChange: |-
+                =UpdateContext({ResetDropdownItem: true}); 
+                UpdateContext({ResetDropdownItem: false})
+            OnSelect: =Select(Parent)
+            PaddingLeft: =5
+            Reset: =ResetDropdownProductName
+            Size: =11
+            Visible: =If(ThisItem.Result =  Gallery7.Selected.Result && Label28.Text = "Copacker Products",true,false)
+            Width: =352
+            X: =25
+            Y: =97
+            ZIndex: =14
+
+        DropdownItem As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Items: |-
+                =Distinct(
+                Filter(colCoefficientCopacker, Coefficient = Label28.Text).'Item Code','Item Code')
+            OnChange: |-
+                =UpdateContext({ResetDropdownProductName: true}); 
+                
+                UpdateContext({ResetDropdownProductName: false})
+            OnSelect: =Select(Parent)
+            Reset: =ResetDropdownItem
+            Size: =11
+            Visible: =If(ThisItem.Result =  Gallery7.Selected.Result && Label28.Text = "Copacker Products",true,false)
+            Width: =127
+            X: =470
+            Y: =97
+            ZIndex: =15
+
+    Button20 As button:
+        Align: =Center
+        BorderThickness: =0
+        Color: =RGBA(153, 153, 153, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =35
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: =Set(varCoefficientEdit, !varCoefficientEdit)
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =13
+        Text: =If(varCoefficientEdit,"Done","Edit")
+        Width: =71
+        X: =651
+        Y: =56
+        ZIndex: =8
+
+    Icon4 As icon.Edit:
+        Color: =RGBA(153, 153, 153, 1)
+        Height: =20
+        Icon: =If(varCoefficientEdit,Icon.Check,Icon.Edit)
+        Width: =20
+        X: =644
+        Y: =64
+        ZIndex: =9
+
+    ChangeBG As rectangle:
+        Fill: =RGBA(255, 255, 255, 0.29)
+        Height: =673
+        Visible: =false
+        Width: =1366
+        Y: =95
+        ZIndex: =10
+
+    ChangeLogPopUp As button:
+        BorderColor: =RGBA(194, 194, 194, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =625
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        Text: =""
+        Visible: =false
+        Width: =1282
+        X: =50
+        Y: =120
+        ZIndex: =11
+
+    "'ChangeLog-Table' As dataTable.datatable":
+        BorderStyle: =BorderStyle.Solid
+        DisplayMode: =DisplayMode.Edit
+        Fill: =RGBA(250, 250, 250, 1)
+        HeadingFill: =RGBA(0, 161, 233, 1)
+        Height: =498
+        Items: ='Coefficients for G-KPI Calculation Change Log'
+        SelectedFill: =RGBA(230, 230, 230, 1)
+        Visible: =false
+        Width: =1208
+        X: =79
+        Y: =175
+        ZIndex: =12
+
+        Created_Column2 As dataTableColumn.dateTimeColumn:
+            AutoWidth: =false
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="Date"
+            FieldName: ="Created"
+            FieldVariantName: ="dateTimeColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =1
+            Text: =Text(ThisItem.Created,DateTimeFormat.LongDateTime)
+            Width: =140
+            X: =0
+            Y: =0
+            ZIndex: =16
+
+        "'Created By_Column2' As dataTableColumn.textualColumn":
+            AutoWidth: =false
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="Update By"
+            FieldName: ="Author"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =2
+            Text: =ThisItem.'Created By'.DisplayName
+            Width: =201
+            X: =0
+            Y: =0
+            ZIndex: =17
+
+        ChangeLog_Column2 As dataTableColumn.textualColumn:
+            DisplayMode: =DisplayMode.Edit
+            FieldDisplayName: ="Change Log"
+            FieldName: ="ChangeLog"
+            FieldVariantName: ="textualColumn"
+            Height: =Parent.Height
+            LayoutHeight: =Parent.Height
+            Order: =3
+            Text: =ThisItem.ChangeLog
+            Width: =100
+            X: =0
+            Y: =0
+            ZIndex: =18
+
+    Button23 As button:
+        OnSelect: |-
+            =ForAll(colCoefficientChangeLog,Patch('Coefficients for G-KPI Calculation Change Log',Defaults('Coefficients for G-KPI Calculation Change Log'),{'Unit Calorific (Fuel) Value':'Unit Calorific (Fuel) Value', PreviousUnitCalorificFuelValue: PreviousUnitCalorificFuelValue, PreviousUnitCO2EmmissionFuelValue: PreviousUnitCO2EmmissionFuelValue, 'Unit CO2 Emmission (Fuel) Value':'Unit CO2 Emmission (Fuel) Value'}))
+        Text: ="Button"
+        X: =1075
+        Y: =705
+        ZIndex: =14
+
+    Button21 As button:
+        OnSelect: =Clear(colCoefficientChangeLog)
+        Text: ="Button"
+        X: =878
+        Y: =703
+        ZIndex: =16
+
+    BG_33 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_40 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_67 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+

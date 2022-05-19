@@ -1,0 +1,709 @@
+ME_Requestor_test_ID As screen:
+    Height: =
+    OnHidden: |-
+        =ClearCollect(
+            colMEExtract,
+            Filter(
+                'UFE-Extract-Excel',
+                Month = "January"
+            )
+        );
+        
+        ClearCollect( colMEtest, GroupBy( colMEExtract, "ProductionLine", "Pack" ) )
+    OnVisible: |+
+        =If(!MEMYForm_1.Valid,SubmitForm(MEMYForm_1)||Notify("Please fill in the mandatory field(s) in Machine Efficiency (ME) Form",NotificationType.Error,1500));
+        
+        Clear(colMEFinal);
+        
+        ClearCollect(
+            colMEID,
+            Filter(
+                'ID Prod Line & SKU',
+                BU = MEBU_1.Text
+            )
+        );
+        
+        ClearCollect( colMEIDtest, GroupBy( colMEID, "ProdLine", "SKU", "BU" ) );
+        
+        
+        ClearCollect( colMEtest, GroupBy( colMEExtract, "ProductionLine", "Pack" ) )
+        
+
+    SubHeader_22 As SubHeader:
+        ZIndex: =3
+
+    Header_33 As Header:
+        HeaderText: ="C-7-1 Machine Efficiency Form"
+        ZIndex: =4
+
+    QC_Submit_bttn_9 As button:
+        BorderThickness: =0
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: |-
+            =If(CountRows(Filter('UFE-Temporary-List', FormNo = DataCardValue329_5.Text, field_7 <> "Upload from Excel"))>0,Set(popupalreadysubmit,true),
+            
+            Set(popupusersubmit,true))
+        Size: =13
+        Text: ="Submit"
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =5
+
+    QC_Save_bttn_9 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =Set(popupusersaveufeid,true)
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =6
+
+    MEMYForm_1 As form:
+        AcceptsFocus: =false
+        DataSource: ='ME Form'
+        Height: =204
+        Item: =Defaults('ME Form')
+        SnapToColumns: =false
+        Width: =1284
+        X: =50
+        Y: =120
+        ZIndex: =7
+
+        FormNo_DataCard3_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.FormNo
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'ME Form'],DataSourceInfo.DisplayName,"FormNo")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'ME Form'], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =MEFormNo_1.Text
+            Width: =285
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey2_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Form No"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            MEFormNo_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="ME"&"-"&MEBU_1&Right(MEYear_1.Selected.Value, 2 )&Switch(MEMonth_1.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =225
+                X: =30
+                Y: =DataCardKey2_1.Y + DataCardKey2_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage2_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =MEFormNo_1.Y + MEFormNo_1.Height
+                ZIndex: =3
+
+            StarVisible2_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2_1.Y
+                ZIndex: =4
+
+        BU_DataCard2_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="BU"
+            Default: =ThisItem.BU
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'ME Form'],DataSourceInfo.DisplayName,"BU")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =111
+            MaxLength: =DataSourceInfo([@'ME Form'], DataSourceInfo.MaxLength, "BU")
+            Required: =false
+            Update: =MEBU_1.Text
+            Width: =214
+            X: =1
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey13_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            MEBU_1 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: ="PTEDI"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey13_1.Y + DataCardKey13_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage13_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =MEBU_1.Y + MEBU_1.Height
+                ZIndex: =3
+
+            StarVisible13_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey13_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey13_1.Y
+                ZIndex: =4
+
+        Year_DataCard6_1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'ME Form'],DataSourceInfo.DisplayName,"Year")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =144
+            Required: =true
+            Update: =Value(MEYear_1.Selected.Value)
+            Width: =321
+            X: =2
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey16_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage16_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MEYear_1.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible16_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey16_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey16_1.Y
+                ZIndex: =4
+
+            MEYear_1 As dropdown:
+                BorderColor: =If(IsBlank(MEYear_1.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =["", Year(Now()),  Year(Today())-1]
+                Width: =261
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        Month_DataCard6_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Month"
+            Default: =ThisItem.Month
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'ME Form'],DataSourceInfo.DisplayName,"Month")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =99
+            MaxLength: =DataSourceInfo([@'ME Form'], DataSourceInfo.MaxLength, "Month")
+            Required: =true
+            Update: ='MEMonth-2_1'.Text
+            Width: =464
+            X: =3
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey51_1 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            "'MEMonth-2_1' As text":
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey51_1.Y + DataCardKey51_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage56_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MEMonth_1.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible62_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey51_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey51_1.Y
+                ZIndex: =4
+
+            MEMonth_1 As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =If(IsBlank(MEMonth_1.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =Calendar.MonthsLong()
+                Width: =404
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        DataCard21 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =4
+            Width: =1284
+            X: =4
+            Y: =0
+            ZIndex: =1
+
+            Label43_14 As label:
+                FontWeight: =Semibold
+                Size: =12
+                Text: ="Production Amount (Cases)"
+                Width: =223
+                X: =360
+                ZIndex: =1
+
+            Label43_15 As label:
+                FontWeight: =Semibold
+                Size: =12
+                Text: ="Actual Run Time (Hrs)"
+                Width: =182
+                X: =595
+                ZIndex: =2
+
+            Label43_16 As label:
+                FontWeight: =Semibold
+                Size: =12
+                Text: ="Rated Speed (Cases/Hr)"
+                Width: =193
+                X: =789
+                ZIndex: =3
+
+            Label43_17 As label:
+                FontWeight: =Semibold
+                Size: =12
+                Text: ="Machine Efficiency (Cases)"
+                Width: =214
+                X: =994
+                ZIndex: =4
+
+    Icon2_24 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =8
+
+    LeftNavBarForm_8 As LeftNavBarForm:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =768
+        MenuItemForm: =colMenu
+        Width: =LeftNavBarForm_8.MenuWidth
+        ZIndex: =9
+
+    Button19_4 As button:
+        OnSelect: =Collect('ME Form',colMEFinal)
+        Text: ="Button"
+        Visible: =false
+        X: =679
+        Y: =703
+        ZIndex: =10
+
+    Button7 As button:
+        OnSelect: |-
+            =ClearCollect(
+                colMEID,
+                Filter(
+                    'ID Prod Line & SKU',
+                    BU = MEBU_1.Text
+                )
+            );
+            
+            ClearCollect( colMEIDtest, GroupBy( colMEID, "ProdLine", "SKU", "BU" ) );
+            
+            
+            ClearCollect( colMEtest, GroupBy( colMEExtract, "ProductionLine", "Pack" ) )
+        Text: ="Button"
+        Visible: =false
+        X: =498
+        Y: =705
+        ZIndex: =11
+
+    Gallery10_7 As gallery.variableTemplateHeightGallery:
+        Height: =369
+        Items: =Distinct(colMEID,ProdLine)
+        Layout: =Layout.Vertical
+        TemplateSize: =280
+        Width: =1224
+        X: =72
+        Y: =309
+        ZIndex: =12
+
+        Button8_53 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(247, 247, 247, 1)
+            Height: =56
+            Text: =""
+            Width: =1274
+            Y: =2
+            ZIndex: =1
+
+        Gallery11_7 As gallery.variableTemplateHeightGallery:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            Items: =Filter(colMEID, ProdLine = Label43_5.Text)
+            Layout: =Layout.Vertical
+            TemplateSize: =169
+            Width: =1274
+            Y: =57
+            ZIndex: =2
+
+            Label36_7 As label:
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.SKU
+                Width: =900
+                ZIndex: =1
+
+            TextInput11_6 As text:
+                BorderColor: =If(IsBlank(TextInput11_6.Text), Color.Red, Parent.BorderColor)
+                Default: =""
+                Format: =TextFormat.Number
+                Height: =27
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |
+                    =If(
+                        CountIf(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)>0,
+                    
+                        Patch(colMEIDFinal,First(Filter(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)),{FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value), APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}),
+                        
+                        Collect(colMEIDFinal, 
+                    {FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value),APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}));
+                OnSelect: =Select(Parent)
+                Width: =200
+                X: =333
+                Y: =10
+                ZIndex: =2
+
+            TextInput12_2 As text:
+                BorderColor: =If(IsBlank(TextInput12_2.Text), Color.Red, Parent.BorderColor)
+                Default: =""
+                Height: =27
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)>0,
+                    
+                        Patch(colMEIDFinal,First(Filter(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)),{FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value), APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}),
+                        
+                        Collect(colMEIDFinal, 
+                    {FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value),APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}))
+                OnSelect: =Select(Parent)
+                Width: =200
+                X: =544
+                Y: =10
+                ZIndex: =3
+
+            TextInput13_2 As text:
+                BorderColor: =If(IsBlank(TextInput13_2.Text), Color.Red, Parent.BorderColor)
+                Default: =""
+                Height: =27
+                HoverBorderColor: =Self.BorderColor
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnChange: |-
+                    =If(
+                        CountIf(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)>0,
+                    
+                        Patch(colMEIDFinal,First(Filter(colMEIDFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)),{FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value), APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}),
+                        
+                        Collect(colMEIDFinal, 
+                    {FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value),APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}))
+                OnSelect: =Select(Parent)
+                Width: =200
+                X: =755
+                Y: =10
+                ZIndex: =4
+
+            TextInput14_2 As text:
+                BorderColor: =RGBA(50, 86, 160, 1)
+                BorderThickness: =0
+                Default: =Text(Sum(TextInput11_6.Text / Sum(TextInput12_2.Text*TextInput13_2.Text)*100),"0.00") & "%"
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =30
+                OnChange: |-
+                    =If(
+                        CountIf(colMEFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)>0,
+                    
+                        Patch(colMEFinal,First(Filter(colMEFinal,APProdLine = Label43_5.Text && APPackaging = Label36_7.Text)),{FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value), APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}),
+                        
+                        Collect(colMEFinal, 
+                    {FormNo : MEFormNo_1.Text, Status: "Pending approval", BU: MEBU_1.Text, RequestorName: varUserName, RequestorEmail: varUserEmail, Year: Value(MEYear_1.Selected.Value), Month: Text(MEMonth_1.Selected.Value),APProdLine: Label43_5.Text, APPackaging: Label36_7.Text, APProdAmt: Value(TextInput11_6.Text), ARTRunTime: Value(TextInput12_2.Text), RSCases: Value(TextInput13_2.Text), MECases: Value(TextInput14_2.Text)}))
+                OnSelect: =Select(Parent)
+                Width: =201
+                X: =968
+                Y: =10
+                ZIndex: =5
+
+            Label18_1 As label:
+                OnSelect: =Select(Parent)
+                Text: =Sum(Filter(colMEFinal, APProdLine = Label43_5.Text && APPackaging = Label36_7.Text && Month = MEMonth_1.Selected.Value && Year = Value(MEYear_1.Selected.Value) && BU = MEBU_1.Text),ARTRunTime) * Sum(Filter(colMEFinal, APProdLine = Label43_5.Text && APPackaging = Label36_7.Text && Month = MEMonth_1.Selected.Value && Year = Value(MEYear_1.Selected.Value) && BU = MEBU_1.Text),RSCases)
+                Visible: =false
+                X: =157
+                ZIndex: =6
+
+        Label43_5 As label:
+            AutoHeight: =true
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =48
+            OnSelect: =Select(Parent)
+            Text: |
+                =ThisItem.Result
+            Width: =255
+            X: =50
+            Y: =14
+            ZIndex: =3
+
+        Circle1_12 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =12
+            Y: =15
+            ZIndex: =4
+
+        Icon22_20 As icon.Post:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =16
+            Icon: =Icon.Document
+            OnSelect: =Select(Parent)
+            Width: =26
+            X: =14
+            Y: =22
+            ZIndex: =5
+
+        Label47_16 As label:
+            Fill: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            PaddingLeft: =10
+            Text: ="Subtotal"
+            Visible: =If(ThisItem.Result = Gallery10_7.Selected.Result,true,false)
+            Width: =1220
+            Y: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            ZIndex: =6
+
+        Label47_20 As label:
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            Text: =Text(Label47_17.Text/Sum(Gallery11_7.AllItems,Label18_1.Text)*100,"0.00")&"%"
+            Visible: =If(ThisItem.Result = Gallery10_7.Selected.Result,true,false)
+            Width: =153
+            X: =971
+            Y: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            ZIndex: =7
+
+        Label47_19 As label:
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            Text: |-
+                =Text(Sum(Filter(colMEIDFinal,APProdLine = Label43_5.Text),RSCases),"[$-en-US]###,###,###")
+            Visible: =If(ThisItem.Result = Gallery10_7.Selected.Result,true,false)
+            Width: =153
+            X: =761
+            Y: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            ZIndex: =12
+
+        Label47_18 As label:
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            Text: |-
+                =Text(Sum(Filter(colMEIDFinal,APProdLine = Label43_5.Text),ARTRunTime),"[$-en-US]###,###,###")
+            Visible: =If(ThisItem.Result = Gallery10_7.Selected.Result,true,false)
+            Width: =153
+            X: =555
+            Y: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            ZIndex: =13
+
+        Label47_17 As label:
+            FontWeight: =Semibold
+            OnSelect: =Select(Parent)
+            Text: |-
+                =Text(Sum(Filter(colMEIDFinal,APProdLine = Label43_5.Text),APProdAmt),"[$-en-US]###,###,###")
+            Visible: =If(ThisItem.Result = Gallery10_7.Selected.Result,true,false)
+            Width: =153
+            X: =343
+            Y: |-
+                =If(ThisItem.Result = Gallery10_7.Selected.Result,
+                CountRows(Filter(colMEID,ProdLine = Gallery10_7.Selected.Result))*50+50,0)
+            ZIndex: =14
+
+        Label43_6 As label:
+            Align: =Center
+            AutoHeight: =true
+            Color: =RGBA(0, 161, 233, 1)
+            FontWeight: =Semibold
+            Height: =48
+            OnSelect: =Select(Parent)
+            Text: =Label47_20.Text
+            Width: =71
+            X: =1097
+            Y: =14
+            ZIndex: =15
+
+    BG_31 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_38 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_65 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+

@@ -1,0 +1,3033 @@
+DF_Requestor As screen:
+    Height: =
+    OnVisible: |-
+        =Set(varShowMenu,true);Set(varShowMenu,false);
+        If(!'DF-Form'.Valid,SubmitForm('DF-Form')||Notify("Please fill in the mandatory field(s) in Demand Forecast Form",NotificationType.Error,1500));
+
+    HtmlText1_6 As htmlViewer:
+        Height: =673
+        HtmlText: |-
+            ="<div style='background-color: rgba(253,253,253,1); box-shadow: 1px 2px 22px 0px rgba(236,236,236,1); margin: 30px; width: 1295px; height: 548px; border-radius: 10px'></div>"
+        Width: =1366
+        Y: =95
+        ZIndex: =3
+
+    SubHeader_10 As SubHeader:
+        ZIndex: =4
+
+    Header_15 As Header:
+        HeaderText: ="D-4 Demand Forecast Form"
+        ZIndex: =5
+
+    "'DF-Form' As form":
+        AcceptsFocus: =false
+        DataSource: ='DF Form'
+        Height: =520
+        Item: =Defaults('DF Form')
+        SnapToColumns: =false
+        Width: =1285
+        X: =35
+        Y: =144
+        ZIndex: =6
+
+        DataCard20 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =48
+            Width: =1284
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey25_17 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 161, 233, 1)
+                FontWeight: =Semibold
+                Height: =34
+                PaddingLeft: =10
+                Size: =16
+                Text: ="Form Details"
+                Width: =1087
+                Wrap: =false
+                X: =69
+                Y: =8
+                ZIndex: =1
+
+            Circle2_31 As circle:
+                Fill: =RGBA(0, 161, 233, 1)
+                Height: =31
+                Width: =31
+                X: =38
+                Y: =13
+                ZIndex: =2
+
+            Icon23_20 As icon.CalendarBlank:
+                Color: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =23
+                Icon: =Icon.DocumentWithContent
+                Width: =23
+                X: =42
+                Y: =17
+                ZIndex: =3
+
+        BU_DataCard10 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_1"
+            Default: =ThisItem.BU
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="BU"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'DF Form'], DataSourceInfo.MaxLength, "field_1")
+            Required: =false
+            Update: =BUDF.Text
+            Width: =214
+            X: =2
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey203 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            BUDF As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: ="EBSB"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey203.Y + DataCardKey203.Height + 5
+                ZIndex: =2
+
+            ErrorMessage211 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =BUDF.Y + BUDF.Height
+                ZIndex: =3
+
+            StarVisible214 As label:
+                Align: =Align.Center
+                Height: =DataCardKey203.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey203.Y
+                ZIndex: =4
+
+        Year_DataCard5 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Year"
+            Default: =ThisItem.Year
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Year"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =164
+            Required: =true
+            Update: =Value(YearDF.Selected.Value)
+            Width: =214
+            X: =3
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey204 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage212 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(YearDF.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =40
+                Y: =99
+                ZIndex: =3
+
+            StarVisible215 As label:
+                Align: =Align.Center
+                Height: =DataCardKey204.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey204.Y
+                ZIndex: =4
+
+            YearDF As dropdown:
+                BorderColor: =If(IsBlank(YearDF.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                Items: =["", Year(Now()),  Year(Today())-1]
+                Width: =150
+                X: =40
+                Y: =49
+                ZIndex: =5
+
+        Month_DataCard5 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_4"
+            Default: =ThisItem.Month
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Month"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =true
+            Update: =MonthDF.Selected
+            Width: =428
+            X: =4
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey205 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            MonthDF As combobox:
+                BorderColor: =If(IsBlank(MonthDF.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                Items: =Calendar.MonthsLong()
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =Search(Calendar.MonthsLong(),MonthDF.SearchText,"Value")
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey205.Y + DataCardKey205.Height + 5
+                ZIndex: =2
+
+            StarVisible216 As label:
+                Align: =Align.Center
+                Height: =DataCardKey205.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey205.Y
+                ZIndex: =4
+
+            ErrorMessage200_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(MonthDF.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =5
+
+        Title_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Title"
+            Default: =ThisItem.Title
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Title"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =9
+            MaxLength: =DataSourceInfo([@'DF Form'], DataSourceInfo.MaxLength, "Title")
+            Required: =false
+            Update: =DataCardValue42.Text
+            Width: =1284
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardValue42 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                BorderThickness: =0
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =5
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =6
+                ZIndex: =2
+
+            ErrorMessage58 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue42.Y + DataCardValue42.Height
+                ZIndex: =3
+
+            StarVisible77 As label:
+                Align: =Align.Center
+                Height: =
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =
+                ZIndex: =4
+
+        DataCard7 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =59
+            Width: =1284
+            X: =1
+            Y: =1
+            ZIndex: =1
+
+            Icon18 As icon.Calendar:
+                Color: =RGBA(179, 179, 179, 1)
+                Height: =34
+                Icon: =Icon.AddToCalendar
+                Width: =34
+                X: =32
+                Y: =21
+                ZIndex: =1
+
+            Button13 As button:
+                Align: =Align.Left
+                Color: =RGBA(179, 179, 179, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =ColorFade(Self.Color, 20%)
+                HoverFill: =Self.Fill
+                OnSelect: |-
+                    =Launch("https://www.calendar-week.org/calendar-weeks/2022")
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =14
+                Text: ="Click Here To View Calendar (Week)"
+                Width: =369
+                X: =67
+                Y: =18
+                ZIndex: =2
+
+        DataCard22 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =116
+            Visible: |-
+                =If(
+                    
+                !IsBlank(DataCardValue372.Selected.Value) && !IsBlank(DataCardValue373.Selected.Value) &&  Value(DataCardValue372.Selected.Value) + 1 <> Value(DataCardValue373.Selected.Value), true, 
+                
+                !IsBlank(DataCardValue373.Selected.Value) && !IsBlank(DataCardValue374.Selected.Value) &&  Value(DataCardValue373.Selected.Value) + 1 <> Value(DataCardValue374.Selected.Value), true, 
+                
+                !IsBlank(DataCardValue374.Selected.Value) && !IsBlank(DataCardValue375.Selected.Value) &&  Value(DataCardValue374.Selected.Value) + 1 <> Value(DataCardValue375.Selected.Value), true, 
+                
+                !IsBlank(DataCardValue375.Selected.Value) && !IsBlank(DataCardValue376.Selected.Value) &&  Value(DataCardValue375.Selected.Value) + 1 <> Value(DataCardValue376.Selected.Value), true, 
+                
+                false)
+            Width: =1284
+            X: =2
+            Y: =1
+            ZIndex: =1
+
+            Rectangle5_1 As rectangle:
+                BorderThickness: =-1
+                Fill: =RGBA(184, 0, 0, 1)
+                Height: =81
+                Width: =1284
+                Y: =10
+                ZIndex: =1
+
+            Icon12_1 As icon.Warning:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =17
+                Icon: =Icon.Warning
+                Width: =17
+                X: =364
+                Y: =40
+                ZIndex: =3
+
+            ErrorMessage250_1 As label:
+                Align: =Center
+                AutoHeight: =true
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =13
+                Text: ="Weeks is not in sequence. Please relook at the data entered"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =40
+                ZIndex: =4
+
+        "'Week 1_DataCard2' As typedDataCard.comboBoxEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_5"
+            Default: =ThisItem.'Week 1'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"field_5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue372.Selected
+            Width: =214
+            X: =3
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey397 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Week "
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue372 As combobox:
+                BorderColor: =If(IsBlank(DataCardValue372.Selected.Value), Color.Red, RGBA(230, 230, 230, 1))
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                IsSearchable: =false
+                Items: |
+                    =Filter(
+                            Choices('DF Form'.'Week 1'),
+                            Value <> varWeek2 &&  Value <> varWeek3 &&  Value <> varWeek4 &&  Value <> varWeek5
+                    )
+                OnChange: |
+                    =Set(varWeek1,DataCardValue372.Selected.Value);
+                    Set(varWeek2,DataCardValue373.Selected.Value);
+                    Set(varWeek3,DataCardValue374.Selected.Value);
+                    Set(varWeek4,DataCardValue375.Selected.Value);
+                    Set(varWeek5,DataCardValue376.Selected.Value);
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =[]
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey397.Y + DataCardKey397.Height + 5
+                ZIndex: =2
+
+            ErrorMessage250 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue372.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible260 As label:
+                Align: =Align.Center
+                Height: =DataCardKey397.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey397.Y
+                ZIndex: =4
+
+        FromDate_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FromDate"
+            Default: =ThisItem.FromDate
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"FromDate")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue196.SelectedDate
+            Width: =214
+            X: =4
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey158 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="From Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue196 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue372.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                            DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                            DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey158.Y + DataCardKey158.Height + 5
+                ZIndex: =2
+
+            ErrorMessage145 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue196.Y + DataCardValue196.Height
+                ZIndex: =3
+
+            StarVisible151 As label:
+                Align: =Align.Center
+                Height: =DataCardKey158.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey158.Y
+                ZIndex: =4
+
+            Rectangle13 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue372.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        ToDate_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ToDate"
+            Default: =ThisItem.ToDate
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"ToDate")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue327.SelectedDate
+            Width: =214
+            X: =5
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey179 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="To Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue327 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue372.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)-6),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey179.Y + DataCardKey179.Height + 5
+                ZIndex: =2
+
+            ErrorMessage146 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue327.Y + DataCardValue327.Height
+                ZIndex: =3
+
+            StarVisible177 As label:
+                Align: =Align.Center
+                Height: =DataCardKey179.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey179.Y
+                ZIndex: =4
+
+            Rectangle13_1 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue372.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        "'Sum of Actual Sales_DataCard2' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofActualSales"
+            Default: =ThisItem.'Sum of Actual Sales'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Actual Sales"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =162
+            Required: =true
+            Update: =Value(DataCardValue47.Text)
+            Width: =214
+            X: =6
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey71 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue47 As text:
+                BorderColor: =If(IsBlank(DataCardValue47.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey71.Y + DataCardKey71.Height + 5
+                ZIndex: =2
+
+            ErrorMessage66 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue47.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible88 As label:
+                Align: =Align.Center
+                Height: =DataCardKey71.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey71.Y
+                ZIndex: =4
+
+        "'Sum of Absolute Variance_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofAbsoluteVariance"
+            Default: =ThisItem.'Sum of Absolute Variance'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Absolute Variance"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =99
+            Required: =true
+            Update: =Value(DataCardValue49.Text)
+            Width: =214
+            X: =7
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey77 As label:
+                AutoHeight: =true
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =166
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue49 As text:
+                BorderColor: =If(IsBlank(DataCardValue49.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey77.Y + DataCardKey77.Height + 5
+                ZIndex: =2
+
+            ErrorMessage75 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue49.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =166
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible92 As label:
+                Align: =Align.Center
+                Height: =DataCardKey77.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey77.Y
+                ZIndex: =4
+
+        "'Weekly Forecast Error_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WeeklyForecastError"
+            Default: =ThisItem.'Weekly Forecast Error'
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Weekly Forecast Error"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =117
+            Required: =false
+            Update: =Value(DataCardValue50.Text)
+            Width: =214
+            X: =8
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey86 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue50 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue47.Text/DataCardValue49.Text, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey86.Y + DataCardKey86.Height + 5
+                ZIndex: =2
+
+            ErrorMessage77 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue50.Y + DataCardValue50.Height
+                ZIndex: =3
+
+            StarVisible93 As label:
+                Align: =Align.Center
+                Height: =DataCardKey86.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey86.Y
+                ZIndex: =4
+
+            Icon2_17 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="Sum of Actual Sales/Sum of Absolute Variance,0"
+                Width: =20
+                X: =87
+                Y: =38
+                ZIndex: =5
+
+        "'Week 2_DataCard2' As typedDataCard.comboBoxEditCard":
+            BorderColor: =RGBA(230, 230, 230, 1)
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_9"
+            Default: =ThisItem.'Week 2'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"field_9")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue373.Selected
+            Width: =214
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey398 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Week "
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue373 As combobox:
+                BorderColor: =If(IsBlank(DataCardValue373.Selected.Value), Color.Red, Parent.BorderColor)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                IsSearchable: =false
+                Items: |
+                    =Filter(
+                            Choices('DF Form'.'Week 2'),
+                            Value <> varWeek1 &&  Value <> varWeek3 &&  Value <> varWeek4 &&  Value <> varWeek5
+                    )
+                OnChange: |
+                    =Set(varWeek1,DataCardValue372.Selected.Value);
+                    Set(varWeek2,DataCardValue373.Selected.Value);
+                    Set(varWeek3,DataCardValue374.Selected.Value);
+                    Set(varWeek4,DataCardValue375.Selected.Value);
+                    Set(varWeek5,DataCardValue376.Selected.Value);
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =[]
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey398.Y + DataCardKey398.Height + 5
+                ZIndex: =2
+
+            ErrorMessage251 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue373.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible261 As label:
+                Align: =Align.Center
+                Height: =DataCardKey398.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey398.Y
+                ZIndex: =4
+
+        FromDate2_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FromDate2"
+            Default: =ThisItem.FromDate2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"FromDate2")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue328.SelectedDate
+            Width: =214
+            X: =1
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey181 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="From Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue328 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue373.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey181.Y + DataCardKey181.Height + 5
+                ZIndex: =2
+
+            ErrorMessage147 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue328.Y + DataCardValue328.Height
+                ZIndex: =3
+
+            StarVisible189 As label:
+                Align: =Align.Center
+                Height: =DataCardKey181.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey181.Y
+                ZIndex: =4
+
+            Rectangle13_2 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue373.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        ToDate2_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ToDate2"
+            Default: =ThisItem.ToDate2
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"ToDate2")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue331.SelectedDate
+            Width: =214
+            X: =2
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey208 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="To Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue331 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue373.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)-6),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey208.Y + DataCardKey208.Height + 5
+                ZIndex: =2
+
+            ErrorMessage150 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue331.Y + DataCardValue331.Height
+                ZIndex: =3
+
+            StarVisible195 As label:
+                Align: =Align.Center
+                Height: =DataCardKey208.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey208.Y
+                ZIndex: =4
+
+            Rectangle13_3 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue373.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        "'Sum of Actual Sales Week 2_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofActualSales2"
+            Default: =ThisItem.'Sum of Actual Sales Week 2'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Actual Sales Week 2"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =162
+            Required: =true
+            Update: =Value(DataCardValue53.Text)
+            Width: =214
+            X: =3
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey93 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Actual Sales"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue53 As text:
+                BorderColor: =If(IsBlank(DataCardValue53.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey93.Y + DataCardKey93.Height + 5
+                ZIndex: =2
+
+            ErrorMessage88 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue53.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =184
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible96 As label:
+                Align: =Align.Center
+                Height: =DataCardKey93.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey93.Y
+                ZIndex: =4
+
+        "'Sum of Absolute Variance Week 2_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofAbsoluteVariance2"
+            Default: =ThisItem.'Sum of Absolute Variance Week 2'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Absolute Variance Week 2"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =92
+            Required: =true
+            Update: =Value(DataCardValue60.Text)
+            Width: =214
+            X: =4
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey94 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Absolute Variance "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue60 As text:
+                BorderColor: =If(IsBlank(DataCardValue60.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey94.Y + DataCardKey94.Height + 5
+                ZIndex: =2
+
+            ErrorMessage92 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue60.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =184
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible97 As label:
+                Align: =Align.Center
+                Height: =DataCardKey94.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey94.Y
+                ZIndex: =4
+
+        "'Weekly Forecast Error Week 2_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WeeklyForecastError2"
+            Default: =ThisItem.'Weekly Forecast Error Week 2'
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Weekly Forecast Error Week 2"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =94
+            Required: =false
+            Update: =Value(DataCardValue52.Text)
+            Width: =214
+            X: =5
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey92 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Weekly Forecast Error"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue52 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue53.Text/DataCardValue60.Text, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey92.Y + DataCardKey92.Height + 5
+                ZIndex: =2
+
+            ErrorMessage86 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue52.Y + DataCardValue52.Height
+                ZIndex: =3
+
+            StarVisible95 As label:
+                Align: =Align.Center
+                Height: =DataCardKey92.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey92.Y
+                ZIndex: =4
+
+            Icon2_18 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="Sum of Actual Sales/Sum of Absolute Variance,0"
+                Width: =20
+                X: =87
+                Y: =38
+                ZIndex: =5
+
+        "'Week 3_DataCard1' As typedDataCard.comboBoxEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_13"
+            Default: =ThisItem.'Week 3'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"field_13")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue374.Selected
+            Width: =214
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey399 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Week "
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue374 As combobox:
+                BorderColor: =If(IsBlank(DataCardValue374.Selected.Value), Color.Red, RGBA(230, 230, 230, 1))
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                Items: |
+                    =Filter(
+                            Choices('DF Form'.'Week 3'),
+                            Value <> varWeek1 &&  Value <> varWeek2 &&  Value <> varWeek4 &&  Value <> varWeek5
+                    )
+                OnChange: |
+                    =Set(varWeek1,DataCardValue372.Selected.Value);
+                    Set(varWeek2,DataCardValue373.Selected.Value);
+                    Set(varWeek3,DataCardValue374.Selected.Value);
+                    Set(varWeek4,DataCardValue375.Selected.Value);
+                    Set(varWeek5,DataCardValue376.Selected.Value);
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: |-
+                    =Search(Filter(
+                            Choices('DF Form'.'Week 3'),
+                            Value <> varWeek1 &&  Value <> varWeek2 &&  Value <> varWeek4 &&  Value <> varWeek5
+                    )
+                    ,DataCardValue374.SearchText,"Value")
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey399.Y + DataCardKey399.Height + 5
+                ZIndex: =2
+
+            ErrorMessage252 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue374.Selected.Value) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible262 As label:
+                Align: =Align.Center
+                Height: =DataCardKey399.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey399.Y
+                ZIndex: =4
+
+        FromDate3_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FromDate3"
+            Default: =ThisItem.FromDate3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"FromDate3")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue329.SelectedDate
+            Width: =214
+            X: =1
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey183 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="From Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue329 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue374.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey183.Y + DataCardKey183.Height + 5
+                ZIndex: =2
+
+            ErrorMessage148 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue329.Y + DataCardValue329.Height
+                ZIndex: =3
+
+            StarVisible191 As label:
+                Align: =Align.Center
+                Height: =DataCardKey183.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey183.Y
+                ZIndex: =4
+
+            Rectangle13_4 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue374.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        ToDate3_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ToDate3"
+            Default: =ThisItem.ToDate3
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"ToDate3")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue332.SelectedDate
+            Width: =214
+            X: =2
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey209 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="To Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue332 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue374.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)-6),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey209.Y + DataCardKey209.Height + 5
+                ZIndex: =2
+
+            ErrorMessage151 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue332.Y + DataCardValue332.Height
+                ZIndex: =3
+
+            StarVisible219 As label:
+                Align: =Align.Center
+                Height: =DataCardKey209.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey209.Y
+                ZIndex: =4
+
+            Rectangle13_5 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue374.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        "'Sum of Actual Sales Week 3_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofActualSalesWeek3"
+            Default: =ThisItem.'Sum of Actual Sales Week 3'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Actual Sales Week 3"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =162
+            Required: =true
+            Update: =Value(DataCardValue62.Text)
+            Width: =214
+            X: =3
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey96 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Actual Sales "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue62 As text:
+                BorderColor: =If(IsBlank(DataCardValue62.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey96.Y + DataCardKey96.Height + 5
+                ZIndex: =2
+
+            ErrorMessage94 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue62.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible99 As label:
+                Align: =Align.Center
+                Height: =DataCardKey96.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey96.Y
+                ZIndex: =4
+
+        "'Sum of Absolute Variance Week 3_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofAbsoluteVarianceWeek3"
+            Default: =ThisItem.'Sum of Absolute Variance Week 3'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Absolute Variance Week 3"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =99
+            Required: =true
+            Update: =Value(DataCardValue61.Text)
+            Width: =214
+            X: =4
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey95 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Absolute Variance "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue61 As text:
+                BorderColor: =If(IsBlank(DataCardValue61.Text), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey95.Y + DataCardKey95.Height + 5
+                ZIndex: =2
+
+            ErrorMessage93 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue61.Text) && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible98 As label:
+                Align: =Align.Center
+                Height: =DataCardKey95.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey95.Y
+                ZIndex: =4
+
+        "'Weekly Forecast Error Week 3_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WeeklyForecastErrorWeek3"
+            Default: =ThisItem.'Weekly Forecast Error Week 3'
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Weekly Forecast Error Week 3"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue73.Text)
+            Width: =214
+            X: =5
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey98 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Weekly Forecast Error "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue73 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue62.Text/DataCardValue61.Text, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey98.Y + DataCardKey98.Height + 5
+                ZIndex: =2
+
+            ErrorMessage96 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue73.Y + DataCardValue73.Height
+                ZIndex: =3
+
+            StarVisible102 As label:
+                Align: =Align.Center
+                Height: =DataCardKey98.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey98.Y
+                ZIndex: =4
+
+            Icon2_19 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="Sum of Actual Sales/Sum of Absolute Variance,0"
+                Width: =20
+                X: =87
+                Y: =38
+                ZIndex: =5
+
+        "'Week 4_DataCard1' As typedDataCard.comboBoxEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_17"
+            Default: =ThisItem.'Week 4'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"field_17")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue375.Selected
+            Width: =214
+            X: =0
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey400 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Week "
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue375 As combobox:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                IsSearchable: =false
+                Items: |
+                    =Filter(
+                            Choices('DF Form'.'Week 4'),
+                            Value <> varWeek1 &&  Value <> varWeek2 &&  Value <> varWeek3 &&  Value <> varWeek5
+                    )
+                OnChange: |
+                    =Set(varWeek1,DataCardValue372.Selected.Value);
+                    Set(varWeek2,DataCardValue373.Selected.Value);
+                    Set(varWeek3,DataCardValue374.Selected.Value);
+                    Set(varWeek4,DataCardValue375.Selected.Value);
+                    Set(varWeek5,DataCardValue376.Selected.Value);
+                    
+                    If(IsBlank(DataCardValue375.Selected.Value), Reset(DataCardValue77) && Reset(DataCardValue74))
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =[]
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey400.Y + DataCardKey400.Height + 5
+                ZIndex: =2
+
+            ErrorMessage253 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =false
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible263 As label:
+                Align: =Align.Center
+                Height: =DataCardKey400.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey400.Y
+                ZIndex: =4
+
+        FromDate4_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FromDate4"
+            Default: =ThisItem.FromDate4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"FromDate4")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue330.SelectedDate
+            Width: =214
+            X: =1
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey185 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="From Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue330 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue375.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey185.Y + DataCardKey185.Height + 5
+                ZIndex: =2
+
+            ErrorMessage149 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue330.Y + DataCardValue330.Height
+                ZIndex: =3
+
+            StarVisible193 As label:
+                Align: =Align.Center
+                Height: =DataCardKey185.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey185.Y
+                ZIndex: =4
+
+            Rectangle13_6 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue375.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        ToDate4_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ToDate4"
+            Default: =ThisItem.ToDate4
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"ToDate4")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue333.SelectedDate
+            Width: =214
+            X: =2
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey210 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="To Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue333 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue376.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)-6),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey210.Y + DataCardKey210.Height + 5
+                ZIndex: =2
+
+            ErrorMessage174 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue333.Y + DataCardValue333.Height
+                ZIndex: =3
+
+            StarVisible220 As label:
+                Align: =Align.Center
+                Height: =DataCardKey210.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey210.Y
+                ZIndex: =4
+
+            Rectangle13_7 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue375.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        "'Sum of Actual Sales Week 4_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofActualSalesWeek4"
+            Default: =ThisItem.'Sum of Actual Sales Week 4'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Actual Sales Week 4"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =162
+            Required: =If(!IsBlank(DataCardValue375.Selected.Value),true,false)
+            Update: =Value(DataCardValue77.Text)
+            Width: =214
+            X: =3
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey100 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Actual Sales"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue77 As text:
+                BorderColor: =If(And(IsBlank(DataCardValue77.Text), 'Sum of Absolute Variance Week 4_DataCard1'.Required), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey100.Y + DataCardKey100.Height + 5
+                ZIndex: =2
+
+            ErrorMessage98 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue77.Text) && 'Sum of Absolute Variance Week 4_DataCard1'.Required && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible104 As label:
+                Align: =Align.Center
+                Height: =DataCardKey100.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey100.Y
+                ZIndex: =4
+
+        "'Sum of Absolute Variance Week 4_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofAbsoluteVarianceWeek4"
+            Default: =ThisItem.'Sum of Absolute Variance Week 4'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Sum of Absolute Variance Week 4"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(!IsBlank(DataCardValue375.Selected.Value),true,false)
+            Update: =Value(DataCardValue74.Text)
+            Width: =214
+            X: =4
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey99 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Absolute Variance "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue74 As text:
+                BorderColor: =If(And(IsBlank(DataCardValue77.Text), 'Sum of Absolute Variance Week 4_DataCard1'.Required), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey99.Y + DataCardKey99.Height + 5
+                ZIndex: =2
+
+            ErrorMessage97 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue74.Text) && 'Sum of Absolute Variance Week 4_DataCard1'.Required && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible103 As label:
+                Align: =Align.Center
+                Height: =DataCardKey99.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey99.Y
+                ZIndex: =4
+
+        "'Weekly Forecast Error Week 4_DataCard1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WeeklyForecastErrorWeek4"
+            Default: =ThisItem.'Weekly Forecast Error Week 4'
+            DisplayMode: =DisplayMode.View
+            DisplayName: ="Weekly Forecast Error Week 4"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue81.Text)
+            Width: =214
+            X: =5
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey103 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Weekly Forecast Error "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue81 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue77.Text/DataCardValue74.Text, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey103.Y + DataCardKey103.Height + 5
+                ZIndex: =2
+
+            ErrorMessage100 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue81.Y + DataCardValue81.Height
+                ZIndex: =3
+
+            StarVisible106 As label:
+                Align: =Align.Center
+                Height: =DataCardKey103.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey103.Y
+                ZIndex: =4
+
+            Icon2_20 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="Sum of Actual Sales/Sum of Absolute Variance,0"
+                Width: =20
+                X: =87
+                Y: =38
+                ZIndex: =5
+
+        Week5_DataCard1 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Week5"
+            Default: =ThisItem.Week5
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"Week5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue376.Selected
+            Width: =214
+            X: =6
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey401 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Week "
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue376 As combobox:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                ChevronBackground: =RGBA(0, 161, 233, 1)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                InputTextPlaceholder: =""
+                IsSearchable: =false
+                Items: |
+                    =Filter(
+                            Choices('DF Form'.Week5),
+                            Value <> varWeek1 &&  Value <> varWeek2 &&  Value <> varWeek3 &&  Value <> varWeek4
+                    )
+                OnChange: |
+                    =Set(varWeek1,DataCardValue372.Selected.Value);
+                    Set(varWeek2,DataCardValue373.Selected.Value);
+                    Set(varWeek3,DataCardValue374.Selected.Value);
+                    Set(varWeek4,DataCardValue375.Selected.Value);
+                    Set(varWeek5,DataCardValue376.Selected.Value);
+                    
+                    If(IsBlank(DataCardValue376.Selected.Value), Reset(DataCardValue337) && Reset(DataCardValue338))
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =[]
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey401.Y + DataCardKey401.Height + 5
+                ZIndex: =2
+
+            ErrorMessage254 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =false
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =99
+                ZIndex: =3
+
+            StarVisible264 As label:
+                Align: =Align.Center
+                Height: =DataCardKey401.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey401.Y
+                ZIndex: =4
+
+        FromDate5_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FromDate5"
+            Default: =ThisItem.FromDate5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"FromDate5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue335.SelectedDate
+            Width: =214
+            X: =7
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey212 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="From Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue335 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue376.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey212.Y + DataCardKey212.Height + 5
+                ZIndex: =2
+
+            ErrorMessage188 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue335.Y + DataCardValue335.Height
+                ZIndex: =3
+
+            StarVisible222 As label:
+                Align: =Align.Center
+                Height: =DataCardKey212.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey212.Y
+                ZIndex: =4
+
+            Rectangle13_8 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue376.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        ToDate5_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ToDate5"
+            Default: =ThisItem.ToDate5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"ToDate5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue336.SelectedDate
+            Width: =214
+            X: =8
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey213 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="To Date"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue336 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: |-
+                    =With({year:YearDF.Selected.Value, weekNo:DataCardValue376.Selected.Value},
+                    With({weekDate:
+                          If(ISOWeekNum(Date(year,1,1)) < 1,
+                             DateAdd(Date(year,1,1), 7* (weekNo-1)),
+                             DateAdd(Date(year,1,1), 7* weekNo)
+                          )
+                          },
+                          DateAdd(weekDate,
+                            -(Weekday(weekDate,StartOfWeek.MondayZero)-6),
+                            Days
+                       )
+                     )
+                    )
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                Fill: =RGBA(230, 230, 230, 1)
+                Format: ="dd/mm/yyyy"
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 5)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey213.Y + DataCardKey213.Height + 5
+                ZIndex: =2
+
+            ErrorMessage190 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue336.Y + DataCardValue336.Height
+                ZIndex: =3
+
+            StarVisible223 As label:
+                Align: =Align.Center
+                Height: =DataCardKey213.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey213.Y
+                ZIndex: =4
+
+            Rectangle13_9 As rectangle:
+                Fill: =RGBA(230, 230, 230, 1)
+                Height: =40
+                Visible: =If(IsBlank(DataCardValue376.Selected.Value), true,false)
+                Width: =154
+                X: =30
+                Y: =49
+                ZIndex: =5
+
+        SumofActualSalesWeek5_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofActualSalesWeek5"
+            Default: =ThisItem.SumofActualSalesWeek5
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"SumofActualSalesWeek5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =162
+            Required: =If(!IsBlank(DataCardValue376.Selected.Value),true,false)
+            Update: =Value(DataCardValue337.Text)
+            Width: =214
+            X: =9
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey271 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Actual Sales"
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue337 As text:
+                BorderColor: =If(And(IsBlank(DataCardValue337.Text), SumofAbsoluteVarianceWeek5_DataCard1.Required), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey271.Y + DataCardKey271.Height + 5
+                ZIndex: =2
+
+            ErrorMessage192 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue337.Text) && SumofActualSalesWeek5_DataCard1.Required && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible224 As label:
+                Align: =Align.Center
+                Height: =DataCardKey271.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey271.Y
+                ZIndex: =4
+
+        SumofAbsoluteVarianceWeek5_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="SumofAbsoluteVarianceWeek5"
+            Default: =ThisItem.SumofAbsoluteVarianceWeek5
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"SumofAbsoluteVarianceWeek5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =If(!IsBlank(DataCardValue376.Selected.Value),true,false)
+            Update: =Value(DataCardValue338.Text)
+            Width: =214
+            X: =10
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey272 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Sum of Absolute Variance "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue338 As text:
+                BorderColor: =If(And(IsBlank(DataCardValue337.Text), SumofAbsoluteVarianceWeek5_DataCard1.Required), Color.Red, Parent.BorderColor)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey272.Y + DataCardKey272.Height + 5
+                ZIndex: =2
+
+            ErrorMessage216 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: ="This field is mandatory."
+                Visible: =(IsBlank(DataCardValue337.Text) && SumofActualSalesWeek5_DataCard1.Required && Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =117
+                ZIndex: =3
+
+            StarVisible228 As label:
+                Align: =Align.Center
+                Height: =DataCardKey272.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey272.Y
+                ZIndex: =4
+
+        WeeklyForecastErrorWeek5_DataCard1 As typedDataCard.numberEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WeeklyForecastErrorWeek5"
+            Default: =ThisItem.WeeklyForecastErrorWeek5
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'DF Form'],DataSourceInfo.DisplayName,"WeeklyForecastErrorWeek5")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Value(DataCardValue339.Text)
+            Width: =214
+            X: =11
+            Y: =6
+            ZIndex: =1
+
+            DataCardKey273 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Weekly Forecast Error "
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue339 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                Default: =Text(DataCardValue337.Text/DataCardValue338.Text, "0%")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                Format: =TextFormat.Number
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey273.Y + DataCardKey273.Height + 5
+                ZIndex: =2
+
+            ErrorMessage217 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue339.Y + DataCardValue339.Height
+                ZIndex: =3
+
+            StarVisible229 As label:
+                Align: =Align.Center
+                Height: =DataCardKey273.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey273.Y
+                ZIndex: =4
+
+            Icon2_21 As icon.Information:
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =20
+                Icon: =Icon.Information
+                Tooltip: ="Sum of Actual Sales/Sum of Absolute Variance,0"
+                Width: =20
+                X: =87
+                Y: =38
+                ZIndex: =5
+
+        FormNo_DataCard3_6 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FormNo"
+            Default: =ThisItem.FormNo
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="FormNo"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'UFE-Temporary-List'], DataSourceInfo.MaxLength, "FormNo")
+            Required: =false
+            Update: =DataCardValue102_6.Text
+            Width: =428
+            X: =1
+            Y: =0
+            ZIndex: =28
+
+            DataCardKey109_6 As label:
+                AutoHeight: =true
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =34
+                Text: ="Form No"
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue102_6 As text:
+                BorderColor: =RGBA(230, 230, 230, 1)
+                BorderThickness: =0
+                Default: ="DF"&"-"&BUDF.Text&Right(YearDF.Selected.Value, 2 )&Switch(MonthDF.Selected.Value,"January", "01", "February", "02", "March", "03", "April", "04", "May", "05", "June", "06", "July", "07", "August", "08", "September", "09",  "October", "10", "November", "11", "December", "12")
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverBorderColor: =RGBA(230, 230, 230, 1)
+                HoverFill: =Self.Fill
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey109_6.Y + DataCardKey109_6.Height + 5
+                ZIndex: =2
+
+            ErrorMessage109_6 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue102_6.Y + DataCardValue102_6.Height
+                ZIndex: =3
+
+            StarVisible109_6 As label:
+                Align: =Align.Center
+                Height: =DataCardKey109_6.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey109_6.Y
+                ZIndex: =4
+
+    QC_Submit_bttn_2 As button:
+        BorderThickness: =0
+        DisplayMode: |
+            =If(!'DF-Form'.Valid Or DataCard22.Visible,Disabled,Edit)
+        Fill: =RGBA(0, 161, 233, 1)
+        Height: =42
+        HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        OnSelect: =Set(popupusersubmit,true)
+        Size: =13
+        Text: ="Submit"
+        Width: =200
+        X: =1133
+        Y: =703
+        ZIndex: =7
+
+    QC_Save_bttn_2 As button:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =42
+        HoverBorderColor: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        HoverFill: =ColorFade(RGBA(128, 128, 128, 1), -4%)
+        OnSelect: =
+        Size: =13
+        Text: ="Save"
+        Width: =200
+        X: =918
+        Y: =703
+        ZIndex: =8
+
+    TextInput2_1 As text:
+        Default: =DateAdd(Today(),1-Weekday(Today(),StartOfWeek.Monday),Days)
+        Visible: =false
+        X: =40
+        Y: =120
+        ZIndex: =15
+
+    TextInput2_2 As text:
+        Default: =DateAdd(Today(),1-Weekday(Today(),StartOfWeek.Monday),Days)+6
+        Visible: =false
+        X: =386
+        Y: =120
+        ZIndex: =16
+
+    Button2_9 As button:
+        Color: =RGBA(153, 153, 153, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        FontWeight: =Semibold
+        HoverColor: =ColorFade(Self.Color, -10%)
+        HoverFill: =Self.Fill
+        OnSelect: |-
+            =Launch("https://asahisea.sharepoint.com/sites/GKPISTG2/Shared%20Documents/Definition-DF.pdf")
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Size: =12
+        Text: ="Definition"
+        Width: =115
+        X: =626
+        Y: =55
+        ZIndex: =17
+
+    BG_13 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =36
+
+        Image3_20 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_47 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.97)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Pop_Up_User_Submit_3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =64
+
+        Rectangle5_10 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupusersubmit
+            Width: =1366
+            ZIndex: =9
+
+        Submit_Bttn_7 As button:
+            Align: =Center
+            BorderColor: =RGBA(0, 161, 233, 1)
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =44
+            HoverFill: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+            OnSelect: |-
+                =SubmitForm('DF-Form');
+                Navigate(Successful);
+            Size: =13
+            Text: ="Submit"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =687
+            Y: =664
+            ZIndex: =10
+
+        Cancel_Bttn_8 As button:
+            Align: =Center
+            BorderColor: =RGBA(128, 128, 128, 1)
+            Color: =RGBA(128, 128, 128, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =44
+            HoverColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 0), -4%)
+            OnSelect: =Set(popupusersubmit,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =popupusersubmit
+            Width: =209
+            X: =452
+            Y: =664
+            ZIndex: =11
+
+        Circle2_7 As circle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =65
+            Visible: =popupusersubmit
+            Width: =65
+            X: =651
+            Y: =264
+            ZIndex: =12
+
+        Image6_7 As image:
+            Height: =45
+            Image: ='signature-with-a-pen'
+            Visible: =popupusersubmit
+            Width: =45
+            X: =661
+            Y: =274
+            ZIndex: =13
+
+        Label3_24 As label:
+            Align: =Center
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =87
+            Size: =18
+            Text: ="Are you sure you want to submit the form for approval?"
+            Visible: =popupusersubmit
+            Width: =681
+            X: =343
+            Y: =362
+            ZIndex: =14
+

@@ -1,0 +1,29 @@
+Background As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =App.ActiveScreen.Height
+    Width: =App.ActiveScreen.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    BG_8 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+        Image3_16 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_42 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+

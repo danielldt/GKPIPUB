@@ -1,0 +1,2607 @@
+"'QC_Total (EBSB)' As screen":
+    Fill: =
+    OnVisible: =Set(varShowMenu,true);Set(varShowMenu,false);
+
+    Header_19 As Header:
+        HeaderText: ="Total QC"
+        ZIndex: =3
+
+    Button5_5 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =623
+        Text: =""
+        Width: =1303
+        X: =32
+        Y: =73
+        ZIndex: =4
+
+    Label3_45 As label:
+        Align: =Center
+        Color: =RGBA(7, 65, 148, 1)
+        FontWeight: =Semibold
+        Height: =43
+        Size: =20
+        Text: ="EBSB"
+        Width: =557
+        X: =411
+        Y: =104
+        ZIndex: =5
+
+    Rectangle4_2 As rectangle:
+        Fill: =RGBA(128, 128, 128, 1)
+        Height: =2
+        Width: =1241
+        X: =64
+        Y: =190
+        ZIndex: =19
+
+    LeftNavBar_17 As LeftNavBar:
+        ExpandMenu: =varShowMenu
+        LeftNavBarItem: |-
+            =Table(
+                {
+                    MenuLabel: "Forms",
+                    MenuIcon: Icon.Document,
+                    MenuScreenNavigate: App.ActiveScreen,
+                    MenuID: 1,
+                    SubMenu: Table(
+                        {
+                            MenuLabel: "Add Attachment",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Attachment,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Unadjusted Factory Efficiency",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Machine Efficiency",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Quality Control",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Loss Time Injury",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "VDOT",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Demand Forecast",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Utilties",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        },
+                        {
+                            MenuLabel: "Coefficients for G-KPI Calculation",
+                            MenuIcon: Icon.Document,
+                            MenuScreenNavigate: Form,
+                            MenuID: 1
+                        }
+                    )
+                },
+                {
+                    MenuLabel: "Total",
+                    MenuIcon: Icon.Calculator,
+                    MenuScreenNavigate: 'QC_Total (EBSB)',
+                    MenuID: 2,
+                    SubMenu: Table()
+                },
+                {
+                    MenuLabel: "Status",
+                    MenuIcon: Icon.ThumbsUp,
+                    MenuScreenNavigate: Status,
+                    MenuID: 3,
+                    SubMenu: Table()
+                },
+                {
+                    MenuLabel: "Definition & Manual",
+                    MenuIcon: Icon.ListWatchlistRemind,
+                    MenuScreenNavigate: PDF,
+                    MenuID: 4,
+                    SubMenu: Table()
+                }
+            )
+        Width: =LeftNavBar_17.MenuWidth
+        ZIndex: =22
+
+    Label1_25 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Size: =7.5
+        Text: =Email_Input.Text
+        Width: =256
+        X: =1105
+        Y: =6
+        ZIndex: =23
+
+    BG_17 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =60
+
+        Image3_24 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_51 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    Group3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =62
+
+        Label3_46 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="Complaint"
+            Width: =78
+            X: =60
+            Y: =160
+            ZIndex: =6
+
+        Label3_47 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="January"
+            Width: =61
+            X: =465
+            Y: =160
+            ZIndex: =7
+
+        Label3_48 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="February"
+            Width: =69
+            X: =540
+            Y: =160
+            ZIndex: =8
+
+        Label3_49 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="March"
+            Width: =55
+            X: =615
+            Y: =160
+            ZIndex: =9
+
+        Label3_50 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="April"
+            Width: =46
+            X: =680
+            Y: =160
+            ZIndex: =10
+
+        Label3_51 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="May"
+            Width: =46
+            X: =735
+            Y: =160
+            ZIndex: =11
+
+        Label3_52 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="June"
+            Width: =43
+            X: =785
+            Y: =160
+            ZIndex: =12
+
+        Label3_53 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="July"
+            Width: =42
+            X: =835
+            Y: =160
+            ZIndex: =13
+
+        Label3_54 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="August"
+            Width: =55
+            X: =890
+            Y: =160
+            ZIndex: =14
+
+        Label3_55 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="September"
+            Width: =87
+            X: =960
+            Y: =160
+            ZIndex: =15
+
+        Label3_56 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="October"
+            Width: =69
+            X: =1055
+            Y: =160
+            ZIndex: =16
+
+        Label3_57 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="November"
+            Width: =83
+            X: =1130
+            Y: =160
+            ZIndex: =17
+
+        Label3_58 As label:
+            Align: =Center
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="December"
+            Width: =83
+            X: =1220
+            Y: =160
+            ZIndex: =18
+
+        Label3_63 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Semibold
+            Height: =25
+            Size: =10
+            Text: ="Product Category"
+            Width: =122
+            X: =300
+            Y: =160
+            ZIndex: =24
+
+    Group4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =74
+
+        Label3_59 As label:
+            Align: =Left
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="KGI Recall"
+            Width: =78
+            X: =60
+            Y: =200
+            ZIndex: =20
+
+        Label23_64 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_9)
+            Width: =25
+            X: =483
+            Y: =200
+            ZIndex: =21
+
+        Label23_65 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_9)
+            Width: =21
+            X: =564
+            Y: =200
+            ZIndex: =25
+
+        Label23_66 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_9)
+            Width: =16
+            X: =634
+            Y: =200
+            ZIndex: =26
+
+        Label23_67 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =693
+            Y: =200
+            ZIndex: =27
+
+        Label23_68 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =748
+            Y: =200
+            ZIndex: =28
+
+        Label23_69 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =796
+            Y: =200
+            ZIndex: =29
+
+        Label23_70 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =846
+            Y: =200
+            ZIndex: =30
+
+        Label23_71 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =907
+            Y: =200
+            ZIndex: =31
+
+        Label23_72 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =993
+            Y: =200
+            ZIndex: =32
+
+        Label23_73 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =1079
+            Y: =200
+            ZIndex: =33
+
+        Label23_74 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =1161
+            Y: =200
+            ZIndex: =34
+
+        Label23_75 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'Open Recall')
+            Width: =20
+            X: =1251
+            Y: =200
+            ZIndex: =35
+
+        Label3_64 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="Open Recall"
+            Width: =84
+            X: =319
+            Y: =200
+            ZIndex: =36
+
+    Group4_1 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =88
+
+        Label23_76 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_10)
+            Width: =25
+            X: =483
+            Y: =230
+            ZIndex: =37
+
+        Label23_77 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_10)
+            Width: =21
+            X: =564
+            Y: =230
+            ZIndex: =38
+
+        Label23_78 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_10)
+            Width: =16
+            X: =634
+            Y: =230
+            ZIndex: =39
+
+        Label23_79 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =693
+            Y: =230
+            ZIndex: =40
+
+        Label23_80 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =748
+            Y: =230
+            ZIndex: =41
+
+        Label23_81 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =796
+            Y: =230
+            ZIndex: =42
+
+        Label23_82 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =846
+            Y: =230
+            ZIndex: =43
+
+        Label23_83 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =907
+            Y: =230
+            ZIndex: =44
+
+        Label23_84 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =993
+            Y: =230
+            ZIndex: =45
+
+        Label23_85 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =1079
+            Y: =230
+            ZIndex: =46
+
+        Label23_86 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =1161
+            Y: =230
+            ZIndex: =47
+
+        Label23_87 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'Silent Recall (Withdrawals)')
+            Width: =20
+            X: =1251
+            Y: =230
+            ZIndex: =48
+
+        Label3_65 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="Silent Recall"
+            Width: =92
+            X: =314
+            Y: =230
+            ZIndex: =49
+
+    Group4_2 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =102
+
+        Label3_61 As label:
+            Align: =Left
+            FontWeight: =Normal
+            Height: =33
+            Size: =10
+            Text: |-
+                ="Q-Ref-1-1-1 
+                (Design/NPD Complaints)"
+            Width: =259
+            X: =60
+            Y: =270
+            ZIndex: =50
+
+        Label23_88 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_11)
+            Width: =25
+            X: =483
+            Y: =270
+            ZIndex: =51
+
+        Label23_89 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_11)
+            Width: =21
+            X: =564
+            Y: =270
+            ZIndex: =52
+
+        Label23_90 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_11)
+            Width: =16
+            X: =634
+            Y: =270
+            ZIndex: =53
+
+        Label23_91 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =693
+            Y: =270
+            ZIndex: =54
+
+        Label23_92 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =748
+            Y: =270
+            ZIndex: =55
+
+        Label23_93 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =796
+            Y: =270
+            ZIndex: =56
+
+        Label23_94 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =846
+            Y: =270
+            ZIndex: =57
+
+        Label23_95 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =907
+            Y: =270
+            ZIndex: =58
+
+        Label23_96 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =993
+            Y: =270
+            ZIndex: =59
+
+        Label23_97 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1079
+            Y: =270
+            ZIndex: =60
+
+        Label23_98 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1161
+            Y: =270
+            ZIndex: =61
+
+        Label23_99 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'NCB Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1251
+            Y: =270
+            ZIndex: =62
+
+        Label3_66 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="NCB"
+            Width: =84
+            X: =319
+            Y: =270
+            ZIndex: =63
+
+    Group4_3 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =117
+
+        Label23_100 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_12)
+            Width: =25
+            X: =483
+            Y: =300
+            ZIndex: =64
+
+        Label23_101 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_12)
+            Width: =21
+            X: =564
+            Y: =300
+            ZIndex: =65
+
+        Label23_102 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_12)
+            Width: =16
+            X: =634
+            Y: =300
+            ZIndex: =66
+
+        Label23_103 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =693
+            Y: =300
+            ZIndex: =67
+
+        Label23_104 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =748
+            Y: =300
+            ZIndex: =68
+
+        Label23_105 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =796
+            Y: =300
+            ZIndex: =69
+
+        Label23_106 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =846
+            Y: =300
+            ZIndex: =70
+
+        Label23_107 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =907
+            Y: =300
+            ZIndex: =71
+
+        Label23_108 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =993
+            Y: =300
+            ZIndex: =72
+
+        Label23_109 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1079
+            Y: =300
+            ZIndex: =73
+
+        Label23_110 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1161
+            Y: =300
+            ZIndex: =74
+
+        Label23_111 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CSD Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1251
+            Y: =300
+            ZIndex: =75
+
+        Label3_67 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="CSD"
+            Width: =84
+            X: =319
+            Y: =300
+            ZIndex: =76
+
+    Group4_4 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =131
+
+        Label23_112 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_13)
+            Width: =25
+            X: =483
+            Y: =330
+            ZIndex: =77
+
+        Label23_113 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_13)
+            Width: =21
+            X: =564
+            Y: =330
+            ZIndex: =78
+
+        Label23_114 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_13)
+            Width: =16
+            X: =634
+            Y: =330
+            ZIndex: =79
+
+        Label23_115 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =693
+            Y: =330
+            ZIndex: =80
+
+        Label23_116 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =748
+            Y: =330
+            ZIndex: =81
+
+        Label23_117 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =796
+            Y: =330
+            ZIndex: =82
+
+        Label23_118 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =846
+            Y: =330
+            ZIndex: =83
+
+        Label23_119 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =907
+            Y: =330
+            ZIndex: =84
+
+        Label23_120 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =993
+            Y: =330
+            ZIndex: =85
+
+        Label23_121 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1079
+            Y: =330
+            ZIndex: =86
+
+        Label23_122 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1161
+            Y: =330
+            ZIndex: =87
+
+        Label23_123 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CPP Q-Ref-1-1-1 (Design/NPD Complaints)')
+            Width: =20
+            X: =1251
+            Y: =330
+            ZIndex: =88
+
+        Label3_69 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="CPP"
+            Width: =84
+            X: =319
+            Y: =330
+            ZIndex: =89
+
+    Group4_6 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =160
+
+        Label3_72 As label:
+            Align: =Left
+            FontWeight: =Normal
+            Height: =41
+            Size: =10
+            Text: |-
+                ="Q-1-1
+                (SC controllable Complaints)"
+            Width: =196
+            X: =60
+            Y: =390
+            ZIndex: =90
+
+        Label23_136 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_26)
+            Width: =25
+            X: =483
+            Y: =390
+            ZIndex: =91
+
+        Label23_137 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_26)
+            Width: =21
+            X: =564
+            Y: =390
+            ZIndex: =92
+
+        Label23_138 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_26)
+            Width: =16
+            X: =634
+            Y: =390
+            ZIndex: =93
+
+        Label23_139 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =693
+            Y: =390
+            ZIndex: =94
+
+        Label23_140 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =748
+            Y: =390
+            ZIndex: =95
+
+        Label23_141 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =796
+            Y: =390
+            ZIndex: =96
+
+        Label23_142 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =846
+            Y: =390
+            ZIndex: =97
+
+        Label23_143 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =907
+            Y: =390
+            ZIndex: =98
+
+        Label23_144 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =993
+            Y: =390
+            ZIndex: =99
+
+        Label23_145 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1079
+            Y: =390
+            ZIndex: =100
+
+        Label23_146 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1161
+            Y: =390
+            ZIndex: =101
+
+        Label23_147 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'NCB Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1251
+            Y: =390
+            ZIndex: =102
+
+        Label3_73 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="NCB"
+            Width: =92
+            X: =314
+            Y: =390
+            ZIndex: =103
+
+    Button9 As button:
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(170, 219, 230, 0.48)
+        Height: =25
+        HoverBorderColor: =
+        HoverColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =
+        PressedBorderColor: =
+        PressedColor: =RGBA(0,0,0,0)
+        PressedFill: =RGBA(0,0,0,0)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: =""
+        Width: =1005
+        X: =300
+        Y: =360
+        ZIndex: =170
+
+    Rectangle4_3 As rectangle:
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(179, 179, 179, 1)
+        Height: =1
+        Width: =1241
+        X: =63
+        Y: =262
+        ZIndex: =171
+
+    Group4_7 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =175
+
+        Label23_148 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_27)
+            Width: =25
+            X: =483
+            Y: =420
+            ZIndex: =104
+
+        Label23_149 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_27)
+            Width: =21
+            X: =564
+            Y: =420
+            ZIndex: =105
+
+        Label23_150 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_27)
+            Width: =16
+            X: =634
+            Y: =420
+            ZIndex: =106
+
+        Label23_151 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =693
+            Y: =420
+            ZIndex: =107
+
+        Label23_152 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =748
+            Y: =420
+            ZIndex: =108
+
+        Label23_153 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =796
+            Y: =420
+            ZIndex: =109
+
+        Label23_154 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =846
+            Y: =420
+            ZIndex: =110
+
+        Label23_155 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =907
+            Y: =420
+            ZIndex: =111
+
+        Label23_156 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =993
+            Y: =420
+            ZIndex: =112
+
+        Label23_157 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1079
+            Y: =420
+            ZIndex: =113
+
+        Label23_158 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1161
+            Y: =420
+            ZIndex: =114
+
+        Label23_159 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CSD Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1251
+            Y: =420
+            ZIndex: =115
+
+        Label3_75 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="CSD"
+            Width: =84
+            X: =319
+            Y: =420
+            ZIndex: =116
+
+    Button9_2 As button:
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(170, 219, 230, 0.48)
+        Height: =25
+        HoverBorderColor: =
+        HoverColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =
+        PressedBorderColor: =
+        PressedColor: =RGBA(0,0,0,0)
+        PressedFill: =RGBA(0,0,0,0)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: =""
+        Width: =1005
+        X: =300
+        Y: =480
+        ZIndex: =184
+
+    Group4_8 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =190
+
+        Label23_160 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_28)
+            Width: =25
+            X: =483
+            Y: =450
+            ZIndex: =117
+
+        Label23_161 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_28)
+            Width: =21
+            X: =564
+            Y: =450
+            ZIndex: =118
+
+        Label23_162 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_28)
+            Width: =16
+            X: =634
+            Y: =450
+            ZIndex: =119
+
+        Label23_163 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =693
+            Y: =450
+            ZIndex: =120
+
+        Label23_164 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =748
+            Y: =450
+            ZIndex: =121
+
+        Label23_165 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =796
+            Y: =450
+            ZIndex: =122
+
+        Label23_166 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =846
+            Y: =450
+            ZIndex: =123
+
+        Label23_167 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =907
+            Y: =450
+            ZIndex: =124
+
+        Label23_168 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =993
+            Y: =450
+            ZIndex: =125
+
+        Label23_169 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1079
+            Y: =450
+            ZIndex: =126
+
+        Label23_170 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1161
+            Y: =450
+            ZIndex: =127
+
+        Label23_171 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CPP Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1251
+            Y: =450
+            ZIndex: =128
+
+        Label3_77 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="CPP"
+            Width: =84
+            X: =319
+            Y: =450
+            ZIndex: =129
+
+    Button9_3 As button:
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(170, 219, 230, 0.48)
+        Height: =25
+        HoverBorderColor: =
+        HoverColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =
+        PressedBorderColor: =
+        PressedColor: =RGBA(0,0,0,0)
+        PressedFill: =RGBA(0,0,0,0)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: =""
+        Width: =1005
+        X: =300
+        Y: =600
+        ZIndex: =198
+
+    Group4_9 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =204
+
+        Label3_74 As label:
+            Align: =Left
+            FontWeight: =Normal
+            Height: =41
+            Size: =10
+            Text: |-
+                ="Q-Ref-2
+                (SC Uncontrollable Complaints)"
+            Width: =206
+            X: =60
+            Y: =510
+            ZIndex: =130
+
+        Label23_172 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_41)
+            Width: =25
+            X: =483
+            Y: =510
+            ZIndex: =131
+
+        Label23_173 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_41)
+            Width: =21
+            X: =564
+            Y: =510
+            ZIndex: =132
+
+        Label23_174 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_41)
+            Width: =16
+            X: =634
+            Y: =510
+            ZIndex: =133
+
+        Label23_175 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =693
+            Y: =510
+            ZIndex: =134
+
+        Label23_176 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =748
+            Y: =510
+            ZIndex: =135
+
+        Label23_177 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =796
+            Y: =510
+            ZIndex: =136
+
+        Label23_178 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =846
+            Y: =510
+            ZIndex: =137
+
+        Label23_179 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =907
+            Y: =510
+            ZIndex: =138
+
+        Label23_180 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =993
+            Y: =510
+            ZIndex: =139
+
+        Label23_181 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1079
+            Y: =510
+            ZIndex: =140
+
+        Label23_182 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1161
+            Y: =510
+            ZIndex: =141
+
+        Label23_183 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'NCB Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1251
+            Y: =510
+            ZIndex: =142
+
+        Label3_76 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="NCB"
+            Width: =92
+            X: =314
+            Y: =510
+            ZIndex: =143
+
+    Button9_4 As button:
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(107, 174, 210, 1)
+        Height: =25
+        HoverBorderColor: =
+        HoverColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =
+        PressedBorderColor: =
+        PressedColor: =RGBA(0,0,0,0)
+        PressedFill: =RGBA(0,0,0,0)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: =""
+        Width: =1255
+        X: =50
+        Y: =630
+        ZIndex: =212
+
+    Group4_10 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =218
+
+        Label23_184 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_42)
+            Width: =25
+            X: =483
+            Y: =540
+            ZIndex: =144
+
+        Label23_185 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_42)
+            Width: =21
+            X: =564
+            Y: =540
+            ZIndex: =145
+
+        Label23_186 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_42)
+            Width: =16
+            X: =634
+            Y: =540
+            ZIndex: =146
+
+        Label23_187 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =693
+            Y: =540
+            ZIndex: =147
+
+        Label23_188 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =748
+            Y: =540
+            ZIndex: =148
+
+        Label23_189 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =796
+            Y: =540
+            ZIndex: =149
+
+        Label23_190 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =846
+            Y: =540
+            ZIndex: =150
+
+        Label23_191 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =907
+            Y: =540
+            ZIndex: =151
+
+        Label23_192 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =993
+            Y: =540
+            ZIndex: =152
+
+        Label23_193 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1079
+            Y: =540
+            ZIndex: =153
+
+        Label23_194 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1161
+            Y: =540
+            ZIndex: =154
+
+        Label23_195 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1251
+            Y: =540
+            ZIndex: =155
+
+        Label3_78 As label:
+            Align: =Align.Center
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="CSD"
+            Width: =84
+            X: =319
+            Y: =540
+            ZIndex: =156
+
+    Group4_11 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =232
+
+        Label23_196 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_43)
+            Width: =25
+            X: =483
+            Y: =570
+            ZIndex: =157
+
+        Label23_197 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_43)
+            Width: =21
+            X: =564
+            Y: =570
+            ZIndex: =158
+
+        Label23_198 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_43)
+            Width: =16
+            X: =634
+            Y: =570
+            ZIndex: =159
+
+        Label23_199 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =693
+            Y: =570
+            ZIndex: =160
+
+        Label23_200 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =748
+            Y: =570
+            ZIndex: =161
+
+        Label23_201 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =796
+            Y: =570
+            ZIndex: =162
+
+        Label23_202 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =846
+            Y: =570
+            ZIndex: =163
+
+        Label23_203 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =907
+            Y: =570
+            ZIndex: =164
+
+        Label23_204 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =993
+            Y: =570
+            ZIndex: =165
+
+        Label23_205 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1079
+            Y: =570
+            ZIndex: =166
+
+        Label23_206 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1161
+            Y: =570
+            ZIndex: =167
+
+        Label23_207 As label:
+            Align: =Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'CPP Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1251
+            Y: =570
+            ZIndex: =168
+
+        Label3_79 As label:
+            Align: =Align.Center
+            ContentLanguage: =LookUp('QC Form', 'Month String' = "March", 'CSD Q-Ref-2 (SC Uncontrollable Complaints)')
+            FontWeight: =Normal
+            Height: =25
+            Live: =LookUp('QC Form', field_57 = "October", field_43)
+            Size: =10
+            Text: ="CPP"
+            Width: =84
+            X: =319
+            Y: =570
+            ZIndex: =169
+
+    Group4_5 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =246
+
+        Label3_60 As label:
+            Align: =Left
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: ="Total Complaints"
+            Width: =133
+            X: =60
+            Y: =630
+            ZIndex: =214
+
+        Label23_124 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_56)
+            Width: =43
+            X: =474
+            Y: =630
+            ZIndex: =215
+
+        Label23_125 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_56)
+            Width: =33
+            X: =552
+            Y: =630
+            ZIndex: =216
+
+        Label23_126 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_56)
+            Width: =35
+            X: =625
+            Y: =630
+            ZIndex: =217
+
+        Label23_127 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =33
+            X: =673
+            Y: =630
+            ZIndex: =218
+
+        Label23_128 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =33
+            X: =739
+            Y: =630
+            ZIndex: =219
+
+        Label23_129 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =31
+            X: =785
+            Y: =630
+            ZIndex: =220
+
+        Label23_130 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =31
+            X: =835
+            Y: =630
+            ZIndex: =221
+
+        Label23_131 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =37
+            X: =894
+            Y: =630
+            ZIndex: =222
+
+        Label23_132 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =31
+            X: =981
+            Y: =630
+            ZIndex: =223
+
+        Label23_133 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =31
+            X: =1067
+            Y: =630
+            ZIndex: =224
+
+        Label23_134 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =32
+            X: =1148
+            Y: =630
+            ZIndex: =225
+
+        Label23_135 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', field_57 = "December",  && 'BU String'= "EBSB", 'Total Complaint')
+            Width: =34
+            X: =1236
+            Y: =630
+            ZIndex: =226
+
+    Group4_12 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =259
+
+        Label23_208 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_55)
+            Width: =25
+            X: =483
+            Y: =600
+            ZIndex: =200
+
+        Label23_209 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_55)
+            Width: =21
+            X: =564
+            Y: =600
+            ZIndex: =201
+
+        Label23_210 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_55)
+            Width: =16
+            X: =634
+            Y: =600
+            ZIndex: =202
+
+        Label23_211 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =693
+            Y: =600
+            ZIndex: =203
+
+        Label23_212 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =748
+            Y: =600
+            ZIndex: =204
+
+        Label23_213 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =796
+            Y: =600
+            ZIndex: =205
+
+        Label23_214 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =846
+            Y: =600
+            ZIndex: =206
+
+        Label23_215 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =907
+            Y: =600
+            ZIndex: =207
+
+        Label23_216 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =993
+            Y: =600
+            ZIndex: =208
+
+        Label23_217 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1079
+            Y: =600
+            ZIndex: =209
+
+        Label23_218 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1161
+            Y: =600
+            ZIndex: =210
+
+        Label23_219 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'SubTotal Q-Ref-2 (SC Uncontrollable Complaints)')
+            Width: =20
+            X: =1251
+            Y: =600
+            ZIndex: =211
+
+        Label3_70 As label:
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="Sub Total"
+            Width: =84
+            X: =319
+            Y: =600
+            ZIndex: =213
+
+    Group4_13 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =272
+
+        Label23_220 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_25)
+            Width: =25
+            X: =483
+            Y: =360
+            ZIndex: =172
+
+        Label23_221 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_25)
+            Width: =21
+            X: =564
+            Y: =360
+            ZIndex: =173
+
+        Label23_222 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_25)
+            Width: =16
+            X: =634
+            Y: =360
+            ZIndex: =174
+
+        Label23_223 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =693
+            Y: =360
+            ZIndex: =175
+
+        Label23_224 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =748
+            Y: =360
+            ZIndex: =176
+
+        Label23_225 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =796
+            Y: =360
+            ZIndex: =177
+
+        Label23_226 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =846
+            Y: =360
+            ZIndex: =178
+
+        Label23_227 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =907
+            Y: =360
+            ZIndex: =179
+
+        Label23_228 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =993
+            Y: =360
+            ZIndex: =180
+
+        Label23_229 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =1079
+            Y: =360
+            ZIndex: =181
+
+        Label23_230 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =1161
+            Y: =360
+            ZIndex: =182
+
+        Label23_231 As label:
+            Align: =Center
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'SubTotal Q-Ref-1-1-1 (Design/NPD Complaints) ')
+            Width: =20
+            X: =1251
+            Y: =360
+            ZIndex: =183
+
+        Label3_71 As label:
+            DisplayMode: =DisplayMode.View
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="Sub Total"
+            Width: =84
+            X: =319
+            Y: =360
+            ZIndex: =185
+
+    Group4_14 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =285
+
+        Label23_232 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "January" && field_58.Value = "EBSB", field_40)
+            Width: =25
+            X: =483
+            Y: =480
+            ZIndex: =186
+
+        Label23_233 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "February" && field_58.Value = "EBSB", field_40)
+            Width: =21
+            X: =564
+            Y: =480
+            ZIndex: =187
+
+        Label23_234 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', Month.Value = "March" && field_58.Value = "EBSB", field_40)
+            Width: =16
+            X: =634
+            Y: =480
+            ZIndex: =188
+
+        Label23_235 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "April" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =693
+            Y: =480
+            ZIndex: =189
+
+        Label23_236 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "May" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =748
+            Y: =480
+            ZIndex: =190
+
+        Label23_237 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "June" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =796
+            Y: =480
+            ZIndex: =191
+
+        Label23_238 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "July" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =846
+            Y: =480
+            ZIndex: =192
+
+        Label23_239 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "August" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =907
+            Y: =480
+            ZIndex: =193
+
+        Label23_240 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "September" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =993
+            Y: =480
+            ZIndex: =194
+
+        Label23_241 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "October" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1079
+            Y: =480
+            ZIndex: =195
+
+        Label23_242 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "November" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1161
+            Y: =480
+            ZIndex: =196
+
+        Label23_243 As label:
+            Align: =Center
+            Height: =25
+            Size: =10
+            Text: =LookUp('QC Form', 'Month String' = "December" && 'BU String'= "EBSB", 'SubTotal Q-1-1 (SC controllable Complaints) ')
+            Width: =20
+            X: =1251
+            Y: =480
+            ZIndex: =197
+
+        Label3_80 As label:
+            FontWeight: =Normal
+            Height: =25
+            Size: =10
+            Text: ="Sub Total"
+            Width: =84
+            X: =319
+            Y: =480
+            ZIndex: =199
+

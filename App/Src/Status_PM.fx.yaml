@@ -1,0 +1,783 @@
+Status_PM As screen:
+    OnVisible: |-
+        =Set(varShowFilters,true);
+        
+        Set(popuplogout,false)
+
+    Label1_18 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Size: =7.5
+        Text: =Email_Input.Text
+        Width: =256
+        X: =1105
+        Y: =6
+        ZIndex: =4
+
+    SubHeader_6 As SubHeader:
+        ZIndex: =5
+
+    Header_9 As Header:
+        HeaderText: ="Status"
+        ZIndex: =6
+
+    Icon5_2 As icon.Filter:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =30
+        HoverColor: =ColorFade(RGBA(0, 161, 233, 1), -4%)
+        Icon: =Icon.Filter
+        OnSelect: =Set(varShowFilters, !varShowFilters);
+        PressedColor: =
+        PressedFill: =
+        Width: =30
+        X: =1281
+        Y: =59
+        ZIndex: =7
+
+    Roles_1 As text:
+        Default: ="Roles"
+        Height: =34
+        Visible: =false
+        Width: =172
+        X: =110
+        Y: =9
+        ZIndex: =16
+
+    Dropdown2_6 As dropdown:
+        AllowEmptySelection: =true
+        BorderColor: =RGBA(230, 230, 230, 1)
+        ChevronBackground: =RGBA(0, 161, 233, 1)
+        Visible: =If(Roles_1.Text = "Approver", true, false)
+        Width: =387
+        X: =676
+        Y: =145
+        ZIndex: =24
+
+    Label1_20 As label:
+        Color: =RGBA(128, 128, 128, 1)
+        FontWeight: =Bold
+        Text: ="Username"
+        Visible: =If(Roles_1.Text = "Approver", true, false)
+        Width: =246
+        X: =676
+        Y: =105
+        ZIndex: =25
+
+    BG_7 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =25
+
+        Image3_15 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_44 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =2
+
+    "Status_Gallery_User_3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =187
+        Items: ='UFE-Master-List_1'
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =79
+        Width: =1294
+        X: =36
+        Y: =534
+        ZIndex: =28
+
+        Button8_15 As button:
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =74
+            Text: =""
+            Width: =1294
+            ZIndex: =1
+
+        NextArrow1_8 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =53
+            Icon: =Icon.ChevronRight
+            OnSelect: =Navigate(Attachment)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Visible: =If(ThisItem.Status = "Approved",false,true)
+            Width: =44
+            X: =1217
+            Y: =13
+            ZIndex: =4
+
+        Icon3_8 As icon.Trash:
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =29
+            Icon: =Icon.Trash
+            OnSelect: =Remove('UFE-Master-List', ThisItem)
+            Visible: =If(ThisItem.Status ="Approved", false,true)
+            Width: =29
+            X: =1158
+            Y: =26
+            ZIndex: =9
+
+        Label7_13 As label:
+            FontWeight: =Semibold
+            Height: =49
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: =ThisItem.'Form No'
+            Width: =212
+            X: =40
+            Y: =17
+            ZIndex: =10
+
+        Label7_14 As label:
+            FontWeight: =Semibold
+            Height: =49
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: =ThisItem.Status
+            Width: =382
+            X: =323
+            Y: =17
+            ZIndex: =11
+
+        Label7_15 As label:
+            FontWeight: =Semibold
+            Height: =49
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: =ThisItem.Month.Value
+            Width: =210
+            X: =764
+            Y: =17
+            ZIndex: =12
+
+        Button12_3 As button:
+            Color: =RGBA(0, 161, 233, 1)
+            Fill: =RGBA(0, 0, 0, 0)
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: =Set(varAttachment,ThisItem);Set(popupcomments2,true)
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            Size: =14
+            Text: ="Comments"
+            Visible: =If(CountRows(Filter('Approver Details', FormNo = Label7_13.Text)) > 0, true, false)
+            X: =965
+            Y: =20
+            ZIndex: =13
+
+        NextArrow1_9 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(128, 128, 128, 1)
+            Height: =53
+            Icon: =Icon.ChevronRight
+            OnSelect: =Set(varAttachment,ThisItem);Navigate(UFE_ApproverMY_Reopen)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Width: =44
+            X: =1217
+            Y: =13
+            ZIndex: =14
+
+    Icon2_2 As icon.Reload:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =20
+        Icon: =Icon.Reload
+        OnSelect: =Refresh('UFE-Master-List_1');Refresh('UFE-Temporary-List');
+        Width: =20
+        X: =1245
+        Y: =65
+        ZIndex: =31
+
+    Label4_1 As label:
+        FontWeight: =Semibold
+        Height: =41
+        Size: =16
+        Text: ="Pending request"
+        Width: =359
+        X: =74
+        Y: =227
+        ZIndex: =32
+
+    Label4_3 As label:
+        FontWeight: =Semibold
+        Height: =41
+        Size: =16
+        Text: ="Completed | Reopen request"
+        Width: =359
+        X: =74
+        Y: =483
+        ZIndex: =33
+
+    Icon2_6 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =60
+        Y: =9
+        ZIndex: =34
+
+    Pending_Request_Text_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =34
+
+        Label1_2 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =33
+            Size: =16
+            Text: ="Pending Request"
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =208
+            X: =97
+            Y: =264
+            ZIndex: =26
+
+        Rectangle9_2 As rectangle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =25
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =6
+            X: =86
+            Y: =268
+            ZIndex: =27
+
+    Approved_Request_Text_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =34
+
+        Label1_3 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Semibold
+            Height: =33
+            Size: =16
+            Text: ="Approved Request"
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =208
+            X: =97
+            Y: =485
+            ZIndex: =29
+
+        Rectangle9_3 As rectangle:
+            Fill: =RGBA(0, 161, 233, 1)
+            Height: =25
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =6
+            X: =86
+            Y: =489
+            ZIndex: =30
+
+    LeftNavBar_8 As LeftNavBar:
+        LeftNavBarItem: =colMenu
+        Width: =LeftNavBar_8.MenuWidth
+        ZIndex: =35
+
+    Button16_3 As button:
+        Color: =RGBA(0, 0, 0, 0)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =27
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnSelect: =Set(popuplogout,!popuplogout)
+        Text: =""
+        Width: =28
+        X: =1320
+        Y: =13
+        ZIndex: =37
+
+    "'Comments-Trail_3' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =39
+
+        Rectangle2_8 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            Visible: =popupcomments2
+            Width: =1366
+            ZIndex: =41
+
+        "Gallery1_3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =482
+            Items: =Filter('Approver Details', FormNo = varAttachment.FormNo, !IsBlank(Comments))
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =105
+            Visible: =popupcomments2
+            Width: =1192
+            X: =97
+            Y: =158
+            ZIndex: =42
+
+            Image1_3 As image:
+                Height: =105
+                OnSelect: =Select(Parent)
+                Visible: =false
+                Width: =128
+                X: =16
+                ZIndex: =1
+
+            "'Approver Name_3' As label":
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.ApproverName & "|" & Text(ThisItem.ResponseDate, "dd.mm.yyyy")
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - Image1_3.Width - 104
+                X: =89
+                Y: =12
+                ZIndex: =2
+
+            Comments_3 As label:
+                Height: =59
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: =ThisItem.Comments
+                VerticalAlign: =VerticalAlign.Top
+                Width: =1084
+                X: =89
+                Y: =33
+                ZIndex: =3
+
+            Separator1_3 As rectangle:
+                Fill: =RGBA(128, 128, 128, 1)
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =5
+
+            Icon21_3 As icon.Person:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =44
+                Icon: =Icon.Person
+                OnSelect: =Select(Parent)
+                Width: =44
+                X: =26
+                Y: =30
+                ZIndex: =6
+
+        "'Close-bttn-etika_8' As icon.CancelBadge":
+            Color: =RGBA(0, 161, 233, 1)
+            Height: =24
+            Icon: =Icon.CancelBadge
+            OnSelect: =Set(popupcomments2,false)
+            Visible: =popupcomments2
+            Width: =24
+            X: =1336
+            Y: =16
+            ZIndex: =43
+
+    "'Logout-bttn_3' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =44
+
+        Button17_3 As button:
+            BorderThickness: =0
+            Fill: =RGBA(179, 179, 179, 1)
+            Height: =88
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            OnSelect: =Navigate(Loginpage)
+            PaddingTop: =15
+            Size: =12
+            Text: =varUserName
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =48
+            ZIndex: =38
+
+        Label16_3 As label:
+            Align: =Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =Semibold
+            OnSelect: =Navigate(Loginpage)
+            Size: =12
+            Text: ="Logout"
+            Visible: =popuplogout
+            Width: =74
+            X: =1150
+            Y: =93
+            ZIndex: =39
+
+        Rectangle4_7 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Navigate(Loginpage)
+            Visible: =popuplogout
+            Width: =290
+            X: =1042
+            Y: =91
+            ZIndex: =40
+
+    Status_Gallery_Filter_User_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =20
+        ZIndex: =54
+
+        Rectangle1_16 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =115
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =1366
+            Y: =95
+            ZIndex: =8
+
+        Dropdown1_4 As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =150
+            X: =311
+            Y: =145
+            ZIndex: =9
+
+        Label1_7 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Status"
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =87
+            X: =311
+            Y: =105
+            ZIndex: =10
+
+        Dropdown2_5 As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =150
+            X: =501
+            Y: =145
+            ZIndex: =11
+
+        Label1_9 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Month"
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =87
+            X: =501
+            Y: =105
+            ZIndex: =12
+
+        TextInput1_4 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =""
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =246
+            X: =36
+            Y: =145
+            ZIndex: =13
+
+        Label1_13 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Form No"
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =87
+            X: =36
+            Y: =105
+            ZIndex: =14
+
+        "Status_Gallery_User_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            Height: =153
+            Items: ='UFE-Temporary-List'
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =79
+            Visible: =If(Email_Input.Text = "kota.aikawa@asahisea.com", true, false)
+            Width: =1294
+            X: =36
+            Y: =317
+            ZIndex: =15
+
+            Button8_14 As button:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =79
+                Text: =""
+                Width: =1294
+                ZIndex: =1
+
+            NextArrow1_7 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =53
+                Icon: =Icon.ChevronRight
+                OnSelect: =Navigate(Attachment)
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                TabIndex: =0
+                Tooltip: ="View item details"
+                Visible: =
+                Width: =44
+                X: =1217
+                Y: =13
+                ZIndex: =4
+
+            Icon3_7 As icon.Trash:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =29
+                Icon: =Icon.Trash
+                OnSelect: =Remove('UFE-Temporary-List', ThisItem)
+                Width: =29
+                X: =1158
+                Y: =26
+                ZIndex: =9
+
+            Label7_4 As label:
+                FontWeight: =Semibold
+                Height: =46
+                OnSelect: =Select(Parent)
+                Size: =14
+                Text: =ThisItem.'Form No'
+                Width: =417
+                X: =40
+                Y: =17
+                ZIndex: =10
+
+    Status_Gallery_Approver_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =70
+
+        "Approver_Pending_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            Height: =195
+            Items: |-
+                =Filter('UFE-Temporary-List', 
+                        Status = "Pending approval from Plant Manager",
+                        IsBlank(Dropdown1_5.Selected.Result) || IsEmpty(Dropdown1_5.Selected.Result) ||
+                        Status = Dropdown1_5.Selected.Result,
+                        IsBlank(Dropdown2_7.Selected.Result) || IsEmpty(Dropdown2_7.Selected.Result) ||
+                        Month.Value = Dropdown2_7.Selected.Result,
+                        IsBlank(TextInput1_5.Text) || IsEmpty(TextInput1_5.Text) ||
+                        'Form No' = TextInput1_5.Text
+                
+                
+                
+                )
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =88
+            Width: =1294
+            X: =36
+            Y: =275
+            ZIndex: =3
+
+            Button8_13 As button:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =79
+                Text: =""
+                Width: =1294
+                ZIndex: =1
+
+            NextArrow1_6 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =53
+                Icon: =Icon.ChevronRight
+                OnSelect: =Set(varAttachment,ThisItem);Navigate(UFE_ApproverMY)
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                TabIndex: =0
+                Tooltip: ="View item details"
+                Width: =44
+                X: =1217
+                Y: =13
+                ZIndex: =4
+
+            Icon3_6 As icon.Trash:
+                Color: =RGBA(128, 128, 128, 1)
+                Height: =29
+                Icon: =Icon.Trash
+                OnSelect: =Remove('UFE-Temporary-List', ThisItem)
+                Width: =29
+                X: =1158
+                Y: =25
+                ZIndex: =9
+
+            Label7_3 As label:
+                FontWeight: =Semibold
+                Height: =49
+                OnSelect: =Select(Parent)
+                Size: =14
+                Text: =ThisItem.'Form No'
+                Width: =210
+                X: =40
+                Y: =15
+                ZIndex: =10
+
+            Label7_11 As label:
+                FontWeight: =Semibold
+                Height: =49
+                OnSelect: =Select(Parent)
+                Size: =14
+                Text: =ThisItem.Status
+                Width: =408
+                X: =323
+                Y: =15
+                ZIndex: =11
+
+            Label7_12 As label:
+                FontWeight: =Semibold
+                Height: =49
+                OnSelect: =Select(Parent)
+                Size: =14
+                Text: =ThisItem.Month.Value
+                Width: =168
+                X: =764
+                Y: =15
+                ZIndex: =12
+
+            Button12_2 As button:
+                Color: =RGBA(0, 161, 233, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                HoverColor: =Self.Color
+                HoverFill: =Self.Fill
+                OnSelect: =Set(varAttachment,ThisItem);Set(popupcomments2,true)
+                PressedColor: =Self.Color
+                PressedFill: =Self.Fill
+                Size: =14
+                Text: ="Comments"
+                Visible: =If(CountRows(Filter('Approver Details', FormNo = Label7_3.Text, !IsBlank(Comments))) > 0, true, false)
+                X: =965
+                Y: =20
+                ZIndex: =13
+
+        Rectangle1_17 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.69)
+            Height: =115
+            Visible: =varShowFilters
+            Width: =1366
+            Y: =95
+            ZIndex: =17
+
+        Dropdown1_5 As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Items: |-
+                =Distinct(
+                   Filter(
+                       Filter('UFE-Temporary-List',RequestorEmail = varUserEmail, !IsBlank(Status)),
+                       Status <> "Saved"),Status)
+                    
+            Visible: =varShowFilters
+            Width: =463
+            X: =311
+            Y: =145
+            ZIndex: =18
+
+        Label1_8 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Status"
+            Visible: =varShowFilters
+            Width: =87
+            X: =311
+            Y: =105
+            ZIndex: =19
+
+        Dropdown2_7 As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(230, 230, 230, 1)
+            ChevronBackground: =RGBA(0, 161, 233, 1)
+            Items: |-
+                =Distinct(Filter('UFE-Temporary-List',RequestorEmail = varUserEmail),Month.Value)
+                    
+            Visible: =varShowFilters
+            Width: =150
+            X: =801
+            Y: =145
+            ZIndex: =20
+
+        Label1_21 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Month"
+            Visible: =varShowFilters
+            Width: =87
+            X: =801
+            Y: =105
+            ZIndex: =21
+
+        TextInput1_5 As text:
+            BorderColor: =RGBA(230, 230, 230, 1)
+            Default: =""
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Visible: =varShowFilters
+            Width: =246
+            X: =36
+            Y: =145
+            ZIndex: =22
+
+        Label1_19 As label:
+            Color: =RGBA(128, 128, 128, 1)
+            FontWeight: =Bold
+            Text: ="Form No"
+            Visible: =varShowFilters
+            Width: =87
+            X: =36
+            Y: =105
+            ZIndex: =23
+

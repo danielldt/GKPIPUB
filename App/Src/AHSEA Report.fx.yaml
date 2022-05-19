@@ -1,0 +1,418 @@
+"'AHSEA Report' As screen":
+    OnVisible: |-
+        =ClearCollect(colReport, AddColumns(GroupBy(RenameColumns(ShowColumns(Filter('UFE-Master-List_1', Year = "2022"), "field_3", "Year", "field_4", "field_8"), "field_3", "BU", "field_4", "Month", "field_8", "Total"), "BU", "Year", "group"), "Type", "UFE"));
+        
+        Collect(colReport,AddColumns(GroupBy(RenameColumns(ShowColumns(Filter('ME Form', Year = "2022"), "BU", "Year", "Month", "MESubtotal"), "MESubtotal", "Total"), "BU", "Year", "group"), "Type", "ME"));
+        
+        ClearCollect(colGroupReport, GroupBy(colReport, "Type", "cols"));
+
+    Button5_34 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(255, 255, 255, 0.89)
+        Height: =660
+        Text: =""
+        Width: =1303
+        X: =38
+        Y: =96
+        ZIndex: =2
+
+    Header_36 As Header:
+        HeaderText: ="AHSEA Reporting"
+        ZIndex: =4
+
+    BG_34 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =4
+
+        Image3_41 As image:
+            Height: =768
+            Image: =asahi_people
+            ImagePosition: =ImagePosition.Fill
+            Width: =1366
+            ZIndex: =1
+
+        Rectangle1_68 As rectangle:
+            Fill: =RGBA(255, 255, 255, 0.9)
+            Height: =768
+            Width: =1365
+            X: =1
+            ZIndex: =3
+
+    Button5_35 As button:
+        BorderColor: =RGBA(45, 45, 45, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(230, 230, 230, 1)
+        Height: =486
+        Text: =""
+        Width: =1303
+        X: =38
+        Y: =270
+        ZIndex: =20
+
+    Gallery24 As gallery.variableTemplateHeightGallery:
+        Height: =486
+        Items: =colGroupReport
+        Layout: =Layout.Vertical
+        TemplateSize: =280
+        Visible: =
+        Width: =1303
+        X: =38
+        Y: =270
+        ZIndex: =26
+
+        Button26 As button:
+            Height: =58
+            Text: =""
+            Width: =1293
+            ZIndex: =1
+
+        ComplaintLabel As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Type
+            X: =20
+            Y: =9
+            ZIndex: =2
+
+        PlantLabel As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Text: ="AHSEA"
+            X: =170
+            Y: =9
+            ZIndex: =3
+
+        UOPLabel As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Text: =Switch(ComplaintLabel.Text, "UFE", "%")
+            Width: =118
+            X: =282
+            Y: =9
+            ZIndex: =4
+
+        Gallery8 As gallery.variableTemplateHeightGallery:
+            Height: =187
+            Items: =ThisItem.cols
+            Layout: =Layout.Vertical
+            TemplateSize: =182
+            Visible: =MaxUfe
+            Width: =1293
+            Y: =54
+            ZIndex: =5
+
+            Plant As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.BU
+                X: =160
+                Y: =18
+                ZIndex: =1
+
+            Jan As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "January")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "January")).Total)
+                Width: =86
+                X: =420
+                Y: =18
+                ZIndex: =2
+
+            Feb As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "February")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "February")).Total)
+                Width: =50
+                X: =500
+                Y: =18
+                ZIndex: =3
+
+            Mar As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "March")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "March")).Total)
+                Width: =50
+                X: =570
+                Y: =20
+                ZIndex: =4
+
+            Apr As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "April")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "April")).Total)
+                Width: =50
+                X: =640
+                Y: =20
+                ZIndex: =5
+
+            May As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "May")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "May")).Total)
+                Width: =50
+                X: =700
+                Y: =20
+                ZIndex: =6
+
+            Jun As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "June")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "June")).Total)
+                Width: =50
+                X: =770
+                Y: =20
+                ZIndex: =7
+
+            Jul As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "July")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "July")).Total)
+                Width: =50
+                X: =840
+                Y: =20
+                ZIndex: =8
+
+            Aug As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "August")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "August")).Total)
+                Width: =50
+                X: =910
+                Y: =20
+                ZIndex: =9
+
+            Sept As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "September")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "September")).Total)
+                Width: =50
+                X: =980
+                Y: =20
+                ZIndex: =10
+
+            Oct As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "October")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "October")).Total)
+                Width: =50
+                X: =1050
+                Y: =20
+                ZIndex: =11
+
+            Nov As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "November")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "November")).Total)
+                Width: =50
+                X: =1120
+                Y: =20
+                ZIndex: =12
+
+            Dec As label:
+                Align: =Align.Center
+                OnSelect: =Select(Parent)
+                Text: =If(First(Filter(ThisItem.group, Month.Value = "December")).Total = Blank(), "0", First(Filter(ThisItem.group, Month.Value = "December")).Total)
+                Width: =50
+                X: =1190
+                Y: =20
+                ZIndex: =13
+
+    YearLbl As label:
+        Text: ="Year"
+        X: =78
+        Y: =96
+        ZIndex: =27
+
+    Group15 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =27
+
+        Label34_15 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Complaint"
+            Width: =102
+            X: =78
+            Y: =230
+            ZIndex: =5
+
+        Label34_16 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Plant"
+            Width: =102
+            X: =230
+            Y: =230
+            ZIndex: =6
+
+        Label34_17 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="UOP"
+            Width: =102
+            X: =332
+            Y: =230
+            ZIndex: =7
+
+        Label34_18 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Jan"
+            Width: =102
+            X: =462
+            Y: =230
+            ZIndex: =8
+
+        Label34_19 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Feb"
+            Width: =102
+            X: =530
+            Y: =230
+            ZIndex: =9
+
+        Label34_20 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Mar"
+            Width: =102
+            X: =597
+            Y: =230
+            ZIndex: =10
+
+        Label34_21 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Apr"
+            Width: =102
+            X: =663
+            Y: =230
+            ZIndex: =11
+
+        Label34_22 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="May"
+            Width: =102
+            X: =728
+            Y: =230
+            ZIndex: =12
+
+        Label34_23 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Jun"
+            Width: =102
+            X: =796
+            Y: =230
+            ZIndex: =13
+
+        Label34_24 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Jul"
+            Width: =102
+            X: =862
+            Y: =230
+            ZIndex: =14
+
+        Label34_25 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Aug"
+            Width: =102
+            X: =939
+            Y: =230
+            ZIndex: =15
+
+        Label34_26 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Sept"
+            Width: =102
+            X: =1012
+            Y: =230
+            ZIndex: =16
+
+        Label34_27 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Oct"
+            Width: =102
+            X: =1076
+            Y: =230
+            ZIndex: =17
+
+        Label34_28 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Nov"
+            Width: =102
+            X: =1143
+            Y: =230
+            ZIndex: =18
+
+        Label34_29 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Text: ="Dec"
+            Width: =102
+            X: =1209
+            Y: =230
+            ZIndex: =19
+
+    YearDropdown As dropdown:
+        Default: =""
+        Items: =["", Year(Now()), Year(Today())-1]
+        Width: =150
+        X: =78
+        Y: =136
+        ZIndex: =28
+
+    Button19 As button:
+        OnSelect: |-
+            =ClearCollect(colReport, AddColumns(GroupBy(RenameColumns(ShowColumns(Filter('UFE-Master-List_1', Year = "2022"), "field_3", "Year", "field_4", "field_8"), "field_3", "BU", "field_4", "Month", "field_8", "Total"), "BU", "Year", "group"), "Type", "UFE"));
+            
+            Collect(colReport,AddColumns(GroupBy(RenameColumns(ShowColumns(Filter('ME Form', Year = "2022"), "BU", "Year", "Month", "MESubtotal"), "MESubtotal", "Total"), "BU", "Year", "group"), "Type", "ME"));
+            
+            ClearCollect(colGroupReport, GroupBy(colReport, "Type", "cols"));
+        Text: ="Update"
+        X: =1151
+        Y: =136
+        ZIndex: =29
+
+    Icon2_23 As icon.Home:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =29
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Homepage)
+        Width: =25
+        X: =80
+        Y: =9
+        ZIndex: =30
+
+    LeftNavBar_6 As LeftNavBar:
+        LeftNavBarItem: =colMenu
+        Width: =LeftNavBar_6.MenuWidth
+        ZIndex: =31
+
+    MinMaxUFE As icon.ChevronDown:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =38
+        Icon: =Icon.ChevronDown
+        OnSelect: =Set(MaxUfe, false)
+        Width: =36
+        X: =1283
+        Y: =280
+        ZIndex: =32
+
